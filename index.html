@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Couvert.ai — AI Operations Teams für Restaurants</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep-green: #1A3C34;
+  --deep-green-light: #22493F;
+  --copper: #C4673A;
+  --copper-glow: rgba(196,103,58,0.12);
+  --gold: #E8B931;
+  --linen: #F5F0EB;
+  --graphite: #2A2A28;
+  --stone: #8A8578;
+  --card-bg: #1E3F38;
+  --card-border: #2D554B;
+  --success: #3D7A5F;
+  --critical: #B84233;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--deep-green);
+  color: var(--linen);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.page { max-width: 940px; margin: 0 auto; padding: 48px 48px; position: relative; z-index: 1; }
+
+/* Glows */
+.glow-1 { position: fixed; top: -250px; right: -150px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(196,103,58,0.07) 0%, transparent 70%); pointer-events: none; }
+.glow-2 { position: fixed; bottom: -300px; left: -200px; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(232,185,49,0.04) 0%, transparent 70%); pointer-events: none; }
+
+/* Header */
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 80px; }
+.logo-area { display: flex; align-items: center; gap: 14px; }
+.logo-text { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--linen); letter-spacing: -0.3px; }
+.logo-text span { color: var(--copper); }
+.header-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--stone); border: 1px solid var(--card-border); padding: 6px 14px; }
+
+/* Hero */
+.hero { margin-bottom: 80px; }
+.hero h1 { font-family: 'DM Serif Display', serif; font-size: 52px; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 24px; max-width: 700px; }
+.hero h1 em { font-style: italic; color: var(--copper); }
+.hero-sub { font-size: 18px; line-height: 1.7; color: var(--stone); max-width: 560px; font-weight: 300; }
+
+.copper-line { width: 72px; height: 2px; background: var(--copper); margin: 56px 0; }
+
+/* Labels */
+.label { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: var(--copper); margin-bottom: 14px; }
+
+/* Two col */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+.col h3 { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 12px; line-height: 1.25; color: var(--linen); }
+.col p { font-size: 15px; line-height: 1.7; color: var(--stone); font-weight: 300; }
+
+/* Agents */
+.agents-section { background: var(--deep-green-light); border: 1px solid var(--card-border); margin: 56px -48px; padding: 56px 48px; position: relative; overflow: hidden; }
+.agents-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--copper), var(--gold) 50%, transparent); }
+.agents-section h2 { font-family: 'DM Serif Display', serif; font-size: 30px; margin-bottom: 36px; line-height: 1.2; }
+.agents-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.agent-card { background: var(--deep-green); border: 1px solid var(--card-border); padding: 28px; transition: all 0.3s ease; position: relative; overflow: hidden; }
+.agent-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--copper); opacity: 0; transition: opacity 0.3s; }
+.agent-card:hover { border-color: rgba(196,103,58,0.5); }
+.agent-card:hover::before { opacity: 1; }
+.agent-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--copper); margin-bottom: 10px; letter-spacing: 1.5px; }
+.agent-card h4 { font-family: 'DM Serif Display', serif; font-size: 17px; margin-bottom: 8px; color: var(--linen); }
+.agent-card p { font-size: 13px; line-height: 1.65; color: var(--stone); font-weight: 300; }
+
+/* Numbers */
+.numbers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 56px 0; }
+.num-card { text-align: center; padding: 28px 12px; border: 1px solid var(--card-border); background: var(--deep-green-light); }
+.num-card .num { font-family: 'JetBrains Mono', monospace; font-size: 32px; font-weight: 600; color: var(--gold); letter-spacing: -1px; margin-bottom: 6px; }
+.num-card .num-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--stone); line-height: 1.5; }
+
+/* How it works */
+.how-section { margin: 56px 0; }
+.how-section h2 { font-family: 'DM Serif Display', serif; font-size: 30px; margin-bottom: 32px; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.step { padding: 32px; border: 1px solid var(--card-border); background: var(--deep-green-light); position: relative; }
+.step-num { font-family: 'JetBrains Mono', monospace; font-size: 36px; font-weight: 600; color: rgba(196,103,58,0.2); position: absolute; top: 16px; right: 20px; }
+.step h4 { font-family: 'DM Serif Display', serif; font-size: 18px; margin-bottom: 10px; color: var(--linen); }
+.step p { font-size: 13px; line-height: 1.65; color: var(--stone); font-weight: 300; }
+
+/* Trust / Case */
+.trust-section { border: 1px solid var(--card-border); background: var(--deep-green-light); margin: 56px -48px; padding: 48px; position: relative; }
+.trust-section::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--copper) 50%, transparent); }
+.trust-section h3 { font-family: 'DM Serif Display', serif; font-size: 24px; margin-bottom: 12px; }
+.trust-section > p { font-size: 15px; line-height: 1.7; color: var(--stone); font-weight: 300; margin-bottom: 4px; }
+.trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+.trust-card { background: var(--deep-green); border: 1px solid var(--card-border); padding: 24px; text-align: center; }
+.trust-card .tc-num { font-family: 'JetBrains Mono', monospace; font-size: 28px; font-weight: 600; color: var(--copper); margin-bottom: 4px; }
+.trust-card .tc-label { font-size: 12px; color: var(--stone); line-height: 1.5; font-weight: 300; }
+
+/* Pricing */
+.pricing { margin: 56px 0; }
+.pricing h2 { font-family: 'DM Serif Display', serif; font-size: 30px; margin-bottom: 8px; }
+.pricing-sub { font-size: 15px; color: var(--stone); margin-bottom: 32px; font-weight: 300; }
+.pricing-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.tier { border: 1px solid var(--card-border); background: var(--deep-green-light); padding: 32px; position: relative; transition: border-color 0.3s; }
+.tier:hover { border-color: rgba(196,103,58,0.4); }
+.tier.featured { border-color: var(--copper); }
+.tier.featured::before { content: 'EMPFOHLEN'; position: absolute; top: -1px; left: 24px; right: 24px; text-align: center; background: var(--copper); color: var(--linen); font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 2px; padding: 4px 0; }
+.tier-name { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--copper); margin-bottom: 10px; margin-top: 6px; }
+.tier h4 { font-family: 'DM Serif Display', serif; font-size: 18px; margin-bottom: 4px; }
+.tier-price { font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 600; margin: 14px 0; color: var(--linen); }
+.tier-price span { font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--stone); font-weight: 300; }
+.tier p { font-size: 13px; line-height: 1.65; color: var(--stone); font-weight: 300; }
+
+/* Bottom */
+.bottom { margin-top: 56px; padding-top: 48px; border-top: 1px solid var(--card-border); display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.bottom h3 { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 12px; }
+.bottom p { font-size: 14px; line-height: 1.7; color: var(--stone); font-weight: 300; }
+.contact-links { margin-top: 24px; }
+.contact-links a { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--copper); text-decoration: none; border: 1px solid var(--copper); padding: 10px 24px; margin-right: 12px; margin-bottom: 8px; transition: all 0.3s; letter-spacing: 0.5px; }
+.contact-links a:hover { background: var(--copper); color: var(--linen); }
+
+/* Footer */
+.footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--card-border); display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--stone); letter-spacing: 1px; }
+.footer .tagline { color: var(--copper); }
+
+/* Responsive */
+@media (max-width: 750px) {
+  .page { padding: 32px 24px; }
+  .hero h1 { font-size: 36px; }
+  .two-col, .agents-grid, .pricing-tiers, .trust-grid, .numbers, .bottom, .steps { grid-template-columns: 1fr; }
+  .agents-section, .trust-section { margin: 32px -24px; padding: 32px 24px; }
+  .header { flex-direction: column; gap: 16px; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<div class="glow-1"></div>
+<div class="glow-2"></div>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-area">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="38" height="38" rx="4" stroke="#C4673A" stroke-width="1.2" fill="none"/>
+        <circle cx="20" cy="18" r="9" stroke="#C4673A" stroke-width="1" fill="none" opacity="0.4"/>
+        <circle cx="20" cy="18" r="5" stroke="#C4673A" stroke-width="1.2" fill="none"/>
+        <circle cx="20" cy="18" r="1.5" fill="#C4673A" opacity="0.7"/>
+        <line x1="14" y1="30" x2="26" y2="30" stroke="#C4673A" stroke-width="0.8" opacity="0.35"/>
+        <line x1="16" y1="32" x2="24" y2="32" stroke="#C4673A" stroke-width="0.8" opacity="0.25"/>
+        <line x1="11" y1="18" x2="8" y2="18" stroke="#C4673A" stroke-width="0.8" opacity="0.3"/>
+        <line x1="29" y1="18" x2="32" y2="18" stroke="#C4673A" stroke-width="0.8" opacity="0.3"/>
+      </svg>
+      <div class="logo-text">couvert<span>.ai</span></div>
+    </div>
+    <div class="header-tag">Zürich · DACH</div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Mehr Wert an <em>jedem Tisch.</em></h1>
+    <p class="hero-sub">
+      Couvert.ai ist das AI Operations Team für die Gastronomie. 
+      5 spezialisierte Agents überwachen Reviews, erkennen Qualitätsmuster 
+      und identifizieren Revenue-Potenzial — 24/7, für jeden Standort.
+    </p>
+  </div>
+
+  <div class="copper-line"></div>
+
+  <!-- PROBLEM / SOLUTION -->
+  <div class="two-col">
+    <div class="col">
+      <div class="label">Das Problem</div>
+      <h3>Ihre Gäste sprechen. Hört jemand zu?</h3>
+      <p>
+        Tausende Bewertungen bleiben unbeantwortet. Qualitätsprobleme werden erst 
+        nach Monaten sichtbar. Overbooking frustriert Stammgäste. Service-Schwächen 
+        verstecken sich in Daten, die niemand auswertet.
+      </p>
+    </div>
+    <div class="col">
+      <div class="label">Die Lösung</div>
+      <h3>Kein Dashboard. Ein Team.</h3>
+      <p>
+        Kein Tool, das man sich einloggen muss. Kein Berater, der einmal im Quartal 
+        vorbeischaut. Sondern spezialisierte AI Agents, die jeden Tag arbeiten, 
+        Muster erkennen, handeln und Ergebnisse liefern.
+      </p>
+    </div>
+  </div>
+
+  <!-- AGENTS -->
+  <div class="agents-section">
+    <div class="label">Das AI Operations Team</div>
+    <h2>5 Agents. Ein Ziel: Jedes Gedeck zählt.</h2>
+    <div class="agents-grid">
+      <div class="agent-card">
+        <div class="agent-num">AGENT 01</div>
+        <h4>Reputation Manager</h4>
+        <p>Beantwortet jede Bewertung individuell — in Ihrer Stimme, auf Deutsch, Englisch, Französisch und Italienisch. Eskaliert kritische Fälle direkt an Sie.</p>
+      </div>
+      <div class="agent-card">
+        <div class="agent-num">AGENT 02</div>
+        <h4>Quality Watchdog</h4>
+        <p>Erkennt Beschwerde-Muster bevor sie zum Rating-Problem werden. Korreliert Kritik mit Gerichten, Tageszeiten und Servicepersonal.</p>
+      </div>
+      <div class="agent-card">
+        <div class="agent-num">AGENT 03</div>
+        <h4>Revenue Analyst</h4>
+        <p>Übersetzt Gästefeedback in Franken. Monatliche Financial Impact Reports. Wettbewerbs-Benchmarking. Rating-Tracking über alle Plattformen.</p>
+      </div>
+      <div class="agent-card">
+        <div class="agent-num">AGENT 04</div>
+        <h4>Operations Advisor</h4>
+        <p>Analysiert Reservierungsdaten, erkennt Overbooking-Muster, trackt Service-Qualität pro Mitarbeiter und schlägt Optimierungen vor.</p>
+      </div>
+    </div>
+    <div class="agents-grid" style="margin-top: 16px; grid-template-columns: 1fr;">
+      <div class="agent-card">
+        <div class="agent-num">AGENT 05</div>
+        <h4>Menu Intelligence</h4>
+        <p>Welches Gericht taucht in negativen Reviews auf? Stimmt der Social-Media-Content mit dem tatsächlichen Menü überein? Echtzeit-Signale statt Bauchgefühl.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- NUMBERS -->
+  <div class="numbers">
+    <div class="num-card">
+      <div class="num">24/7</div>
+      <div class="num-label">Monitoring<br>& Response</div>
+    </div>
+    <div class="num-card">
+      <div class="num">&lt;2h</div>
+      <div class="num-label">Review<br>Response Time</div>
+    </div>
+    <div class="num-card">
+      <div class="num">+0.2★</div>
+      <div class="num-label">Erwarteter<br>Rating-Lift</div>
+    </div>
+    <div class="num-card">
+      <div class="num">60%</div>
+      <div class="num-label">Günstiger als<br>Teilzeitkraft</div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="how-section">
+    <div class="label">So funktioniert es</div>
+    <h2>In drei Schritten zum AI Operations Team.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>CX & Revenue Audit</h4>
+        <p>Wir analysieren sämtliche Bewertungen, Ihre Speisekarte und den Wettbewerb. Sie erhalten einen Financial Impact Report der zeigt, wo Umsatz verloren geht — und wie viel.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>Implementation Sprint</h4>
+        <p>In 2–4 Wochen konfigurieren wir Ihre AI Agents, richten Monitoring und Alerts ein und integrieren alles in Ihre bestehenden Systeme.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>Managed AI Team</h4>
+        <p>Ihr AI Operations Team arbeitet ab Tag 1. Monatliche Reports, laufende Optimierung, direkter Draht bei kritischen Fällen. Skaliert auf 1–50+ Standorte.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRUST -->
+  <div class="trust-section">
+    <div class="label">Aus der Praxis</div>
+    <h3>Pilotanalyse: High-Volume Restaurant, Zürich</h3>
+    <p>
+      Für einen umsatzstarken Gastro-Betrieb mit über 2.800 Google-Bewertungen haben wir 
+      eine vollständige Customer Experience & Revenue Impact Analysis durchgeführt — inklusive 
+      Speisekarten-Analyse, Wettbewerbs-Benchmarking und Financial Impact Modelling.
+    </p>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="tc-num">CHF 390K+</div>
+        <div class="tc-label">Geschätzter jährlicher Revenue-Verlust</div>
+      </div>
+      <div class="trust-card">
+        <div class="tc-num">0%</div>
+        <div class="tc-label">Owner Response Rate — keine einzige Antwort</div>
+      </div>
+      <div class="trust-card">
+        <div class="tc-num">10</div>
+        <div class="tc-label">Identifizierte Beschwerde-Kategorien mit Massnahmen</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="pricing">
+    <div class="label">Engagement-Modell</div>
+    <h2>Transparent. Skalierbar. Ergebnisorientiert.</h2>
+    <p class="pricing-sub">Vom ersten Audit bis zum laufenden AI Operations Team — alles aus einer Hand.</p>
+    <div class="pricing-tiers">
+      <div class="tier">
+        <div class="tier-name">Phase 1</div>
+        <h4>CX & Revenue Audit</h4>
+        <div class="tier-price">CHF 4.500+ <span>einmalig</span></div>
+        <p>Review-Analyse, Financial Impact Modelling, Menü-Cross-Reference, Benchmarking, priorisierter Massnahmenkatalog.</p>
+      </div>
+      <div class="tier featured">
+        <div class="tier-name">Phase 2</div>
+        <h4>Implementation Sprint</h4>
+        <div class="tier-price">CHF 5.000+ <span>einmalig · 2–4 Wo.</span></div>
+        <p>Setup aller AI Agents. Echtzeit-Monitoring, Alert-System, Dashboards. Konfiguriert, getestet, live.</p>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Phase 3</div>
+        <h4>Managed AI Team</h4>
+        <div class="tier-price">CHF 2.500+ <span>/Standort /Monat</span></div>
+        <p>Laufendes AI Operations Team. Review-Management, monatliche Reports, kontinuierliche Optimierung.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="bottom">
+    <div>
+      <div class="label">Für wen</div>
+      <h3>Restaurants die wachsen wollen</h3>
+      <p>
+        Couvert.ai arbeitet mit gehobenen Restaurants und Gastro-Ketten im DACH-Raum — 
+        Betriebe mit CHF 3–10 Mio. Umsatz, die verstehen, dass Gästeerlebnis und 
+        Umsatz direkt zusammenhängen. Ob Einzelstandort oder 30+ Filialen: 
+        das AI Operations Team skaliert mit Ihnen.
+      </p>
+    </div>
+    <div>
+      <div class="label">Nächster Schritt</div>
+      <h3>Sprechen wir.</h3>
+      <p>
+        Sie erfahren in einem kurzen Erstgespräch, was Ihre Bewertungen über 
+        Ihren Betrieb verraten — und was Sie das kostet. Unverbindlich.
+      </p>
+      <div class="contact-links">
+        <a href="https://couvert.ai">couvert.ai</a>
+        <a href="mailto:hello@couvert.ai">hello@couvert.ai</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>© 2026 Couvert.ai — Zürich</span>
+    <span class="tagline">Jedes Gedeck zählt.</span>
+  </div>
+
+</div>
+</body>
+</html>
