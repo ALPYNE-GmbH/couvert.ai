@@ -51,7 +51,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;backdrop-f
 /* === HERO === */
 .hero-section{padding-top:160px;padding-bottom:80px;position:relative}
 .hero-section::before{content:'';position:absolute;top:80px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(196,103,58,0.06) 0%,transparent 65%);pointer-events:none}
-.hero-overline{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--copper);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.hero-overline{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--copper);margin-bottom:24px;display:flex;align-items:center;gap:12px}
 .hero-overline::before{content:'';width:32px;height:1px;background:var(--copper)}
 .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(40px,6vw,72px);line-height:1.05;color:var(--cream-bright);letter-spacing:-2px;margin-bottom:28px}
 .hero h1 em{font-style:italic;color:var(--copper)}
@@ -61,7 +61,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;backdrop-f
 .hero-stat .hs-label{font-size:12px;color:var(--text-dim);margin-top:4px;letter-spacing:0.5px}
 
 /* === SECTION HEADERS === */
-.section-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--copper);margin-bottom:16px}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--copper);margin-bottom:16px}
 .section-title{font-family:'DM Serif Display',serif;font-size:clamp(28px,4vw,42px);color:var(--cream-bright);line-height:1.15;letter-spacing:-1px;margin-bottom:16px}
 .section-sub{font-size:17px;color:var(--text-dim);max-width:720px;line-height:1.7;font-weight:300}
 
@@ -259,7 +259,7 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
 <!-- HEADER -->
 <header>
   <div class="container header-inner">
-    <a href="#" class="logo">
+    <a href="#top" class="logo">
       <div class="logo-icon">
         <svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="8" r="5.5" stroke="#C4673A" stroke-width="1.2" fill="none"/><circle cx="9" cy="8" r="2" stroke="#C4673A" stroke-width="0.8" fill="none" opacity="0.5"/><circle cx="9" cy="8" r="0.8" fill="#C4673A"/><line x1="5" y1="15" x2="13" y2="15" stroke="#C4673A" stroke-width="0.6" opacity="0.4"/></svg>
       </div>
@@ -276,10 +276,10 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
 </header>
 
 <!-- HERO -->
-<section class="hero-section">
+<section class="hero-section" id="top">
   <div class="container">
-    <div class="hero-overline animate d1">AI Operations für Restaurants</div>
-    <h1 class="animate d2">Ihr Restaurant verliert Geld. Wir machen sichtbar, <em>wo</em> und <em>wie viel.</em> Und drehen den Spiess um.</h1>
+    <div class="hero-overline animate d1">AI Operations for Gastronomy</div>
+    <h1 class="animate d2">Ihr Restaurant verliert Geld. Wir machen sichtbar, <em>wo</em> und <em>wie viel.</em></h1>
     <p class="hero-body animate d3">
       Couvert.ai ist ein AI-gestütztes Operations-Team für die Gastronomie. Wir analysieren Bewertungen, Speisekarten, Reservierungen und Service-Qualität, rechnen alles in Franken um und beheben die Ursachen. Automatisch. Jeden Tag. Für jeden Standort.
     </p>
