@@ -6,59 +6,119 @@
 <title>Couvert.ai - AI Operations Team für die Gastronomie</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
-:root{--bg:#0E0E0C;--bg2:#141412;--bg3:#1A1A17;--copper:#C4673A;--copper-soft:#D4845A;--gold:#E8B931;--cream:#F0EBE3;--cream-bright:#FAF7F2;--text:#D4CFC7;--text-dim:#8A857D;--border:#2A2925;--border-hover:#3D3A34;--green-up:#5FA67A;--red-down:#C4453C}
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}::selection{background:var(--copper);color:var(--cream)}
-.container{max-width:1100px;margin:0 auto;padding:0 24px}section{padding:80px 0}
-header{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;backdrop-filter:blur(20px);background:rgba(14,14,12,0.85);border-bottom:1px solid rgba(42,41,37,0.5)}.header-inner{display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:10px;text-decoration:none}.logo-icon{width:32px;height:32px;border:1.5px solid var(--copper);border-radius:6px;display:flex;align-items:center;justify-content:center}.logo-icon svg{width:18px;height:18px}.logo-name{font-family:'DM Serif Display',serif;font-size:22px;color:var(--cream)}.logo-name span{color:var(--copper)}.nav{display:flex;gap:28px;align-items:center}.nav a{font-size:13px;color:var(--text-dim);text-decoration:none;letter-spacing:0.3px;transition:color 0.3s}.nav a:hover{color:var(--cream)}.nav-cta{background:var(--copper);color:var(--cream)!important;padding:8px 20px;border-radius:4px;font-weight:500;transition:background 0.3s!important}.nav-cta:hover{background:var(--copper-soft)!important}
-.hero-section{padding-top:140px;padding-bottom:60px;position:relative}.hero-section::before{content:'';position:absolute;top:80px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(196,103,58,0.06) 0%,transparent 65%);pointer-events:none}.hero-overline{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--copper);margin-bottom:20px;display:flex;align-items:center;gap:12px}.hero-overline::before{content:'';width:32px;height:1px;background:var(--copper)}.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(34px,5.5vw,64px);line-height:1.08;color:var(--cream-bright);letter-spacing:-1.5px;margin-bottom:24px}.hero h1 em{font-style:italic;color:var(--copper)}.hero-sub{font-size:17px;line-height:1.75;color:var(--text);max-width:640px;font-weight:300;margin-bottom:32px}.hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:28px}.hero-bullets{display:flex;gap:24px;font-size:13px;color:var(--text-dim);flex-wrap:wrap}.hero-bullets span{display:flex;align-items:center;gap:6px}.hero-bullets span::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--copper)}
-.section-label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--copper);margin-bottom:14px}.section-title{font-family:'DM Serif Display',serif;font-size:clamp(26px,4vw,40px);color:var(--cream-bright);line-height:1.15;letter-spacing:-0.5px;margin-bottom:14px}.section-sub{font-size:16px;color:var(--text-dim);max-width:700px;line-height:1.7;font-weight:300}
-.proof-bar{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0}.proof-bar .container{display:grid;grid-template-columns:repeat(4,1fr);gap:1px}.proof-item{padding:28px 16px;text-align:center;position:relative}.proof-item:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:var(--border)}.proof-num{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:600;color:var(--gold);margin-bottom:4px}.proof-label{font-size:11px;color:var(--text-dim);line-height:1.5}.proof-context{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--copper);margin-bottom:16px;text-align:center;padding-top:20px}
-.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:36px}.problem-card{background:var(--bg);padding:28px 24px}.problem-card h4{font-family:'DM Serif Display',serif;font-size:17px;color:var(--cream);margin-bottom:8px}.problem-card p{font-size:14px;line-height:1.7;color:var(--text-dim);font-weight:300}
-.steps-section{background:var(--bg2)}.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:36px}.step-card{background:var(--bg2);padding:28px 20px}.step-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--copper);font-weight:600;margin-bottom:10px}.step-card h4{font-family:'DM Serif Display',serif;font-size:17px;color:var(--cream);margin-bottom:8px}.step-card p{font-size:13px;line-height:1.7;color:var(--text-dim);font-weight:300}
-.calc-section{background:var(--bg)}.calc-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}.calc-form{padding-top:16px}.calc-group{margin-bottom:28px}.calc-group label{display:block;font-size:13px;color:var(--text-dim);margin-bottom:8px}.calc-group input[type="range"]{-webkit-appearance:none;width:100%;height:4px;background:var(--border);border-radius:2px;outline:none}.calc-group input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--copper);cursor:pointer;border:2px solid var(--bg)}
+.hero-section{padding-top:140px;padding-bottom:60px;position:relative}
+.hero-section::before{content:'';position:absolute;top:80px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(196,103,58,0.06) 0%,transparent 65%);pointer-events:none}
+.hero-overline{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--copper);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.hero-overline::before{content:'';width:32px;height:1px;background:var(--copper)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(34px,5.5vw,64px);line-height:1.08;color:var(--cream-bright);letter-spacing:-1.5px;margin-bottom:24px}
+.hero h1 em{font-style:italic;color:var(--copper)}
+.hero-sub{font-size:17px;line-height:1.75;color:var(--text);max-width:640px;font-weight:300;margin-bottom:32px}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.hero-bullets{display:flex;gap:24px;font-size:13px;color:var(--text-dim);flex-wrap:wrap}
+.hero-bullets span{display:flex;align-items:center;gap:6px}
+.hero-bullets span::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--copper)}
+.proof-bar .container{display:grid;grid-template-columns:repeat(4,1fr);gap:1px}
+.proof-bar{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0}
+.proof-item{padding:28px 16px;text-align:center;position:relative}
+.proof-item:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:var(--border)}
+.proof-num{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:600;color:var(--gold);margin-bottom:4px}
+.proof-label{font-size:11px;color:var(--text-dim);line-height:1.5}
+.proof-context{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--copper);margin-bottom:16px;text-align:center;padding-top:20px}
+.steps-section{background:var(--bg2)}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:36px}
+.step-card{background:var(--bg2);padding:28px 20px}
+.step-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--copper);font-weight:600;margin-bottom:10px}
+.step-card h4{font-family:'DM Serif Display',serif;font-size:17px;color:var(--cream);margin-bottom:8px}
+.step-card p{font-size:13px;line-height:1.7;color:var(--text-dim);font-weight:300}
+.calc-section{background:var(--bg)}
+.calc-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.calc-form{padding-top:16px}
+.calc-group{margin-bottom:28px}
+.calc-group label{display:block;font-size:13px;color:var(--text-dim);margin-bottom:8px}
+.calc-group input[type="range"]{-webkit-appearance:none;width:100%;height:4px;background:var(--border);border-radius:2px;outline:none}
+.calc-group input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--copper);cursor:pointer;border:2px solid var(--bg)}
 .calc-hint{font-size:12px;color:var(--copper);margin-bottom:20px;display:flex;align-items:center;gap:8px;opacity:0;transition:opacity 0.4s}.calc-hint.visible{opacity:1}.calc-hint svg{flex-shrink:0}
 .slider-wrap{position:relative}.slider-pulse{position:absolute;top:50%;width:20px;height:20px;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);z-index:1;opacity:0;background:var(--copper)}.slider-pulse.active{animation:glow-ring 1.2s ease-in-out 4}
-@keyframes glow-ring{0%{opacity:0;transform:translate(-50%,-50%) scale(1)}25%{opacity:0.6;transform:translate(-50%,-50%) scale(1.8)}50%{opacity:0;transform:translate(-50%,-50%) scale(2.2)}100%{opacity:0;transform:translate(-50%,-50%) scale(1)}}.calc-value{display:flex;justify-content:space-between;margin-top:6px}.calc-value span{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--cream)}.calc-right{position:sticky;top:100px}.calc-results-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}.calc-result{background:var(--bg2);border:1px solid var(--border);padding:20px}.calc-result-loss{border-top:3px solid var(--red-down)}.calc-result-recovery{border-top:3px solid var(--green-up)}.cr-label{font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px}.cr-label-green{color:var(--green-up)}.cr-number{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:600;color:var(--gold);line-height:1;margin-bottom:4px}.cr-number-green{color:var(--green-up)}.cr-unit{font-size:11px;color:var(--text-dim)}.calc-detail-panel{background:var(--bg2);border:1px solid var(--border);padding:20px}.churn-indicator{background:var(--bg);border:1px solid var(--border);padding:16px;margin-bottom:16px}.churn-bar-bg{width:100%;height:6px;background:var(--border);border-radius:3px;margin-bottom:10px;overflow:hidden}.churn-bar-fill{height:100%;background:linear-gradient(90deg,var(--green-up),var(--gold),var(--red-down));border-radius:3px;transition:width 0.4s ease}.churn-row{display:flex;justify-content:space-between;align-items:center}.churn-label{font-size:11px;color:var(--text-dim)}.churn-value{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:var(--red-down);transition:color 0.3s}.churn-explain{font-size:10px;color:var(--text-dim);margin-top:4px;font-style:italic}.calc-breakdown{padding-top:16px}
-.calc-details{border-top:1px solid var(--border);margin-top:12px}
-.calc-details summary{padding:12px 0;font-size:12px;color:var(--copper);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;letter-spacing:0.3px;transition:color 0.3s}
-.calc-details summary:hover{color:var(--copper-soft)}
-.calc-details summary::after{content:'+';font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--copper);transition:transform 0.3s}
-.calc-details[open] summary::after{transform:rotate(45deg)}
-.calc-details summary::-webkit-details-marker{display:none}.calc-breakdown-row{display:flex;justify-content:space-between;padding:5px 0;font-size:12px;gap:12px}.calc-breakdown-row .cbr-label{color:var(--text-dim);flex:1;min-width:0}.calc-breakdown-row .cbr-value{font-family:'JetBrains Mono',monospace;color:var(--cream);white-space:nowrap;text-align:right}.calc-breakdown-row.negative .cbr-value{color:var(--red-down)}.calc-breakdown-row.positive .cbr-value{color:var(--green-up)}.calc-bridge{margin-top:32px;padding:20px 24px;border-left:2px solid var(--copper);font-size:15px;color:var(--text);font-weight:300;line-height:1.6;font-style:italic}.calc-note{font-size:11px;color:var(--text-dim);margin-top:12px;font-style:italic}
-.tip{position:relative;cursor:help;display:inline}.tip .tip-icon{width:14px;height:14px;border-radius:50%;border:1px solid var(--border-hover);display:inline-flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dim);flex-shrink:0;transition:border-color 0.2s;vertical-align:middle;margin-left:4px}.tip:hover .tip-icon{border-color:var(--copper);color:var(--copper)}.tip .tip-text{display:none;position:absolute;bottom:calc(100% + 8px);left:0;width:260px;background:var(--bg3);border:1px solid var(--border);padding:12px 14px;font-size:12px;line-height:1.6;color:var(--text);font-weight:300;font-family:'DM Sans',sans-serif;z-index:10;pointer-events:none;letter-spacing:0}.tip:hover .tip-text{display:block}
-@media(max-width:800px){.tip .tip-text{left:-40px;width:220px}}
-.agents-section{position:relative}.agents-section::before{content:'';position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--copper),transparent)}.agents-timeline{position:relative;margin-top:48px}.agent-row{display:grid;grid-template-columns:56px 1fr;gap:28px;margin-bottom:44px;position:relative}.agent-row::before{content:'';position:absolute;left:27px;top:48px;bottom:-44px;width:1px;background:var(--border)}.agent-row:last-child::before{display:none}.agent-num-circle{width:56px;height:56px;border-radius:50%;border:1.5px solid var(--copper);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--copper);font-weight:600;background:var(--bg);position:relative;z-index:2}.agent-content h4{font-family:'DM Serif Display',serif;font-size:20px;color:var(--cream);margin-bottom:8px}.agent-content>p{font-size:15px;line-height:1.7;color:var(--text);font-weight:300;margin-bottom:12px}.agent-outcome{margin-top:8px}.agent-outcome-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--copper);margin-bottom:8px}.agent-outcome-list{list-style:none;padding:0}.agent-outcome-list li{font-size:13px;color:var(--text-dim);line-height:1.6;padding-left:16px;position:relative;margin-bottom:4px}.agent-outcome-list li::before{content:'';position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--border-hover)}
-.case-section{background:var(--bg2);position:relative}.case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}.case-card{background:var(--bg);border:1px solid var(--border);padding:28px}.case-card .cc-num{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:600;color:var(--copper);margin-bottom:4px}.case-card .cc-label{font-size:13px;color:var(--text-dim);line-height:1.5}.case-note{margin-top:20px;font-size:12px;color:var(--text-dim);font-style:italic;border-left:2px solid var(--border);padding-left:16px;line-height:1.6}
-.deliv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:36px}.deliv-card{background:var(--bg);padding:28px 24px}.deliv-freq{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--copper);margin-bottom:10px}.deliv-card h4{font-family:'DM Serif Display',serif;font-size:17px;color:var(--cream);margin-bottom:8px}.deliv-card p{font-size:13px;line-height:1.7;color:var(--text-dim);font-weight:300}
-.quote-section{text-align:center;padding:64px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}.quote-section blockquote{font-family:'DM Serif Display',serif;font-size:clamp(22px,3.2vw,32px);color:var(--cream);line-height:1.35;max-width:680px;margin:0 auto}.quote-section .q-attr{font-size:12px;color:var(--text-dim);margin-top:16px}
-.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:36px;background:var(--border)}.process-card{background:var(--bg);padding:32px 24px;position:relative}.process-card .pc-num{font-family:'JetBrains Mono',monospace;font-size:56px;font-weight:600;color:rgba(196,103,58,0.07);position:absolute;top:12px;right:20px;line-height:1}.process-card .pc-phase{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--copper);text-transform:uppercase;margin-bottom:10px}.process-card h4{font-family:'DM Serif Display',serif;font-size:18px;color:var(--cream);margin-bottom:8px}.process-card p{font-size:13px;line-height:1.7;color:var(--text-dim);font-weight:300}.process-card .pc-price{font-family:'JetBrains Mono',monospace;font-size:16px;color:var(--cream);margin-top:16px}.process-card .pc-price span{font-size:11px;color:var(--text-dim);font-family:'DM Sans',sans-serif}
-.collab-section{background:var(--bg2)}.collab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:36px}.collab-card{background:var(--bg2);padding:28px 20px}.collab-icon{color:var(--copper);margin-bottom:12px}.collab-card h4{font-family:'DM Serif Display',serif;font-size:16px;color:var(--cream);margin-bottom:6px}.collab-card p{font-size:13px;line-height:1.7;color:var(--text-dim);font-weight:300}
-.faq-list{max-width:700px;margin-top:36px}.faq-item{border-bottom:1px solid var(--border)}.faq-item summary{padding:16px 0;font-size:15px;font-weight:500;color:var(--cream);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:color 0.3s}.faq-item summary:hover{color:var(--copper)}.faq-item summary::after{content:'+';font-family:'JetBrains Mono',monospace;font-size:18px;color:var(--copper);flex-shrink:0;transition:transform 0.3s}.faq-item[open] summary::after{transform:rotate(45deg)}.faq-item summary::-webkit-details-marker{display:none}.faq-item p{padding:0 0 20px;font-size:14px;line-height:1.75;color:var(--text);font-weight:300}
-.cta-section{text-align:center}.cta-section h2{font-family:'DM Serif Display',serif;font-size:clamp(26px,4vw,42px);color:var(--cream-bright);letter-spacing:-0.5px;margin-bottom:14px}.cta-section p{font-size:16px;color:var(--text-dim);margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.7;font-weight:300}.cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-.btn-primary{display:inline-block;background:var(--copper);color:var(--cream);padding:14px 32px;text-decoration:none;font-size:15px;font-weight:500;border-radius:4px;transition:all 0.3s}.btn-primary:hover{background:var(--copper-soft);transform:translateY(-1px)}.btn-ghost{display:inline-block;border:1px solid var(--border);color:var(--text);padding:14px 32px;text-decoration:none;font-size:15px;border-radius:4px;transition:all 0.3s}.btn-ghost:hover{border-color:var(--copper);color:var(--cream)}
-footer{padding:32px 0;border-top:1px solid var(--border)}.footer-inner{display:flex;justify-content:space-between;align-items:center}.footer-left{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:1px}.footer-right{font-family:'DM Serif Display',serif;font-size:14px;color:var(--copper);font-style:italic}.footer-links{display:flex;gap:24px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}.footer-links a{font-size:11px;color:var(--text-dim);text-decoration:none;transition:color 0.3s}.footer-links a:hover{color:var(--copper)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}.animate{opacity:0;animation:fadeUp 0.6s ease forwards}.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.35s}.d5{animation-delay:.4s}
+@keyframes glow-ring{0%{opacity:0;transform:translate(-50%,-50%) scale(1)}25%{opacity:.6;transform:translate(-50%,-50%) scale(1.8)}50%{opacity:0;transform:translate(-50%,-50%) scale(2.2)}100%{opacity:0;transform:translate(-50%,-50%) scale(1)}}
+.calc-value{display:flex;justify-content:space-between;margin-top:6px}
+.calc-value span{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--cream)}
+.calc-right{position:sticky;top:100px}
+.calc-results-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.calc-result{background:var(--bg2);border:1px solid var(--border);padding:20px}
+.calc-result-loss{border-top:3px solid var(--red-down)}
+.calc-result-recovery{border-top:3px solid var(--green-up)}
+.cr-label{font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px}
+.cr-label-green{color:var(--green-up)}
+.cr-number{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:600;color:var(--gold);line-height:1;margin-bottom:4px}
+.cr-number-green{color:var(--green-up)}
+.cr-unit{font-size:11px;color:var(--text-dim)}
+.calc-detail-panel{background:var(--bg2);border:1px solid var(--border);padding:20px}
+.churn-indicator{background:var(--bg);border:1px solid var(--border);padding:16px}
+.churn-bar-bg{width:100%;height:6px;background:var(--border);border-radius:3px;margin-bottom:10px;overflow:hidden}
+.churn-bar-fill{height:100%;background:linear-gradient(90deg,var(--green-up),var(--gold),var(--red-down));border-radius:3px;transition:width 0.4s ease}
+.churn-row{display:flex;justify-content:space-between;align-items:center}
+.churn-label{font-size:11px;color:var(--text-dim)}
+.churn-value{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:var(--red-down);transition:color 0.3s}
+.churn-explain{font-size:10px;color:var(--text-dim);margin-top:4px;font-style:italic}
+.calc-note{font-size:11px;color:var(--text-dim);margin-top:12px;font-style:italic}
+.calc-bridge{margin-top:32px;padding:20px 24px;border-left:2px solid var(--copper);font-size:15px;color:var(--text);font-weight:300;line-height:1.6;font-style:italic}
+.cta-section{text-align:center}
+.cta-section h2{font-family:'DM Serif Display',serif;font-size:clamp(26px,4vw,42px);color:var(--cream-bright);letter-spacing:-0.5px;margin-bottom:14px}
+.cta-section p{font-size:16px;color:var(--text-dim);margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.7;font-weight:300}
+.cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 .mobile-sticky-results{display:none}
-@media(min-width:801px){.container{padding:0 56px}section{padding:100px 0}.hero-section{padding-top:160px;padding-bottom:80px}.section-title{font-size:48px;letter-spacing:-1.5px}.section-sub{font-size:17px;max-width:760px}.hero-sub{font-size:19px;max-width:700px}.agent-content h4{font-size:24px}.agent-content>p{font-size:16px}.faq-item summary{font-size:16px}.faq-item p{font-size:15px}.faq-list{max-width:840px}.process-card h4{font-size:20px}.process-card p{font-size:14px}.collab-card h4{font-size:17px}.collab-card p{font-size:14px}.problem-card h4{font-size:20px}.problem-card p{font-size:15px}.step-card h4{font-size:20px}.step-card p{font-size:14px}.deliv-card h4{font-size:20px}.deliv-card p{font-size:14px}
-  .proof-num{font-size:28px}
-  .proof-label{font-size:12px}
-  .proof-item{padding:36px 24px}
+@media(min-width:801px){
+  .hero-section{padding-top:160px;padding-bottom:80px}
+  .hero-sub{font-size:19px;max-width:700px}
+  .step-card h4{font-size:20px}.step-card p{font-size:14px}
+  .proof-num{font-size:28px}.proof-label{font-size:12px}.proof-item{padding:36px 24px}
 }
-@media(max-width:800px){.proof-bar .container{grid-template-columns:1fr 1fr}.proof-item:nth-child(2)::after{display:none}.problem-grid,.deliv-grid,.process-grid{grid-template-columns:1fr}.steps-grid{grid-template-columns:1fr 1fr}.calc-layout,.case-grid{grid-template-columns:1fr}.agent-row{grid-template-columns:40px 1fr;gap:16px}.agent-num-circle{width:40px;height:40px;font-size:11px}.agent-row::before{left:19px}.nav{display:none}.hero h1{letter-spacing:-1px}.collab-grid{grid-template-columns:1fr}.calc-results-row{grid-template-columns:1fr 1fr}.hero-bullets{gap:12px}.mobile-sticky-results{display:none;position:fixed;bottom:0;left:0;right:0;z-index:99;background:rgba(14,14,12,0.95);backdrop-filter:blur(16px);border-top:1px solid var(--border);padding:12px 24px;grid-template-columns:1fr 1fr;gap:16px;align-items:center}.mobile-sticky-results.visible{display:grid}.msr-box{text-align:center}.msr-label{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dim);margin-bottom:2px}.msr-label-red{color:var(--red-down)}.msr-label-green{color:var(--green-up)}.msr-num{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:600;color:var(--gold)}.msr-num-green{color:var(--green-up)}}
+@media(max-width:800px){
+  .proof-bar .container{grid-template-columns:1fr 1fr}
+  .proof-item:nth-child(2)::after{display:none}
+  .steps-grid{grid-template-columns:1fr 1fr}
+  .calc-layout{grid-template-columns:1fr}
+  .calc-results-row{grid-template-columns:1fr 1fr}
+  .hero-bullets{gap:12px}
+  .mobile-sticky-results{display:none;position:fixed;bottom:0;left:0;right:0;z-index:99;background:rgba(14,14,12,0.95);backdrop-filter:blur(16px);border-top:1px solid var(--border);padding:12px 24px;grid-template-columns:1fr 1fr;gap:16px;align-items:center}
+  .mobile-sticky-results.visible{display:grid}
+  .msr-box{text-align:center}
+  .msr-label{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dim);margin-bottom:2px}
+  .msr-label-red{color:var(--red-down)}.msr-label-green{color:var(--green-up)}
+  .msr-num{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:600;color:var(--gold)}
+  .msr-num-green{color:var(--green-up)}
+}
 </style>
 </head>
 <body>
-<header><div class="container header-inner"><a href="#top" class="logo"><div class="logo-icon"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="8" r="5.5" stroke="#C4673A" stroke-width="1.2" fill="none"/><circle cx="9" cy="8" r="2" stroke="#C4673A" stroke-width="0.8" fill="none" opacity="0.5"/><circle cx="9" cy="8" r="0.8" fill="#C4673A"/><line x1="5" y1="15" x2="13" y2="15" stroke="#C4673A" stroke-width="0.6" opacity="0.4"/></svg></div><div class="logo-name">couvert<span>.ai</span></div></a><nav class="nav"><a href="#agents">AI-Team</a><a href="#calculator">Umsatzrechner</a><a href="#zusammenarbeit">Zusammenarbeit</a><a href="#faq">FAQ</a><a href="#contact" class="nav-cta">Gespräch buchen</a></nav></div></header>
 
+<header><div class="container header-inner">
+<a href="index.html" class="logo"><div class="logo-icon"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="8" r="5.5" stroke="#C4673A" stroke-width="1.2" fill="none"/><circle cx="9" cy="8" r="2" stroke="#C4673A" stroke-width="0.8" fill="none" opacity="0.5"/><circle cx="9" cy="8" r="0.8" fill="#C4673A"/><line x1="5" y1="15" x2="13" y2="15" stroke="#C4673A" stroke-width="0.6" opacity="0.4"/></svg></div><div class="logo-name">couvert<span>.ai</span></div></a>
+<nav class="nav"><a href="team.html">AI-Team</a><a href="fallbeispiel.html">Fallbeispiel</a><a href="ablauf.html">Ablauf</a><a href="ablauf.html#faq">FAQ</a><a href="#contact" class="nav-cta">Gespräch buchen</a></nav>
+<button class="burger" onclick="document.getElementById('mm').classList.add('open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+</div></header>
+
+<div class="mobile-menu" id="mm">
+<button class="mm-close" onclick="document.getElementById('mm').classList.remove('open')" aria-label="Schliessen"><svg viewBox="0 0 24 24" fill="none"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+<a href="index.html" onclick="document.getElementById('mm').classList.remove('open')">Start</a>
+<a href="team.html">AI-Team</a>
+<a href="fallbeispiel.html">Fallbeispiel</a>
+<a href="ablauf.html">Ablauf & FAQ</a>
+<a href="#contact" onclick="document.getElementById('mm').classList.remove('open')" style="color:var(--copper)">Gespräch buchen</a>
+</div>
+
+<!-- HERO -->
 <section class="hero-section" id="top"><div class="container">
 <div class="hero-overline animate d1">AI Operations for Gastronomy</div>
 <h1 class="animate d2">Ihr Restaurant verliert Geld. Wir machen sichtbar, <em>wo</em> und <em>wie viel.</em> Und drehen den Spiess um.</h1>
 <p class="hero-sub animate d3">Couvert.ai ist Ihr externes AI-Team. Wir analysieren Bewertungen, Reservierungen, Speisekarte und Service-Qualität, beziffern Probleme in Franken und beheben die Ursachen im laufenden Betrieb.</p>
-<div class="hero-cta animate d4"><a href="#contact" class="btn-primary">Erstgespräch buchen</a><a href="#case" class="btn-ghost">Beispielanalyse ansehen</a></div>
+<div class="hero-cta animate d4"><a href="#contact" class="btn-primary">Erstgespräch buchen</a><a href="fallbeispiel.html" class="btn-ghost">Beispielanalyse ansehen</a></div>
 <div class="hero-bullets animate d5"><span>Ergebnisse per E-Mail</span><span>Läuft ab Tag 1</span><span>Monatlich kündbar</span></div>
 </div></section>
 
+<!-- PROOF BAR -->
 <section class="proof-bar"><div class="proof-context">Beispiel: Gastro-Betrieb Zürich</div><div class="container">
 <div class="proof-item"><div class="proof-num">2.825</div><div class="proof-label">Bewertungen analysiert</div></div>
 <div class="proof-item"><div class="proof-num">0%</div><div class="proof-label">Antwortquote</div></div>
@@ -66,16 +126,7 @@ footer{padding:32px 0;border-top:1px solid var(--border)}.footer-inner{display:f
 <div class="proof-item"><div class="proof-num">CHF 390K+</div><div class="proof-label">Geschätzter Umsatzverlust / Jahr</div></div>
 </div></section>
 
-<section class="problem-section"><div class="container">
-<div class="section-label">Das Problem</div>
-<div class="section-title">Wo Restaurants heute Geld verlieren</div>
-<div class="section-sub">Die meisten Betriebe verlieren Umsatz an dutzenden kleinen Signalen, die niemand systematisch erkennt und priorisiert.</div>
-<div class="problem-grid">
-<div class="problem-card"><h4>Unbeantwortete Bewertungen</h4><p>Negative Erfahrungen bleiben öffentlich sichtbar. Verlorene Gäste kommen nicht zurück, potenzielle Gäste werden abgeschreckt.</p></div>
-<div class="problem-card"><h4>Wiederkehrende operative Fehler</h4><p>Dasselbe Problem taucht in verschiedenen Formulierungen immer wieder auf, wird intern aber nicht als Muster erkannt.</p></div>
-<div class="problem-card"><h4>Fehlende Priorisierung nach Umsatz</h4><p>Es wird über Symptome gesprochen, aber selten darüber, welche Schwachstelle tatsächlich am meisten Geld kostet.</p></div>
-</div></div></section>
-
+<!-- SO ARBEITET COUVERT -->
 <section class="steps-section"><div class="container">
 <div class="section-label">Unser Ansatz</div>
 <div class="section-title">So arbeitet Couvert in Ihrem Betrieb</div>
@@ -84,9 +135,10 @@ footer{padding:32px 0;border-top:1px solid var(--border)}.footer-inner{display:f
 <div class="step-card"><div class="step-num">01</div><h4>Signale sammeln</h4><p>Bewertungen, Reservierungen, Speisekarte und Service-Hinweise aus allen relevanten Kanälen erfassen.</p></div>
 <div class="step-card"><div class="step-num">02</div><h4>Muster erkennen</h4><p>Welche Themen häufen sich? An welchem Standort, zu welcher Tageszeit, bei welchem Gericht?</p></div>
 <div class="step-card"><div class="step-num">03</div><h4>In Franken beziffern</h4><p>Jedes Problem wird wirtschaftlich eingeordnet: Was kostet es, wie gross ist der Hebel, was sollte zuerst gelöst werden?</p></div>
-<div class="step-card"><div class="step-num">04</div><h4>Im Alltag reagieren</h4><p>Unsere Agents antworten, alarmieren, priorisieren und begleiten die Umsetzung. Ohne dass Ihr Team etwas Neues lernen muss.</p></div>
+<div class="step-card"><div class="step-num">04</div><h4>Im Alltag reagieren</h4><p>Unsere Agents antworten, alarmieren, priorisieren und begleiten die Umsetzung.</p></div>
 </div></div></section>
 
+<!-- CALCULATOR -->
 <section class="calc-section" id="calculator"><div class="container">
 <div class="section-label">Umsatzrechner</div>
 <div class="section-title">Wie viel Umsatz kosten ungelöste Gästeprobleme Ihren Betrieb?</div>
@@ -108,105 +160,16 @@ footer{padding:32px 0;border-top:1px solid var(--border)}.footer-inner{display:f
 </div>
 <div class="calc-detail-panel">
 <div class="churn-indicator"><div class="churn-bar-bg"><div class="churn-bar-fill" id="churn-fill"></div></div><div class="churn-row"><span class="churn-label">Geschätzte Abwanderungsrate</span><span class="churn-value" id="churn-display">55%</span></div><div class="churn-explain" id="churn-explain">Ihrer unzufriedenen Gäste kommen nicht wieder</div></div>
-<details class="calc-details">
-<summary>Herleitung anzeigen</summary>
-<div class="calc-breakdown">
-<div class="calc-breakdown-row"><span class="cbr-label"><span class="tip">Negative Bewertungen (geschätzt)<span class="tip-icon">?</span><span class="tip-text">Anteil negativer Bewertungen basierend auf dem Rating: Bei 4.5★ ca. 10%, bei 4.0★ ca. 18%, unter 3.5★ bis zu 40%.</span></span></span><span class="cbr-value" id="bd-neg-reviews">~280</span></div>
-<div class="calc-breakdown-row"><span class="cbr-label"><span class="tip">× Dunkelziffer (Faktor 7)<span class="tip-icon">?</span><span class="tip-text">Branchenstudien zeigen: Auf jede geschriebene negative Bewertung kommen ca. 7 unzufriedene Gäste, die nichts schreiben. Quelle: ReviewTrackers, Esteban Kolsky.</span></span></span><span class="cbr-value" id="bd-unhappy">~1.960 unzufriedene Gäste</span></div>
-<div class="calc-breakdown-row"><span class="cbr-label"><span class="tip">× Abwanderungsrate<span class="tip-icon">?</span><span class="tip-text">Anteil der unzufriedenen Gäste, die nicht wiederkommen. Sinkt deutlich, wenn Bewertungen beantwortet werden (von ca. 55% auf unter 20%).</span></span></span><span class="cbr-value" id="bd-churned">~1.078 verlorene Gäste</span></div>
-<div class="calc-breakdown-row"><span class="cbr-label"><span class="tip">× Ø Gastwert pro Jahr<span class="tip-icon">?</span><span class="tip-text">Durchschnittlicher Bon × geschätzte 3 Besuche pro Jahr. Zeigt, was ein verlorener Stammgast Sie jährlich kostet.</span></span></span><span class="cbr-value" id="bd-ltv">CHF 150</span></div>
-<div style="border-top:1px solid var(--border);margin:10px 0"></div>
-<div class="calc-breakdown-row negative"><span class="cbr-label">Verlust: Service und Wartezeit (45%)</span><span class="cbr-value" id="bd-service">-CHF 195K</span></div>
-<div class="calc-breakdown-row negative"><span class="cbr-label">Verlust: Produktqualität (35%)</span><span class="cbr-value" id="bd-quality">-CHF 130K</span></div>
-<div class="calc-breakdown-row negative"><span class="cbr-label"><span class="tip">Verlust: Rating-Erosion<span class="tip-icon">?</span><span class="tip-text">Abstand zum Benchmark von 4.7★ × 6.5% Umsatzeffekt pro Stern. Basierend auf Harvard Business School-Studie (Luca, 2016).</span></span></span><span class="cbr-value" id="bd-rating">-CHF 65K</span></div>
-<div style="border-top:1px solid var(--border);margin:10px 0"></div>
-<div class="calc-breakdown-row positive"><span class="cbr-label"><span class="tip">Recovery: Weniger Abwanderung durch Antworten<span class="tip-icon">?</span><span class="tip-text">Differenz zwischen aktuellem Verlust und dem geschätzten Verlust bei 80% Antwortquote. Aktives Antworten senkt die Abwanderung messbar.</span></span></span><span class="cbr-value" id="bd-response">+CHF 160K</span></div>
-<div class="calc-breakdown-row positive"><span class="cbr-label"><span class="tip">Recovery: Rating-Verbesserung +0.2★<span class="tip-icon">?</span><span class="tip-text">Geschätzter Umsatzeffekt bei einer Verbesserung um 0.2 Sterne: ca. 2% vom Jahresumsatz, basierend auf Branchendaten.</span></span></span><span class="cbr-value" id="bd-uplift">+CHF 130K</span></div>
-</div></details></div></div></div>
-<div class="calc-bridge">Genau diese Verluste adressiert Ihr Couvert-Team im laufenden Betrieb.</div>
+</div></div></div>
+<div class="calc-bridge">Genau diese Verluste adressiert Ihr Couvert-Team im laufenden Betrieb. <a href="team.html" style="color:var(--copper)">Lernen Sie die 6 Agents kennen →</a></div>
 </div></section>
 
-<section class="agents-section" id="agents"><div class="container">
-<div class="section-label">Das AI Operations Team</div>
-<div class="section-title">Sechs spezialisierte Agents. Ihre unsichtbare Crew.</div>
-<div class="section-sub">Ein AI-Team, das laufend erkennt, reagiert und die relevanten Themen an die richtigen Personen im Betrieb spielt.</div>
-<div class="agents-timeline">
-<div class="agent-row"><div class="agent-num-circle">01</div><div class="agent-content"><h4>Reputation Manager</h4><p>Erkennt neue Bewertungen in Echtzeit, beantwortet sie individuell in Ihrer Tonalität und eskaliert kritische Fälle sofort an Sie. Mehrsprachig, ohne generisches AI-Wording.</p><div class="agent-outcome"><div class="agent-outcome-label">Was bei Ihnen ankommt</div><ul class="agent-outcome-list"><li>Weniger unbeantwortete Kritik</li><li>Schnellere Reaktion auf heikle Fälle</li><li>Konsistente öffentliche Wahrnehmung</li></ul></div></div></div>
-<div class="agent-row"><div class="agent-num-circle">02</div><div class="agent-content"><h4>Quality Watchdog</h4><p>Erkennt wiederkehrende Beschwerdemuster, bevor daraus ein sichtbares Rating-Problem wird. Zeigt den Zusammenhang: Gericht, Schicht, Standort oder Prozess.</p><div class="agent-outcome"><div class="agent-outcome-label">Was bei Ihnen ankommt</div><ul class="agent-outcome-list"><li>Datenbasiertes Frühwarnsystem</li><li>Schnellere Ursachenanalyse</li><li>Weniger operative blinde Flecken</li></ul></div></div></div>
-<div class="agent-row"><div class="agent-num-circle">03</div><div class="agent-content"><h4>Revenue Analyst</h4><p>Übersetzt Gästefeedback in Franken und priorisiert Probleme nach finanziellem Hebel. Manche Schwachstellen kosten zehnmal mehr als andere - dieser Agent zeigt, wo der grösste Hebel liegt.</p><div class="agent-outcome"><div class="agent-outcome-label">Was bei Ihnen ankommt</div><ul class="agent-outcome-list"><li>Klare Reihenfolge für Massnahmen</li><li>Monatliche Umsatz-Sicht</li><li>Entscheidungen auf Basis von Zahlen</li></ul></div></div></div>
-<div class="agent-row"><div class="agent-num-circle">04</div><div class="agent-content"><h4>Operations Advisor</h4><p>Verbindet Gästefeedback mit Reservierungs- und Service-Daten. Aus einzelnen Beschwerden werden konkrete Hinweise für Schichtplanung, Überlastung oder Prozessfehler.</p><div class="agent-outcome"><div class="agent-outcome-label">Was bei Ihnen ankommt</div><ul class="agent-outcome-list"><li>Bessere operative Steuerung</li><li>Weniger Reibung im Service</li><li>Klarere Inputs für die Standortleitung</li></ul></div></div></div>
-<div class="agent-row"><div class="agent-num-circle">05</div><div class="agent-content"><h4>Menu Intelligence</h4><p>Erkennt, welche Gerichte negativ auffallen, wo die Preis-Leistung kippt und wo das Bild auf Instagram nicht zum tatsächlichen Erlebnis passt.</p><div class="agent-outcome"><div class="agent-outcome-label">Was bei Ihnen ankommt</div><ul class="agent-outcome-list"><li>Klarere Menü-Entscheidungen</li><li>Weniger wiederkehrende Produktkritik</li><li>Besserer Fit zwischen Erwartung und Erfahrung</li></ul></div></div></div>
-<div class="agent-row"><div class="agent-num-circle">06</div><div class="agent-content"><h4>Marketing Engine</h4><p>Analysiert den tatsächlichen Return Ihrer Marketingausgaben. Wie viele Neukunden bringen Ihre Influencer-Kampagnen wirklich? Kommen diese Gäste wieder? Wie schneidet der Cost per Acquired Guest im Vergleich zu Paid Ads ab? Gerade bei regelmässigem Kartenwechsel und wiederkehrenden Influencer-Budgets macht das den Unterschied zwischen Reichweite und echtem Umsatz.</p><div class="agent-outcome"><div class="agent-outcome-label">Was bei Ihnen ankommt</div><ul class="agent-outcome-list"><li>Transparenz über den tatsächlichen ROI von Influencer-Kampagnen</li><li>Datenbasierte Empfehlungen für Paid Ads vs. Influencer-Mix</li><li>Weniger Budgetverschwendung bei Kartenwechsel und Specials</li></ul></div></div></div>
-</div></div></section>
-
-<section class="case-section" id="case"><div class="container">
-<div class="section-label">Aus der Praxis</div>
-<div class="section-title">Fallbeispiel: Umsatzstarker Gastro-Betrieb, Zürich</div>
-<div class="section-sub">So sieht ein typisches Audit-Ergebnis aus: Vollständige Analyse von über 2.800 Google-Bewertungen, Speisekarte und Wettbewerbsumfeld.</div>
-<div class="case-grid">
-<div class="case-card"><div class="cc-num">CHF 390K+</div><div class="cc-label">Geschätzter jährlicher Umsatzverlust durch die drei grössten Beschwerde-Kategorien</div></div>
-<div class="case-card"><div class="cc-num">0%</div><div class="cc-label">Antwortquote: Keine einzige der 2.825 Bewertungen wurde je beantwortet</div></div>
-<div class="case-card"><div class="cc-num">10</div><div class="cc-label">Identifizierte Schwachstellen mit Ursachenanalyse und priorisierten Massnahmen</div></div>
-</div>
-<div class="case-note">Analyse basiert auf öffentlich einsehbaren Bewertungen, der Online-Speisekarte und Wettbewerbsvergleich. Umsatzmodell nach Harvard Business School-Methodik (Luca, 2016). Vollständiger Report auf Anfrage.</div>
-</div></section>
-
-<section class="deliv-section"><div class="container">
-<div class="section-label">Was Sie erhalten</div>
-<div class="section-title">Was im laufenden Betrieb bei Ihnen ankommt</div>
-<div class="section-sub">Ihr AI-Team erkennt laufend neue Muster, beantwortet Gästestimmen, priorisiert Probleme und meldet nur das, was wirklich Handlungsbedarf hat.</div>
-<div class="deliv-grid">
-<div class="deliv-card"><div class="deliv-freq">Wöchentlich</div><h4>Operativ</h4><p>Bewertungen beantwortet, Alerts bei kritischen Fällen, Eskalationen an die zuständigen Personen. Ohne Ihr Zutun.</p></div>
-<div class="deliv-card"><div class="deliv-freq">Monatlich</div><h4>Management</h4><p>Impact-Report mit den wichtigsten Schwachstellen, beziffert in Franken: was sich verbessert hat, was noch offen ist, wo der grösste Hebel liegt.</p></div>
-<div class="deliv-card"><div class="deliv-freq">Quartalsweise</div><h4>Führung</h4><p>Klare nächste Schritte für Küche, Service und Standortleitung. Priorisiert nach Umsatzwirkung.</p></div>
-</div></div></section>
-
-<section class="quote-section"><div class="container">
-<blockquote>«Ein Anstieg um einen Stern auf Google führt zu 5–9% mehr Umsatz bei unabhängigen Restaurants.»</blockquote>
-<div class="q-attr">Harvard Business School, Reviews, Reputation & Revenue (Luca, 2016)</div>
-</div></section>
-
-<section id="process"><div class="container">
-<div class="section-label">So läuft es ab</div>
-<div class="section-title">Drei Phasen. Ein klarer Weg vom Audit zur laufenden Wirkung.</div>
-<div class="section-sub">Volle Transparenz, faire Konditionen. Nach dem Audit entscheiden Sie frei, ob es weitergeht.</div>
-<div class="process-grid">
-<div class="process-card"><div class="pc-num">01</div><div class="pc-phase">Phase 1 · Einmalig</div><h4>Audit</h4><p>Wir analysieren Gästefeedback, Menü, Wettbewerb und Betriebsdaten und zeigen Ihnen, wo konkret Umsatz verloren geht.</p><div class="pc-price">ab CHF 4.500 <span>einmalig</span></div></div>
-<div class="process-card" style="border-left:2px solid var(--copper);border-right:2px solid var(--copper)"><div class="pc-num">02</div><div class="pc-phase">Phase 2 · 2–4 Wochen</div><h4>Einrichtung</h4><p>Wir richten die Agents ein, definieren Eskalationen, kalibrieren Tonalität und verankern Couvert in Ihren bestehenden Abläufen.</p><div class="pc-price">ab CHF 5.000 <span>einmalig</span></div></div>
-<div class="process-card"><div class="pc-num">03</div><div class="pc-phase">Phase 3 · Laufend</div><h4>Laufender Betrieb</h4><p>Ihr AI-Team arbeitet im Hintergrund, erkennt neue Muster, reagiert auf kritische Fälle und liefert laufend Prioritäten mit wirtschaftlicher Einordnung.</p><div class="pc-price">ab CHF 2.500 <span>pro Standort / Monat</span></div></div>
-</div></div></section>
-
-<section class="collab-section" id="zusammenarbeit"><div class="container">
-<div class="section-label">Zusammenarbeit</div>
-<div class="section-title">Ihr Betrieb bleibt wie er ist. Wir fügen eine operative Ebene hinzu.</div>
-<div class="section-sub" style="margin-bottom:36px">Unser AI-Team arbeitet im Hintergrund. Sie behalten die volle Kontrolle über Ihren Betrieb, Ihre Abläufe und Ihre Daten.</div>
-<div class="collab-grid">
-<div class="collab-card"><div class="collab-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div><h4>Alles per E-Mail</h4><p>Ergebnisse kommen per E-Mail und in monatlichen Reports. Ein Postfach reicht.</p></div>
-<div class="collab-card"><div class="collab-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h4>Ihre Stimme, Ihre Marke</h4><p>Der Reputation Manager antwortet in Ihrem Tonfall. Wir kalibrieren die Tonalität gemeinsam und Sie geben jederzeit Feedback.</p></div>
-<div class="collab-card"><div class="collab-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div><h4>Ihr Team bleibt im Lead</h4><p>Unsere Agents liefern bessere Informationen. Der Küchenchef entscheidet über die Rezeptur, der Serviceleiter über die Planung.</p></div>
-<div class="collab-card"><div class="collab-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><h4>Ihre Daten gehören Ihnen</h4><p>Wir analysieren nur öffentliche Bewertungen und von Ihnen freigegebene Daten. Hosting in der Schweiz. Jederzeit kündbar.</p></div>
-<div class="collab-card"><div class="collab-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><h4>Ergebnisse ab Woche 1</h4><p>Das Audit liefert innerhalb weniger Tage konkrete Zahlen. Nach der Einrichtung arbeitet Ihr AI-Team sofort.</p></div>
-<div class="collab-card"><div class="collab-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><h4>Ein Ansprechpartner</h4><p>Sie haben einen direkten Draht zu Ihrem Account Lead. Per Telefon, E-Mail oder Chat.</p></div>
-</div></div></section>
-
-<section class="faq-section" id="faq"><div class="container">
-<div class="section-label">Häufige Fragen</div>
-<div class="section-title">Ehrliche Antworten.</div>
-<div class="faq-list">
-<details class="faq-item"><summary>Merken meine Gäste, dass eine AI auf Bewertungen antwortet?</summary><p>Nein. Jede Antwort wird individuell generiert, in Ihrer Tonalität und mit Bezug auf die spezifische Bewertung. In der Einrichtungsphase kalibrieren wir den Ton gemeinsam, und Sie können jederzeit Feedback geben oder einzelne Antworten vorab freigeben.</p></details>
-<details class="faq-item"><summary>Was passiert mit meinen Daten?</summary><p>Wir analysieren ausschliesslich öffentlich einsehbare Bewertungen und Ihre öffentliche Speisekarte. Betriebsinterne Daten werden nur verarbeitet, wenn Sie diese explizit freigeben. Alles wird in der Schweiz gehostet und nicht an Dritte weitergegeben.</p></details>
-<details class="faq-item"><summary>Brauche ich technisches Wissen oder neue Software?</summary><p>Nein. Ergebnisse kommen per E-Mail und in strukturierten Monatsberichten. Bei kritischen Fällen werden Sie direkt kontaktiert. Sie brauchen nur Ihr bestehendes Postfach.</p></details>
-<details class="faq-item"><summary>Wie schnell sehe ich Ergebnisse?</summary><p>Das Audit liefert innerhalb weniger Tage einen vollständigen Report. Nach der Einrichtung (2–4 Wochen) arbeiten Ihre Agents ab dem ersten Tag. Messbare Verbesserungen der Antwortquote und erste Rating-Effekte sind nach 4–8 Wochen sichtbar.</p></details>
-<details class="faq-item"><summary>Was kostet es, wenn ich nur einen Standort habe?</summary><p>Das Audit beginnt ab CHF 4.500, die Einrichtung ab CHF 5.000, und der laufende Betrieb ab CHF 2.500 pro Monat. Für Betriebe mit mehreren Standorten bieten wir gestaffelte Konditionen.</p></details>
-<details class="faq-item"><summary>Was wenn ich nicht zufrieden bin?</summary><p>Der laufende Service ist monatlich kündbar. Nach dem Audit entscheiden Sie frei, ob Sie weitergehen möchten.</p></details>
-<details class="faq-item"><summary>Wie unterscheidet sich Couvert.ai von einem Review-Management-Tool?</summary><p>Ein Review-Tool hilft Ihnen, Bewertungen zu verwalten. Couvert geht weiter: Wir erkennen Muster, beziffern wirtschaftliche Auswirkungen, reagieren operativ und liefern priorisierte Massnahmen für den laufenden Betrieb. Ein Team das für Sie arbeitet.</p></details>
-</div></div></section>
-
+<!-- CTA -->
 <section class="cta-section" id="contact"><div class="container">
 <div class="section-label" style="text-align:center">Nächster Schritt</div>
 <h2>Wir zeigen Ihnen, wo Ihr Betrieb Umsatz liegen lässt.</h2>
 <p>In einem kurzen Erstgespräch sehen Sie, welche Signale heute schon auf Schwachstellen, verlorene Gäste und ungenutztes Potenzial hinweisen.</p>
-<div class="cta-buttons"><a href="mailto:hello@couvert.ai" class="btn-primary">Erstgespräch vereinbaren</a><a href="#case" class="btn-ghost">Beispielanalyse anfragen</a></div>
+<div class="cta-buttons"><a href="mailto:hello@couvert.ai" class="btn-primary">Erstgespräch vereinbaren</a><a href="fallbeispiel.html" class="btn-ghost">Beispielanalyse anfragen</a></div>
 </div></section>
 
 <footer><div class="container">
@@ -243,21 +206,17 @@ document.getElementById('result-loss').textContent=formatCHF(totalLoss);document
 const churnPct=Math.round(churnRate*100);document.getElementById('churn-display').textContent=churnPct+'%';document.getElementById('churn-fill').style.width=churnPct+'%';
 document.getElementById('churn-explain').textContent=churnPct+'% Ihrer unzufriedenen Gäste kommen nicht wieder'+(response===0?' – Sie antworten auf keine Bewertung':'');
 document.getElementById('churn-display').style.color=churnPct>40?'var(--red-down)':churnPct>25?'var(--gold)':'var(--green-up)';
-document.getElementById('bd-neg-reviews').textContent='~'+formatNum(negReviews);document.getElementById('bd-unhappy').textContent='~'+formatNum(unhappyGuests)+' unzufriedene Gäste';document.getElementById('bd-churned').textContent='~'+formatNum(churnedGuests)+' verlorene Gäste';document.getElementById('bd-ltv').textContent='CHF '+ltv+' ('+bon+' × 3 Besuche)';
-document.getElementById('bd-service').textContent='-'+formatCHF(serviceLoss);document.getElementById('bd-quality').textContent='-'+formatCHF(qualityLoss);document.getElementById('bd-rating').textContent=ratingGap>0?'-'+formatCHF(ratingLoss):'CHF 0';
-document.getElementById('bd-response').textContent='+'+formatCHF(recoveryPotential);document.getElementById('bd-uplift').textContent='+'+formatCHF(ratingUplift);
 const ml=document.getElementById('msr-loss'),mr=document.getElementById('msr-recovery');if(ml)ml.textContent=formatCHF(totalLoss);if(mr)mr.textContent='+'+formatCHF(totalRecovery);
 }
 [revenueSlider,bonSlider,reviewsSlider,ratingSlider,responseSlider].forEach(s=>s.addEventListener('input',calculate));calculate();
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
 if(window.matchMedia('(max-width:800px)').matches){const cf=document.querySelector('.calc-form'),cr=document.querySelector('.calc-right'),st=document.getElementById('mobile-sticky');let fv=false,rv=false;new IntersectionObserver(e=>{fv=e[0].isIntersecting;st.classList.toggle('visible',fv&&!rv)},{threshold:.2}).observe(cf);new IntersectionObserver(e=>{rv=e[0].isIntersecting;st.classList.toggle('visible',fv&&!rv)},{threshold:.1}).observe(cr)}
-// Slider hint animation
 const calcForm=document.querySelector('.calc-form'),calcHint=document.getElementById('calc-hint'),sliderPulse=document.getElementById('slider-pulse');
 let hintDismissed=false;
-function positionPulse(){const s=revenueSlider,rect=s.getBoundingClientRect(),pct=(s.value-s.min)/(s.max-s.min),thumbX=pct*s.offsetWidth;sliderPulse.style.left=thumbX+'px'}
+function positionPulse(){const s=revenueSlider,pct=(s.value-s.min)/(s.max-s.min),thumbX=pct*s.offsetWidth;sliderPulse.style.left=thumbX+'px'}
 positionPulse();
-new IntersectionObserver(e=>{if(e[0].isIntersecting&&!hintDismissed){calcHint.classList.add('visible');positionPulse();sliderPulse.classList.add('active')}},{threshold:0.3}).observe(calcForm);
-[revenueSlider,bonSlider,reviewsSlider,ratingSlider,responseSlider].forEach(s=>s.addEventListener('input',()=>{if(!hintDismissed){hintDismissed=true;calcHint.classList.remove('visible');sliderPulse.classList.remove('active')}},{once:true}))
+new IntersectionObserver(e=>{if(e[0].isIntersecting&&!hintDismissed){calcHint.classList.add('visible');positionPulse();sliderPulse.classList.add('active')}},{threshold:.3}).observe(calcForm);
+[revenueSlider,bonSlider,reviewsSlider,ratingSlider,responseSlider].forEach(s=>s.addEventListener('input',()=>{if(!hintDismissed){hintDismissed=true;calcHint.classList.remove('visible');sliderPulse.classList.remove('active')}},{once:true}));
 </script>
 </body>
 </html>

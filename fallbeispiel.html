@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fallbeispiel - Couvert.ai</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.case-card{background:var(--bg2);border:1px solid var(--border);padding:28px}
+.case-card .cc-num{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:600;color:var(--copper);margin-bottom:4px}
+.case-card .cc-label{font-size:13px;color:var(--text-dim);line-height:1.5}
+.case-note{margin-top:24px;font-size:12px;color:var(--text-dim);font-style:italic;border-left:2px solid var(--border);padding-left:16px;line-height:1.6}
+.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:36px}
+.problem-card{background:var(--bg);padding:28px 24px}
+.problem-card h4{font-family:'DM Serif Display',serif;font-size:17px;color:var(--cream);margin-bottom:8px}
+.problem-card p{font-size:14px;line-height:1.7;color:var(--text-dim);font-weight:300}
+.quote-section{text-align:center;padding:64px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.quote-section blockquote{font-family:'DM Serif Display',serif;font-size:clamp(22px,3.2vw,32px);color:var(--cream);line-height:1.35;max-width:680px;margin:0 auto}
+.quote-section .q-attr{font-size:12px;color:var(--text-dim);margin-top:16px}
+@media(min-width:801px){.problem-card h4{font-size:20px}.problem-card p{font-size:15px}}
+@media(max-width:800px){.case-grid,.problem-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header><div class="container header-inner">
+<a href="index.html" class="logo"><div class="logo-icon"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="8" r="5.5" stroke="#C4673A" stroke-width="1.2" fill="none"/><circle cx="9" cy="8" r="2" stroke="#C4673A" stroke-width="0.8" fill="none" opacity="0.5"/><circle cx="9" cy="8" r="0.8" fill="#C4673A"/><line x1="5" y1="15" x2="13" y2="15" stroke="#C4673A" stroke-width="0.6" opacity="0.4"/></svg></div><div class="logo-name">couvert<span>.ai</span></div></a>
+<nav class="nav"><a href="team.html">AI-Team</a><a href="fallbeispiel.html" style="color:var(--cream)">Fallbeispiel</a><a href="ablauf.html">Ablauf</a><a href="ablauf.html#faq">FAQ</a><a href="index.html#contact" class="nav-cta">Gespräch buchen</a></nav>
+<button class="burger" onclick="document.getElementById('mm').classList.add('open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+</div></header>
+
+<div class="mobile-menu" id="mm">
+<button class="mm-close" onclick="document.getElementById('mm').classList.remove('open')" aria-label="Schliessen"><svg viewBox="0 0 24 24" fill="none"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+<a href="index.html">Start</a><a href="team.html">AI-Team</a><a href="fallbeispiel.html" onclick="document.getElementById('mm').classList.remove('open')">Fallbeispiel</a><a href="ablauf.html">Ablauf & FAQ</a><a href="index.html#contact" style="color:var(--copper)">Gespräch buchen</a>
+</div>
+
+<section class="subpage-hero"><div class="container">
+<a href="index.html" class="back-link">← Zurück zur Startseite</a>
+<div class="section-label">Aus der Praxis</div>
+<div class="section-title">Fallbeispiel: Umsatzstarker Gastro-Betrieb, Zürich</div>
+<div class="section-sub">So sieht ein typisches Audit-Ergebnis aus: Vollständige Analyse von über 2.800 Google-Bewertungen, Speisekarte und Wettbewerbsumfeld.</div>
+</div></section>
+
+<section style="padding-top:0"><div class="container">
+<div class="case-grid">
+<div class="case-card"><div class="cc-num">CHF 390K+</div><div class="cc-label">Geschätzter jährlicher Umsatzverlust durch die drei grössten Beschwerde-Kategorien</div></div>
+<div class="case-card"><div class="cc-num">0%</div><div class="cc-label">Antwortquote: Keine einzige der 2.825 Bewertungen wurde je beantwortet</div></div>
+<div class="case-card"><div class="cc-num">10</div><div class="cc-label">Identifizierte Schwachstellen mit Ursachenanalyse und priorisierten Massnahmen</div></div>
+</div>
+<div class="case-note">Analyse basiert auf öffentlich einsehbaren Bewertungen, der Online-Speisekarte und Wettbewerbsvergleich. Umsatzmodell nach Harvard Business School-Methodik (Luca, 2016). Vollständiger Report auf Anfrage.</div>
+</div></section>
+
+<section><div class="container">
+<div class="section-label">Identifizierte Probleme</div>
+<div class="section-title">Die drei grössten Umsatzhebel</div>
+<div class="problem-grid">
+<div class="problem-card"><h4>Unbeantwortete Bewertungen</h4><p>Negative Erfahrungen bleiben öffentlich sichtbar. Verlorene Gäste kommen nicht zurück, potenzielle Gäste werden abgeschreckt.</p></div>
+<div class="problem-card"><h4>Wiederkehrende operative Fehler</h4><p>Dasselbe Problem taucht in verschiedenen Formulierungen immer wieder auf, wird intern aber nicht als Muster erkannt.</p></div>
+<div class="problem-card"><h4>Fehlende Priorisierung nach Umsatz</h4><p>Es wird über Symptome gesprochen, aber selten darüber, welche Schwachstelle tatsächlich am meisten Geld kostet.</p></div>
+</div></div></section>
+
+<section class="quote-section"><div class="container">
+<blockquote>«Ein Anstieg um einen Stern auf Google führt zu 5–9% mehr Umsatz bei unabhängigen Restaurants.»</blockquote>
+<div class="q-attr">Harvard Business School, Reviews, Reputation & Revenue (Luca, 2016)</div>
+</div></section>
+
+<section style="text-align:center"><div class="container">
+<div class="section-title">Interessiert an einer Analyse für Ihren Betrieb?</div>
+<p style="font-size:16px;color:var(--text-dim);margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7;font-weight:300">Wir zeigen Ihnen in einem kurzen Erstgespräch, welche Signale Ihre Bewertungen bereits heute liefern.</p>
+<a href="index.html#contact" class="btn-primary">Erstgespräch vereinbaren</a>
+</div></section>
+
+<footer><div class="container">
+<div class="footer-inner"><div class="footer-left">© 2026 COUVERT.AI - ZÜRICH</div><div class="footer-right">Jedes Gedeck zählt.</div></div>
+<div class="footer-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="mailto:hello@couvert.ai">hello@couvert.ai</a></div>
+</div></footer>
+</body>
+</html>
