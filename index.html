@@ -64,6 +64,19 @@
 .churn-explain{font-size:10px;color:var(--text-dim);margin-top:4px;font-style:italic}
 .calc-note{font-size:11px;color:var(--text-dim);margin-top:12px;font-style:italic}
 .calc-bridge{margin-top:32px;padding:20px 24px;border-left:2px solid var(--copper);font-size:15px;color:var(--text);font-weight:300;line-height:1.6;font-style:italic}
+.tip{position:relative;cursor:help;display:inline}.tip .tip-icon{width:14px;height:14px;border-radius:50%;border:1px solid var(--border-hover);display:inline-flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dim);flex-shrink:0;transition:border-color 0.2s;vertical-align:middle;margin-left:4px}.tip:hover .tip-icon{border-color:var(--copper);color:var(--copper)}.tip .tip-text{display:none;position:absolute;bottom:calc(100% + 8px);left:0;width:260px;background:var(--bg3);border:1px solid var(--border);padding:12px 14px;font-size:12px;line-height:1.6;color:var(--text);font-weight:300;font-family:'DM Sans',sans-serif;z-index:10;pointer-events:none;letter-spacing:0}.tip:hover .tip-text{display:block}
+.calc-breakdown{padding-top:16px}
+.calc-details{border-top:1px solid var(--border);margin-top:12px}
+.calc-details summary{padding:12px 0;font-size:12px;color:var(--copper);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;letter-spacing:0.3px;transition:color 0.3s}
+.calc-details summary:hover{color:var(--copper-soft)}
+.calc-details summary::after{content:'+';font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--copper);transition:transform 0.3s}
+.calc-details[open] summary::after{transform:rotate(45deg)}
+.calc-details summary::-webkit-details-marker{display:none}
+.calc-breakdown-row{display:flex;justify-content:space-between;padding:5px 0;font-size:12px;gap:12px}
+.calc-breakdown-row .cbr-label{color:var(--text-dim);flex:1;min-width:0}
+.calc-breakdown-row .cbr-value{font-family:'JetBrains Mono',monospace;color:var(--cream);white-space:nowrap;text-align:right}
+.calc-breakdown-row.negative .cbr-value{color:var(--red-down)}
+.calc-breakdown-row.positive .cbr-value{color:var(--green-up)}
 .cta-section{text-align:center}
 .cta-section h2{font-family:'DM Serif Display',serif;font-size:clamp(26px,4vw,42px);color:var(--cream-bright);letter-spacing:-0.5px;margin-bottom:14px}
 .cta-section p{font-size:16px;color:var(--text-dim);margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.7;font-weight:300}
@@ -74,8 +87,13 @@
   .hero-sub{font-size:19px;max-width:700px}
   .step-card h4{font-size:20px}.step-card p{font-size:14px}
   .proof-num{font-size:28px}.proof-label{font-size:12px}.proof-item{padding:36px 24px}
+  .calc-layout{align-items:stretch}
+  .calc-form{display:flex;flex-direction:column}
+  .calc-right{display:flex;flex-direction:column;position:sticky;top:100px}
+  .calc-detail-panel{flex:1}
 }
 @media(max-width:800px){
+  .tip .tip-text{left:-40px;width:220px}
   .proof-bar .container{grid-template-columns:1fr 1fr}
   .proof-item:nth-child(2)::after{display:none}
   .steps-grid{grid-template-columns:1fr 1fr}
@@ -160,6 +178,21 @@
 </div>
 <div class="calc-detail-panel">
 <div class="churn-indicator"><div class="churn-bar-bg"><div class="churn-bar-fill" id="churn-fill"></div></div><div class="churn-row"><span class="churn-label">Geschätzte Abwanderungsrate</span><span class="churn-value" id="churn-display">55%</span></div><div class="churn-explain" id="churn-explain">Ihrer unzufriedenen Gäste kommen nicht wieder</div></div>
+<details class="calc-details">
+<summary>Herleitung anzeigen</summary>
+<div class="calc-breakdown">
+<div class="calc-breakdown-row"><span class="cbr-label"><span class="tip">Negative Bewertungen (geschätzt)<span class="tip-icon">?</span><span class="tip-text">Anteil negativer Bewertungen basierend auf dem Rating: Bei 4.5★ ca. 10%, bei 4.0★ ca. 18%, unter 3.5★ bis zu 40%.</span></span></span><span class="cbr-value" id="bd-neg-reviews">~280</span></div>
+<div class="calc-breakdown-row"><span class="cbr-label"><span class="tip">× Dunkelziffer (Faktor 7)<span class="tip-icon">?</span><span class="tip-text">Branchenstudien zeigen: Auf jede geschriebene negative Bewertung kommen ca. 7 unzufriedene Gäste, die nichts schreiben. Quelle: ReviewTrackers, Esteban Kolsky.</span></span></span><span class="cbr-value" id="bd-unhappy">~1.960 unzufriedene Gäste</span></div>
+<div class="calc-breakdown-row"><span class="cbr-label"><span class="tip">× Abwanderungsrate<span class="tip-icon">?</span><span class="tip-text">Anteil der unzufriedenen Gäste, die nicht wiederkommen. Sinkt deutlich, wenn Bewertungen beantwortet werden (von ca. 55% auf unter 20%).</span></span></span><span class="cbr-value" id="bd-churned">~1.078 verlorene Gäste</span></div>
+<div class="calc-breakdown-row"><span class="cbr-label"><span class="tip">× Ø Gastwert pro Jahr<span class="tip-icon">?</span><span class="tip-text">Durchschnittlicher Bon × geschätzte 3 Besuche pro Jahr. Zeigt, was ein verlorener Stammgast Sie jährlich kostet.</span></span></span><span class="cbr-value" id="bd-ltv">CHF 150</span></div>
+<div style="border-top:1px solid var(--border);margin:10px 0"></div>
+<div class="calc-breakdown-row negative"><span class="cbr-label">Verlust: Service und Wartezeit (45%)</span><span class="cbr-value" id="bd-service">-CHF 195K</span></div>
+<div class="calc-breakdown-row negative"><span class="cbr-label">Verlust: Produktqualität (35%)</span><span class="cbr-value" id="bd-quality">-CHF 130K</span></div>
+<div class="calc-breakdown-row negative"><span class="cbr-label"><span class="tip">Verlust: Rating-Erosion<span class="tip-icon">?</span><span class="tip-text">Abstand zum Benchmark von 4.7★ × 6.5% Umsatzeffekt pro Stern. Basierend auf Harvard Business School-Studie (Luca, 2016).</span></span></span><span class="cbr-value" id="bd-rating">-CHF 65K</span></div>
+<div style="border-top:1px solid var(--border);margin:10px 0"></div>
+<div class="calc-breakdown-row positive"><span class="cbr-label"><span class="tip">Recovery: Weniger Abwanderung durch Antworten<span class="tip-icon">?</span><span class="tip-text">Differenz zwischen aktuellem Verlust und dem geschätzten Verlust bei 80% Antwortquote. Aktives Antworten senkt die Abwanderung messbar.</span></span></span><span class="cbr-value" id="bd-response">+CHF 160K</span></div>
+<div class="calc-breakdown-row positive"><span class="cbr-label"><span class="tip">Recovery: Rating-Verbesserung +0.2★<span class="tip-icon">?</span><span class="tip-text">Geschätzter Umsatzeffekt bei einer Verbesserung um 0.2 Sterne: ca. 2% vom Jahresumsatz, basierend auf Branchendaten.</span></span></span><span class="cbr-value" id="bd-uplift">+CHF 130K</span></div>
+</div></details>
 </div></div></div>
 <div class="calc-bridge">Genau diese Verluste adressiert Ihr Couvert-Team im laufenden Betrieb. <a href="team.html" style="color:var(--copper)">Lernen Sie die 6 Agents kennen →</a></div>
 </div></section>
@@ -206,6 +239,9 @@ document.getElementById('result-loss').textContent=formatCHF(totalLoss);document
 const churnPct=Math.round(churnRate*100);document.getElementById('churn-display').textContent=churnPct+'%';document.getElementById('churn-fill').style.width=churnPct+'%';
 document.getElementById('churn-explain').textContent=churnPct+'% Ihrer unzufriedenen Gäste kommen nicht wieder'+(response===0?' – Sie antworten auf keine Bewertung':'');
 document.getElementById('churn-display').style.color=churnPct>40?'var(--red-down)':churnPct>25?'var(--gold)':'var(--green-up)';
+document.getElementById('bd-neg-reviews').textContent='~'+formatNum(negReviews);document.getElementById('bd-unhappy').textContent='~'+formatNum(unhappyGuests)+' unzufriedene Gäste';document.getElementById('bd-churned').textContent='~'+formatNum(churnedGuests)+' verlorene Gäste';document.getElementById('bd-ltv').textContent='CHF '+ltv+' ('+bon+' × 3 Besuche)';
+document.getElementById('bd-service').textContent='-'+formatCHF(serviceLoss);document.getElementById('bd-quality').textContent='-'+formatCHF(qualityLoss);document.getElementById('bd-rating').textContent=ratingGap>0?'-'+formatCHF(ratingLoss):'CHF 0';
+document.getElementById('bd-response').textContent='+'+formatCHF(recoveryPotential);document.getElementById('bd-uplift').textContent='+'+formatCHF(ratingUplift);
 const ml=document.getElementById('msr-loss'),mr=document.getElementById('msr-recovery');if(ml)ml.textContent=formatCHF(totalLoss);if(mr)mr.textContent='+'+formatCHF(totalRecovery);
 }
 [revenueSlider,bonSlider,reviewsSlider,ratingSlider,responseSlider].forEach(s=>s.addEventListener('input',calculate));calculate();
