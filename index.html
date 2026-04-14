@@ -150,6 +150,15 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
 .footer-right{font-family:'DM Serif Display',serif;font-size:14px;color:var(--copper);font-style:italic}
 
 /* === COLLABORATION === */
+.churn-indicator{background:var(--bg);border:1px solid var(--border);padding:20px;margin-bottom:24px;margin-top:8px}
+.churn-bar-bg{width:100%;height:8px;background:var(--border);border-radius:4px;margin-bottom:12px;overflow:hidden}
+.churn-bar-fill{height:100%;background:linear-gradient(90deg,var(--green-up),var(--gold),var(--red-down));border-radius:4px;transition:width 0.4s ease}
+.churn-row{display:flex;justify-content:space-between;align-items:center}
+.churn-label{font-size:12px;color:var(--text-dim);letter-spacing:0.3px}
+.churn-value{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:600;color:var(--red-down);transition:color 0.3s}
+.churn-explain{font-size:11px;color:var(--text-dim);margin-top:4px;font-style:italic}
+
+/* === COLLABORATION === */
 .collab-section{background:var(--bg2)}
 .collab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
 .collab-card{background:var(--bg2);padding:36px 28px}
@@ -283,6 +292,11 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
           <div class="calc-value"><span id="rev-display">CHF 6.500.000</span></div>
         </div>
         <div class="calc-group">
+          <label>Ø Bon pro Person (CHF)</label>
+          <input type="range" id="avgbon" min="20" max="120" step="5" value="50">
+          <div class="calc-value"><span id="rev-bon">CHF 50</span></div>
+        </div>
+        <div class="calc-group">
           <label>Google-Bewertungen (Anzahl)</label>
           <input type="range" id="reviews" min="50" max="5000" step="50" value="2800">
           <div class="calc-value"><span id="rev-reviews">2.800</span></div>
@@ -302,17 +316,44 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
         <div class="cr-label">Geschätzter jährlicher Revenue-Verlust</div>
         <div class="cr-number" id="result-loss">CHF 390K</div>
         <div class="cr-unit">durch ungelöste Gästeprobleme</div>
+        
+        <div class="churn-indicator">
+          <div class="churn-bar-bg"><div class="churn-bar-fill" id="churn-fill"></div></div>
+          <div class="churn-row">
+            <span class="churn-label">Geschätzte Churn Rate</span>
+            <span class="churn-value" id="churn-display">55%</span>
+          </div>
+          <div class="churn-explain" id="churn-explain">Ihrer unzufriedenen Gäste kommen nicht wieder</div>
+        </div>
+
         <div class="calc-breakdown">
+          <div class="calc-breakdown-row">
+            <span class="cbr-label">Negative Reviews (geschätzt)</span>
+            <span class="cbr-value" id="bd-neg-reviews">~280</span>
+          </div>
+          <div class="calc-breakdown-row">
+            <span class="cbr-label">× Dunkelziffer (Faktor 7)</span>
+            <span class="cbr-value" id="bd-unhappy">~1.960 unzufriedene Gäste</span>
+          </div>
+          <div class="calc-breakdown-row">
+            <span class="cbr-label">× Churn Rate</span>
+            <span class="cbr-value" id="bd-churned">~1.078 verlorene Gäste</span>
+          </div>
+          <div class="calc-breakdown-row">
+            <span class="cbr-label">× Ø Lifetime Value / Gast</span>
+            <span class="cbr-value" id="bd-ltv">CHF 150</span>
+          </div>
+          <div style="border-top:1px solid var(--border);margin:16px 0"></div>
           <div class="calc-breakdown-row negative">
-            <span class="cbr-label">Wartezeit & Service</span>
+            <span class="cbr-label">Verlust: Service & Wartezeit (45%)</span>
             <span class="cbr-value" id="bd-service">-CHF 195K</span>
           </div>
           <div class="calc-breakdown-row negative">
-            <span class="cbr-label">Produktqualität</span>
+            <span class="cbr-label">Verlust: Produktqualität (35%)</span>
             <span class="cbr-value" id="bd-quality">-CHF 130K</span>
           </div>
           <div class="calc-breakdown-row negative">
-            <span class="cbr-label">Rating-Erosion</span>
+            <span class="cbr-label">Verlust: Rating-Erosion</span>
             <span class="cbr-value" id="bd-rating">-CHF 65K</span>
           </div>
           <div style="border-top:1px solid var(--border);margin:16px 0"></div>
@@ -321,7 +362,7 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
             <span class="cbr-value" id="bd-uplift">+CHF 325K</span>
           </div>
           <div class="calc-breakdown-row positive">
-            <span class="cbr-label">Review Response ROI</span>
+            <span class="cbr-label">Response Rate → Churn-Reduktion</span>
             <span class="cbr-value" id="bd-response">+CHF 78K</span>
           </div>
         </div>
@@ -574,8 +615,8 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
 </footer>
 
 <script>
-// Revenue Calculator
 const revenueSlider = document.getElementById('revenue');
+const bonSlider = document.getElementById('avgbon');
 const reviewsSlider = document.getElementById('reviews');
 const ratingSlider = document.getElementById('rating');
 const responseSlider = document.getElementById('response');
@@ -583,53 +624,94 @@ const responseSlider = document.getElementById('response');
 function formatCHF(n) {
   if (n >= 1000000) return 'CHF ' + (n/1000000).toFixed(1).replace('.',',') + ' Mio.';
   if (n >= 1000) return 'CHF ' + Math.round(n/1000) + 'K';
-  return 'CHF ' + n;
+  return 'CHF ' + Math.round(n);
 }
 
 function formatNum(n) {
-  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 }
 
 function calculate() {
   const rev = parseInt(revenueSlider.value);
+  const bon = parseInt(bonSlider.value);
   const reviews = parseInt(reviewsSlider.value);
   const rating = parseInt(ratingSlider.value) / 10;
   const response = parseInt(responseSlider.value);
 
+  // Display values
   document.getElementById('rev-display').textContent = 'CHF ' + formatNum(rev);
+  document.getElementById('rev-bon').textContent = 'CHF ' + bon;
   document.getElementById('rev-reviews').textContent = formatNum(reviews);
   document.getElementById('rev-rating').textContent = rating.toFixed(1) + ' ★';
   document.getElementById('rev-response').textContent = response + '%';
 
-  // Model: negative reviews estimate
-  const negPct = rating >= 4.5 ? 0.10 : rating >= 4.0 ? 0.18 : 0.28;
-  const negReviews = Math.round(reviews * negPct);
-  const darkFactor = 7; // for every written neg review, ~7 unhappy guests don't write
-  const unhappyGuests = negReviews * darkFactor;
-  const churnRate = Math.max(0.15, 0.55 - (response / 100) * 0.35);
-  const ltv = rev / (reviews * 3) * 4;
+  // --- MODEL ---
   
-  const serviceLoss = Math.round(unhappyGuests * churnRate * ltv * 0.45);
-  const qualityLoss = Math.round(unhappyGuests * churnRate * ltv * 0.35);
-  const ratingGap = 4.7 - rating;
+  // 1. Negative reviews percentage based on rating
+  const negPct = rating >= 4.7 ? 0.06 : rating >= 4.5 ? 0.10 : rating >= 4.0 ? 0.18 : rating >= 3.5 ? 0.28 : 0.40;
+  const negReviews = Math.round(reviews * negPct);
+
+  // 2. Dark factor: for every written neg review, ~7 don't write
+  const darkFactor = 7;
+  const unhappyGuests = negReviews * darkFactor;
+
+  // 3. Churn rate: depends on response rate (key selling point!)
+  // At 0% response: 55% churn. At 100% response: 18% churn.
+  const churnRate = 0.18 + (1 - response / 100) * 0.37;
+  const churnedGuests = Math.round(unhappyGuests * churnRate);
+
+  // 4. Lifetime Value based on Ø Bon and estimated visit frequency
+  // Higher bon = higher LTV. Assume repeat guests visit 3x/year
+  const visitsPerYear = 3;
+  const ltv = bon * visitsPerYear;
+
+  // 5. Total loss from churned guests
+  const totalChurnLoss = churnedGuests * ltv;
+  const serviceLoss = Math.round(totalChurnLoss * 0.45);
+  const qualityLoss = Math.round(totalChurnLoss * 0.35);
+  
+  // 6. Rating erosion: gap to 4.7 benchmark × 6.5% per 1 star
+  const ratingGap = Math.max(0, 4.7 - rating);
   const ratingLoss = Math.round(rev * ratingGap * 0.065);
-  const totalLoss = serviceLoss + qualityLoss + Math.max(0, ratingLoss);
 
-  const uplift = Math.round(rev * 0.05);
-  const responseROI = Math.round(rev * 0.012 * (1 - response/100));
+  const totalLoss = serviceLoss + qualityLoss + ratingLoss;
 
+  // 7. Upside
+  const uplift = Math.round(rev * 0.05); // +0.2 stars ≈ 5% revenue
+  const responseROI = Math.round(churnedGuests * ltv * 0.4 * (1 - response / 100)); // recoverable by responding
+
+  // --- DISPLAY ---
   document.getElementById('result-loss').textContent = formatCHF(totalLoss);
+  
+  // Churn indicator
+  const churnPct = Math.round(churnRate * 100);
+  document.getElementById('churn-display').textContent = churnPct + '%';
+  document.getElementById('churn-fill').style.width = churnPct + '%';
+  document.getElementById('churn-explain').textContent = 
+    churnPct + '% Ihrer unzufriedenen Gäste kommen nicht wieder' + 
+    (response === 0 ? ' — Sie antworten auf keine Bewertung' : '');
+  
+  // Color the churn value
+  const churnEl = document.getElementById('churn-display');
+  if (churnPct > 40) { churnEl.style.color = 'var(--red-down)'; }
+  else if (churnPct > 25) { churnEl.style.color = 'var(--gold)'; }
+  else { churnEl.style.color = 'var(--green-up)'; }
+
+  // Breakdown
+  document.getElementById('bd-neg-reviews').textContent = '~' + formatNum(negReviews);
+  document.getElementById('bd-unhappy').textContent = '~' + formatNum(unhappyGuests) + ' unzufriedene Gäste';
+  document.getElementById('bd-churned').textContent = '~' + formatNum(churnedGuests) + ' verlorene Gäste';
+  document.getElementById('bd-ltv').textContent = 'CHF ' + ltv + ' (' + bon + ' × ' + visitsPerYear + ' Besuche)';
   document.getElementById('bd-service').textContent = '-' + formatCHF(serviceLoss);
   document.getElementById('bd-quality').textContent = '-' + formatCHF(qualityLoss);
-  document.getElementById('bd-rating').textContent = ratingGap > 0 ? '-' + formatCHF(Math.max(0,ratingLoss)) : 'CHF 0';
+  document.getElementById('bd-rating').textContent = ratingGap > 0 ? '-' + formatCHF(ratingLoss) : 'CHF 0';
   document.getElementById('bd-uplift').textContent = '+' + formatCHF(uplift);
   document.getElementById('bd-response').textContent = '+' + formatCHF(responseROI);
 }
 
-revenueSlider.addEventListener('input', calculate);
-reviewsSlider.addEventListener('input', calculate);
-ratingSlider.addEventListener('input', calculate);
-responseSlider.addEventListener('input', calculate);
+[revenueSlider, bonSlider, reviewsSlider, ratingSlider, responseSlider].forEach(s => {
+  s.addEventListener('input', calculate);
+});
 calculate();
 
 // Smooth scroll
