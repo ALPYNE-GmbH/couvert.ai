@@ -75,7 +75,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;backdrop-f
 
 /* === CALCULATOR === */
 .calc-section{background:var(--bg2)}
-.calc-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.calc-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
 .calc-form{padding-top:20px}
 .calc-group{margin-bottom:32px}
 .calc-group label{display:block;font-size:13px;color:var(--text-dim);margin-bottom:10px;letter-spacing:0.5px}
@@ -83,10 +83,16 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;backdrop-f
 .calc-group input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--copper);cursor:pointer;border:2px solid var(--bg2)}
 .calc-value{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
 .calc-value span{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--cream)}
-.calc-result{background:var(--bg3);border:1px solid var(--border);padding:40px;position:sticky;top:120px}
-.calc-result .cr-label{font-size:12px;color:var(--text-dim);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
-.calc-result .cr-number{font-family:'JetBrains Mono',monospace;font-size:48px;font-weight:600;color:var(--gold);line-height:1;margin-bottom:4px}
-.calc-result .cr-unit{font-size:14px;color:var(--text-dim);margin-bottom:32px}
+.calc-results-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.calc-result{background:var(--bg3);border:1px solid var(--border);padding:28px;position:sticky;top:120px}
+.calc-result-loss{border-top:3px solid var(--red-down)}
+.calc-result-recovery{border-top:3px solid var(--green-up)}
+.calc-result .cr-label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+.calc-result .cr-label-green{color:var(--green-up)}
+.calc-result .cr-number{font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:600;color:var(--gold);line-height:1;margin-bottom:4px}
+.calc-result .cr-number-green{color:var(--green-up)}
+.calc-result .cr-unit{font-size:13px;color:var(--text-dim)}
+.calc-detail-panel{background:var(--bg3);border:1px solid var(--border);padding:28px}
 .calc-breakdown{border-top:1px solid var(--border);padding-top:24px}
 .calc-breakdown-row{display:flex;justify-content:space-between;padding:8px 0;font-size:13px}
 .calc-breakdown-row .cbr-label{color:var(--text-dim)}
@@ -201,6 +207,7 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
   .nav{display:none}
   .hero h1{letter-spacing:-1px}
   .collab-grid{grid-template-columns:1fr}
+  .calc-results-row{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -312,11 +319,20 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
           <div class="calc-value"><span id="rev-response">0%</span></div>
         </div>
       </div>
-      <div class="calc-result">
-        <div class="cr-label">Geschätzter jährlicher Revenue-Verlust</div>
-        <div class="cr-number" id="result-loss">CHF 390K</div>
-        <div class="cr-unit">durch ungelöste Gästeprobleme</div>
-        
+      <div class="calc-results-row">
+        <div class="calc-result calc-result-loss">
+          <div class="cr-label">Geschätzter jährlicher Revenue-Verlust</div>
+          <div class="cr-number" id="result-loss">CHF 390K</div>
+          <div class="cr-unit">durch ungelöste Gästeprobleme</div>
+        </div>
+        <div class="calc-result calc-result-recovery">
+          <div class="cr-label cr-label-green">Recovery-Potenzial</div>
+          <div class="cr-number cr-number-green" id="result-recovery">CHF 285K</div>
+          <div class="cr-unit">zurückholbar mit Couvert.ai</div>
+        </div>
+      </div>
+
+      <div class="calc-detail-panel">
         <div class="churn-indicator">
           <div class="churn-bar-bg"><div class="churn-bar-fill" id="churn-fill"></div></div>
           <div class="churn-row">
@@ -358,12 +374,12 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
           </div>
           <div style="border-top:1px solid var(--border);margin:16px 0"></div>
           <div class="calc-breakdown-row positive">
-            <span class="cbr-label">Potenzial bei +0.2★ Lift</span>
-            <span class="cbr-value" id="bd-uplift">+CHF 325K</span>
+            <span class="cbr-label">Recovery: Churn-Reduktion durch Responses</span>
+            <span class="cbr-value" id="bd-response">+CHF 160K</span>
           </div>
           <div class="calc-breakdown-row positive">
-            <span class="cbr-label">Response Rate → Churn-Reduktion</span>
-            <span class="cbr-value" id="bd-response">+CHF 78K</span>
+            <span class="cbr-label">Recovery: Rating-Lift +0.2★</span>
+            <span class="cbr-value" id="bd-uplift">+CHF 325K</span>
           </div>
         </div>
       </div>
@@ -647,21 +663,30 @@ function calculate() {
 
   // --- MODEL ---
   
-  // 1. Negative reviews percentage based on rating
-  const negPct = rating >= 4.7 ? 0.06 : rating >= 4.5 ? 0.10 : rating >= 4.0 ? 0.18 : rating >= 3.5 ? 0.28 : 0.40;
+  // 1. Negative reviews percentage based on rating (5.0 = near zero)
+  let negPct;
+  if (rating >= 5.0) negPct = 0.02;
+  else if (rating >= 4.8) negPct = 0.04;
+  else if (rating >= 4.7) negPct = 0.06;
+  else if (rating >= 4.5) negPct = 0.10;
+  else if (rating >= 4.0) negPct = 0.18;
+  else if (rating >= 3.5) negPct = 0.28;
+  else negPct = 0.40;
   const negReviews = Math.round(reviews * negPct);
 
   // 2. Dark factor: for every written neg review, ~7 don't write
   const darkFactor = 7;
   const unhappyGuests = negReviews * darkFactor;
 
-  // 3. Churn rate: depends on response rate (key selling point!)
-  // At 0% response: 55% churn. At 100% response: 18% churn.
-  const churnRate = 0.18 + (1 - response / 100) * 0.37;
+  // 3. Churn rate: depends on response rate AND rating
+  // Base churn at 0% response: 55%. At 100% response: 12%.
+  // Higher rating further reduces churn.
+  const responseEffect = (1 - response / 100) * 0.43;
+  const ratingBonus = Math.max(0, (rating - 4.0)) * 0.06; // better rating = less churn
+  const churnRate = Math.max(0.05, 0.12 + responseEffect - ratingBonus);
   const churnedGuests = Math.round(unhappyGuests * churnRate);
 
   // 4. Lifetime Value based on Ø Bon and estimated visit frequency
-  // Higher bon = higher LTV. Assume repeat guests visit 3x/year
   const visitsPerYear = 3;
   const ltv = bon * visitsPerYear;
 
@@ -670,18 +695,38 @@ function calculate() {
   const serviceLoss = Math.round(totalChurnLoss * 0.45);
   const qualityLoss = Math.round(totalChurnLoss * 0.35);
   
-  // 6. Rating erosion: gap to 4.7 benchmark × 6.5% per 1 star
+  // 6. Rating erosion: gap to 4.7 benchmark (0 if at or above 4.7)
   const ratingGap = Math.max(0, 4.7 - rating);
   const ratingLoss = Math.round(rev * ratingGap * 0.065);
 
   const totalLoss = serviceLoss + qualityLoss + ratingLoss;
 
-  // 7. Upside
-  const uplift = Math.round(rev * 0.05); // +0.2 stars ≈ 5% revenue
-  const responseROI = Math.round(churnedGuests * ltv * 0.4 * (1 - response / 100)); // recoverable by responding
+  // 7. Recovery potential: what you get back with 80% response + 0.2★ lift
+  // Simulate the model at 80% response rate
+  const recoveryResponse = 80;
+  const recoveryChurn = Math.max(0.05, 0.12 + (1 - recoveryResponse / 100) * 0.43 - ratingBonus);
+  const recoveryChurned = Math.round(unhappyGuests * recoveryChurn);
+  const recoveryChurnLoss = recoveryChurned * ltv;
+  const recoverySvcLoss = Math.round(recoveryChurnLoss * 0.45);
+  const recoveryQtyLoss = Math.round(recoveryChurnLoss * 0.35);
+  // Rating lift of +0.2 from current
+  const recoveryRatingGap = Math.max(0, 4.7 - Math.min(rating + 0.2, 5.0));
+  const recoveryRatingLoss = Math.round(rev * recoveryRatingGap * 0.065);
+  const recoveryTotalLoss = recoverySvcLoss + recoveryQtyLoss + recoveryRatingLoss;
+  
+  // Recovery = current loss minus optimized loss
+  const recoveryPotential = Math.max(0, totalLoss - recoveryTotalLoss);
+  
+  // Rating uplift revenue (separate from loss reduction)
+  const ratingUpliftRevenue = Math.round(rev * 0.02); // +0.2★ ≈ ~2% direct revenue gain
+  const totalRecovery = recoveryPotential + ratingUpliftRevenue;
+
+  // Churn reduction from responses (for breakdown)
+  const responseRecovery = Math.max(0, totalLoss - (serviceLoss * (recoveryChurn / churnRate) + qualityLoss * (recoveryChurn / churnRate) + ratingLoss));
 
   // --- DISPLAY ---
   document.getElementById('result-loss').textContent = formatCHF(totalLoss);
+  document.getElementById('result-recovery').textContent = '+' + formatCHF(totalRecovery);
   
   // Churn indicator
   const churnPct = Math.round(churnRate * 100);
@@ -691,7 +736,6 @@ function calculate() {
     churnPct + '% Ihrer unzufriedenen Gäste kommen nicht wieder' + 
     (response === 0 ? ' — Sie antworten auf keine Bewertung' : '');
   
-  // Color the churn value
   const churnEl = document.getElementById('churn-display');
   if (churnPct > 40) { churnEl.style.color = 'var(--red-down)'; }
   else if (churnPct > 25) { churnEl.style.color = 'var(--gold)'; }
@@ -705,8 +749,8 @@ function calculate() {
   document.getElementById('bd-service').textContent = '-' + formatCHF(serviceLoss);
   document.getElementById('bd-quality').textContent = '-' + formatCHF(qualityLoss);
   document.getElementById('bd-rating').textContent = ratingGap > 0 ? '-' + formatCHF(ratingLoss) : 'CHF 0';
-  document.getElementById('bd-uplift').textContent = '+' + formatCHF(uplift);
-  document.getElementById('bd-response').textContent = '+' + formatCHF(responseROI);
+  document.getElementById('bd-response').textContent = '+' + formatCHF(recoveryPotential);
+  document.getElementById('bd-uplift').textContent = '+' + formatCHF(ratingUpliftRevenue);
 }
 
 [revenueSlider, bonSlider, reviewsSlider, ratingSlider, responseSlider].forEach(s => {
