@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Couvert.ai — AI Operations Teams für Restaurants</title>
+<title>Couvert.ai - AI Operations Teams für Restaurants</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -60,7 +61,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;backdrop-f
 .hero-stat .hs-label{font-size:12px;color:var(--text-dim);margin-top:4px;letter-spacing:0.5px}
 
 /* === SECTION HEADERS === */
-.section-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--copper);margin-bottom:16px}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--copper);margin-bottom:16px}
 .section-title{font-family:'DM Serif Display',serif;font-size:clamp(28px,4vw,42px);color:var(--cream-bright);line-height:1.15;letter-spacing:-1px;margin-bottom:16px}
 .section-sub{font-size:17px;color:var(--text-dim);max-width:560px;line-height:1.7;font-weight:300}
 
@@ -197,6 +198,22 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
 /* === MOBILE STICKY RESULTS === */
 .mobile-sticky-results{display:none}
 
+/* === DESKTOP SCALE UP === */
+@media(min-width:801px){
+  .section-title{font-size:52px}
+  .section-sub{font-size:18px;max-width:680px}
+  .hero-body{font-size:20px;max-width:600px}
+  .agent-content h4{font-size:26px}
+  .agent-content p{font-size:17px}
+  .insight-item h3{font-size:22px}
+  .insight-item p{font-size:14px}
+  .process-card p{font-size:15px}
+  .process-card h4{font-size:22px}
+  .collab-card p{font-size:14px}
+  .faq-item summary{font-size:17px}
+  .faq-item p{font-size:16px}
+}
+
 /* === RESPONSIVE === */
 @media(max-width:800px){
   .hero-stats{flex-direction:column;gap:24px}
@@ -261,24 +278,24 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
 <section class="hero-section">
   <div class="container">
     <div class="hero-overline animate d1">AI Operations für Restaurants</div>
-    <h1 class="animate d2">Wir zeigen Ihnen, was Sie jedes <em>Gedeck</em> kostet.</h1>
+    <h1 class="animate d2">Wir zeigen Ihnen, was Sie jedes <em>Gedeck</em> kostet - und wie Sie es zurückholen.</h1>
     <p class="hero-body animate d3">
-      Couvert.ai analysiert jede Bewertung, jedes Gericht, jeden Servicemoment — und 
-      übersetzt es in Franken. Dann fixen unsere AI Agents die Ursachen. Automatisch. 
-      Jeden Tag.
+      Couvert.ai analysiert jede Bewertung, jedes Gericht, jeden Servicemoment - und 
+      übersetzt es in Franken. Unsere AI Agents fixen die Ursachen: Qualitätsprobleme, 
+      Overbooking, Preis-Leistungs-Lücken. Automatisch. Jeden Tag.
     </p>
     <div class="hero-stats animate d4">
       <div class="hero-stat">
         <div class="hs-num">CHF 390K+</div>
-        <div class="hs-label">Identifizierter Revenue-Verlust — Pilot Zürich</div>
+        <div class="hs-label">Identifizierter Revenue-Verlust - Pilot Zürich</div>
       </div>
       <div class="hero-stat">
-        <div class="hs-num">2.825</div>
-        <div class="hs-label">Analysierte Reviews in 24 Stunden</div>
+        <div class="hs-num">10</div>
+        <div class="hs-label">Operative Schwachstellen mit Massnahmen</div>
       </div>
       <div class="hero-stat">
-        <div class="hs-num">0%→80%+</div>
-        <div class="hs-label">Response Rate Ziel nach 30 Tagen</div>
+        <div class="hs-num">24/7</div>
+        <div class="hs-label">AI Operations Team - ab Tag 1</div>
       </div>
     </div>
   </div>
@@ -289,23 +306,23 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
   <div class="container">
     <div class="insight-item">
       <div class="ii-num">01</div>
-      <h3>Reviews lesen</h3>
-      <p>Jede Plattform. Jede Sprache. In Echtzeit.</p>
+      <h3>Daten lesen</h3>
+      <p>Reviews, Reservierungen, Speisekarten. Jede Plattform. Jede Sprache.</p>
     </div>
     <div class="insight-item">
       <div class="ii-num">02</div>
       <h3>Muster erkennen</h3>
-      <p>Was kostet Sie Gäste? Welches Gericht? Welche Schicht?</p>
+      <p>Was kostet Sie Gäste? Welches Gericht? Welche Schicht? Welcher Prozess?</p>
     </div>
     <div class="insight-item">
       <div class="ii-num">03</div>
       <h3>In CHF übersetzen</h3>
-      <p>Financial Impact pro Beschwerde-Kategorie.</p>
+      <p>Financial Impact pro Problem-Kategorie. Vom Overbooking bis zum Teigrezept.</p>
     </div>
     <div class="insight-item">
       <div class="ii-num">04</div>
       <h3>Handeln</h3>
-      <p>AI Agents antworten, alarmieren, optimieren.</p>
+      <p>AI Agents antworten, alarmieren, optimieren - ohne Ihr Zutun.</p>
     </div>
   </div>
 </section>
@@ -314,8 +331,8 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
 <section class="calc-section" id="calculator">
   <div class="container">
     <div class="section-label">Revenue Impact Calculator</div>
-    <div class="section-title">Was kosten Sie Ihre unbeantworteten Bewertungen?</div>
-    <div class="section-sub" style="margin-bottom:48px">Passen Sie die Werte an Ihren Betrieb an.</div>
+    <div class="section-title">Wie viel Umsatz lassen Sie liegen?</div>
+    <div class="section-sub" style="margin-bottom:48px">Passen Sie die Werte an Ihren Betrieb an - und sehen Sie live, was ungelöste Gästeprobleme Sie kosten.</div>
     <div class="calc-layout">
       <div class="calc-form">
         <div class="calc-group">
@@ -418,14 +435,14 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
 <section class="agents-section" id="agents">
   <div class="container">
     <div class="section-label">Das AI Operations Team</div>
-    <div class="section-title">5 spezialisierte Agents.<br>Ihre unsichtbare Crew.</div>
+    <div class="section-title">5 spezialisierte Agents. Ihre unsichtbare Crew.</div>
     <div class="section-sub">Kein Dashboard. Kein Login. Agents die selbständig arbeiten und sich bei Ihnen melden, wenn es darauf ankommt.</div>
     <div class="agents-timeline">
       <div class="agent-row">
         <div class="agent-num-circle">01</div>
         <div class="agent-content">
           <h4>Reputation Manager</h4>
-          <p>Beantwortet jede Bewertung individuell — in Ihrer Tonalität, auf Deutsch, Englisch, Französisch und Italienisch. Eskaliert kritische Fälle innerhalb von Minuten direkt an Sie.</p>
+          <p>Beantwortet jede Bewertung individuell - in Ihrer Tonalität, auf Deutsch, Englisch, Französisch und Italienisch. Eskaliert kritische Fälle innerhalb von Minuten direkt an Sie.</p>
           <div class="agent-tags"><span class="agent-tag">Google</span><span class="agent-tag">TripAdvisor</span><span class="agent-tag">4 Sprachen</span><span class="agent-tag">&lt;2h Response</span></div>
         </div>
       </div>
@@ -433,7 +450,7 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
         <div class="agent-num-circle">02</div>
         <div class="agent-content">
           <h4>Quality Watchdog</h4>
-          <p>Erkennt Beschwerde-Muster bevor sie zum Rating-Problem werden. «Diese Woche 8× nasser Teig erwähnt — Trend +200%.» Korreliert mit Gerichten, Tageszeiten, Servicepersonal.</p>
+          <p>Erkennt Beschwerde-Muster bevor sie zum Rating-Problem werden. «Diese Woche 8× nasser Teig erwähnt - Trend +200%.» Korreliert mit Gerichten, Tageszeiten, Servicepersonal.</p>
           <div class="agent-tags"><span class="agent-tag">Pattern Detection</span><span class="agent-tag">Alerts</span><span class="agent-tag">Gericht-Level</span></div>
         </div>
       </div>
@@ -478,7 +495,7 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
       </div>
       <div class="case-card">
         <div class="cc-num">0%</div>
-        <div class="cc-label">Owner Response Rate — keine einzige der 2.825 Bewertungen je beantwortet</div>
+        <div class="cc-label">Owner Response Rate - keine einzige der 2.825 Bewertungen je beantwortet</div>
       </div>
       <div class="case-card">
         <div class="cc-num">10</div>
@@ -497,7 +514,7 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
 <section class="quote-section">
   <div class="container">
     <blockquote>«Ein Anstieg um einen Stern auf Google führt zu 5–9% mehr Umsatz bei unabhängigen Restaurants.»</blockquote>
-    <div class="q-attr">— Harvard Business School, Reviews, Reputation & Revenue (Luca, 2016)</div>
+    <div class="q-attr">- Harvard Business School, Reviews, Reputation & Revenue (Luca, 2016)</div>
   </div>
 </section>
 
@@ -506,7 +523,7 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
   <div class="container">
     <div class="section-label">Engagement-Modell</div>
     <div class="section-title">Drei Phasen. Volle Transparenz.</div>
-    <div class="section-sub">Vom Audit bis zum laufenden AI Operations Team — alles aus einer Hand.</div>
+    <div class="section-sub">Vom Audit bis zum laufenden AI Operations Team - alles aus einer Hand.</div>
     <div class="process-grid">
       <div class="process-card">
         <div class="pc-num">01</div>
@@ -538,7 +555,7 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
   <div class="container">
     <div class="section-label">Zusammenarbeit</div>
     <div class="section-title">Sie ändern nichts. Wir integrieren uns.</div>
-    <div class="section-sub" style="margin-bottom:48px">Kein IT-Projekt. Keine neue Software. Keine Schulung. Unser AI-Team arbeitet im Hintergrund — Sie behalten die volle Kontrolle.</div>
+    <div class="section-sub" style="margin-bottom:48px">Kein IT-Projekt. Keine neue Software. Keine Schulung. Unser AI-Team arbeitet im Hintergrund - Sie behalten die volle Kontrolle.</div>
     
     <div class="collab-grid">
       <div class="collab-card">
@@ -553,14 +570,14 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
         <h4>Ihre Stimme, Ihre Marke</h4>
-        <p>Der Reputation Manager antwortet in Ihrem Tonfall — nicht in generischem AI-Deutsch. Wir kalibrieren die Tonalität gemeinsam im Onboarding und Sie geben jederzeit Feedback.</p>
+        <p>Der Reputation Manager antwortet in Ihrem Tonfall - nicht in generischem AI-Deutsch. Wir kalibrieren die Tonalität gemeinsam im Onboarding und Sie geben jederzeit Feedback.</p>
       </div>
       <div class="collab-card">
         <div class="collab-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
         </div>
         <h4>Ihr Team bleibt im Lead</h4>
-        <p>Unsere Agents ersetzen keine Menschen — sie geben Ihrem Team bessere Informationen. Der Küchenchef entscheidet weiterhin über die Rezeptur, der Serviceleiter über die Schichtplanung.</p>
+        <p>Unsere Agents ersetzen keine Menschen - sie geben Ihrem Team bessere Informationen. Der Küchenchef entscheidet weiterhin über die Rezeptur, der Serviceleiter über die Schichtplanung.</p>
       </div>
       <div class="collab-card">
         <div class="collab-icon">
@@ -574,14 +591,14 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
         <h4>Ergebnisse ab Woche 1</h4>
-        <p>Der CX & Revenue Audit liefert innerhalb weniger Tage konkrete Zahlen. Nach dem Implementation Sprint arbeitet Ihr AI-Team sofort — nicht erst nach einem monatelangen Rollout.</p>
+        <p>Der CX & Revenue Audit liefert innerhalb weniger Tage konkrete Zahlen. Nach dem Implementation Sprint arbeitet Ihr AI-Team sofort - nicht erst nach einem monatelangen Rollout.</p>
       </div>
       <div class="collab-card">
         <div class="collab-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
         </div>
         <h4>Ein Ansprechpartner</h4>
-        <p>Kein Ticket-System, kein Support-Bot. Sie haben einen direkten Draht zu Ihrem Account Lead — per Telefon, E-Mail oder Chat.</p>
+        <p>Kein Ticket-System, kein Support-Bot. Sie haben einen direkten Draht zu Ihrem Account Lead - per Telefon, E-Mail oder Chat.</p>
       </div>
     </div>
   </div>
@@ -615,11 +632,11 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
       </details>
       <details class="faq-item">
         <summary>Was wenn ich nicht zufrieden bin?</summary>
-        <p>Der Managed Service ist monatlich kündbar. Es gibt keine Mindestlaufzeit über die initiale Setup-Phase hinaus. Nach dem Audit entscheiden Sie frei, ob Sie weitergehen wollen — es gibt keinen automatischen Übergang in kostenpflichtige Phasen.</p>
+        <p>Der Managed Service ist monatlich kündbar. Es gibt keine Mindestlaufzeit über die initiale Setup-Phase hinaus. Nach dem Audit entscheiden Sie frei, ob Sie weitergehen wollen - es gibt keinen automatischen Übergang in kostenpflichtige Phasen.</p>
       </details>
       <details class="faq-item">
         <summary>Funktioniert das auch für kleinere Restaurants?</summary>
-        <p>Unser Modell ist auf Betriebe mit CHF 3–10+ Mio. Jahresumsatz ausgelegt — dort ist der Financial Impact gross genug, um die Investition mehrfach zurückzuverdienen. Für kleinere Betriebe bieten wir auf Anfrage eine reduzierte Audit-Variante an.</p>
+        <p>Unser Modell ist auf Betriebe mit CHF 3–10+ Mio. Jahresumsatz ausgelegt - dort ist der Financial Impact gross genug, um die Investition mehrfach zurückzuverdienen. Für kleinere Betriebe bieten wir auf Anfrage eine reduzierte Audit-Variante an.</p>
       </details>
       <details class="faq-item">
         <summary>Wie unterscheidet sich Couvert.ai von einem Review-Management-Tool?</summary>
@@ -633,8 +650,8 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
 <section class="cta-section" id="contact">
   <div class="container">
     <div class="section-label" style="text-align:center">Nächster Schritt</div>
-    <h2>Wir zeigen Ihnen, was in Ihren Bewertungen steckt.</h2>
-    <p>In einem 30-minütigen Erstgespräch erfahren Sie, was Ihre Reviews über Ihren Betrieb verraten — und was Sie das kostet. Unverbindlich.</p>
+    <h2>Wir zeigen Ihnen, wo Ihr Umsatzpotenzial liegt.</h2>
+    <p>In einem 30-minütigen Erstgespräch erfahren Sie, was Ihre Gästedaten über Ihren Betrieb verraten - und was Sie das kostet. Unverbindlich.</p>
     <div class="cta-buttons">
       <a href="mailto:hello@couvert.ai" class="btn-primary">Gespräch vereinbaren</a>
       <a href="#calculator" class="btn-ghost">Revenue Calculator testen</a>
@@ -646,7 +663,7 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <div class="footer-left">© 2026 COUVERT.AI — ZÜRICH</div>
+      <div class="footer-left">© 2026 COUVERT.AI - ZÜRICH</div>
       <div class="footer-right">Jedes Gedeck zählt.</div>
     </div>
     <div class="footer-links">
@@ -773,7 +790,7 @@ function calculate() {
   document.getElementById('churn-fill').style.width = churnPct + '%';
   document.getElementById('churn-explain').textContent = 
     churnPct + '% Ihrer unzufriedenen Gäste kommen nicht wieder' + 
-    (response === 0 ? ' — Sie antworten auf keine Bewertung' : '');
+    (response === 0 ? ' - Sie antworten auf keine Bewertung' : '');
   
   const churnEl = document.getElementById('churn-display');
   if (churnPct > 40) { churnEl.style.color = 'var(--red-down)'; }
