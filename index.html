@@ -53,9 +53,9 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;backdrop-f
 .hero-section::before{content:'';position:absolute;top:80px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(196,103,58,0.06) 0%,transparent 65%);pointer-events:none}
 .hero-overline{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--copper);margin-bottom:24px;display:flex;align-items:center;gap:12px}
 .hero-overline::before{content:'';width:32px;height:1px;background:var(--copper)}
-.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(40px,6vw,72px);line-height:1.05;color:var(--cream-bright);letter-spacing:-2px;margin-bottom:28px;max-width:800px}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(40px,6vw,72px);line-height:1.05;color:var(--cream-bright);letter-spacing:-2px;margin-bottom:28px}
 .hero h1 em{font-style:italic;color:var(--copper)}
-.hero-body{font-size:19px;line-height:1.75;color:var(--text);max-width:520px;font-weight:300}
+.hero-body{font-size:19px;line-height:1.75;color:var(--text);max-width:640px;font-weight:300}
 .hero-stats{display:flex;gap:48px;margin-top:48px;padding-top:40px;border-top:1px solid var(--border)}
 .hero-stat .hs-num{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:600;color:var(--gold)}
 .hero-stat .hs-label{font-size:12px;color:var(--text-dim);margin-top:4px;letter-spacing:0.5px}
@@ -63,7 +63,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;backdrop-f
 /* === SECTION HEADERS === */
 .section-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--copper);margin-bottom:16px}
 .section-title{font-family:'DM Serif Display',serif;font-size:clamp(28px,4vw,42px);color:var(--cream-bright);line-height:1.15;letter-spacing:-1px;margin-bottom:16px}
-.section-sub{font-size:17px;color:var(--text-dim);max-width:560px;line-height:1.7;font-weight:300}
+.section-sub{font-size:17px;color:var(--text-dim);max-width:720px;line-height:1.7;font-weight:300}
 
 /* === INSIGHT STRIP === */
 .insight-strip{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
@@ -200,9 +200,9 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
 
 /* === DESKTOP SCALE UP === */
 @media(min-width:801px){
-  .section-title{font-size:52px}
-  .section-sub{font-size:18px;max-width:680px}
-  .hero-body{font-size:20px;max-width:600px}
+  .section-title{font-size:52px;letter-spacing:-1.5px}
+  .section-sub{font-size:18px;max-width:780px}
+  .hero-body{font-size:20px;max-width:720px}
   .agent-content h4{font-size:26px}
   .agent-content p{font-size:17px}
   .insight-item h3{font-size:22px}
@@ -211,7 +211,8 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
   .process-card h4{font-size:22px}
   .collab-card p{font-size:14px}
   .faq-item summary{font-size:17px}
-  .faq-item p{font-size:16px}
+  .faq-item p{font-size:16px;max-width:780px}
+  .faq-list{max-width:860px}
 }
 
 /* === RESPONSIVE === */
@@ -265,8 +266,8 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
       <div class="logo-name">couvert<span>.ai</span></div>
     </a>
     <nav class="nav">
-      <a href="#agents">Agents</a>
-      <a href="#calculator">Revenue Calculator</a>
+      <a href="#agents">AI-Team</a>
+      <a href="#calculator">Umsatzrechner</a>
       <a href="#zusammenarbeit">Zusammenarbeit</a>
       <a href="#faq">FAQ</a>
       <a href="#contact" class="nav-cta">Gespräch buchen</a>
@@ -278,24 +279,22 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
 <section class="hero-section">
   <div class="container">
     <div class="hero-overline animate d1">AI Operations für Restaurants</div>
-    <h1 class="animate d2">Wir zeigen Ihnen, was Sie jedes <em>Gedeck</em> kostet - und wie Sie es zurückholen.</h1>
+    <h1 class="animate d2">Ihr Restaurant verliert Geld. Wir machen sichtbar, <em>wo</em> und <em>wie viel.</em></h1>
     <p class="hero-body animate d3">
-      Couvert.ai analysiert jede Bewertung, jedes Gericht, jeden Servicemoment - und 
-      übersetzt es in Franken. Unsere AI Agents fixen die Ursachen: Qualitätsprobleme, 
-      Overbooking, Preis-Leistungs-Lücken. Automatisch. Jeden Tag.
+      Couvert.ai ist ein AI-gestütztes Operations-Team für die Gastronomie. Wir analysieren Bewertungen, Speisekarten, Reservierungen und Service-Qualität, rechnen alles in Franken um und beheben die Ursachen. Automatisch. Jeden Tag. Für jeden Standort.
     </p>
     <div class="hero-stats animate d4">
       <div class="hero-stat">
         <div class="hs-num">CHF 390K+</div>
-        <div class="hs-label">Identifizierter Revenue-Verlust - Pilot Zürich</div>
+        <div class="hs-label">Identifizierter Umsatzverlust pro Jahr, Pilot Zürich</div>
       </div>
       <div class="hero-stat">
         <div class="hs-num">10</div>
-        <div class="hs-label">Operative Schwachstellen mit Massnahmen</div>
+        <div class="hs-label">Operative Schwachstellen mit konkreten Massnahmen</div>
       </div>
       <div class="hero-stat">
         <div class="hs-num">24/7</div>
-        <div class="hs-label">AI Operations Team - ab Tag 1</div>
+        <div class="hs-label">Ihr AI-Team arbeitet ab dem ersten Tag</div>
       </div>
     </div>
   </div>
@@ -306,23 +305,23 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
   <div class="container">
     <div class="insight-item">
       <div class="ii-num">01</div>
-      <h3>Daten lesen</h3>
-      <p>Reviews, Reservierungen, Speisekarten. Jede Plattform. Jede Sprache.</p>
+      <h3>Daten erfassen</h3>
+      <p>Bewertungen, Reservierungen, Speisekarten. Jede Plattform, jede Sprache, in Echtzeit.</p>
     </div>
     <div class="insight-item">
       <div class="ii-num">02</div>
       <h3>Muster erkennen</h3>
-      <p>Was kostet Sie Gäste? Welches Gericht? Welche Schicht? Welcher Prozess?</p>
+      <p>Welches Gericht, welche Schicht, welcher Prozess kostet Sie Gäste?</p>
     </div>
     <div class="insight-item">
       <div class="ii-num">03</div>
-      <h3>In CHF übersetzen</h3>
-      <p>Financial Impact pro Problem-Kategorie. Vom Overbooking bis zum Teigrezept.</p>
+      <h3>In Franken beziffern</h3>
+      <p>Jedes Problem wird in CHF übersetzt. Vom Overbooking bis zur Teigqualität.</p>
     </div>
     <div class="insight-item">
       <div class="ii-num">04</div>
-      <h3>Handeln</h3>
-      <p>AI Agents antworten, alarmieren, optimieren - ohne Ihr Zutun.</p>
+      <h3>Sofort handeln</h3>
+      <p>Unsere AI Agents antworten, alarmieren und optimieren. Ohne Ihr Zutun.</p>
     </div>
   </div>
 </section>
@@ -330,9 +329,9 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
 <!-- CALCULATOR -->
 <section class="calc-section" id="calculator">
   <div class="container">
-    <div class="section-label">Revenue Impact Calculator</div>
-    <div class="section-title">Wie viel Umsatz lassen Sie liegen?</div>
-    <div class="section-sub" style="margin-bottom:48px">Passen Sie die Werte an Ihren Betrieb an - und sehen Sie live, was ungelöste Gästeprobleme Sie kosten.</div>
+    <div class="section-label">Umsatzrechner</div>
+    <div class="section-title">Wie viel Umsatz lassen Sie auf der Strecke?</div>
+    <div class="section-sub" style="margin-bottom:48px">Geben Sie die Eckdaten Ihres Betriebs ein und sehen Sie sofort, was Sie ungelöste Gästeprobleme pro Jahr kosten.</div>
     <div class="calc-layout">
       <div class="calc-form">
         <div class="calc-group">
@@ -435,8 +434,8 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
 <section class="agents-section" id="agents">
   <div class="container">
     <div class="section-label">Das AI Operations Team</div>
-    <div class="section-title">5 spezialisierte Agents. Ihre unsichtbare Crew.</div>
-    <div class="section-sub">Kein Dashboard. Kein Login. Agents die selbständig arbeiten und sich bei Ihnen melden, wenn es darauf ankommt.</div>
+    <div class="section-title">Fünf spezialisierte Agents. Ihre unsichtbare Crew.</div>
+    <div class="section-sub">Kein Dashboard, kein Login. Unsere Agents arbeiten selbständig im Hintergrund und melden sich bei Ihnen, wenn es darauf ankommt.</div>
     <div class="agents-timeline">
       <div class="agent-row">
         <div class="agent-num-circle">01</div>
@@ -486,25 +485,25 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
 <section class="case-section">
   <div class="container">
     <div class="section-label">Aus der Praxis</div>
-    <div class="section-title">Pilotanalyse: Zürich, Q1 2026</div>
-    <div class="section-sub">Vollständige CX & Revenue Impact Analysis für einen umsatzstarken Gastro-Betrieb mit über 2.800 Google-Bewertungen.</div>
+    <div class="section-title">Pilotanalyse: Zürich, erstes Quartal 2026</div>
+    <div class="section-sub">Vollständige Gästeerlebnis- und Umsatzanalyse für einen umsatzstarken Gastro-Betrieb mit über 2.800 Google-Bewertungen.</div>
     <div class="case-grid">
       <div class="case-card">
         <div class="cc-num">CHF 390K+</div>
-        <div class="cc-label">Identifizierter jährlicher Revenue-Verlust durch die 3 grössten Beschwerde-Kategorien</div>
+        <div class="cc-label">Geschätzter jährlicher Umsatzverlust durch die drei grössten Beschwerde-Kategorien</div>
       </div>
       <div class="case-card">
         <div class="cc-num">0%</div>
-        <div class="cc-label">Owner Response Rate - keine einzige der 2.825 Bewertungen je beantwortet</div>
+        <div class="cc-label">Antwortquote: Keine einzige der 2.825 Bewertungen wurde je beantwortet</div>
       </div>
       <div class="case-card">
         <div class="cc-num">10</div>
-        <div class="cc-label">Identifizierte Beschwerde-Kategorien mit Root Cause Analyse und priorisierten Massnahmen</div>
+        <div class="cc-label">Identifizierte Schwachstellen mit Ursachenanalyse und priorisierten Massnahmen</div>
       </div>
     </div>
     <div class="case-note">
       Analyse basiert auf öffentlich einsehbaren Bewertungen, der Online-Speisekarte und 
-      Wettbewerbs-Benchmarking. Financial Impact Modelling nach Harvard Business School Methodik 
+      Wettbewerbsvergleich. Umsatzmodell nach Harvard Business School-Methodik 
       (Luca, 2016). Vollständiger Report auf Anfrage verfügbar.
     </div>
   </div>
@@ -521,30 +520,30 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
 <!-- PROCESS -->
 <section id="process">
   <div class="container">
-    <div class="section-label">Engagement-Modell</div>
+    <div class="section-label">So läuft es ab</div>
     <div class="section-title">Drei Phasen. Volle Transparenz.</div>
-    <div class="section-sub">Vom Audit bis zum laufenden AI Operations Team - alles aus einer Hand.</div>
+    <div class="section-sub">Vom ersten Audit bis zum laufenden AI-Team. Alles aus einer Hand, ohne versteckte Kosten.</div>
     <div class="process-grid">
       <div class="process-card">
         <div class="pc-num">01</div>
         <div class="pc-phase">Phase 1 · Einmalig</div>
-        <h4>CX & Revenue Audit</h4>
-        <p>Vollständige Review-Analyse, Financial Impact Modelling, Speisekarten-Cross-Reference, Wettbewerbs-Benchmarking, priorisierter Massnahmenkatalog.</p>
+        <h4>Gästeerlebnis- und Umsatzaudit</h4>
+        <p>Wir analysieren sämtliche Bewertungen, Ihre Speisekarte, den Wettbewerb und Ihre Betriebsdaten. Sie erhalten einen vollständigen Report mit bezifferten Schwachstellen und priorisierten Massnahmen.</p>
         <div class="pc-price">ab CHF 4.500 <span>einmalig</span></div>
       </div>
       <div class="process-card" style="border-left:2px solid var(--copper);border-right:2px solid var(--copper)">
         <div class="pc-num">02</div>
         <div class="pc-phase">Phase 2 · 2–4 Wochen</div>
-        <h4>Implementation Sprint</h4>
-        <p>Setup aller AI Agents, Echtzeit-Monitoring, Alert-Systeme, Integration in Ihre bestehenden Systeme. Konfiguriert, getestet, live.</p>
+        <h4>Aufbau und Einrichtung</h4>
+        <p>Wir richten alle AI Agents ein, konfigurieren Echtzeit-Monitoring und Alarm-Systeme und integrieren alles in Ihre bestehenden Abläufe. Getestet und betriebsbereit.</p>
         <div class="pc-price">ab CHF 5.000 <span>einmalig</span></div>
       </div>
       <div class="process-card">
         <div class="pc-num">03</div>
         <div class="pc-phase">Phase 3 · Laufend</div>
-        <h4>Managed AI Team</h4>
-        <p>Ihr AI Operations Team arbeitet ab Tag 1. Monatliche Reports, laufende Optimierung, direkter Draht. Skaliert auf 1–50+ Standorte.</p>
-        <div class="pc-price">ab CHF 2.500 <span>/Standort /Monat</span></div>
+        <h4>Ihr AI Operations Team</h4>
+        <p>Ab dem ersten Tag arbeitet Ihr AI-Team im Hintergrund. Monatliche Berichte, laufende Optimierung, direkter Draht bei kritischen Fällen. Skaliert problemlos auf 1–50+ Standorte.</p>
+        <div class="pc-price">ab CHF 2.500 <span>pro Standort / Monat</span></div>
       </div>
     </div>
   </div>
@@ -555,7 +554,7 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
   <div class="container">
     <div class="section-label">Zusammenarbeit</div>
     <div class="section-title">Sie ändern nichts. Wir integrieren uns.</div>
-    <div class="section-sub" style="margin-bottom:48px">Kein IT-Projekt. Keine neue Software. Keine Schulung. Unser AI-Team arbeitet im Hintergrund - Sie behalten die volle Kontrolle.</div>
+    <div class="section-sub" style="margin-bottom:48px">Kein IT-Projekt. Keine neue Software. Keine Schulung. Unser AI-Team arbeitet im Hintergrund. Sie behalten die volle Kontrolle.</div>
     
     <div class="collab-grid">
       <div class="collab-card">
@@ -650,8 +649,8 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
 <section class="cta-section" id="contact">
   <div class="container">
     <div class="section-label" style="text-align:center">Nächster Schritt</div>
-    <h2>Wir zeigen Ihnen, wo Ihr Umsatzpotenzial liegt.</h2>
-    <p>In einem 30-minütigen Erstgespräch erfahren Sie, was Ihre Gästedaten über Ihren Betrieb verraten - und was Sie das kostet. Unverbindlich.</p>
+    <h2>Wir zeigen Ihnen, wo Ihr Betrieb Umsatz liegen lässt.</h2>
+    <p>In einem 30-minütigen Erstgespräch erfahren Sie, was Ihre Gästedaten über Ihren Betrieb verraten. Unverbindlich und kostenlos.</p>
     <div class="cta-buttons">
       <a href="mailto:hello@couvert.ai" class="btn-primary">Gespräch vereinbaren</a>
       <a href="#calculator" class="btn-ghost">Revenue Calculator testen</a>
