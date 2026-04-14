@@ -83,16 +83,17 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;backdrop-f
 .calc-group input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--copper);cursor:pointer;border:2px solid var(--bg2)}
 .calc-value{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
 .calc-value span{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--cream)}
-.calc-results-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.calc-result{background:var(--bg3);border:1px solid var(--border);padding:28px;position:sticky;top:120px}
+.calc-results-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.calc-right{position:sticky;top:100px}
+.calc-result{background:var(--bg3);border:1px solid var(--border);padding:24px}
 .calc-result-loss{border-top:3px solid var(--red-down)}
 .calc-result-recovery{border-top:3px solid var(--green-up)}
-.calc-result .cr-label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+.calc-result .cr-label{font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
 .calc-result .cr-label-green{color:var(--green-up)}
-.calc-result .cr-number{font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:600;color:var(--gold);line-height:1;margin-bottom:4px}
+.calc-result .cr-number{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:600;color:var(--gold);line-height:1;margin-bottom:4px}
 .calc-result .cr-number-green{color:var(--green-up)}
-.calc-result .cr-unit{font-size:13px;color:var(--text-dim)}
-.calc-detail-panel{background:var(--bg3);border:1px solid var(--border);padding:28px}
+.calc-result .cr-unit{font-size:12px;color:var(--text-dim)}
+.calc-detail-panel{background:var(--bg3);border:1px solid var(--border);padding:24px}
 .calc-breakdown{border-top:1px solid var(--border);padding-top:24px}
 .calc-breakdown-row{display:flex;justify-content:space-between;padding:8px 0;font-size:13px}
 .calc-breakdown-row .cbr-label{color:var(--text-dim)}
@@ -319,67 +320,69 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
           <div class="calc-value"><span id="rev-response">0%</span></div>
         </div>
       </div>
-      <div class="calc-results-row">
-        <div class="calc-result calc-result-loss">
-          <div class="cr-label">Geschätzter jährlicher Revenue-Verlust</div>
-          <div class="cr-number" id="result-loss">CHF 390K</div>
-          <div class="cr-unit">durch ungelöste Gästeprobleme</div>
-        </div>
-        <div class="calc-result calc-result-recovery">
-          <div class="cr-label cr-label-green">Recovery-Potenzial</div>
-          <div class="cr-number cr-number-green" id="result-recovery">CHF 285K</div>
-          <div class="cr-unit">zurückholbar mit Couvert.ai</div>
-        </div>
-      </div>
-
-      <div class="calc-detail-panel">
-        <div class="churn-indicator">
-          <div class="churn-bar-bg"><div class="churn-bar-fill" id="churn-fill"></div></div>
-          <div class="churn-row">
-            <span class="churn-label">Geschätzte Churn Rate</span>
-            <span class="churn-value" id="churn-display">55%</span>
+      <div class="calc-right">
+        <div class="calc-results-row">
+          <div class="calc-result calc-result-loss">
+            <div class="cr-label">Geschätzter jährlicher Revenue-Verlust</div>
+            <div class="cr-number" id="result-loss">CHF 390K</div>
+            <div class="cr-unit">durch ungelöste Gästeprobleme</div>
           </div>
-          <div class="churn-explain" id="churn-explain">Ihrer unzufriedenen Gäste kommen nicht wieder</div>
+          <div class="calc-result calc-result-recovery">
+            <div class="cr-label cr-label-green">Recovery-Potenzial</div>
+            <div class="cr-number cr-number-green" id="result-recovery">CHF 285K</div>
+            <div class="cr-unit">zurückholbar mit Couvert.ai</div>
+          </div>
         </div>
 
-        <div class="calc-breakdown">
-          <div class="calc-breakdown-row">
-            <span class="cbr-label">Negative Reviews (geschätzt)</span>
-            <span class="cbr-value" id="bd-neg-reviews">~280</span>
+        <div class="calc-detail-panel">
+          <div class="churn-indicator">
+            <div class="churn-bar-bg"><div class="churn-bar-fill" id="churn-fill"></div></div>
+            <div class="churn-row">
+              <span class="churn-label">Geschätzte Churn Rate</span>
+              <span class="churn-value" id="churn-display">55%</span>
+            </div>
+            <div class="churn-explain" id="churn-explain">Ihrer unzufriedenen Gäste kommen nicht wieder</div>
           </div>
-          <div class="calc-breakdown-row">
-            <span class="cbr-label">× Dunkelziffer (Faktor 7)</span>
-            <span class="cbr-value" id="bd-unhappy">~1.960 unzufriedene Gäste</span>
-          </div>
-          <div class="calc-breakdown-row">
-            <span class="cbr-label">× Churn Rate</span>
-            <span class="cbr-value" id="bd-churned">~1.078 verlorene Gäste</span>
-          </div>
-          <div class="calc-breakdown-row">
-            <span class="cbr-label">× Ø Lifetime Value / Gast</span>
-            <span class="cbr-value" id="bd-ltv">CHF 150</span>
-          </div>
-          <div style="border-top:1px solid var(--border);margin:16px 0"></div>
-          <div class="calc-breakdown-row negative">
-            <span class="cbr-label">Verlust: Service & Wartezeit (45%)</span>
-            <span class="cbr-value" id="bd-service">-CHF 195K</span>
-          </div>
-          <div class="calc-breakdown-row negative">
-            <span class="cbr-label">Verlust: Produktqualität (35%)</span>
-            <span class="cbr-value" id="bd-quality">-CHF 130K</span>
-          </div>
-          <div class="calc-breakdown-row negative">
-            <span class="cbr-label">Verlust: Rating-Erosion</span>
-            <span class="cbr-value" id="bd-rating">-CHF 65K</span>
-          </div>
-          <div style="border-top:1px solid var(--border);margin:16px 0"></div>
-          <div class="calc-breakdown-row positive">
-            <span class="cbr-label">Recovery: Churn-Reduktion durch Responses</span>
-            <span class="cbr-value" id="bd-response">+CHF 160K</span>
-          </div>
-          <div class="calc-breakdown-row positive">
-            <span class="cbr-label">Recovery: Rating-Lift +0.2★</span>
-            <span class="cbr-value" id="bd-uplift">+CHF 325K</span>
+
+          <div class="calc-breakdown">
+            <div class="calc-breakdown-row">
+              <span class="cbr-label">Negative Reviews (geschätzt)</span>
+              <span class="cbr-value" id="bd-neg-reviews">~280</span>
+            </div>
+            <div class="calc-breakdown-row">
+              <span class="cbr-label">× Dunkelziffer (Faktor 7)</span>
+              <span class="cbr-value" id="bd-unhappy">~1.960 unzufriedene Gäste</span>
+            </div>
+            <div class="calc-breakdown-row">
+              <span class="cbr-label">× Churn Rate</span>
+              <span class="cbr-value" id="bd-churned">~1.078 verlorene Gäste</span>
+            </div>
+            <div class="calc-breakdown-row">
+              <span class="cbr-label">× Ø Lifetime Value / Gast</span>
+              <span class="cbr-value" id="bd-ltv">CHF 150</span>
+            </div>
+            <div style="border-top:1px solid var(--border);margin:16px 0"></div>
+            <div class="calc-breakdown-row negative">
+              <span class="cbr-label">Verlust: Service & Wartezeit (45%)</span>
+              <span class="cbr-value" id="bd-service">-CHF 195K</span>
+            </div>
+            <div class="calc-breakdown-row negative">
+              <span class="cbr-label">Verlust: Produktqualität (35%)</span>
+              <span class="cbr-value" id="bd-quality">-CHF 130K</span>
+            </div>
+            <div class="calc-breakdown-row negative">
+              <span class="cbr-label">Verlust: Rating-Erosion</span>
+              <span class="cbr-value" id="bd-rating">-CHF 65K</span>
+            </div>
+            <div style="border-top:1px solid var(--border);margin:16px 0"></div>
+            <div class="calc-breakdown-row positive">
+              <span class="cbr-label">Recovery: Churn-Reduktion durch Responses</span>
+              <span class="cbr-value" id="bd-response">+CHF 160K</span>
+            </div>
+            <div class="calc-breakdown-row positive">
+              <span class="cbr-label">Recovery: Rating-Lift +0.2★</span>
+              <span class="cbr-value" id="bd-uplift">+CHF 325K</span>
+            </div>
           </div>
         </div>
       </div>
