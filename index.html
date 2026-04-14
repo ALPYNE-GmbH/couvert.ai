@@ -111,7 +111,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;backdrop-f
 .agent-num-circle{width:60px;height:60px;border-radius:50%;border:1.5px solid var(--copper);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--copper);font-weight:600;background:var(--bg);position:relative;z-index:2}
 .agent-content{padding:4px 0}
 .agent-content h4{font-family:'DM Serif Display',serif;font-size:22px;color:var(--cream);margin-bottom:8px}
-.agent-content p{font-size:15px;line-height:1.7;color:var(--text);font-weight:300;max-width:560px}
+.agent-content p{font-size:15px;line-height:1.7;color:var(--text);font-weight:300}
 .agent-tags{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
 .agent-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--copper);border:1px solid var(--border);padding:4px 12px;text-transform:uppercase}
 
@@ -194,6 +194,9 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
 .animate{opacity:0;animation:fadeUp 0.7s ease forwards}
 .d1{animation-delay:0.1s}.d2{animation-delay:0.2s}.d3{animation-delay:0.3s}.d4{animation-delay:0.4s}.d5{animation-delay:0.5s}
 
+/* === MOBILE STICKY RESULTS === */
+.mobile-sticky-results{display:none}
+
 /* === RESPONSIVE === */
 @media(max-width:800px){
   .hero-stats{flex-direction:column;gap:24px}
@@ -208,7 +211,28 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
   .nav{display:none}
   .hero h1{letter-spacing:-1px}
   .collab-grid{grid-template-columns:1fr}
-  .calc-results-row{grid-template-columns:1fr}
+  .calc-results-row{grid-template-columns:1fr 1fr}
+  .mobile-sticky-results{
+    display:none;
+    position:fixed;
+    bottom:0;left:0;right:0;
+    z-index:99;
+    background:rgba(14,14,12,0.95);
+    backdrop-filter:blur(16px);
+    border-top:1px solid var(--border);
+    padding:12px 24px;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    align-items:center;
+  }
+  .mobile-sticky-results.visible{display:grid}
+  .msr-box{text-align:center}
+  .msr-label{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dim);margin-bottom:2px}
+  .msr-label-red{color:var(--red-down)}
+  .msr-label-green{color:var(--green-up)}
+  .msr-num{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:var(--gold)}
+  .msr-num-green{color:var(--green-up)}
+  .msr-churn{font-size:9px;color:var(--text-dim);margin-top:1px}
 }
 </style>
 </head>
@@ -633,6 +657,18 @@ footer{padding:40px 0;border-top:1px solid var(--border)}
   </div>
 </footer>
 
+<!-- MOBILE STICKY RESULTS -->
+<div class="mobile-sticky-results" id="mobile-sticky">
+  <div class="msr-box">
+    <div class="msr-label msr-label-red">Revenue-Verlust</div>
+    <div class="msr-num" id="msr-loss">CHF 390K</div>
+  </div>
+  <div class="msr-box">
+    <div class="msr-label msr-label-green">Recovery-Potenzial</div>
+    <div class="msr-num msr-num-green" id="msr-recovery">+CHF 285K</div>
+  </div>
+</div>
+
 <script>
 const revenueSlider = document.getElementById('revenue');
 const bonSlider = document.getElementById('avgbon');
@@ -754,6 +790,12 @@ function calculate() {
   document.getElementById('bd-rating').textContent = ratingGap > 0 ? '-' + formatCHF(ratingLoss) : 'CHF 0';
   document.getElementById('bd-response').textContent = '+' + formatCHF(recoveryPotential);
   document.getElementById('bd-uplift').textContent = '+' + formatCHF(ratingUpliftRevenue);
+
+  // Mobile sticky bar sync
+  const msrLoss = document.getElementById('msr-loss');
+  const msrRecovery = document.getElementById('msr-recovery');
+  if (msrLoss) msrLoss.textContent = formatCHF(totalLoss);
+  if (msrRecovery) msrRecovery.textContent = '+' + formatCHF(totalRecovery);
 }
 
 [revenueSlider, bonSlider, reviewsSlider, ratingSlider, responseSlider].forEach(s => {
@@ -769,6 +811,29 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
+
+// Mobile sticky results: show when calc sliders are on screen but results are scrolled away
+if (window.matchMedia('(max-width: 800px)').matches) {
+  const calcForm = document.querySelector('.calc-form');
+  const calcRight = document.querySelector('.calc-right');
+  const sticky = document.getElementById('mobile-sticky');
+  
+  let formVisible = false;
+  let resultsVisible = false;
+
+  const formObs = new IntersectionObserver(entries => {
+    formVisible = entries[0].isIntersecting;
+    sticky.classList.toggle('visible', formVisible && !resultsVisible);
+  }, { threshold: 0.2 });
+
+  const resultsObs = new IntersectionObserver(entries => {
+    resultsVisible = entries[0].isIntersecting;
+    sticky.classList.toggle('visible', formVisible && !resultsVisible);
+  }, { threshold: 0.1 });
+
+  formObs.observe(calcForm);
+  resultsObs.observe(calcRight);
+}
 </script>
 
 </body>
