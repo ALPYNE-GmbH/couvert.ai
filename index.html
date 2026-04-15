@@ -14,11 +14,16 @@
 .hero-overline::before{content:'';width:32px;height:1px;background:var(--copper)}
 .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(34px,5.5vw,64px);line-height:1.08;color:var(--cream-bright);letter-spacing:-1.5px;margin-bottom:24px}
 .hero h1 em{font-style:italic;color:var(--copper)}
-.hero-sub{font-size:17px;line-height:1.75;color:var(--text);max-width:640px;font-weight:300;margin-bottom:32px}
+.hero-sub{font-size:17px;line-height:1.75;color:var(--text);font-weight:300;margin-bottom:32px}
 .hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:28px}
 .hero-bullets{display:flex;gap:24px;font-size:13px;color:var(--text-dim);flex-wrap:wrap}
 .hero-bullets span{display:flex;align-items:center;gap:6px}
 .hero-bullets span::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--copper)}
+.hero-teaser{display:block;text-decoration:none;background:var(--bg2);border:1px solid var(--border);padding:24px 28px;margin-bottom:28px;transition:border-color 0.3s;cursor:pointer}
+.hero-teaser:hover{border-color:var(--copper)}
+.hero-teaser-number{font-family:'JetBrains Mono',monospace;font-size:clamp(32px,5vw,48px);font-weight:600;color:var(--gold);line-height:1;margin-bottom:6px}
+.hero-teaser-sub{font-size:13px;color:var(--text-dim);line-height:1.5;margin-bottom:12px}
+.hero-teaser-cta{font-size:13px;color:var(--copper);font-weight:500;letter-spacing:0.3px}
 .proof-bar .container{display:grid;grid-template-columns:repeat(4,1fr);gap:1px}
 .proof-bar{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0}
 .proof-item{padding:28px 16px;text-align:center;position:relative}
@@ -84,7 +89,7 @@
 .mobile-sticky-results{display:none}
 @media(min-width:801px){
   .hero-section{padding-top:160px;padding-bottom:80px}
-  .hero-sub{font-size:19px;max-width:700px}
+  .hero-sub{font-size:19px}
   .step-card h4{font-size:20px}.step-card p{font-size:14px}
   .proof-num{font-size:28px}.proof-label{font-size:12px}.proof-item{padding:36px 24px}
   .calc-layout{align-items:stretch}
@@ -133,6 +138,11 @@
 <h1 class="animate d2">Ihr Restaurant verliert Geld. Wir machen sichtbar, <em>wo</em> und <em>wie viel.</em> Und drehen den Spiess um.</h1>
 <p class="hero-sub animate d3">Couvert.ai ist Ihr externes AI-Team. Wir analysieren Bewertungen, Reservierungen, Speisekarte und Service-Qualität, beziffern Probleme in Franken und beheben die Ursachen im laufenden Betrieb.</p>
 <div class="hero-cta animate d4"><a href="#contact" class="btn-primary">Erstgespräch buchen</a><a href="fallbeispiel.html" class="btn-ghost">Beispielanalyse ansehen</a></div>
+<a href="#calculator" class="hero-teaser animate d5">
+  <div class="hero-teaser-number" id="hero-counter">CHF 0</div>
+  <div class="hero-teaser-sub">Durchschnittlicher Umsatzverlust pro Jahr bei vergleichbaren Betrieben</div>
+  <div class="hero-teaser-cta">Berechnen Sie Ihren Betrieb →</div>
+</a>
 <div class="hero-bullets animate d5"><span>Ergebnisse per E-Mail</span><span>Läuft ab Tag 1</span><span>Monatlich kündbar</span></div>
 </div></section>
 
@@ -253,6 +263,10 @@ function positionPulse(){const s=revenueSlider,pct=(s.value-s.min)/(s.max-s.min)
 positionPulse();
 new IntersectionObserver(e=>{if(e[0].isIntersecting&&!hintDismissed){calcHint.classList.add('visible');positionPulse();sliderPulse.classList.add('active')}},{threshold:.3}).observe(calcForm);
 [revenueSlider,bonSlider,reviewsSlider,ratingSlider,responseSlider].forEach(s=>s.addEventListener('input',()=>{if(!hintDismissed){hintDismissed=true;calcHint.classList.remove('visible');sliderPulse.classList.remove('active')}},{once:true}));
+// Hero counter animation
+const heroCounter=document.getElementById('hero-counter');
+let counterDone=false;
+new IntersectionObserver(e=>{if(e[0].isIntersecting&&!counterDone){counterDone=true;const target=390000;const duration=2000;const start=performance.now();function tick(now){const elapsed=now-start;const progress=Math.min(elapsed/duration,1);const eased=1-Math.pow(1-progress,3);const current=Math.round(target*eased);heroCounter.textContent='CHF '+Math.round(current/1000)+'K+';if(progress<1)requestAnimationFrame(tick)}requestAnimationFrame(tick)}},{threshold:0.5}).observe(heroCounter);
 </script>
 </body>
 </html>
