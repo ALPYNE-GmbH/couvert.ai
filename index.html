@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
 <meta charset="UTF-8">
@@ -143,6 +144,7 @@
 </div>
 
 <!-- HERO -->
+
 <section class="hero-section" id="top"><div class="container">
 <div class="hero-overline animate d1">AI Operations for Gastronomy</div>
 <h1 class="animate d2">Ihr Restaurant verliert Geld. Wir machen sichtbar, <em>wo</em> und <em>wie viel.</em> Und drehen den Spiess um.</h1>
@@ -157,6 +159,7 @@
 </div></section>
 
 <!-- PROOF BAR -->
+
 <section class="proof-bar"><div class="proof-context">Beispiel: Gastro-Betrieb Zürich</div><div class="container">
 <div class="proof-item"><div class="proof-num">2.825</div><div class="proof-label">Bewertungen analysiert</div></div>
 <div class="proof-item"><div class="proof-num">0%</div><div class="proof-label">Antwortquote</div></div>
@@ -165,6 +168,7 @@
 </div></section>
 
 <!-- SO ARBEITET COUVERT -->
+
 <section class="steps-section"><div class="container">
 <div class="section-label">Unser Ansatz</div>
 <div class="section-title">So arbeitet Couvert in Ihrem Betrieb</div>
@@ -177,6 +181,7 @@
 </div></div></section>
 
 <!-- CALCULATOR -->
+
 <section class="calc-section" id="calculator"><div class="container">
 <div class="section-label">Umsatzrechner</div>
 <div class="section-title">Wie viel Umsatz kosten ungelöste Gästeprobleme Ihren Betrieb?</div>
@@ -218,6 +223,7 @@
 </div></section>
 
 <!-- CTA -->
+
 <section class="cta-section" id="contact"><div class="container">
 <div class="section-label" style="text-align:center">Nächster Schritt</div>
 <h2>Wir zeigen Ihnen, wo Ihr Betrieb Umsatz liegen lässt.</h2>
@@ -279,5 +285,6 @@ const heroCounter=document.getElementById('hero-counter');
 let counterDone=false;
 new IntersectionObserver(e=>{if(e[0].isIntersecting&&!counterDone){counterDone=true;const target=390000;const duration=2000;const start=performance.now();function tick(now){const elapsed=now-start;const progress=Math.min(elapsed/duration,1);const eased=1-Math.pow(1-progress,3);const current=Math.round(target*eased);heroCounter.textContent='CHF '+Math.round(current/1000)+'K+';if(progress<1)requestAnimationFrame(tick)}requestAnimationFrame(tick)}},{threshold:0.5}).observe(heroCounter);
 </script>
+
 </body>
 </html>
