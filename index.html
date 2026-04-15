@@ -14,91 +14,101 @@
 .hero-overline::before{content:'';width:32px;height:1px;background:var(--copper)}
 .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(34px,5.5vw,64px);line-height:1.08;color:var(--cream-bright);letter-spacing:-1.5px;margin-bottom:24px}
 .hero h1 em{font-style:italic;color:var(--copper)}
-.hero-sub{font-size:17px;line-height:1.75;color:var(--text);font-weight:300;margin-bottom:32px}
+.hero-sub{font-size:17px;line-height:1.6;color:var(--text);font-weight:300;margin-bottom:32px}
 .hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:28px}
-.hero-bullets{display:flex;gap:24px;font-size:13px;color:var(--text-dim);flex-wrap:wrap}
+.hero-bullets{display:flex;gap:24px;font-size:15px;color:var(--text-dim);flex-wrap:wrap}
 .hero-bullets span{display:flex;align-items:center;gap:6px}
 .hero-bullets span::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--copper)}
 .hero-teaser{display:block;text-decoration:none;background:var(--bg2);border:1px solid var(--border);padding:24px 28px;margin-bottom:28px;transition:border-color 0.3s;cursor:pointer}
 .hero-teaser:hover{border-color:var(--copper)}
 .hero-teaser-number{font-family:'JetBrains Mono',monospace;font-size:clamp(32px,5vw,48px);font-weight:600;color:var(--gold);line-height:1;margin-bottom:6px}
-.hero-teaser-sub{font-size:13px;color:var(--text-dim);line-height:1.5;margin-bottom:12px}
-.hero-teaser-cta{font-size:13px;color:var(--copper);font-weight:500;letter-spacing:0.3px}
+.hero-teaser-sub{font-size:14px;color:var(--text-dim);line-height:1.5;margin-bottom:12px}
+.hero-teaser-cta{font-size:14px;color:var(--copper);font-weight:500;letter-spacing:0.3px}
 .proof-bar .container{display:grid;grid-template-columns:repeat(4,1fr);gap:1px}
 .proof-bar{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0}
 .proof-item{padding:28px 16px;text-align:center;position:relative}
 .proof-item:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:var(--border)}
-.proof-num{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:600;color:var(--gold);margin-bottom:4px}
-.proof-label{font-size:11px;color:var(--text-dim);line-height:1.5}
-.proof-context{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--copper);margin-bottom:16px;text-align:center;padding-top:20px}
+.proof-num{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:var(--gold);margin-bottom:4px}
+.proof-label{font-size:13px;color:var(--text-dim);line-height:1.5}
+.proof-context{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--copper);margin-bottom:16px;text-align:center;padding-top:20px}
 .steps-section{background:var(--bg2)}
 .steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:36px}
 .step-card{background:var(--bg2);padding:28px 20px}
-.step-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--copper);font-weight:600;margin-bottom:10px}
-.step-card h4{font-family:'DM Serif Display',serif;font-size:17px;color:var(--cream);margin-bottom:8px}
-.step-card p{font-size:13px;line-height:1.7;color:var(--text-dim);font-weight:300}
+.step-num{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--copper);font-weight:600;margin-bottom:10px}
+.step-card h4{font-family:'DM Serif Display',serif;font-size:18px;color:var(--cream);margin-bottom:8px}
+.step-card p{font-size:15px;line-height:1.6;color:var(--text-dim);font-weight:300}
 .calc-section{background:var(--bg)}
 .calc-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
 .calc-form{padding-top:16px}
 .calc-group{margin-bottom:28px}
-.calc-group label{display:block;font-size:13px;color:var(--text-dim);margin-bottom:8px}
-.calc-group input[type="range"]{-webkit-appearance:none;width:100%;height:4px;background:var(--border);border-radius:2px;outline:none}
-.calc-group input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--copper);cursor:pointer;border:2px solid var(--bg)}
+.calc-group label{display:block;font-size:15px;color:var(--text-dim);margin-bottom:8px}
+.calc-group input[type="range"]{-webkit-appearance:none;width:100%;height:6px;background:var(--border);border-radius:3px;outline:none}
+.calc-group input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:var(--copper);cursor:pointer;border:2px solid var(--bg)}
 .calc-hint{font-size:12px;color:var(--copper);margin-bottom:20px;display:flex;align-items:center;gap:8px;opacity:0;transition:opacity 0.4s}.calc-hint.visible{opacity:1}.calc-hint svg{flex-shrink:0}
 .slider-wrap{position:relative}.slider-pulse{position:absolute;top:50%;width:20px;height:20px;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);z-index:1;opacity:0;background:var(--copper)}.slider-pulse.active{animation:glow-ring 1.2s ease-in-out 4}
 @keyframes glow-ring{0%{opacity:0;transform:translate(-50%,-50%) scale(1)}25%{opacity:.6;transform:translate(-50%,-50%) scale(1.8)}50%{opacity:0;transform:translate(-50%,-50%) scale(2.2)}100%{opacity:0;transform:translate(-50%,-50%) scale(1)}}
 .calc-value{display:flex;justify-content:space-between;margin-top:6px}
-.calc-value span{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--cream)}
+.calc-value span{font-family:'JetBrains Mono',monospace;font-size:16px;color:var(--cream)}
 .calc-right{position:sticky;top:100px}
 .calc-results-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 .calc-result{background:var(--bg2);border:1px solid var(--border);padding:20px}
 .calc-result-loss{border-top:3px solid var(--red-down)}
 .calc-result-recovery{border-top:3px solid var(--green-up)}
-.cr-label{font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px}
+.cr-label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px}
 .cr-label-green{color:var(--green-up)}
 .cr-number{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:600;color:var(--gold);line-height:1;margin-bottom:4px}
 .cr-number-green{color:var(--green-up)}
-.cr-unit{font-size:11px;color:var(--text-dim)}
+.cr-unit{font-size:13px;color:var(--text-dim)}
 .calc-detail-panel{background:var(--bg2);border:1px solid var(--border);padding:20px}
 .churn-indicator{background:var(--bg);border:1px solid var(--border);padding:16px}
 .churn-bar-bg{width:100%;height:6px;background:var(--border);border-radius:3px;margin-bottom:10px;overflow:hidden}
 .churn-bar-fill{height:100%;background:linear-gradient(90deg,var(--green-up),var(--gold),var(--red-down));border-radius:3px;transition:width 0.4s ease}
 .churn-row{display:flex;justify-content:space-between;align-items:center}
-.churn-label{font-size:11px;color:var(--text-dim)}
-.churn-value{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:var(--red-down);transition:color 0.3s}
-.churn-explain{font-size:10px;color:var(--text-dim);margin-top:4px;font-style:italic}
-.calc-note{font-size:11px;color:var(--text-dim);margin-top:12px;font-style:italic}
-.calc-bridge{margin-top:32px;padding:20px 24px;border-left:2px solid var(--copper);font-size:15px;color:var(--text);font-weight:300;line-height:1.6;font-style:italic}
-.tip{position:relative;cursor:help;display:inline}.tip .tip-icon{width:14px;height:14px;border-radius:50%;border:1px solid var(--border-hover);display:inline-flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dim);flex-shrink:0;transition:border-color 0.2s;vertical-align:middle;margin-left:4px}.tip:hover .tip-icon{border-color:var(--copper);color:var(--copper)}.tip .tip-text{display:none;position:absolute;bottom:calc(100% + 8px);left:0;width:260px;background:var(--bg3);border:1px solid var(--border);padding:12px 14px;font-size:12px;line-height:1.6;color:var(--text);font-weight:300;font-family:'DM Sans',sans-serif;z-index:10;pointer-events:none;letter-spacing:0}.tip:hover .tip-text{display:block}
+.churn-label{font-size:13px;color:var(--text-dim)}
+.churn-value{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:600;color:var(--red-down);transition:color 0.3s}
+.churn-explain{font-size:13px;color:var(--text-dim);margin-top:4px;font-style:italic}
+.calc-note{font-size:13px;color:var(--text-dim);margin-top:12px;font-style:italic}
+.calc-bridge{margin-top:32px;padding:20px 24px;border-left:2px solid var(--copper);font-size:16px;color:var(--text);font-weight:300;line-height:1.6;font-style:italic}
+.tip{position:relative;cursor:help;display:inline}.tip .tip-icon{width:16px;height:16px;border-radius:50%;border:1px solid var(--border-hover);display:inline-flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim);flex-shrink:0;transition:border-color 0.2s;vertical-align:middle;margin-left:4px}.tip:hover .tip-icon{border-color:var(--copper);color:var(--copper)}.tip .tip-text{display:none;position:absolute;bottom:calc(100% + 8px);left:0;width:260px;background:var(--bg3);border:1px solid var(--border);padding:12px 14px;font-size:13px;line-height:1.6;color:var(--text);font-weight:300;font-family:'DM Sans',sans-serif;z-index:10;pointer-events:none;letter-spacing:0}.tip:hover .tip-text{display:block}
 .calc-breakdown{padding-top:16px}
 .calc-details{border-top:1px solid var(--border);margin-top:12px}
-.calc-details summary{padding:12px 0;font-size:12px;color:var(--copper);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;letter-spacing:0.3px;transition:color 0.3s}
+.calc-details summary{padding:12px 0;font-size:14px;color:var(--copper);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;letter-spacing:0.3px;transition:color 0.3s}
 .calc-details summary:hover{color:var(--copper-soft)}
-.calc-details summary::after{content:'+';font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--copper);transition:transform 0.3s}
+.calc-details summary::after{content:'+';font-family:'JetBrains Mono',monospace;font-size:16px;color:var(--copper);transition:transform 0.3s}
 .calc-details[open] summary::after{transform:rotate(45deg)}
 .calc-details summary::-webkit-details-marker{display:none}
-.calc-breakdown-row{display:flex;justify-content:space-between;padding:5px 0;font-size:12px;gap:12px}
+.calc-breakdown-row{display:flex;justify-content:space-between;padding:5px 0;font-size:14px;gap:12px}
 .calc-breakdown-row .cbr-label{color:var(--text-dim);flex:1;min-width:0}
 .calc-breakdown-row .cbr-value{font-family:'JetBrains Mono',monospace;color:var(--cream);white-space:nowrap;text-align:right}
 .calc-breakdown-row.negative .cbr-value{color:var(--red-down)}
 .calc-breakdown-row.positive .cbr-value{color:var(--green-up)}
 .cta-section{text-align:center}
 .cta-section h2{font-family:'DM Serif Display',serif;font-size:clamp(26px,4vw,42px);color:var(--cream-bright);letter-spacing:-0.5px;margin-bottom:14px}
-.cta-section p{font-size:16px;color:var(--text-dim);margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.7;font-weight:300}
+.cta-section p{font-size:17px;color:var(--text-dim);margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.6;font-weight:300}
 .cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 .mobile-sticky-results{display:none}
 @media(min-width:801px){
   .hero-section{padding-top:160px;padding-bottom:80px}
   .hero-sub{font-size:19px}
-  .step-card h4{font-size:20px}.step-card p{font-size:14px}
-  .proof-num{font-size:28px}.proof-label{font-size:12px}.proof-item{padding:36px 24px}
+  .step-card h4{font-size:22px}.step-card p{font-size:16px}
+  .proof-num{font-size:28px}.proof-label{font-size:14px}.proof-item{padding:36px 24px}
   .calc-layout{align-items:stretch}
   .calc-form{display:flex;flex-direction:column}
   .calc-right{display:flex;flex-direction:column;position:sticky;top:100px}
   .calc-detail-panel{flex:1}
+  .calc-group label{font-size:15px}
 }
 @media(max-width:800px){
   .tip .tip-text{left:-40px;width:220px}
+  .hero-section{padding-top:56px;padding-bottom:32px}
+  .hero-section .container{display:flex;flex-direction:column}
+  .hero-teaser{order:-1;margin-top:8px;margin-bottom:20px;padding:16px 20px}
+  .hero-teaser-number{font-size:32px}
+  .hero-teaser-sub{font-size:13px}
+  .hero-teaser-cta{font-size:13px}
+  .hero-overline{margin-bottom:14px}
+  .hero-cta{flex-wrap:nowrap;gap:8px;margin-bottom:20px}
+  .hero-cta .btn-primary,.hero-cta .btn-ghost{padding:14px 0;font-size:15px;flex:1;text-align:center;white-space:nowrap;min-height:48px}
   .proof-bar .container{grid-template-columns:1fr 1fr}
   .proof-item:nth-child(2)::after{display:none}
   .steps-grid{grid-template-columns:1fr 1fr}
@@ -108,9 +118,9 @@
   .mobile-sticky-results{display:none;position:fixed;bottom:0;left:0;right:0;z-index:99;background:rgba(26,60,52,0.95);backdrop-filter:blur(16px);border-top:1px solid var(--border);padding:12px 24px;grid-template-columns:1fr 1fr;gap:16px;align-items:center}
   .mobile-sticky-results.visible{display:grid}
   .msr-box{text-align:center}
-  .msr-label{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dim);margin-bottom:2px}
+  .msr-label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dim);margin-bottom:2px}
   .msr-label-red{color:var(--red-down)}.msr-label-green{color:var(--green-up)}
-  .msr-num{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:600;color:var(--gold)}
+  .msr-num{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:var(--gold)}
   .msr-num-green{color:var(--green-up)}
 }
 </style>
@@ -119,7 +129,7 @@
 
 <header><div class="container header-inner">
 <a href="index.html" class="logo"><div class="logo-icon"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="8" r="5.5" stroke="#C4673A" stroke-width="1.2" fill="none"/><circle cx="9" cy="8" r="2" stroke="#C4673A" stroke-width="0.8" fill="none" opacity="0.5"/><circle cx="9" cy="8" r="0.8" fill="#C4673A"/><line x1="5" y1="15" x2="13" y2="15" stroke="#C4673A" stroke-width="0.6" opacity="0.4"/></svg></div><div class="logo-name">couvert<span>.ai</span></div></a>
-<nav class="nav"><a href="team.html">AI-Team</a><a href="fallbeispiel.html">Fallbeispiel</a><a href="ablauf.html">Ablauf</a><a href="ablauf.html#faq">FAQ</a><a href="#contact" class="nav-cta">Gespräch buchen</a></nav>
+<nav class="nav"><a href="team.html">AI-Team</a><a href="fallbeispiel.html">Fallbeispiel</a><a href="ablauf.html">Ablauf</a><a href="ablauf.html#faq">FAQ</a><a href="https://calendly.com/hello-couvert/30min" target="_blank" class="nav-cta">Gespräch buchen</a></nav>
 <button class="burger" onclick="document.getElementById('mm').classList.add('open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
 </div></header>
 
@@ -129,7 +139,7 @@
 <a href="team.html">AI-Team</a>
 <a href="fallbeispiel.html">Fallbeispiel</a>
 <a href="ablauf.html">Ablauf & FAQ</a>
-<a href="#contact" onclick="document.getElementById('mm').classList.remove('open')" style="color:var(--copper)">Gespräch buchen</a>
+<a href="https://calendly.com/hello-couvert/30min" target="_blank" style="color:var(--copper)">Gespräch buchen</a>
 </div>
 
 <!-- HERO -->
@@ -137,13 +147,13 @@
 <div class="hero-overline animate d1">AI Operations for Gastronomy</div>
 <h1 class="animate d2">Ihr Restaurant verliert Geld. Wir machen sichtbar, <em>wo</em> und <em>wie viel.</em> Und drehen den Spiess um.</h1>
 <p class="hero-sub animate d3">Couvert.ai ist Ihr externes AI-Team. Wir analysieren Bewertungen, Reservierungen, Speisekarte und Service-Qualität, beziffern Probleme in Franken und beheben die Ursachen im laufenden Betrieb.</p>
-<div class="hero-cta animate d4"><a href="#contact" class="btn-primary">Erstgespräch buchen</a><a href="fallbeispiel.html" class="btn-ghost">Beispielanalyse ansehen</a></div>
+<div class="hero-cta animate d4"><a href="https://calendly.com/hello-couvert/30min" target="_blank" class="btn-primary">Erstgespräch buchen</a><a href="fallbeispiel.html" class="btn-ghost">Beispielanalyse ansehen</a></div>
 <a href="#calculator" class="hero-teaser animate d5">
   <div class="hero-teaser-number" id="hero-counter">CHF 0</div>
-  <div class="hero-teaser-sub">Durchschnittlicher Umsatzverlust pro Jahr bei vergleichbaren Betrieben</div>
+  <div class="hero-teaser-sub">So viel Umsatz verliert ein Gastro-Betrieb mit CHF 5 Mio.+ Jahresumsatz im Schnitt pro Jahr</div>
   <div class="hero-teaser-cta">Berechnen Sie Ihren Betrieb →</div>
 </a>
-<div class="hero-bullets animate d5"><span>Ergebnisse per E-Mail</span><span>Läuft ab Tag 1</span><span>Monatlich kündbar</span></div>
+<div class="hero-bullets animate d5"><span>Ergebnisse statt Software</span><span>Läuft ab Tag 1</span><span>Monatlich kündbar</span></div>
 </div></section>
 
 <!-- PROOF BAR -->
@@ -212,12 +222,13 @@
 <div class="section-label" style="text-align:center">Nächster Schritt</div>
 <h2>Wir zeigen Ihnen, wo Ihr Betrieb Umsatz liegen lässt.</h2>
 <p>In einem kurzen Erstgespräch sehen Sie, welche Signale heute schon auf Schwachstellen, verlorene Gäste und ungenutztes Potenzial hinweisen.</p>
-<div class="cta-buttons"><a href="mailto:hello@couvert.ai" class="btn-primary">Erstgespräch vereinbaren</a><a href="fallbeispiel.html" class="btn-ghost">Beispielanalyse anfragen</a></div>
+<div class="cta-buttons"><a href="https://calendly.com/hello-couvert/30min" target="_blank" class="btn-primary">Erstgespräch vereinbaren</a><a href="fallbeispiel.html" class="btn-ghost">Beispielanalyse anfragen</a></div>
 </div></section>
 
 <footer><div class="container">
 <div class="footer-inner"><div class="footer-left">© 2026 COUVERT.AI - ZÜRICH</div><div class="footer-right">Jedes Gedeck zählt.</div></div>
 <div class="footer-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="mailto:hello@couvert.ai">hello@couvert.ai</a></div>
+<div class="footer-trust"><span>Daten in der Schweiz</span><span>Monatlich kündbar</span><span>Gegründet in Zürich</span></div>
 </div></footer>
 
 <div class="mobile-sticky-results" id="mobile-sticky">
