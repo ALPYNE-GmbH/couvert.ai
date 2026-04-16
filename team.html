@@ -8,27 +8,36 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-.team-block{margin-bottom:64px}
-.team-header{display:flex;align-items:baseline;gap:16px;margin-bottom:8px}
-.team-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--copper)}
+.phase-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:36px;margin-bottom:48px}
+.phase-card{background:var(--bg2);padding:28px 24px}
+.phase-card .ph-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--copper);margin-bottom:8px}
+.phase-card h4{font-family:'DM Serif Display',serif;font-size:18px;color:var(--cream);margin-bottom:6px}
+.phase-card p{font-size:15px;line-height:1.6;color:var(--text-dim);font-weight:300}
+.phase-card .ph-role{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--gold);margin-top:12px}
+.team-block{margin-bottom:72px}
+.team-header{margin-bottom:8px}
+.team-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--copper);display:block;margin-bottom:8px}
 .team-name{font-family:'DM Serif Display',serif;font-size:clamp(24px,3.5vw,32px);color:var(--cream)}
 .team-desc{font-size:17px;color:var(--text-dim);font-weight:300;line-height:1.6;margin-bottom:28px;max-width:640px}
-.agents-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--border)}
-.agent-card{background:var(--bg2);padding:28px 24px}
-.agent-card h4{font-family:'DM Serif Display',serif;font-size:18px;color:var(--cream);margin-bottom:8px}
-.agent-card>p{font-size:15px;line-height:1.6;color:var(--text);font-weight:300;margin-bottom:12px}
-.agent-card .ao-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--copper);margin-bottom:6px}
-.agent-card .ao-list{list-style:none;padding:0}
-.agent-card .ao-list li{font-size:14px;color:var(--text-dim);line-height:1.6;padding-left:14px;position:relative;margin-bottom:3px}
-.agent-card .ao-list li::before{content:'';position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--border-hover)}
+.agent-card{background:var(--bg2);border:1px solid var(--border);padding:28px 24px;margin-bottom:16px}
+.agent-card h4{font-family:'DM Serif Display',serif;font-size:20px;color:var(--cream);margin-bottom:10px}
+.agent-card>p{font-size:16px;line-height:1.6;color:var(--text);font-weight:300;margin-bottom:16px}
+.action-example{background:var(--bg);border-left:3px solid var(--copper);padding:16px 20px;margin-bottom:16px}
+.action-example .ae-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--copper);margin-bottom:6px}
+.action-example p{font-size:15px;line-height:1.6;color:var(--text);font-weight:300;font-style:italic}
+.autonomy-path{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:4px}
+.autonomy-step{padding:12px 16px;border:1px solid var(--border);font-size:13px;color:var(--text-dim);line-height:1.5}
+.autonomy-step .as-phase{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--copper);display:block;margin-bottom:4px}
+.autonomy-step.active{border-color:var(--copper);background:rgba(196,103,58,0.05)}
+.autonomy-step.active .as-phase{color:var(--gold)}
 .team-divider{height:1px;background:linear-gradient(90deg,transparent,var(--copper),transparent);margin:0}
 .deliv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:36px}
 .deliv-card{background:var(--bg);padding:28px 24px}
 .deliv-freq{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--copper);margin-bottom:10px}
 .deliv-card h4{font-family:'DM Serif Display',serif;font-size:17px;color:var(--cream);margin-bottom:8px}
 .deliv-card p{font-size:15px;line-height:1.6;color:var(--text-dim);font-weight:300}
-@media(min-width:801px){.agent-card h4{font-size:20px}.agent-card>p{font-size:16px}.deliv-card h4{font-size:20px}.deliv-card p{font-size:16px}}
-@media(max-width:800px){.agents-grid{grid-template-columns:1fr}.deliv-grid{grid-template-columns:1fr}}
+@media(min-width:801px){.agent-card h4{font-size:22px}.agent-card>p{font-size:17px}.phase-card h4{font-size:20px}.deliv-card h4{font-size:20px}.deliv-card p{font-size:16px}}
+@media(max-width:800px){.phase-bar{grid-template-columns:1fr}.autonomy-path{grid-template-columns:1fr}.deliv-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -44,80 +53,206 @@
 <a href="index.html">Start</a><a href="team.html" onclick="document.getElementById('mm').classList.remove('open')">AI-Team</a><a href="fallbeispiel.html">Fallbeispiel</a><a href="ablauf.html">Ablauf & FAQ</a><a href="geschichte.html">Geschichte</a><a href="https://calendly.com/hello-couvert/30min" target="_blank" style="color:var(--copper)">Gespräch buchen</a>
 </div>
 
+<!-- HERO -->
 <section class="subpage-hero"><div class="container">
 <a href="index.html" class="back-link">← Startseite</a>
 <div class="section-label">Das AI Operations Team</div>
-<div class="section-title">4 Teams. 11 Agents. Ihre unsichtbare Crew.</div>
-<div class="section-sub">Jedes Team löst ein konkretes Problem in Ihrem Betrieb. Sie starten mit einem und erweitern nach Bedarf.</div>
+<div class="section-title">Ihre Agents analysieren. Dann handeln sie.</div>
+<div class="section-sub">Der Unterschied zwischen einem Report und einem Agent: Der Report sagt "Sie verlieren CHF 195K durch Wartezeit." Der Agent erkennt das Problem, passt den Reservierungs-Buffer an, informiert das Service-Team und misst nächste Woche ob es gewirkt hat.</div>
 </div></section>
 
-<section style="padding-top:40px"><div class="container">
+<!-- AUTONOMIE-PHASEN -->
+<section style="padding-top:0"><div class="container">
+<div class="section-label">Autonomie-Stufen</div>
+<div class="section-title">Von der Empfehlung zur eigenständigen Aktion.</div>
+<div class="section-sub">Jeder Agent durchläuft drei Stufen. Sie bestimmen das Tempo.</div>
+<div class="phase-bar">
+<div class="phase-card"><div class="ph-label">Monat 1-2</div><h4>Analyse & Empfehlung</h4><p>Der Agent erkennt Muster, beziffert Probleme und schlägt Massnahmen vor. Sie entscheiden und setzen um.</p><div class="ph-role">Sie: Entscheider und Umsetzer</div></div>
+<div class="phase-card"><div class="ph-label">Ab Monat 3</div><h4>Aktion auf Knopfdruck</h4><p>Der Agent bereitet Aktionen vor und legt sie Ihnen zur Freigabe vor. Ein Klick - der Agent führt aus.</p><div class="ph-role">Sie: Ja oder Nein - mehr nicht</div></div>
+<div class="phase-card"><div class="ph-label">Ab Monat 6</div><h4>Autonomer Betrieb</h4><p>Der Agent handelt eigenständig, misst den Effekt und optimiert. Sie werden nur bei Ausnahmen involviert.</p><div class="ph-role">Sie: Werden informiert, nicht gefragt</div></div>
+</div>
+</div></section>
+
+<!-- TEAMS -->
+<section style="background:var(--bg2)"><div class="container">
 
 <!-- TEAM 1 -->
 <div class="team-block">
 <div class="team-header"><span class="team-label">Team 1</span></div>
 <div class="team-name">Guest Experience</div>
-<p class="team-desc">Ihre Bewertungen werden beantwortet, unzufriedene Gäste zurückgeholt, schwache Slots gezielt gefüllt.</p>
-<div class="agents-grid">
-<div class="agent-card"><h4>Reputation Manager</h4><p>Erkennt neue Bewertungen in Echtzeit, beantwortet sie individuell in Ihrer Tonalität und eskaliert kritische Fälle sofort. Mehrsprachig: DE, EN, FR, IT.</p><div class="ao-label">Was bei Ihnen ankommt</div><ul class="ao-list"><li>95%+ Antwortquote innerhalb von 30 Tagen</li><li>Konsistente öffentliche Wahrnehmung</li><li>Schnellere Reaktion auf heikle Fälle</li></ul></div>
-<div class="agent-card"><h4>Guest Recovery Agent</h4><p>Identifiziert unzufriedene Gäste über 1-2-Stern-Bewertungen, schlägt konkrete Recovery-Aktionen vor und berechnet den Wert jedes Gastes.</p><div class="ao-label">Was bei Ihnen ankommt</div><ul class="ao-list"><li>Weniger Gäste die stillschweigend abwandern</li><li>Gezielte Rückgewinnungs-Aktionen</li><li>Einladungen für schwach ausgelastete Slots</li></ul></div>
-<div class="agent-card"><h4>Booking Optimizer</h4><p>Erkennt Reservierungslücken und füllt sie gezielt. Dienstag 18:30 nur 40% belegt? Der Agent schlägt vor welche Zielgruppe über welchen Kanal angesprochen wird.</p><div class="ao-label">Was bei Ihnen ankommt</div><ul class="ao-list"><li>Höhere Auslastung an schwachen Tagen</li><li>Gezielte Angebote statt Rabatt-Giesskannen</li><li>Recovery-Gäste auf passende Slots verteilt</li></ul></div>
+<p class="team-desc">Jede Bewertung beantwortet. Jeder unzufriedene Gast kontaktiert. Jeder schwache Slot gefüllt.</p>
+
+<div class="agent-card">
+<h4>Reputation Manager</h4>
+<p>Erkennt neue Bewertungen in Echtzeit und antwortet individuell in Ihrer Tonalität. Vier Sprachen. Kritische Fälle werden innerhalb von 2 Stunden eskaliert.</p>
+<div class="action-example"><div class="ae-label">So sieht das in der Praxis aus</div><p>Freitag 22:14 - neue 2-Stern-Bewertung auf Google. 22:16 - der Agent hat die Bewertung gelesen, kategorisiert und eine Antwort generiert die sich auf die spezifische Beschwerde bezieht. 22:18 - die Antwort ist live. Sie schlafen.</p></div>
+<div class="autonomy-path">
+<div class="autonomy-step active"><span class="as-phase">Monat 1</span>Draft per E-Mail, Sie posten manuell</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 3</span>Ein Klick zur Freigabe, Agent postet selbst</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 4</span>4-5 Sterne: sofort. 1-2 Sterne: nach Approval oder nach 4h automatisch</div>
+</div>
+</div>
+
+<div class="agent-card">
+<h4>Guest Recovery Agent</h4>
+<p>Identifiziert unzufriedene Gäste, findet ihre Kontaktdaten im Reservierungssystem und kontaktiert sie mit einer persönlichen Einladung zum erneuten Besuch.</p>
+<div class="action-example"><div class="ae-label">So sieht das in der Praxis aus</div><p>1-Stern-Bewertung von Frau Müller. Agent findet die Reservation vom Samstag, generiert eine persönliche E-Mail mit Entschuldigung und Gutschein über CHF 50, platziert sie auf einen schwach ausgelasteten Dienstagabend. Sie bekommen eine Notification: "Gast kontaktiert, Gutschein gesendet."</p></div>
+<div class="autonomy-path">
+<div class="autonomy-step active"><span class="as-phase">Monat 1</span>Recovery-Vorschlag per E-Mail an Sie</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 3</span>Fertige E-Mail mit Gutschein, Sie klicken "Senden"</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 6</span>Agent kontaktiert Gäste eigenständig, trackt Recovery-Rate</div>
+</div>
+</div>
+
+<div class="agent-card">
+<h4>Booking Optimizer</h4>
+<p>Erkennt Auslastungslücken und füllt sie gezielt mit passenden Kampagnen, Recovery-Einladungen und Spezialangeboten.</p>
+<div class="action-example"><div class="ae-label">So sieht das in der Praxis aus</div><p>Dienstag 18-20 Uhr ist seit 3 Wochen unter 45% Auslastung. Agent erstellt eine Instagram Story Ad: "Dienstag-Aperitivo, Prosecco + Antipasto CHF 29", Radius 5km, Budget CHF 40, Laufzeit 3 Tage. Gleichzeitig werden 4 Recovery-Gäste auf Dienstag eingeladen.</p></div>
+<div class="autonomy-path">
+<div class="autonomy-step active"><span class="as-phase">Monat 1</span>"Dienstag ist schwach" im Wochenbericht</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 3</span>Fertiger Kampagnen-Vorschlag zur Freigabe</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 6</span>Kampagne wird automatisch erstellt, geschaltet und gemessen</div>
+</div>
 </div>
 </div>
 
 <div class="team-divider"></div>
 
 <!-- TEAM 2 -->
-<div class="team-block" style="margin-top:64px">
+<div class="team-block" style="margin-top:72px">
 <div class="team-header"><span class="team-label">Team 2</span></div>
 <div class="team-name">Quality & Operations</div>
-<p class="team-desc">Sie wissen am Montag was letzte Woche schiefgelaufen ist und haben nächste Woche genug Leute.</p>
-<div class="agents-grid">
-<div class="agent-card"><h4>Quality Watchdog</h4><p>Erkennt wiederkehrende Beschwerdemuster bevor daraus ein sichtbares Rating-Problem wird. Zeigt den Zusammenhang: Gericht, Schicht, Standort.</p><div class="ao-label">Was bei Ihnen ankommt</div><ul class="ao-list"><li>Datenbasiertes Frühwarnsystem</li><li>Wöchentliche Muster-Alerts</li><li>Gericht-spezifisches Tracking</li></ul></div>
-<div class="agent-card"><h4>Operations Advisor</h4><p>Verbindet Gästefeedback mit Reservierungs- und Servicedaten. Aus einzelnen Beschwerden werden konkrete Hinweise für Schichtplanung und Überlastung.</p><div class="ao-label">Was bei Ihnen ankommt</div><ul class="ao-list"><li>Überbuchungsmuster vor Spitzentagen erkennen</li><li>Schichtbezogene Beschwerde-Analyse</li><li>Service-Qualität pro Mitarbeiter erfassen</li></ul></div>
-<div class="agent-card"><h4>Predictive Staffing</h4><p>Kombiniert Reservierungsdaten, Wetter, lokale Events und historische Auslastung. Sagt am Sonntag für die kommende Woche die optimale Schichtbesetzung voraus.</p><div class="ao-label">Was bei Ihnen ankommt</div><ul class="ao-list"><li>Weniger Unter- und Überbesetzung</li><li>Personalkosten-Optimierung (30-40% vom Umsatz)</li><li>Vorausschauende Planung statt Feuerlöschen</li></ul></div>
-<div class="agent-card"><h4>Staff Communication</h4><p>Strukturierte Schichtübergaben statt informeller Kanäle. Der Agent fasst zusammen was in der letzten Schicht passiert ist, was offen ist, worauf die nächste Schicht achten muss.</p><div class="ao-label">Was bei Ihnen ankommt</div><ul class="ao-list"><li>Weniger Informationsverlust zwischen Schichten</li><li>Neue Mitarbeitende schneller im Bild</li><li>Weniger Bestellfehler und Prozesslücken</li></ul></div>
+<p class="team-desc">Probleme erkennen bevor Gäste sie in Bewertungen schreiben. Die richtige Information zur richtigen Person zum richtigen Zeitpunkt.</p>
+
+<div class="agent-card">
+<h4>Quality Watchdog</h4>
+<p>Erkennt Beschwerde-Muster und sendet Briefings direkt an die zuständige Person - bevor die nächste Schicht beginnt.</p>
+<div class="action-example"><div class="ae-label">So sieht das in der Praxis aus</div><p>8 Bewertungen diese Woche erwähnen nassen Teig, Trend +200% vs. Vorwoche. Freitag 14:00 - Küchenchef bekommt ein Briefing: "Teigqualität Freitag/Samstag Abendschicht, 8 Beschwerden, Auszüge aus Gästefeedback." Nächste Woche: 2 Beschwerden. Trend: -75%.</p></div>
+<div class="autonomy-path">
+<div class="autonomy-step active"><span class="as-phase">Monat 1</span>Wöchentlicher Alert per E-Mail an Sie</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 3</span>Briefing direkt an zuständigen Mitarbeiter vor Schichtbeginn</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 6</span>Trackt ob Massnahmen wirken, eskaliert wenn nicht</div>
+</div>
+</div>
+
+<div class="agent-card">
+<h4>Operations Advisor</h4>
+<p>Verbindet Bewertungsdaten mit Reservierungen und erkennt systematische Kapazitätsprobleme. Passt Reservierungs-Einstellungen dynamisch an.</p>
+<div class="action-example"><div class="ae-label">So sieht das in der Praxis aus</div><p>Samstag 19-20 Uhr: 12 Reservierungen, aber nur 9 gleichzeitig bedienbar. Agent erkennt das Muster aus den Wartezeit-Beschwerden und schlägt vor: "Maximale gleichzeitige Reservierungen von 12 auf 9 senken, Buffer zwischen Seatings von 15 auf 25 Minuten." Wartezeit-Beschwerden sinken um 50%.</p></div>
+<div class="autonomy-path">
+<div class="autonomy-step active"><span class="as-phase">Monat 1</span>Überbuchungsmuster im Wochenbericht</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 3</span>Konkrete Änderungsvorschläge fürs Reservierungssystem</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 6</span>Kapazitäten werden dynamisch angepasst</div>
+</div>
+</div>
+
+<div class="agent-card">
+<h4>Predictive Staffing</h4>
+<p>Kombiniert Reservierungsdaten, Wetter, lokale Events und historische Auslastung zu einer Personalprognose für die kommende Woche.</p>
+<div class="action-example"><div class="ae-label">So sieht das in der Praxis aus</div><p>Sonntag 18:00 - Agent berechnet: Nächster Samstag ist Züri Fäscht + 24°C vorhergesagt + 95% Reservation-Auslastung. Empfehlung: 6 Servicekräfte statt 4, Terrasse komplett öffnen. Die betroffenen Mitarbeiter werden benachrichtigt.</p></div>
+<div class="autonomy-path">
+<div class="autonomy-step active"><span class="as-phase">Monat 1</span>Auslastungsprognose im Wochenbericht</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 3</span>Konkreter Schichtplan-Vorschlag zur Freigabe</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 6</span>Schichtplan wird direkt ins System geschrieben</div>
+</div>
+</div>
+
+<div class="agent-card">
+<h4>Staff Communication</h4>
+<p>Strukturierte Schichtübergaben mit den relevanten Informationen für jede Rolle. Personalisiert pro Mitarbeiter.</p>
+<div class="action-example"><div class="ae-label">So sieht das in der Praxis aus</div><p>Freitag 16:30, 30 Minuten vor Schichtbeginn. Serviceleiter bekommt: "3 Reservierungen mit Sonderwunsch, Teig-Thema beachten, VIP-Gast um 20 Uhr (hat letztes Mal 1 Stern gegeben - Recovery-Chance)." Küchenchef bekommt ein anderes Briefing mit Küchen-relevanten Themen.</p></div>
+<div class="autonomy-path">
+<div class="autonomy-step active"><span class="as-phase">Monat 1</span>Zusammenfassung im Wochenbericht</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 3</span>Automatische Briefings per WhatsApp/Slack vor jeder Schicht</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 6</span>Personalisiert pro Mitarbeiter, trackt ob gelesen</div>
+</div>
 </div>
 </div>
 
 <div class="team-divider"></div>
 
 <!-- TEAM 3 -->
-<div class="team-block" style="margin-top:64px">
+<div class="team-block" style="margin-top:72px">
 <div class="team-header"><span class="team-label">Team 3</span></div>
 <div class="team-name">Revenue & Menu</div>
-<p class="team-desc">Sie sehen in CHF was Sie jedes Problem kostet und wo Sie beim Einkauf sparen.</p>
-<div class="agents-grid">
-<div class="agent-card"><h4>Revenue Analyst</h4><p>Übersetzt Gästefeedback in Franken und priorisiert Probleme nach finanziellem Hebel. Monatliche Wirkungsberichte mit Vorher-Nachher-Vergleich.</p><div class="ao-label">Was bei Ihnen ankommt</div><ul class="ao-list"><li>Jede Schwachstelle in CHF beziffert</li><li>Klare Reihenfolge für Massnahmen</li><li>ROI-Berechnung pro umgesetzter Massnahme</li></ul></div>
-<div class="agent-card"><h4>Menu Intelligence</h4><p>Erkennt welche Gerichte negativ auffallen, wo die Preis-Leistung kippt und ob der Instagram-Content mit dem tatsächlichen Erlebnis übereinstimmt.</p><div class="ao-label">Was bei Ihnen ankommt</div><ul class="ao-list"><li>Gericht-spezifisches Sentiment-Tracking</li><li>Preis-Leistungs-Anomalien im Wettbewerbsvergleich</li><li>Alert bei Gerichten mit negativem Trend</li></ul></div>
-<div class="agent-card"><h4>Food Waste Agent</h4><p>Trackt Abfall, korreliert mit Bestellmustern und Einkaufsdaten. Erkennt systematische Verschwendung und schlägt konkrete Reduktionsmassnahmen vor.</p><div class="ao-label">Was bei Ihnen ankommt</div><ul class="ao-list"><li>Einkaufsoptimierung basierend auf tatsächlichem Verbrauch</li><li>Lieferantenvergleich mit Kostenersparnis-Berechnung</li><li>Reduktion von Food Waste (branchentypisch 10-15%)</li></ul></div>
+<p class="team-desc">Jedes Problem in CHF beziffert. Jedes Gericht bewertet. Jeder Einkauf optimiert.</p>
+
+<div class="agent-card">
+<h4>Revenue Analyst</h4>
+<p>Beziffert jede Schwachstelle in CHF und trackt ob umgesetzte Massnahmen wirken. Der monatliche Wirkungsbericht zeigt schwarz auf weiss was Couvert.ai gebracht hat.</p>
+<div class="action-example"><div class="ae-label">So sieht das in der Praxis aus</div><p>"Empfehlung letzten Monat: Teigqualität verbessern (CHF 60K Hebel). Status: Beschwerden -40% nach Küchenchef-Briefing. Geschätzter realisierter Effekt diesen Monat: CHF 24K. Nächster Hebel: Wartezeit-Problem (CHF 80K), Massnahme wird diese Woche umgesetzt."</p></div>
+<div class="autonomy-path">
+<div class="autonomy-step active"><span class="as-phase">Monat 1</span>Monatlicher Wirkungsbericht mit CHF-Zahlen</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 3</span>Interaktiver Drill-Down pro Kategorie und Gericht</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 6</span>Trackt Massnahmen-Wirkung automatisch, priorisiert nach echtem ROI</div>
+</div>
+</div>
+
+<div class="agent-card">
+<h4>Menu Intelligence</h4>
+<p>Überwacht jeden Kartenwechsel automatisch. Vergleicht neue Gerichte mit historischem Sentiment und gibt proaktiv Einschätzungen ab - bevor die ersten Reviews kommen.</p>
+<div class="action-example"><div class="ae-label">So sieht das in der Praxis aus</div><p>Neues Gericht: Truffle Burger (CHF 34.90). Agent meldet sofort: "Preislich das teuerste im Feld. Historisch erzeugen Gerichte in dieser Preisklasse 2.3x mehr Preis-Beschwerden. Empfehlung: Preis auf CHF 29.90 oder klare Premium-Kommunikation auf der Karte und in den Socials."</p></div>
+<div class="autonomy-path">
+<div class="autonomy-step active"><span class="as-phase">Monat 1</span>Gericht-Sentiment im Monatsbericht</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 3</span>Proaktive Empfehlung bei jedem Kartenwechsel</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 6</span>Preis-Monitoring in Echtzeit mit Wettbewerbsvergleich</div>
+</div>
+</div>
+
+<div class="agent-card">
+<h4>Food Waste Agent</h4>
+<p>Korreliert Bestellmuster mit Einkaufsdaten und generiert optimierte Bestelllisten basierend auf der Auslastungsprognose der kommenden Woche.</p>
+<div class="action-example"><div class="ae-label">So sieht das in der Praxis aus</div><p>"Sie bestellen wöchentlich 15kg Burrata, aber Burrata-Gerichte machen nur 8% der Bestellungen aus. Geschätzter Waste: 4kg/Woche = CHF 6.240/Jahr. Nächste Woche: Samstag ausgebucht, Dienstag schwach. Optimierte Bestellung: Burrata 18kg (Samstag-Mehrbedarf), Rucola 8kg statt 12kg."</p></div>
+<div class="autonomy-path">
+<div class="autonomy-step active"><span class="as-phase">Monat 1</span>Waste-Analyse im Monatsbericht (wenn Daten vorhanden)</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 3</span>Wöchentliche Einkaufsempfehlung mit Kostenvergleich</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 6</span>Automatische Bestellliste basierend auf Auslastungsprognose</div>
+</div>
 </div>
 </div>
 
 <div class="team-divider"></div>
 
 <!-- TEAM 4 -->
-<div class="team-block" style="margin-top:64px">
+<div class="team-block" style="margin-top:72px">
 <div class="team-header"><span class="team-label">Team 4</span></div>
 <div class="team-name">Market & Growth</div>
-<p class="team-desc">Sie wissen was Ihr Wettbewerb macht und ob Ihr Marketing-Budget richtig sitzt.</p>
-<div class="agents-grid">
-<div class="agent-card"><h4>Marketing Engine</h4><p>Analysiert den tatsächlichen Return Ihrer Marketingausgaben. Wie viele Neukunden bringen Ihre Influencer-Kampagnen? Kommen diese Gäste wieder? Wie schneidet Influencer vs. Paid Ads ab?</p><div class="ao-label">Was bei Ihnen ankommt</div><ul class="ao-list"><li>ROI-Tracking pro Kampagne</li><li>Datenbasierte Budget-Empfehlungen</li><li>Kampagnen-Timing an Auslastung koppeln</li></ul></div>
-<div class="agent-card"><h4>Competitor Radar</h4><p>Wöchentliches Monitoring der wichtigsten Wettbewerber. Rating-Entwicklung, neue Gerichte, Preis-Änderungen, Aktivitäten auf Social Media.</p><div class="ao-label">Was bei Ihnen ankommt</div><ul class="ao-list"><li>Wöchentliches Wettbewerber-Briefing</li><li>Frühwarnung bei Rating-Veränderungen der Konkurrenz</li><li>Benchmarking: Ihre Position im Feld</li></ul></div>
+<p class="team-desc">Marketing-Budget an Ergebnisse koppeln. Wettbewerber im Blick behalten. Wachstum steuern.</p>
+
+<div class="agent-card">
+<h4>Marketing Engine</h4>
+<p>Trackt den echten ROI jeder Kampagne und koppelt Budgets automatisch an die Auslastungsprognose. Hohe Auslastung: kein Ad-Spend. Schwache Tage: gezieltes Pushing.</p>
+<div class="action-example"><div class="ae-label">So sieht das in der Praxis aus</div><p>Influencer-Kampagne letzte Woche: CHF 3.500 Budget, 280 Reichweite, 12 nachvollziehbare Reservierungen, Kosten pro Neugast CHF 292. Paid Ad parallel: CHF 400 Budget, 18 Reservierungen, Kosten pro Neugast CHF 22. Empfehlung: Budget umschichten, Influencer auf Launches begrenzen.</p></div>
+<div class="autonomy-path">
+<div class="autonomy-step active"><span class="as-phase">Monat 1</span>ROI-Analyse im Monatsbericht</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 3</span>Fertige Kampagnen-Vorschläge mit Budget und Timing</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 6</span>Kampagnen werden automatisch erstellt und an Auslastung gekoppelt</div>
+</div>
+</div>
+
+<div class="agent-card">
+<h4>Competitor Radar</h4>
+<p>Wöchentliches Monitoring der wichtigsten Wettbewerber. Erkennt Strategieänderungen und schlägt Gegenreaktionen vor.</p>
+<div class="action-example"><div class="ae-label">So sieht das in der Praxis aus</div><p>"Margheri hat diese Woche 12 neue 5-Sterne-Reviews bekommen (+300% vs. Durchschnitt) und den Pizza-Preis um CHF 2 gesenkt. Gleichzeitig läuft eine Lunch-Kampagne. Ihr Mittagsgeschäft wächst. Empfehlung: Eigenes Lunch-Special testen, Preispunkt CHF 18.90."</p></div>
+<div class="autonomy-path">
+<div class="autonomy-step active"><span class="as-phase">Monat 1</span>Monatliches Benchmarking im Report</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 3</span>Echtzeit-Alerts bei Wettbewerber-Bewegungen</div>
+<div class="autonomy-step"><span class="as-phase">Ab Monat 6</span>Automatische Gegenstrategien vorbereiten</div>
+</div>
 </div>
 </div>
 
 </div></section>
 
 <!-- DELIVERABLES -->
-<section style="background:var(--bg2)"><div class="container">
+<section><div class="container">
 <div class="section-label">Was Sie erhalten</div>
-<div class="section-title">Was im laufenden Betrieb bei Ihnen ankommt</div>
-<div class="section-sub">Ihre AI Teams erkennen laufend neue Muster, beantworten Gästestimmen, priorisieren Probleme und melden was wirklich Handlungsbedarf hat.</div>
+<div class="section-title">Reports sind der Anfang. Aktionen sind das Ziel.</div>
+<div class="section-sub">Ab Monat 1 liefern Ihre Teams Analysen und Empfehlungen. Ab Monat 3 handeln sie. Ab Monat 6 läuft der Betrieb auf Autopilot - Sie steuern nur noch.</div>
 <div class="deliv-grid">
-<div class="deliv-card"><div class="deliv-freq">Wöchentlich</div><h4>Operativ</h4><p>Bewertungen beantwortet, Alerts bei kritischen Fällen, Eskalationen an die zuständigen Personen. Ohne Ihr Zutun.</p></div>
-<div class="deliv-card"><div class="deliv-freq">Monatlich</div><h4>Management</h4><p>Impact-Report mit den wichtigsten Schwachstellen, beziffert in Franken: was sich verbessert hat, was noch offen ist, wo der grösste Hebel liegt.</p></div>
-<div class="deliv-card"><div class="deliv-freq">Quartalsweise</div><h4>Führung</h4><p>Wettbewerbs-Benchmarking, Trend-Analyse und priorisierte nächste Schritte für Küche, Service und Standortleitung.</p></div>
+<div class="deliv-card"><div class="deliv-freq">Echtzeit</div><h4>Aktionen</h4><p>Bewertungen beantwortet, Gäste kontaktiert, Alerts bei kritischen Fällen, Briefings vor Schichtbeginn. Ohne Ihr Zutun.</p></div>
+<div class="deliv-card"><div class="deliv-freq">Monatlich</div><h4>Wirkungsbericht</h4><p>Was Ihre Agents diesen Monat bewirkt haben, in CHF. Welche Massnahmen gewirkt haben, welche nicht. Was als nächstes dran ist.</p></div>
+<div class="deliv-card"><div class="deliv-freq">Quartalsweise</div><h4>Benchmarking</h4><p>Ihre Position im Wettbewerbsfeld. Rating-Trend, Preis-Vergleich, Stärken und Schwächen relativ zum Markt.</p></div>
 </div>
 </div></section>
 
