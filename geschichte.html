@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-.story-section{max-width:680px}
+.story-section{max-width:680px;margin:0 auto}
 .story-section p{font-size:17px;line-height:1.8;color:var(--text);font-weight:300;margin-bottom:24px}
 .story-section p strong{color:var(--cream);font-weight:500}
 .story-pull{font-family:'DM Serif Display',serif;font-size:clamp(22px,3vw,28px);color:var(--cream);line-height:1.4;border-left:3px solid var(--copper);padding-left:24px;margin:40px 0}
@@ -22,13 +22,13 @@
 
 <header><div class="container header-inner">
 <a href="index.html" class="logo"><div class="logo-icon"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="8" r="5.5" stroke="#C4673A" stroke-width="1.2" fill="none"/><circle cx="9" cy="8" r="2" stroke="#C4673A" stroke-width="0.8" fill="none" opacity="0.5"/><circle cx="9" cy="8" r="0.8" fill="#C4673A"/><line x1="5" y1="15" x2="13" y2="15" stroke="#C4673A" stroke-width="0.6" opacity="0.4"/></svg></div><div class="logo-name">couvert<span>.ai</span></div></a>
-<nav class="nav"><a href="team.html">AI-Team</a><a href="fallbeispiel.html">Fallbeispiel</a><a href="ablauf.html">Ablauf</a><a href="ablauf.html#faq">FAQ</a><a href="geschichte.html">Geschichte</a><a href="geschichte.html" style="color:var(--cream)">Geschichte</a><a href="https://calendly.com/hello-couvert/30min" target="_blank" class="nav-cta">Gespräch buchen</a></nav>
+<nav class="nav"><a href="team.html">AI-Team</a><a href="fallbeispiel.html">Fallbeispiel</a><a href="ablauf.html">Ablauf</a><a href="ablauf.html#faq">FAQ</a><a href="geschichte.html" style="color:var(--cream)">Geschichte</a><a href="https://calendly.com/hello-couvert/30min" target="_blank" class="nav-cta">Gespräch buchen</a></nav>
 <button class="burger" onclick="document.getElementById('mm').classList.add('open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
 </div></header>
 
 <div class="mobile-menu" id="mm">
 <button class="mm-close" onclick="document.getElementById('mm').classList.remove('open')" aria-label="Schliessen"><svg viewBox="0 0 24 24" fill="none"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
-<a href="index.html">Start</a><a href="team.html">AI-Team</a><a href="fallbeispiel.html">Fallbeispiel</a><a href="ablauf.html" onclick="document.getElementById('mm').classList.remove('open')">Ablauf & FAQ</a><a href="geschichte.html">Geschichte</a><a href="geschichte.html">Geschichte</a><a href="https://calendly.com/hello-couvert/30min" target="_blank" style="color:var(--copper)">Gespräch buchen</a>
+<a href="index.html">Start</a><a href="team.html">AI-Team</a><a href="fallbeispiel.html">Fallbeispiel</a><a href="ablauf.html" onclick="document.getElementById('mm').classList.remove('open')">Ablauf & FAQ</a><a href="geschichte.html">Geschichte</a><a href="https://calendly.com/hello-couvert/30min" target="_blank" style="color:var(--copper)">Gespräch buchen</a>
 </div>
 
 <section class="subpage-hero"><div class="container">
@@ -53,11 +53,11 @@
 
 <div class="story-pull">Das Problem war nie die Qualität der Menschen. Das Problem war die Lücke zwischen dem was passiert und dem was die Führung davon mitbekommt.</div>
 
-<p>Mein Hintergrund ist AI Engineering. Ich baue seit Jahren autonome Systeme - Agents die eigenständig Daten auswerten, Entscheidungen treffen und Prozesse steuern. Bei Big Tech habe ich gesehen wie Unternehmen mit Milliarden-Umsatz jede Kundeninteraktion tracken, jedes Signal auswerten und in Echtzeit darauf reagieren. In der Gastronomie passiert davon fast nichts. Die Daten sind da - in den Bewertungen, im Reservierungssystem, in der Speisekarte, im Schichtplan. Aber niemand liest sie zusammen.</p>
+<p>Ich komme aus der Tech-Branche. Bei einem der grossen Tech-Unternehmen habe ich gesehen wie Firmen mit Milliarden-Umsatz jede Kundeninteraktion tracken, jedes Signal auswerten und in Echtzeit darauf reagieren. In der Gastronomie passiert davon fast nichts. Die Daten sind da - in den Bewertungen, im Reservierungssystem, in der Speisekarte, im Schichtplan. Aber niemand liest sie zusammen.</p>
 
 <p>Also habe ich angefangen. Erst für diesen einen Betrieb. Ich habe 2.825 Bewertungen analysiert, jede einzelne kategorisiert, die Muster quantifiziert und in Franken übersetzt. Ich habe die Speisekarte mit dem Gästefeedback abgeglichen, die Wettbewerber durchleuchtet und ein Financial Impact Model gebaut. Das Ergebnis: <strong>CHF 390.000+ an identifiziertem Umsatzverlust pro Jahr</strong> - allein durch drei Schwachstellen die mit den richtigen Werkzeugen sofort adressierbar sind.</p>
 
-<p>Dann habe ich die AI Agents gebaut. Nicht ein Dashboard. Nicht ein Chatbot. Autonome Agents die eigenständig arbeiten - jeder spezialisiert auf eine Aufgabe. Der Reputation Manager liest jede neue Bewertung und antwortet in der Tonalität des Betriebs, in vier Sprachen, innerhalb von Stunden. Der Quality Watchdog erkennt Beschwerde-Muster und alarmiert bevor sie im Rating sichtbar werden. Der Revenue Analyst beziffert jede Schwachstelle in CHF. Vier Teams, elf Agents - ein komplettes AI Operations Team das im Hintergrund läuft, lernt und handelt.</p>
+<p>Dann habe ich die AI Agents gebaut. Autonome Agents die eigenständig arbeiten - jeder spezialisiert auf eine Aufgabe. Der Reputation Manager liest jede neue Bewertung und antwortet in der Tonalität des Betriebs, in vier Sprachen, innerhalb von Stunden. Der Quality Watchdog erkennt Beschwerde-Muster und alarmiert bevor sie im Rating sichtbar werden. Der Revenue Analyst beziffert jede Schwachstelle in CHF. Vier Teams, elf Agents - ein komplettes AI Operations Team das im Hintergrund läuft und handelt.</p>
 
 <div class="story-pull">Couvert.ai ist entstanden weil ich an einem Tisch sass, jeden Tag, und gesehen habe was möglich wäre - wenn nur jemand die Daten liest.</div>
 
@@ -80,8 +80,7 @@
 
 <footer><div class="container">
 <div class="footer-inner"><div class="footer-left">© 2026 COUVERT.AI - ZÜRICH</div><div class="footer-right">Jedes Gedeck zählt.</div></div>
-<div class="footer-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="mailto:hello@couvert.ai">hello@couvert.ai</a></div>
-<div class="footer-trust"><span>Daten in der Schweiz</span><span>Monatlich kündbar</span><span>Gegründet in Zürich</span></div>
+<div class="footer-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="mailto:hello@couvert.ai">hello@couvert.ai</a><div class="footer-trust"><span>Daten in der Schweiz</span><span>Monatlich kündbar</span><span>Gegründet in Zürich</span></div></div>
 </div></footer>
 
 </body>
