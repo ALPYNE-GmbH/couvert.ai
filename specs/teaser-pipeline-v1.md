@@ -44,10 +44,10 @@ V1 Scope dieser Spezifikation: **nur die TEASER-Box.**
 
 | Schritt | Touchpoint | Aktion | Zeit |
 |---|---|---|---|
-| 1 | `couvert.ai/scan` | Google-Maps-URL eingeben | 10 s |
+| 1 | `scan.couvert.ai` | Google-Maps-URL eingeben | 10 s |
 | 2 | Same page | Email-Gate (Pflichtfeld Business-Email) | 10 s |
 | 3 | Confirmation screen | "Ihr Teaser ist in 5 Minuten in Ihrer Inbox" | — |
-| 4 | Email (async) | PDF-Anhang + 1 CTA-Button "Erstgespräch buchen" | 5–10 min |
+| 4 | Email (async) | PDF als Anhang **und** als signierter Link (Fallback bei Spamfiltern) + 1 CTA-Button "Erstgespräch buchen" | 5–10 min |
 | 5 | PDF geöffnet | 6-Agent-Teaser gelesen, CTA geklickt | 2–5 min |
 | 6 | Calendly | Termin wird gebucht | 1 min |
 
@@ -430,9 +430,11 @@ Gib das Ergebnis via `reputation_manager_output` Tool zurück.
 |---|---|---|---|
 | 1 | Rechtsgrundlage unsolicited Teaser-Versand | 🟡 soft | Nach Deep Research |
 | 2 | Preispunkt Calendly-Gespräch: 0 CHF oder Qualifier? | 🟢 | MV |
-| 3 | Email-Domain: `couvert.ai` oder `scan.couvert.ai`? | 🟢 | MV |
-| 4 | PDF-Anhang oder Link zum PDF? | 🟢 | MV (Empfehlung: Anhang, aber Link in der Email auch, falls Anhang geblockt) |
-| 5 | Annahme Bon/Jahresumsatz für Revenue Analyst bei unbekanntem Betrieb? | 🟡 | MV (Empfehlung: Range basierend auf Google-Kategorie + Standort) |
+
+**Bereits entschieden:**
+- Email-Domain: `scan.couvert.ai` (eigene Subdomain für Produkt-Isolation und saubere Email-Deliverability)
+- PDF-Delivery: **beides** — als Anhang (primär, fühlt sich greifbar an) **und** als signierter Link (Fallback bei Corporate-Spamfiltern, zusätzlich Tracking möglich)
+- Revenue-Heuristik: siehe neues Kapitel 18
 
 ---
 
@@ -457,6 +459,104 @@ Gib das Ergebnis via `reputation_manager_output` Tool zurück.
 4. **Pipeline-Skeleton** mit Inngest, Outscraper, Firecrawl
 5. **Friendly-Testing mit 5 bekannten Restaurants** (warme Kontakte)
 6. **Launch** — `couvert.ai/scan` öffentlich
+
+---
+
+## 18. Revenue-Estimation-Heuristik (für Revenue Analyst ohne interne Daten)
+
+Der Revenue Analyst braucht eine belastbare Jahresumsatz-Schätzung als Input für
+das Verlust-Modell (Dunkelziffer, Rating-Effekt etc.) — auch wenn der Gastronom
+uns noch keine Zahlen gegeben hat.
+
+**Grundprinzip:** Alle drei Inputs aus öffentlichen Daten ableiten, dann
+triangulieren. Die Schätzung ist eine **Range mit ±30 % Konfidenz**, nicht ein
+Punktwert — im Report klar so dargestellt.
+
+### 18.1 Durchschnittlicher Bon pro Gast
+
+Aus der gescrapten Speisekarte:
+
+```typescript
+function estimateAvgBon(menu: Menu): number {
+  const mains = menu.mainCourses.map(i => i.price)
+  const apps = menu.appetizers.map(i => i.price)
+  const desserts = menu.desserts.map(i => i.price)
+  const drinks = menu.drinks.map(i => i.price)
+
+  const avgMain = median(mains)
+  const avgApp = median(apps)
+  const avgDessert = median(desserts)
+  const avgDrink = median(drinks)
+
+  // Typical guest: 1 main + 0.5 appetizer + 0.3 dessert + 1.2 drinks + 10% tip
+  const bon = avgMain + avgApp * 0.5 + avgDessert * 0.3 + avgDrink * 1.2
+  return bon * 1.10  // Trinkgeld
+}
+```
+
+**Realitäts-Check:** Für 60 Seconds to Napoli mit CHF 25.50 avg Pizza →
+geschätzter Bon ~CHF 48. Der tatsächliche Bon-Wert im echten Report:
+CHF 50. Abweichung < 5 %.
+
+### 18.2 Geschätztes Gäste-Volumen pro Jahr
+
+Aus Review-Zeitreihe:
+
+```typescript
+function estimateAnnualGuests(reviews: Review[], restaurantOpenSince: Date): number {
+  const reviewsPerYear = reviews.length / yearsSinceOpen(restaurantOpenSince)
+
+  // Review-Rate je Cuisine-Typ (empirisch, wird über Zeit kalibriert)
+  const REVIEW_RATIO = {
+    "italian": 0.008,   // 0.8 % der Gäste hinterlassen Review
+    "japanese": 0.012,
+    "casual_fine": 0.010,
+    "fine_dining": 0.018,
+    "fast_casual": 0.005,
+    "default": 0.010
+  }
+
+  const ratio = REVIEW_RATIO[cuisine] || REVIEW_RATIO.default
+  return reviewsPerYear / ratio
+}
+```
+
+**Triangulationscheck:** Wenn eine zweite Datenquelle (z. B. OpenTable Buchungen,
+Google "Beliebte Zeiten", Lieferdienst-Bestellvolumen) verfügbar ist, wird der Wert
+kalibriert. Bei >30 % Abweichung zwischen Quellen: Warning in QA-Pipeline.
+
+### 18.3 Jahresumsatz-Range
+
+```typescript
+function estimateAnnualRevenue(bon: number, guests: number): [number, number] {
+  const pointEstimate = bon * guests
+  return [pointEstimate * 0.7, pointEstimate * 1.3]
+}
+```
+
+Ergebnis wird im Report **nie als Punktwert** kommuniziert, sondern als Range:
+> *"Basierend auf Speisekarte und Review-Zeitreihe schätzen wir den Jahresumsatz
+> auf CHF 4.5 – 8.5 Millionen."*
+
+### 18.4 Auslastungsmuster aus Review-Timestamps
+
+Reviews tragen `published_at`-Timestamps. Daraus ableitbar:
+
+- **Wochentag-Verteilung** der Reviews → Proxy für Besuchs-Verteilung
+- **Saisonalität** (Monat für Monat über Jahre)
+- **Stosszeiten-Indikator** — nicht präzise, aber Trend
+
+Wird im Operations-Advisor-Output als **"44 % der Reviews stammen vom
+Wochenende"**-Insight verwendet (statt "44 % des Umsatzes").
+
+### 18.5 Sitzplatzzahl-Schätzung
+
+Quellen in Reihenfolge der Zuverlässigkeit:
+
+1. Restaurant-Website ("90 Plätze innen")
+2. OpenTable/Quandoo API (Reservierungs-Grid-Grösse)
+3. Google Maps Fotos (AI-basierte Stuhlzählung, V2)
+4. Fallback: Median des Cuisine-Types im lokalen Markt
 
 ---
 

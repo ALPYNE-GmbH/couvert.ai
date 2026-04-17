@@ -424,7 +424,9 @@ Minimal-Interface für MV/Team:
 
 ---
 
-## 13. Kostenmodell
+## 13. Kostenmodell & Unit Economics
+
+### 13.1 Cost of Goods Sold (COGS)
 
 | Posten | Pro Report | @ 100/Monat | @ 500/Monat |
 |---|---|---|---|
@@ -434,15 +436,81 @@ Minimal-Interface für MV/Team:
 | Chart-Rendering | $0 | $0 | $0 |
 | PDF-Storage (R2) | $0.05 | $5 | $25 |
 | Stripe-Gebühren (2.9%+0.30) | CHF 131 | CHF 13'100 | CHF 65'500 |
-| **Total Cost of Goods** | **~CHF 137** | **~CHF 13'700** | **~CHF 68'500** |
+| **Total COGS** | **~CHF 137** | **~CHF 13'700** | **~CHF 68'500** |
 | **Umsatz** (CHF 4'500 × N) | | **CHF 450'000** | **CHF 2'250'000** |
 | **Gross Margin** | **97 %** | **97 %** | **97 %** |
 
-**Customer Acquisition Cost (Paid Ads):**
-- Annahme: CHF 100 CAC pro Lead, 2 % Conversion = CHF 5'000 CAC pro Kauf
-- Bei CHF 4'500 Ticket: **LTV/CAC negativ im Standalone** ❌
-- Lösung: Tier 1 ist Entry-Point. Echter LTV = Tier 1 + Aufbauphase + 12 Monate Managed = CHF 4'500 + CHF 5'000 + 12 × CHF 2'500 = CHF 39'500
-- Bei 20 % Conversion in Managed Service: Blended LTV ~CHF 11'400 → CAC/LTV > 2 ✓
+### 13.2 Lifetime Value (LTV)
+
+Tier 1 ist Entry-Point in den gesamten Funnel. Der echte Kundenwert kommt aus
+den Folge-Phasen:
+
+| Produkt | Revenue |
+|---|---|
+| Tier 1 Report | CHF 4'500 (einmalig) |
+| Aufbauphase (Phase 2) | CHF 5'000 (einmalig) |
+| Managed Service (Phase 3) | CHF 2'500 × 12 = CHF 30'000 / Jahr |
+| **Full-Funnel-Kunde (Jahr 1)** | **CHF 39'500** |
+
+**Blended LTV** bei Konversions-Annahmen:
+- 100 % bezahlen Tier 1
+- 20 % konvertieren in Aufbauphase + Managed Service
+
+```
+Blended LTV = 4'500 + 0.20 × (5'000 + 30'000) = CHF 11'500
+```
+
+### 13.3 Customer Acquisition Cost (CAC) — Kanal-Mix
+
+Realistischer Lead-Mix für Schweizer Gastronomie-B2B:
+
+| Kanal | Anteil am Lead-Mix | CAC pro Kunde |
+|---|---|---|
+| Word-of-Mouth (Kunde empfiehlt Peer) | ~25 % | CHF 0 |
+| LinkedIn Organic (Founder-Content, Gastro-Netzwerk) | ~25 % | ~CHF 200 (Zeit) |
+| Direct Outreach (Teaser als Opener) | ~20 % | ~CHF 500 (Zeit) |
+| Paid Ads (Meta/LinkedIn) | ~30 % | CHF 4'000–5'000 |
+| **Blended CAC** | — | **~CHF 1'500** |
+
+**Warum Word-of-Mouth in Swiss Gastro stark ist:**
+1. Kleine, vernetzte Community — Zürcher Gastronomen kennen sich über Lieferanten,
+   Events, Verbände
+2. Vertrauensökonomie — bei CHF 4'500+ wird nicht gegoogelt, sondern gefragt
+3. Report ist **talkable content** — ein CHF 390K-Verlust-Befund wird im Kreis
+   4 zwischen Inhabern geteilt
+4. Gegensatz zu klassischer Beratung: Ein Couvert-Report darf man zeigen,
+   eine McKinsey-Analyse nicht
+
+**Design-Implikation:** Der Report muss **teilbar** sein. Klare Snapshots,
+eigene Share-URL (anonymisierbar), Copy-paste-Zitate. Virality-Features gehören
+von Anfang an in den Report.
+
+### 13.4 LTV / CAC
+
+```
+LTV / CAC = 11'500 / 1'500 = 7.7
+```
+
+**Einordnung:**
+- < 1 → Geld verbrennen
+- 1–3 → dünnes Eis
+- 3–5 → gesund (SaaS-Benchmark)
+- **7.7 → Top-Quartile B2B**
+- 10+ → Geldmaschine
+
+### 13.5 Szenarien
+
+| Szenario | Blended CAC | LTV | LTV/CAC | Payback |
+|---|---|---|---|---|
+| **Launch** (Founder-led, starkes Netzwerk) | CHF 800 | CHF 11'500 | 14.4 | < 1 Monat |
+| **Scale** (Word-of-Mouth greift) | CHF 1'500 | CHF 11'500 | 7.7 | 1–2 Monate |
+| **Reifemarkt** (WoM-Potenzial schwindet) | CHF 2'500 | CHF 11'500 | 4.6 | 2–3 Monate |
+| **Stress-Test** (nur Paid, schwache Conversion) | CHF 5'000 | CHF 11'500 | 2.3 | 5 Monate |
+
+**Wichtig:** Der stärkste Hebel ist nicht der Preis, sondern die
+**Managed-Service-Conversion-Rate**. Jeder Prozentpunkt dort verschiebt LTV
+massiv. Deshalb ist Tier 1 primär als **qualifizierender Sales-Schritt**
+zu verstehen, nicht als Standalone-Produkt.
 
 ---
 
@@ -453,7 +521,17 @@ Minimal-Interface für MV/Team:
 Zusätzliche Tier-1-spezifische Punkte:
 
 - **Kaufvertrag & AGB:** Klarer Leistungsumfang, Widerrufsrecht, Garantie
-- **Geld-zurück-Garantie:** 30 Tage, unkompliziert — senkt Einstiegshürde, stärkt Trust
+- **Accuracy Guarantee** (ersetzt bedingungslose Geld-zurück-Garantie):
+  - Erstattung **nur** bei nachweisbar falschen sachlichen Aussagen im Report
+    (z. B. falsche Zahl, erfundenes Zitat, falsche Wettbewerberzuordnung)
+  - Kunde muss die fehlerhafte Stelle konkret benennen
+  - Wir prüfen innerhalb 7 Werktagen und korrigieren oder erstatten anteilig
+  - Begründung: "unzufrieden" ist kein Erstattungsgrund — das ist eine
+    strategische Analyse, keine Produkt-Probe. Bedingungslose Rückgabe wäre ein
+    Einladungsschild für Bad-Faith-Käufer, die Insights extrahieren und danach
+    Geld zurückverlangen
+  - Kommunikation: "Jede Zahl ist nachvollziehbar. Jedes Zitat ist echt. Sollte
+    uns ein sachlicher Fehler unterlaufen, erstatten wir."
 - **DSGVO/nDSG:** Report enthält identifizierbare Drittpersonen (Review-Verfasser) — Anonymisierung zwingend
 - **UWG-Risiko:** Wettbewerbsvergleich namentlich → Zurückhaltung bei bewertender Sprache
 - **MWST:** CHF 4'500 inkl. oder exkl. 8.1 % MWST? Empfehlung: **exkl.** für B2B-Klarheit
@@ -492,13 +570,13 @@ Zusätzliche Tier-1-spezifische Punkte:
 
 | # | Risiko | Wahrscheinlichkeit | Impact | Mitigation |
 |---|---|---|---|---|
-| 1 | Report wird als "AI-Schrott" wahrgenommen | Mittel | Hoch | Hybrid-Transparenz + Top-Qualität + Geld-zurück-Garantie |
+| 1 | Report wird als "AI-Schrott" wahrgenommen | Mittel | Hoch | Hybrid-Transparenz + Top-Qualität + Accuracy Guarantee |
 | 2 | Halluzinierte CHF-Werte führen zu Shitstorm | Niedrig | Sehr hoch | Deterministic Calc-Engine + Pre-Render-Validator |
 | 3 | Legal: nDSG-Beschwerde wegen Review-Verfassernamen | Niedrig | Mittel | Strikte Anonymisierung |
 | 4 | Legal: UWG wegen Wettbewerbsvergleich | Niedrig | Mittel | Sprache neutral, kein Bewerten |
 | 5 | Paid-Ads-CAC höher als modelliert | Mittel | Mittel | LTV durch Upsell in Managed Service |
 | 6 | QA-Review wird zum Bottleneck | Niedrig | Hoch | Automatische QA macht 90 %, nur Red Flags manuell |
-| 7 | Refund-Rate > 15 % tötet Margin | Niedrig | Hoch | Test mit Friendly-Accounts, Review-Prompts iterieren |
+| 7 | Accuracy-Claims → mehr Refunds als erwartet | Niedrig | Mittel | Deterministische Calc-Engine + Auto-QA. Kunde muss Fehler nachweisen. |
 | 8 | Scraping-Provider fällt aus (Outscraper etc.) | Niedrig | Hoch | Mindestens 2 Fallback-Provider eingeplant |
 | 9 | Google-API-Sperre gegen Scraper eskaliert | Niedrig | Hoch | Rate-Limit auf eigener Seite, Provider-Rotation |
 | 10 | Kunde verlangt Rohdaten / detaillierte Methodik | Mittel | Niedrig | Methodik-Seite im Report + FAQ vorbereiten |
@@ -509,13 +587,16 @@ Zusätzliche Tier-1-spezifische Punkte:
 
 | # | Frage | Blocker? | Wer entscheidet |
 |---|---|---|---|
-| 1 | Preisanker: CHF 4'500 bleibt, oder Launch-Preis CHF 2'900 für ersten 50? | 🟡 | MV |
-| 2 | Geld-zurück-Garantie: bedingungslos 30 Tage oder mit Begründung? | 🟢 | MV |
-| 3 | Zahlung: nur CHF oder auch EUR/USD? | 🟢 | MV (Empfehlung: Launch CH-only) |
-| 4 | Report-Sprache: nur DE oder zusätzlich EN? | 🟢 | MV (Empfehlung: DE V1, EN in Phase 3) |
-| 5 | Hybrid-Transparenz: exakte Wording auf Landing-Page | 🟡 | MV + Research |
-| 6 | Tier-2-Pricing: CHF 9'500 oder anders? | 🟢 | MV |
-| 7 | QA-Freigabe: wie lange akzeptabel? 30 Min vs. 4 h | 🟢 | MV (Empfehlung: max. 2 h am Werktag) |
+| 1 | Zahlung: nur CHF oder auch EUR/USD? | 🟢 | MV (Empfehlung: Launch CH-only) |
+| 2 | Report-Sprache: nur DE oder zusätzlich EN? | 🟢 | MV (Empfehlung: DE V1, EN in Phase 3) |
+| 3 | Hybrid-Transparenz: exakte Wording auf Landing-Page | 🟡 | MV + Research |
+
+**Bereits entschieden:**
+- **Preis:** CHF 4'500 ab Tag 1. Keine Launch-Rabatte. *"Wir verramschen nicht."*
+- **Garantie:** **Accuracy Guarantee** statt bedingungslose Geld-zurück. Erstattung
+  nur bei nachweisbar falschen Aussagen im Report (siehe Kap. 14).
+- **Tier-2-Pricing:** CHF 9'500 bestätigt.
+- **QA-Freigabe-Zeit:** max. 2 h an Werktagen, max. 24 h über Wochenende.
 
 ---
 
@@ -529,7 +610,7 @@ Zusätzliche Tier-1-spezifische Punkte:
 - [ ] 3 Friendly-Customer-Zahlungen real (CHF 4'500 je), Feedback strukturiert erhoben
 - [ ] Legal-Section (Kap. 14) vom Anwalt abgenommen
 - [ ] Landing-Page mit Checkout-CTA live
-- [ ] Refund-Flow getestet (Stripe-Refund + DB-Cleanup)
+- [ ] Accuracy-Guarantee-Workflow getestet (Customer meldet Fehler → Prüfung → Korrektur oder Refund)
 - [ ] Tier-2-Upsell-Link im Report funktional
 
 ---
