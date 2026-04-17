@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logo-Varianten mise.ai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1A3C34;
+  --bg2:#162F29;
+  --bg3:#12261F;
+  --copper:#C4673A;
+  --gold:#E8B931;
+  --cream:#F5F0EB;
+  --cream-bright:#FAF7F2;
+  --text:#E0DCD6;
+  --text-dim:#9B958C;
+  --border:#2A4A42;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg3);font-family:'DM Sans',sans-serif;color:var(--text);-webkit-font-smoothing:antialiased;padding:40px 24px}
+.wrap{max-width:1100px;margin:0 auto}
+
+.intro{margin-bottom:40px;padding-bottom:28px;border-bottom:1px solid var(--border)}
+.intro h1{
+  font-family:'DM Serif Display',serif;
+  font-size:32px;
+  color:var(--cream-bright);
+  letter-spacing:-0.5px;
+  margin-bottom:10px;
+}
+.intro p{font-size:15px;color:var(--text-dim);font-weight:300;max-width:720px;line-height:1.6}
+.intro p strong{color:var(--cream);font-weight:500}
+
+.grid{display:grid;gap:16px}
+.row{background:var(--bg);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.row-head{
+  padding:14px 24px;
+  background:var(--bg2);
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.row-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--copper);
+}
+.row-title{font-family:'DM Serif Display',serif;font-size:17px;color:var(--cream)}
+.row-note{font-size:12.5px;color:var(--text-dim);font-weight:300;max-width:520px}
+
+.row-body{display:grid;grid-template-columns:1fr 1fr}
+.stage{
+  padding:64px 32px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:160px;
+}
+.stage.dark{background:var(--bg)}
+.stage.light{background:#FAF7F2;border-left:1px solid var(--border)}
+
+.wm{
+  font-family:'DM Serif Display',serif;
+  font-size:64px;
+  letter-spacing:-0.8px;
+  line-height:1;
+  display:inline-flex;
+  align-items:baseline;
+  position:relative;
+}
+.stage.dark .wm{color:var(--cream-bright)}
+.stage.light .wm{color:#1F2B27}
+
+/* Dot helper, custom i-tittle, custom trailing dot */
+.wm .suffix{color:var(--text-dim)}
+.stage.light .wm .suffix{color:#4A5853}
+
+/* VARIANTE A · Pur
+   Der Punkt vor "ai" in Kupfer, Rest standard */
+.vA .dot-ai{color:var(--copper)}
+
+/* VARIANTE B · Twin Dots (Empfehlung)
+   Beide i-Tittel (in "mise" UND in "ai") in Kupfer, exakt gleiche Höhe und Grösse.
+   Dafür ersetzen wir beide i durch punktloses "ı" und setzen identische Kupfer-Tittel.
+   Der Punkt vor "ai" bleibt ruhig im Body-Ton, damit die Zwei-Punkt-Figur klar liest. */
+.vB .i-base{position:relative;display:inline-block}
+.vB .i-base::after{
+  content:'';
+  position:absolute;
+  left:50%;
+  top:0.07em;
+  transform:translateX(-50%);
+  width:0.16em;
+  height:0.16em;
+  border-radius:50%;
+  background:var(--copper);
+}
+.vB .dot-ai{color:inherit;opacity:0.55}
+
+/* VARIANTE C · Gedeck-Tittel
+   Der i-Tittel wird zum Mini-Teller mit innerem Ring. Der Punkt vor "ai" bleibt Kupfer.
+   Explizit Gedeck-Metapher. */
+.vC .i-base{position:relative;display:inline-block}
+.vC .i-base::after{
+  content:'';
+  position:absolute;
+  left:50%;
+  top:0.04em;
+  transform:translateX(-50%);
+  width:0.20em;
+  height:0.20em;
+  border-radius:50%;
+  background:var(--copper);
+}
+.vC .i-base::before{
+  content:'';
+  position:absolute;
+  left:50%;
+  top:0.08em;
+  transform:translateX(-50%);
+  width:0.10em;
+  height:0.10em;
+  border-radius:50%;
+  background:var(--cream);
+  z-index:2;
+}
+.stage.light .vC .i-base::before{background:#FAF7F2}
+.vC .dot-ai{color:inherit;opacity:0.55}
+
+/* VARIANTE D · Monogramm-Ergänzung
+   Nur für Favicons & Mini-Plätze. "m." als Kurzform.
+*/
+.vD-logo{
+  width:72px;height:72px;
+  border-radius:8px;
+  background:var(--copper);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--cream);
+  font-family:'DM Serif Display',serif;
+  font-size:44px;
+  letter-spacing:-1px;
+}
+.vD-logo .tdot{color:var(--gold);margin-left:-2px}
+.stage.light .vD-logo{background:#1A3C34;color:var(--cream-bright)}
+
+/* Small demos */
+.small-demo{
+  padding:28px 24px;
+  background:var(--bg2);
+  border-top:1px solid var(--border);
+  display:flex;
+  gap:28px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.small-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--text-dim);
+}
+.small-demo .wm{color:var(--cream)}
+
+/* Favicon preview block */
+.favicons{
+  display:flex;
+  gap:16px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.fav{
+  width:48px;height:48px;
+  border-radius:8px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'DM Serif Display',serif;
+  font-weight:400;
+  position:relative;
+}
+.fav.big{width:72px;height:72px;font-size:28px}
+.fav-dark{background:var(--bg);color:var(--cream-bright);border:1px solid var(--border)}
+.fav-copper{background:var(--copper);color:var(--cream)}
+.fav-cream{background:#FAF7F2;color:#1F2B27}
+.fav .cop-dot{color:var(--copper)}
+.fav.big .cop-dot{color:var(--gold)}
+.fav-copper .cop-dot{color:var(--gold)}
+
+.recommend{
+  margin-top:40px;
+  padding:24px 28px;
+  background:var(--bg);
+  border:1px solid var(--copper);
+  border-radius:6px;
+}
+.recommend-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--copper);
+  margin-bottom:10px;
+}
+.recommend-title{
+  font-family:'DM Serif Display',serif;
+  font-size:22px;
+  color:var(--cream-bright);
+  margin-bottom:12px;
+  letter-spacing:-0.3px;
+}
+.recommend-text{font-size:14.5px;line-height:1.65;color:var(--text);font-weight:300;margin-bottom:14px}
+.recommend-text strong{color:var(--cream);font-weight:500}
+.recommend-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:grid;
+  gap:8px;
+}
+.recommend-list li{
+  padding:10px 14px;
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:4px;
+  font-size:13.5px;
+  color:var(--text);
+  display:flex;
+  gap:12px;
+}
+.recommend-list li .r-tag{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--copper);
+  flex-shrink:0;
+  width:86px;
+}
+
+.tagline-row{
+  padding:22px 28px;
+  background:var(--bg2);
+  border-top:1px solid var(--border);
+}
+.tagline-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--text-dim);
+  margin-bottom:10px;
+}
+.tagline-text{
+  font-family:'DM Serif Display',serif;
+  font-size:22px;
+  color:var(--cream);
+  line-height:1.3;
+  letter-spacing:-0.2px;
+}
+.tagline-text .sub{
+  display:block;
+  font-family:'DM Sans',sans-serif;
+  font-size:14px;
+  color:var(--text-dim);
+  font-weight:300;
+  margin-top:6px;
+  letter-spacing:0;
+}
+
+@media(max-width:700px){
+  .row-body{grid-template-columns:1fr}
+  .stage.light{border-left:none;border-top:1px solid var(--border)}
+  .stage{padding:44px 20px;min-height:auto}
+  .wm{font-size:46px}
+  .small-demo{flex-direction:column;align-items:flex-start;gap:14px}
+  .intro h1{font-size:24px}
+  .tagline-text{font-size:18px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="intro">
+    <h1>mise.ai · Logo-Varianten</h1>
+    <p>
+      <strong>Mise en place</strong> ist das Berufs-Ethos: alles bereit, alles in Position, bevor der Service startet. Genau das tut unsere AI. Der Name spart Erklärung. Typografisch haben wir einen Vorteil: <strong>zwei natürliche Punkte</strong>. Der Tittel auf dem <em>i</em> und der Punkt vor <em>ai</em>. Aus diesen zwei Elementen machen wir die Markensignatur.
+    </p>
+  </div>
+
+  <div class="grid">
+
+    <!-- Variante A · Pur -->
+    <div class="row">
+      <div class="row-head">
+        <div>
+          <div class="row-label">Variante A · Pur</div>
+          <div class="row-title">Nur der Punkt vor "ai" in Kupfer</div>
+        </div>
+        <div class="row-note">Minimale Intervention, maximale Lesbarkeit. Sicherste Wahl wenn der Markenauftritt möglichst ruhig bleiben soll.</div>
+      </div>
+      <div class="row-body">
+        <div class="stage dark"><span class="wm vA">mise<span class="dot-ai">.</span><span class="suffix">ai</span></span></div>
+        <div class="stage light"><span class="wm vA">mise<span class="dot-ai">.</span><span class="suffix">ai</span></span></div>
+      </div>
+      <div class="small-demo">
+        <span class="small-label">Header · 22px</span>
+        <span class="wm vA" style="font-size:22px">mise<span class="dot-ai">.</span><span class="suffix">ai</span></span>
+        <span class="small-label" style="margin-left:auto">Footer · 14px</span>
+        <span class="wm vA" style="font-size:14px">mise<span class="dot-ai">.</span><span class="suffix">ai</span></span>
+      </div>
+    </div>
+
+    <!-- Variante B · Twin Dots (Empfehlung) -->
+    <div class="row" style="border-color:var(--copper)">
+      <div class="row-head" style="background:rgba(196,103,58,0.08)">
+        <div>
+          <div class="row-label">Variante B · Twin Dots · Empfehlung</div>
+          <div class="row-title">i-Tittel und .ai-Punkt beide in Kupfer</div>
+        </div>
+        <div class="row-note">Zwei Punkte, ein Rhythmus. Signatur-Figur ohne dass ein Icon dazukommt. "Mise" heisst in Position gebracht, exakt das, was die zwei Punkte tun.</div>
+      </div>
+      <div class="row-body">
+        <div class="stage dark"><span class="wm vB">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span></div>
+        <div class="stage light"><span class="wm vB">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span></div>
+      </div>
+      <div class="small-demo">
+        <span class="small-label">Header · 22px</span>
+        <span class="wm vB" style="font-size:22px">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+        <span class="small-label">Body · 17px</span>
+        <span class="wm vB" style="font-size:17px">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+        <span class="small-label" style="margin-left:auto">Footer · 14px</span>
+        <span class="wm vB" style="font-size:14px">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+      </div>
+    </div>
+
+    <!-- Variante C · Gedeck-Tittel -->
+    <div class="row">
+      <div class="row-head">
+        <div>
+          <div class="row-label">Variante C · Gedeck-Tittel</div>
+          <div class="row-title">i-Tittel wird zum Mini-Teller mit Innenring</div>
+        </div>
+        <div class="row-note">Explizite Gedeck-Metapher, subtil aber eigen. Risiko: der Innenring bricht bei sehr kleinen Grössen. Gut als Hero-Ausprägung, nicht für Favicon.</div>
+      </div>
+      <div class="row-body">
+        <div class="stage dark"><span class="wm vC">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span></div>
+        <div class="stage light"><span class="wm vC">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span></div>
+      </div>
+      <div class="small-demo">
+        <span class="small-label">Header · 22px</span>
+        <span class="wm vC" style="font-size:22px">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+        <span class="small-label" style="margin-left:auto">Footer · 14px (Ring verschwindet)</span>
+        <span class="wm vC" style="font-size:14px">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+      </div>
+    </div>
+
+    <!-- Variante D · Favicon/Monogramm -->
+    <div class="row">
+      <div class="row-head">
+        <div>
+          <div class="row-label">Variante D · Favicon &amp; Monogramm</div>
+          <div class="row-title">m. als Kurzform für Mini-Plätze</div>
+        </div>
+        <div class="row-note">Wo der Platz für die volle Wortmarke fehlt: Browser-Tab, App-Icon, Social-Avatar, Telegram-Bot. Nur dort, nicht im Header.</div>
+      </div>
+      <div class="row-body">
+        <div class="stage dark">
+          <div class="favicons">
+            <div class="fav fav-dark">m<span class="cop-dot">.</span></div>
+            <div class="fav fav-copper">m<span class="cop-dot">.</span></div>
+            <div class="fav big fav-dark">m<span class="cop-dot">.</span></div>
+            <div class="fav big fav-copper">m<span class="cop-dot">.</span></div>
+          </div>
+        </div>
+        <div class="stage light">
+          <div class="favicons">
+            <div class="fav fav-cream" style="border:1px solid #D8D1C3">m<span class="cop-dot">.</span></div>
+            <div class="fav fav-copper">m<span class="cop-dot">.</span></div>
+            <div class="fav big fav-cream" style="border:1px solid #D8D1C3">m<span class="cop-dot">.</span></div>
+            <div class="fav big fav-copper">m<span class="cop-dot">.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tagline-Check -->
+    <div class="row">
+      <div class="row-head">
+        <div>
+          <div class="row-label">Tagline-Check</div>
+          <div class="row-title">Was mit Mise besser klingt</div>
+        </div>
+        <div class="row-note">Die bestehenden Taglines funktionieren, eine neue Sub-Line bietet sich an.</div>
+      </div>
+      <div class="tagline-row">
+        <div class="tagline-label">Primary, unverändert</div>
+        <div class="tagline-text">Mehr Wert an jedem Tisch.</div>
+      </div>
+      <div class="tagline-row">
+        <div class="tagline-label">Footer, unverändert</div>
+        <div class="tagline-text" style="font-style:italic;color:var(--copper)">Jedes Gedeck zählt.</div>
+      </div>
+      <div class="tagline-row">
+        <div class="tagline-label">Neu möglich · Sub-Line</div>
+        <div class="tagline-text">Mise en place für den Betrieb.
+          <span class="sub">Bringt die richtige Information zur richtigen Person, bevor der Service startet.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="recommend">
+    <div class="recommend-label">Empfehlung</div>
+    <div class="recommend-title">Variante B (Twin Dots) als Primary. Variante D nur für Favicon. Rest streichen.</div>
+    <div class="recommend-text">
+      Die Twin-Dot-Lösung ist ehrlich und selbstverständlich zugleich. Sie nutzt was die Wortmarke ohnehin mitbringt, fügt nichts hinzu, und erzeugt trotzdem einen wiedererkennbaren Mikro-Rhythmus. Beide Punkte landen auf etwa gleicher Höhe, das Auge liest sie als Paar. Das ist genau das semantische Bild von <em>mise en place</em>: zwei Dinge, exakt platziert, bereit.
+    </div>
+    <ul class="recommend-list">
+      <li><span class="r-tag">Header-Web</span>Variante B, 22px, Kupfer-Punkte auf Tiefgrün.</li>
+      <li><span class="r-tag">Report-PDF</span>Variante B auf Cream-Hintergrund, Kupfer-Punkte bleiben Kupfer.</li>
+      <li><span class="r-tag">E-Mail-Signatur</span>Variante A als Plain-Text-Fallback (mise.ai), Variante B als PNG-Banner.</li>
+      <li><span class="r-tag">Favicon · App</span>Variante D (m-Punkt), Kupfer-Grund, Cream-Glyph. 48px und 16px.</li>
+      <li><span class="r-tag">Social-Avatar</span>Variante D, Kupfer-Grund.</li>
+      <li><span class="r-tag">Dokument-Footer</span>Variante A, 14px, Kupfer-Punkt bleibt auch klein lesbar.</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

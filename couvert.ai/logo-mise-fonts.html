@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mise.ai · Variante B in 5 Fonts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Instrument+Serif&family=Playfair+Display:wght@400;500&family=Cormorant+Garamond:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1A3C34;
+  --bg2:#162F29;
+  --bg3:#12261F;
+  --copper:#C4673A;
+  --gold:#E8B931;
+  --cream:#F5F0EB;
+  --cream-bright:#FAF7F2;
+  --text:#E0DCD6;
+  --text-dim:#9B958C;
+  --border:#2A4A42;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg3);font-family:'DM Sans',sans-serif;color:var(--text);-webkit-font-smoothing:antialiased;padding:40px 24px}
+.wrap{max-width:1100px;margin:0 auto}
+
+.intro{margin-bottom:40px;padding-bottom:28px;border-bottom:1px solid var(--border)}
+.intro h1{
+  font-family:'DM Serif Display',serif;
+  font-size:32px;
+  color:var(--cream-bright);
+  letter-spacing:-0.5px;
+  margin-bottom:10px;
+}
+.intro p{font-size:15px;color:var(--text-dim);font-weight:300;max-width:720px;line-height:1.6}
+.intro p strong{color:var(--cream);font-weight:500}
+
+.grid{display:grid;gap:16px}
+.row{background:var(--bg);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.row-head{
+  padding:14px 24px;
+  background:var(--bg2);
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.row-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--copper);
+}
+.row-title{
+  font-family:'DM Serif Display',serif;
+  font-size:17px;
+  color:var(--cream);
+}
+.row-note{font-size:12.5px;color:var(--text-dim);font-weight:300;max-width:540px;line-height:1.5}
+
+.row-body{display:grid;grid-template-columns:1fr 1fr}
+.stage{
+  padding:64px 32px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:180px;
+}
+.stage.dark{background:var(--bg)}
+.stage.light{background:#FAF7F2;border-left:1px solid var(--border)}
+
+/* Base wordmark */
+.wm{
+  font-size:72px;
+  letter-spacing:-0.8px;
+  line-height:1;
+  display:inline-flex;
+  align-items:baseline;
+  position:relative;
+}
+.stage.dark .wm{color:var(--cream-bright)}
+.stage.light .wm{color:#1F2B27}
+
+.wm .suffix-tail{color:var(--text-dim)}
+.stage.light .wm .suffix-tail{color:#4A5853}
+
+/* Twin-Dot Tittel System: per-font calibrated */
+.i-base{position:relative;display:inline-block}
+.i-base::after{
+  content:'';
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:var(--copper);
+}
+.dot-ai{color:inherit;opacity:0.5}
+
+/* Font 1 · DM Serif Display */
+.f-dm-serif{font-family:'DM Serif Display',serif;font-weight:400}
+.f-dm-serif .i-base::after{top:0.07em;width:0.16em;height:0.16em}
+
+/* Font 2 · Fraunces (Variable, Display) */
+.f-fraunces{font-family:'Fraunces',serif;font-weight:500;font-variation-settings:"opsz" 120,"SOFT" 0,"WONK" 0}
+.f-fraunces .i-base::after{top:0.09em;width:0.15em;height:0.15em}
+
+/* Font 3 · Instrument Serif */
+.f-instrument{font-family:'Instrument Serif',serif;font-weight:400}
+.f-instrument .i-base::after{top:0.11em;width:0.12em;height:0.12em}
+
+/* Font 4 · Playfair Display */
+.f-playfair{font-family:'Playfair Display',serif;font-weight:400}
+.f-playfair .i-base::after{top:0.08em;width:0.13em;height:0.13em}
+
+/* Font 5 · Cormorant Garamond */
+.f-cormorant{font-family:'Cormorant Garamond',serif;font-weight:500}
+.f-cormorant .i-base::after{top:0.12em;width:0.12em;height:0.12em}
+
+/* Small demos */
+.small-demo{
+  padding:28px 24px;
+  background:var(--bg2);
+  border-top:1px solid var(--border);
+  display:flex;
+  gap:28px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.small-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--text-dim);
+}
+.small-demo .wm{color:var(--cream)}
+.small-demo .wm.size-22{font-size:22px;letter-spacing:-0.2px}
+.small-demo .wm.size-14{font-size:14px;letter-spacing:0}
+
+/* Meta block below stage */
+.font-meta{
+  padding:14px 24px;
+  background:rgba(18,38,31,0.5);
+  border-top:1px solid var(--border);
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10.5px;
+  color:var(--text-dim);
+  letter-spacing:0.5px;
+}
+.font-meta strong{color:var(--cream);font-weight:500}
+
+/* Ranking */
+.rank{
+  margin-top:40px;
+  padding:24px 28px;
+  background:var(--bg);
+  border:1px solid var(--copper);
+  border-radius:6px;
+}
+.rank-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--copper);
+  margin-bottom:10px;
+}
+.rank-title{
+  font-family:'DM Serif Display',serif;
+  font-size:22px;
+  color:var(--cream-bright);
+  margin-bottom:16px;
+  letter-spacing:-0.3px;
+}
+.rank-list{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.rank-list li{
+  padding:12px 14px;
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:4px;
+  display:grid;
+  grid-template-columns:38px 160px 1fr;
+  align-items:center;
+  gap:14px;
+}
+.rank-list li.winner{border-color:var(--copper);background:rgba(196,103,58,0.08)}
+.rank-pos{
+  font-family:'DM Serif Display',serif;
+  font-size:24px;
+  color:var(--cream-bright);
+  line-height:1;
+  text-align:center;
+}
+.rank-list li.winner .rank-pos{color:var(--copper)}
+.rank-name{
+  font-family:'DM Serif Display',serif;
+  font-size:16px;
+  color:var(--cream);
+}
+.rank-why{font-size:13px;color:var(--text);font-weight:300;line-height:1.5}
+
+@media(max-width:800px){
+  .row-body{grid-template-columns:1fr}
+  .stage.light{border-left:none;border-top:1px solid var(--border)}
+  .stage{padding:44px 20px;min-height:auto}
+  .wm{font-size:52px}
+  .small-demo{flex-direction:column;align-items:flex-start;gap:14px}
+  .intro h1{font-size:24px}
+  .rank-list li{grid-template-columns:32px 1fr;gap:10px}
+  .rank-list li .rank-why{grid-column:1 / -1;margin-top:4px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="intro">
+    <h1>mise.ai · Variante B in fünf Fonts</h1>
+    <p>
+      Gleiche Typo-Logik für alle fünf: beide <em>i</em> punktlos, identische Kupfer-Tittel mit <strong>spürbarer Luft zum Stamm</strong>. Jeder Font bekommt seine eigene Tittel-Höhe, weil x-height und Achsen leicht variieren. Pro Font ein Dark- und ein Light-Rendering, darunter zwei kleine Anwendungs-Grössen.
+    </p>
+  </div>
+
+  <div class="grid">
+
+    <!-- 1. DM Serif Display -->
+    <div class="row">
+      <div class="row-head">
+        <div>
+          <div class="row-label">Font 01 · DM Serif Display</div>
+          <div class="row-title">Moderne Ausprägung, leicht eigen</div>
+        </div>
+        <div class="row-note">Gut zugänglich, nicht zu klassisch. Bisheriger Brand-Font. Hohe x-height, lesbar auch bei 14px.</div>
+      </div>
+      <div class="row-body">
+        <div class="stage dark"><span class="wm f-dm-serif">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix-tail">a<span class="i-base">ı</span></span></span></div>
+        <div class="stage light"><span class="wm f-dm-serif">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix-tail">a<span class="i-base">ı</span></span></span></div>
+      </div>
+      <div class="font-meta">
+        <span>Typ: <strong>Display-Serif</strong></span>
+        <span>Stil: <strong>modern, freundlich</strong></span>
+        <span>Lizenz: <strong>Open Font</strong></span>
+        <span>Best für: <strong>Editorial, B2B mit Charakter</strong></span>
+      </div>
+      <div class="small-demo">
+        <span class="small-label">22px</span>
+        <span class="wm f-dm-serif size-22">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix-tail">a<span class="i-base">ı</span></span></span>
+        <span class="small-label" style="margin-left:auto">14px</span>
+        <span class="wm f-dm-serif size-14">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix-tail">a<span class="i-base">ı</span></span></span>
+      </div>
+    </div>
+
+    <!-- 2. Fraunces -->
+    <div class="row">
+      <div class="row-head">
+        <div>
+          <div class="row-label">Font 02 · Fraunces</div>
+          <div class="row-title">Variable Serif, tech-nah, in Position</div>
+        </div>
+        <div class="row-note">Moderner Display-Serif mit sanften Achsen. Premium-Tech-Feel, aktuell in der Branche stark gefragt. Optische Grössen fein justierbar.</div>
+      </div>
+      <div class="row-body">
+        <div class="stage dark"><span class="wm f-fraunces">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix-tail">a<span class="i-base">ı</span></span></span></div>
+        <div class="stage light"><span class="wm f-fraunces">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix-tail">a<span class="i-base">ı</span></span></span></div>
+      </div>
+      <div class="font-meta">
+        <span>Typ: <strong>Variable Serif</strong></span>
+        <span>Stil: <strong>warm, tech-modern</strong></span>
+        <span>Lizenz: <strong>Open Font</strong></span>
+        <span>Best für: <strong>AI / SaaS / Produktmarken</strong></span>
+      </div>
+      <div class="small-demo">
+        <span class="small-label">22px</span>
+        <span class="wm f-fraunces size-22">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix-tail">a<span class="i-base">ı</span></span></span>
+        <span class="small-label" style="margin-left:auto">14px</span>
+        <span class="wm f-fraunces size-14">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix-tail">a<span class="i-base">ı</span></span></span>
+      </div>
+    </div>
+
+    <!-- 3. Instrument Serif -->
+    <div class="row">
+      <div class="row-head">
+        <div>
+          <div class="row-label">Font 03 · Instrument Serif</div>
+          <div class="row-title">Editorial-Serif, schlank, fashion-nah</div>
+        </div>
+        <div class="row-note">Schmal, elegant, sehr aktuell in Editorial- und Premium-Markenauftritten. Wirkt gehoben, leicht italienisch.</div>
+      </div>
+      <div class="row-body">
+        <div class="stage dark"><span class="wm f-instrument">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix-tail">a<span class="i-base">ı</span></span></span></div>
+        <div class="stage light"><span class="wm f-instrument">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix-tail">a<span class="i-base">ı</span></span></span></div>
+      </div>
+      <div class="font-meta">
+        <span>Typ: <strong>Editorial-Serif</strong></span>
+        <span>Stil: <strong>schlank, hoch, fashion</strong></span>
+        <span>Lizenz: <strong>Open Font</strong></span>
+        <span>Best für: <strong>Luxury, Premium-Editorial</strong></span>
+      </div>
+      <div class="small-demo">
+        <span class="small-label">22px</span>
+        <span class="wm f-instrument size-22">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix-tail">a<span class="i-base">ı</span></span></span>
+        <span class="small-label" style="margin-left:auto">14px</span>
+        <span class="wm f-instrument size-14">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix-tail">a<span class="i-base">ı</span></span></span>
+      </div>
+    </div>
+
+    <!-- 4. Playfair Display -->
+    <div class="row">
+      <div class="row-head">
+        <div>
+          <div class="row-label">Font 04 · Playfair Display</div>
+          <div class="row-title">Hoher Kontrast, klassisch-gastro</div>
+        </div>
+        <div class="row-note">Starke Serifen, breit im Brief-Auftritt. Funktioniert in klassischer Gastro-Kommunikation, kann aber auch traditionell wirken.</div>
+      </div>
+      <div class="row-body">
+        <div class="stage dark"><span class="wm f-playfair">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix-tail">a<span class="i-base">ı</span></span></span></div>
+        <div class="stage light"><span class="wm f-playfair">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix-tail">a<span class="i-base">ı</span></span></span></div>
+      </div>
+      <div class="font-meta">
+        <span>Typ: <strong>Transitional Serif</strong></span>
+        <span>Stil: <strong>klassisch, hoher Kontrast</strong></span>
+        <span>Lizenz: <strong>Open Font</strong></span>
+        <span>Best für: <strong>Gastro, Fashion, Hotel</strong></span>
+      </div>
+      <div class="small-demo">
+        <span class="small-label">22px</span>
+        <span class="wm f-playfair size-22">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix-tail">a<span class="i-base">ı</span></span></span>
+        <span class="small-label" style="margin-left:auto">14px</span>
+        <span class="wm f-playfair size-14">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix-tail">a<span class="i-base">ı</span></span></span>
+      </div>
+    </div>
+
+    <!-- 5. Cormorant Garamond -->
+    <div class="row">
+      <div class="row-head">
+        <div>
+          <div class="row-label">Font 05 · Cormorant Garamond</div>
+          <div class="row-title">Klassisch, bestellt, handwerklich</div>
+        </div>
+        <div class="row-note">Alte Garamond-Schule, neu geschnitten. Ruhige Ausstrahlung, Qualitätshandwerk, passt gut zu Küchen-Kontexten und Menükarten.</div>
+      </div>
+      <div class="row-body">
+        <div class="stage dark"><span class="wm f-cormorant">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix-tail">a<span class="i-base">ı</span></span></span></div>
+        <div class="stage light"><span class="wm f-cormorant">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix-tail">a<span class="i-base">ı</span></span></span></div>
+      </div>
+      <div class="font-meta">
+        <span>Typ: <strong>Old-Style Serif</strong></span>
+        <span>Stil: <strong>klassisch, ruhig, warm</strong></span>
+        <span>Lizenz: <strong>Open Font</strong></span>
+        <span>Best für: <strong>Menükarten, Handwerk, Küche</strong></span>
+      </div>
+      <div class="small-demo">
+        <span class="small-label">22px</span>
+        <span class="wm f-cormorant size-22">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix-tail">a<span class="i-base">ı</span></span></span>
+        <span class="small-label" style="margin-left:auto">14px</span>
+        <span class="wm f-cormorant size-14">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix-tail">a<span class="i-base">ı</span></span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="rank">
+    <div class="rank-label">Mein Ranking</div>
+    <div class="rank-title">Fraunces zieht für mise.ai am weitesten</div>
+    <ol class="rank-list">
+      <li class="winner">
+        <div class="rank-pos">1</div>
+        <div class="rank-name">Fraunces</div>
+        <div class="rank-why">Tech-kompatibel ohne kühl zu werden. Warme Achsen, gut für AI-Branding mit Handwerks-Anspruch. Variable Font gibt uns für Report-Headlines eine schmalere Cut-Option und fürs Logo eine fettere. Reife B2B-Marken wie Linear Docs und Railway nutzen sie. Am besten auf unsere Positionierung zugeschnitten.</div>
+      </li>
+      <li>
+        <div class="rank-pos">2</div>
+        <div class="rank-name">DM Serif Display</div>
+        <div class="rank-why">Der Anker. Bleibt die sicherste Wahl wenn wir keine komplette Font-Umstellung riskieren wollen. Etwas eigenwilliger als Fraunces, leicht quirky im "m" und "e". Würde mich nur bremsen wenn ich an Brand-Abnutzung zweifle.</div>
+      </li>
+      <li>
+        <div class="rank-pos">3</div>
+        <div class="rank-name">Instrument Serif</div>
+        <div class="rank-why">Schönster Look in Gross, schwierig klein. Die schmalen Serifen verschwinden bei 14px. Gut für Report-Cover, Hero-Marketing. Nicht für Cockpit-Chrome oder E-Mail-Signatur.</div>
+      </li>
+      <li>
+        <div class="rank-pos">4</div>
+        <div class="rank-name">Cormorant Garamond</div>
+        <div class="rank-why">Passt zum Gastro-Thema, wirkt aber konservativ. Nimmt der AI-Seite die Frische. Für eine reine Menükarten-Marke wäre es erste Wahl, für uns zu weit weg von der Tech-Seite.</div>
+      </li>
+      <li>
+        <div class="rank-pos">5</div>
+        <div class="rank-name">Playfair Display</div>
+        <div class="rank-why">Hübsch, aber mittlerweile in der Gastro überinflationiert (jede zweite Menükarte und jeder Blog-Header). Das Gegenteil von unverwechselbar.</div>
+      </li>
+    </ol>
+  </div>
+
+</div>
+</body>
+</html>

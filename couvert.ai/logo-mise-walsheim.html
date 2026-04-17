@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>mise.ai Logo Test in GT Walsheim</title>
+<style>
+  @font-face{
+    font-family:'GT Walsheim';
+    src:url('./fonts/GT-Walsheim-Thin.woff2') format('woff2');
+    font-weight:100;font-style:normal;font-display:swap;
+  }
+  @font-face{
+    font-family:'GT Walsheim';
+    src:url('./fonts/GT-Walsheim-Ultra-Light.woff2') format('woff2');
+    font-weight:200;font-style:normal;font-display:swap;
+  }
+  @font-face{
+    font-family:'GT Walsheim';
+    src:url('./fonts/GT-Walsheim-Light.woff2') format('woff2');
+    font-weight:300;font-style:normal;font-display:swap;
+  }
+  @font-face{
+    font-family:'GT Walsheim';
+    src:url('./fonts/GT-Walsheim-Regular.woff2') format('woff2');
+    font-weight:400;font-style:normal;font-display:swap;
+  }
+  @font-face{
+    font-family:'GT Walsheim';
+    src:url('./fonts/GT-Walsheim-Medium.woff2') format('woff2');
+    font-weight:500;font-style:normal;font-display:swap;
+  }
+  @font-face{
+    font-family:'GT Walsheim';
+    src:url('./fonts/GT-Walsheim-Bold.woff2') format('woff2');
+    font-weight:700;font-style:normal;font-display:swap;
+  }
+  @font-face{
+    font-family:'GT Walsheim';
+    src:url('./fonts/GT-Walsheim-Ultra-Bold.woff2') format('woff2');
+    font-weight:800;font-style:normal;font-display:swap;
+  }
+
+  :root{
+    --gruen:#1A3C34;
+    --gruen-tief:#12261F;
+    --kupfer:#C4673A;
+    --cream:#F5F0EB;
+    --off-white:#E0DCD6;
+    --border:#2A4A42;
+    --muted:#8B9A95;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:'GT Walsheim','Helvetica Neue',Arial,sans-serif;
+    background:var(--cream);
+    color:#1a1a1a;
+    padding:48px 32px;
+    line-height:1.6;
+  }
+
+  .wrap{max-width:1080px;margin:0 auto}
+
+  h1{
+    font-family:'DM Serif Display',serif;
+    font-size:32px;
+    color:var(--gruen);
+    margin-bottom:8px;
+    letter-spacing:-0.01em;
+  }
+  .subtitle{
+    font-family:'GT Walsheim',sans-serif;
+    font-weight:400;
+    font-size:15px;
+    color:#4a4a4a;
+    margin-bottom:48px;
+    max-width:640px;
+  }
+
+  h2{
+    font-family:'GT Walsheim',sans-serif;
+    font-weight:500;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--gruen);
+    margin:48px 0 20px;
+    padding-bottom:10px;
+    border-bottom:1px solid #d5cfc7;
+  }
+
+  /* Twin-Dot Logo Engine */
+  .logo{
+    font-family:'GT Walsheim',sans-serif;
+    display:inline-flex;
+    align-items:baseline;
+    line-height:1;
+    letter-spacing:-0.02em;
+  }
+  .logo .i-base{position:relative;display:inline-block}
+  .logo .i-base::after{
+    content:'';
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    border-radius:50%;
+    background:var(--kupfer);
+  }
+  .logo .dot-ai{opacity:0.55;margin:0 0.02em}
+  .logo .suffix{display:inline-block}
+
+  /* Tittle-Kalibrierung GT Walsheim — sans-serif stems sitzen anders als serif */
+  .logo .i-base::after{
+    top:0.08em;
+    width:0.17em;
+    height:0.17em;
+  }
+
+  /* Weight-spezifische Fine-Tuning — bei fetteren Weights wird der Stem breiter */
+  .w-light .i-base::after{width:0.15em;height:0.15em;top:0.09em}
+  .w-regular .i-base::after{width:0.17em;height:0.17em;top:0.08em}
+  .w-medium .i-base::after{width:0.18em;height:0.18em;top:0.07em}
+  .w-bold .i-base::after{width:0.20em;height:0.20em;top:0.06em}
+
+  /* Stages */
+  .stage{
+    margin-bottom:20px;
+    border-radius:4px;
+    overflow:hidden;
+    border:1px solid #d5cfc7;
+  }
+  .stage-dark{background:var(--gruen-tief);color:var(--cream)}
+  .stage-light{background:#fff;color:var(--gruen)}
+
+  .stage-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:40px 48px;
+    gap:32px;
+  }
+  .stage-row.center{justify-content:center}
+
+  .label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .stage-light .label{color:#9a9a9a}
+
+  .size-xl{font-size:96px}
+  .size-l{font-size:64px}
+  .size-m{font-size:42px}
+  .size-s{font-size:28px}
+  .size-xs{font-size:22px}
+  .size-2xs{font-size:14px}
+
+  .w-light{font-weight:300}
+  .w-regular{font-weight:400}
+  .w-medium{font-weight:500}
+  .w-bold{font-weight:700}
+
+  /* Comparison grid */
+  .grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  .grid .stage-row{padding:48px 40px}
+
+  /* Header-Mockup */
+  .mock-header{
+    background:var(--gruen);
+    color:var(--cream);
+    padding:20px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-radius:4px;
+  }
+  .mock-header .nav{
+    display:flex;
+    gap:28px;
+    font-size:14px;
+    font-weight:400;
+    color:var(--off-white);
+  }
+
+  /* Commentary */
+  .note{
+    background:#fff;
+    border:1px solid #d5cfc7;
+    padding:28px 32px;
+    margin-top:24px;
+    border-radius:4px;
+    font-size:14px;
+    line-height:1.65;
+    color:#2a2a2a;
+  }
+  .note strong{color:var(--gruen);font-weight:500}
+  .note ul{margin:12px 0 0 18px;padding:0}
+  .note li{margin-bottom:6px}
+
+  .verdict{
+    background:var(--gruen);
+    color:var(--cream);
+    padding:32px;
+    border-radius:4px;
+    margin-top:32px;
+  }
+  .verdict h3{
+    font-family:'DM Serif Display',serif;
+    font-weight:400;
+    font-size:22px;
+    margin-bottom:12px;
+    color:var(--cream);
+  }
+  .verdict p{font-size:15px;line-height:1.7;color:var(--off-white)}
+  .verdict strong{color:#E8B931;font-weight:500}
+
+  @media (max-width:700px){
+    body{padding:24px 16px}
+    .grid{grid-template-columns:1fr}
+    .stage-row{padding:28px 20px}
+    .size-xl{font-size:64px}
+    .size-l{font-size:44px}
+    .size-m{font-size:32px}
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="wrap">
+
+  <h1>mise.ai in GT Walsheim</h1>
+  <p class="subtitle">Variante B (Twin Dots) im Schweizer Sans-Serif. GT Walsheim ist ein fundamentaler Bruch mit der bisherigen Serif-Richtung. Alle i-Stems dotless, Kupfer-Tittles per CSS positioniert, identische Höhe auf "mise" und "ai".</p>
+
+  <!-- Hero-Grössen Dark -->
+  <h2>Gross — Dark Stage</h2>
+  <div class="stage stage-dark">
+    <div class="stage-row">
+      <span class="label">Light 300</span>
+      <span class="logo size-xl w-light">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+    </div>
+  </div>
+  <div class="stage stage-dark">
+    <div class="stage-row">
+      <span class="label">Regular 400</span>
+      <span class="logo size-xl w-regular">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+    </div>
+  </div>
+  <div class="stage stage-dark">
+    <div class="stage-row">
+      <span class="label">Medium 500</span>
+      <span class="logo size-xl w-medium">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+    </div>
+  </div>
+  <div class="stage stage-dark">
+    <div class="stage-row">
+      <span class="label">Bold 700</span>
+      <span class="logo size-xl w-bold">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+    </div>
+  </div>
+
+  <!-- Hero-Grössen Light -->
+  <h2>Gross — Light Stage</h2>
+  <div class="stage stage-light">
+    <div class="stage-row">
+      <span class="label">Light 300</span>
+      <span class="logo size-xl w-light">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+    </div>
+  </div>
+  <div class="stage stage-light">
+    <div class="stage-row">
+      <span class="label">Regular 400</span>
+      <span class="logo size-xl w-regular">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+    </div>
+  </div>
+  <div class="stage stage-light">
+    <div class="stage-row">
+      <span class="label">Medium 500</span>
+      <span class="logo size-xl w-medium">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+    </div>
+  </div>
+  <div class="stage stage-light">
+    <div class="stage-row">
+      <span class="label">Bold 700</span>
+      <span class="logo size-xl w-bold">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+    </div>
+  </div>
+
+  <!-- Direkter Weight-Vergleich -->
+  <h2>Weight-Vergleich nebeneinander</h2>
+  <div class="grid">
+    <div class="stage stage-dark">
+      <div class="stage-row center">
+        <span class="logo size-l w-light">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+      </div>
+    </div>
+    <div class="stage stage-dark">
+      <div class="stage-row center">
+        <span class="logo size-l w-regular">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+      </div>
+    </div>
+    <div class="stage stage-dark">
+      <div class="stage-row center">
+        <span class="logo size-l w-medium">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+      </div>
+    </div>
+    <div class="stage stage-dark">
+      <div class="stage-row center">
+        <span class="logo size-l w-bold">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header-Mockup realistisch -->
+  <h2>In Context — Navigation Header</h2>
+  <div class="mock-header">
+    <span class="logo size-s w-medium">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+    <nav class="nav">
+      <span>Team</span>
+      <span>Fallbeispiel</span>
+      <span>Ablauf</span>
+      <span>Kontakt</span>
+    </nav>
+  </div>
+
+  <!-- Kleine Grössen — Legibility Test -->
+  <h2>Kleine Grössen — Legibility-Test</h2>
+  <div class="stage stage-light">
+    <div class="stage-row">
+      <span class="label">22 px — Header-Grösse</span>
+      <span class="logo size-xs w-medium">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+    </div>
+  </div>
+  <div class="stage stage-light">
+    <div class="stage-row">
+      <span class="label">14 px — Footer-Grösse</span>
+      <span class="logo size-2xs w-medium">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+    </div>
+  </div>
+  <div class="stage stage-dark">
+    <div class="stage-row">
+      <span class="label">22 px — Dark</span>
+      <span class="logo size-xs w-medium">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+    </div>
+  </div>
+  <div class="stage stage-dark">
+    <div class="stage-row">
+      <span class="label">14 px — Dark</span>
+      <span class="logo size-2xs w-medium">m<span class="i-base">ı</span>se<span class="dot-ai">.</span><span class="suffix">a<span class="i-base">ı</span></span></span>
+    </div>
+  </div>
+
+  <!-- Commentary -->
+  <div class="note">
+    <strong>Was GT Walsheim hier macht:</strong>
+    <ul>
+      <li>Geometrische Grotesk mit humanistischen Details (freundliches "a", runde Terminals). Kein Helvetica-Kühle, kein Circular-Tech-Bro.</li>
+      <li>Schweizer Herkunft passt zur Brand-Geografie. Wird von Studios wie Frank, Wolff Olins, Goodby genutzt. Keine Abnutzung durch SaaS-Masse.</li>
+      <li>Das runde "e" und "s" im GT Walsheim gibt den Kupfer-Tittles Resonanz. Im Serif (Fraunces, DM Serif) kämpfen die Tittles gegen die Serifen um Aufmerksamkeit.</li>
+      <li>Bei Medium 500 sitzt die Logo-Spannung am besten: Präsenz ohne Aggressivität. Light wirkt zu fein für eine B2B-Marke, Bold zu laut.</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <strong>Bruch mit dem bisherigen Pfad:</strong> Bis jetzt waren alle Varianten Serif-basiert (DM Serif, Fraunces, etc.). GT Walsheim ist ein kompletter Richtungswechsel. Die Frage ist nicht "welcher Font" sondern "Serif oder Sans".
+    <ul>
+      <li><strong>Serif (Fraunces/DM Serif):</strong> Gastronomie-Heritage, Hotellerie-Codes, premium editorial. Signalisiert "Wir verstehen Euer Handwerk".</li>
+      <li><strong>Sans (GT Walsheim):</strong> AI-Tech-Code, Schweizer Präzision, moderne B2B-Software. Signalisiert "Wir sind das Ops-Team der Zukunft".</li>
+    </ul>
+    Entscheidung hängt davon ab, ob Couvert/Mise primär als <em>Gastro-Partner</em> oder als <em>AI-Infrastruktur</em> positioniert wird. Aktuelle Homepage-Tonalität (nüchtern, datengetrieben) spricht klar für Sans.
+  </div>
+
+  <div class="verdict">
+    <h3>Empfehlung</h3>
+    <p>GT Walsheim <strong>Medium 500</strong> ist der stärkste Kandidat für ein AI-Ops-Positioning. Die Twin-Dots funktionieren sauber, die Wortmarke liest sich als Software-Brand, nicht als Restaurant. Wenn die Zielgruppe Gastro-Geschäftsführer sind, die in Zahlen und Schichten denken — nicht Sommeliers, die in Typografie denken — ist Sans die ehrlichere Wahl. Serif wäre Dekoration, Sans ist Statement.</p>
+  </div>
+
+</div>
+</body>
+</html>

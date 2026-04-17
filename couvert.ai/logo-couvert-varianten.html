@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>couvert — Logo Varianten</title>
+<style>
+  @font-face{font-family:'GT Walsheim';src:url('./fonts/GT-Walsheim-Light.woff2') format('woff2');font-weight:300;font-style:normal;font-display:swap}
+  @font-face{font-family:'GT Walsheim';src:url('./fonts/GT-Walsheim-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:'GT Walsheim';src:url('./fonts/GT-Walsheim-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+  @font-face{font-family:'GT Walsheim';src:url('./fonts/GT-Walsheim-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+
+  :root{
+    --gruen:#1A3C34;
+    --gruen-tief:#12261F;
+    --kupfer:#C4673A;
+    --gold:#E8B931;
+    --cream:#F5F0EB;
+    --off-white:#E0DCD6;
+    --border:#2A4A42;
+    --muted:#8B9A95;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:'GT Walsheim','Helvetica Neue',Arial,sans-serif;
+    background:var(--cream);
+    color:#1a1a1a;
+    padding:48px 32px;
+    line-height:1.6;
+  }
+  .wrap{max-width:1080px;margin:0 auto}
+
+  h1{
+    font-family:'DM Serif Display',serif;
+    font-size:32px;
+    color:var(--gruen);
+    margin-bottom:8px;
+    letter-spacing:-0.01em;
+  }
+  .subtitle{
+    font-weight:400;
+    font-size:15px;
+    color:#4a4a4a;
+    margin-bottom:48px;
+    max-width:680px;
+  }
+
+  h2{
+    font-weight:500;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--gruen);
+    margin:0 0 4px;
+  }
+  .variant-meta{
+    font-size:13px;
+    color:#5a5a5a;
+    margin-bottom:16px;
+    max-width:640px;
+    line-height:1.55;
+  }
+
+  .variant{margin-bottom:56px}
+
+  .stage{
+    border-radius:4px;
+    overflow:hidden;
+    border:1px solid #d5cfc7;
+    margin-bottom:10px;
+  }
+  .stage-dark{background:var(--gruen-tief);color:var(--cream)}
+  .stage-light{background:#fff;color:var(--gruen)}
+  .stage-row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:56px 40px;
+    min-height:140px;
+  }
+  .stage-row.between{justify-content:space-between}
+
+  .label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .stage-light .label{color:#9a9a9a}
+
+  /* ====== Shared Typography ====== */
+  .logo{
+    font-family:'GT Walsheim',sans-serif;
+    display:inline-flex;
+    align-items:baseline;
+    line-height:1;
+    letter-spacing:-0.02em;
+    font-size:72px;
+    font-weight:500;
+  }
+
+  /* ===== V1: Pure Wordmark — couvert.ai mit Kupfer-Punkt ===== */
+  .v1 .dot{color:var(--kupfer)}
+
+  /* ===== V2: Nur "couvert" — Punkt am Ende als Kupfer-Marker ===== */
+  .v2 .dot{
+    display:inline-block;
+    width:0.14em;
+    height:0.14em;
+    border-radius:50%;
+    background:var(--kupfer);
+    margin-left:0.05em;
+    transform:translateY(-0.02em);
+  }
+
+  /* ===== V3: couvert + AI als Monospace-Tag ===== */
+  .v3-stack{display:flex;align-items:baseline;gap:0.35em}
+  .v3-main{
+    font-family:'GT Walsheim',sans-serif;
+    font-weight:500;
+    font-size:72px;
+    letter-spacing:-0.02em;
+    line-height:1;
+  }
+  .v3-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:14px;
+    font-weight:500;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--kupfer);
+    padding:4px 8px;
+    border:1px solid var(--kupfer);
+    border-radius:2px;
+    line-height:1;
+    transform:translateY(-0.8em);
+  }
+  .stage-light .v3-tag{color:var(--kupfer);border-color:var(--kupfer)}
+
+  /* ===== V4: Kupfer-Unterstrich unter "couvert", .ai klein ===== */
+  .v4-group{display:inline-flex;align-items:baseline;gap:0.05em}
+  .v4-main{
+    font-family:'GT Walsheim',sans-serif;
+    font-weight:500;
+    font-size:72px;
+    letter-spacing:-0.02em;
+    line-height:1;
+    position:relative;
+  }
+  .v4-main::after{
+    content:'';
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-0.05em;
+    height:2px;
+    background:var(--kupfer);
+  }
+  .v4-suffix{
+    font-family:'GT Walsheim',sans-serif;
+    font-weight:400;
+    font-size:32px;
+    color:var(--muted);
+    letter-spacing:-0.01em;
+  }
+  .stage-light .v4-suffix{color:#9a9a9a}
+
+  /* ===== V5: Cover-Dot Konzept — Punkt sitzt auf dem "o" wie Teller-Gedeck ===== */
+  .v5{position:relative;display:inline-block}
+  .v5 .logo-text{
+    font-family:'GT Walsheim',sans-serif;
+    font-weight:500;
+    font-size:72px;
+    letter-spacing:-0.02em;
+    line-height:1;
+  }
+  .v5 .o-wrap{position:relative;display:inline-block}
+  .v5 .o-wrap::before{
+    content:'';
+    position:absolute;
+    left:50%;
+    top:-0.32em;
+    transform:translateX(-50%);
+    width:0.14em;
+    height:0.14em;
+    border-radius:50%;
+    background:var(--kupfer);
+  }
+  .v5 .dot-ai{color:var(--kupfer)}
+
+  /* ===== V6: Serif-Version (Fraunces) für Vergleich ===== */
+  .v6 .logo-serif{
+    font-family:'Fraunces','DM Serif Display',serif;
+    font-weight:400;
+    font-size:72px;
+    letter-spacing:-0.01em;
+    line-height:1;
+    font-variation-settings:'SOFT' 30, 'WONK' 0;
+  }
+  .v6 .dot{color:var(--kupfer)}
+
+  /* ===== V7: Monogram C mit Punkt ===== */
+  .v7-lockup{display:inline-flex;align-items:center;gap:20px}
+  .v7-mark{
+    width:72px;
+    height:72px;
+    border:1.5px solid var(--kupfer);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Fraunces',serif;
+    font-weight:400;
+    font-size:42px;
+    color:var(--kupfer);
+    font-style:italic;
+    position:relative;
+  }
+  .v7-mark::after{
+    content:'';
+    position:absolute;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--kupfer);
+    top:8px;
+    right:10px;
+  }
+  .v7-text{
+    font-family:'GT Walsheim',sans-serif;
+    font-weight:500;
+    font-size:56px;
+    letter-spacing:-0.02em;
+    line-height:1;
+  }
+  .v7-text .dot{color:var(--kupfer)}
+
+  /* Header-Mockups */
+  .context-header{
+    background:var(--gruen);
+    color:var(--cream);
+    padding:18px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-radius:4px;
+    margin-top:14px;
+  }
+  .context-header .logo-small{font-size:22px}
+  .context-header .v3-main{font-size:22px}
+  .context-header .v3-tag{font-size:9px;padding:2px 5px;transform:translateY(-0.3em)}
+  .context-header .v4-main{font-size:22px}
+  .context-header .v4-suffix{font-size:12px}
+  .context-header .v5 .logo-text{font-size:22px}
+  .context-header .v7-mark{width:28px;height:28px;font-size:16px}
+  .context-header .v7-mark::after{width:3px;height:3px;top:3px;right:4px}
+  .context-header .v7-text{font-size:22px}
+  .context-header .nav{
+    display:flex;
+    gap:24px;
+    font-size:13px;
+    font-weight:400;
+    color:var(--off-white);
+  }
+
+  .note{
+    background:#fff;
+    border:1px solid #d5cfc7;
+    padding:24px 28px;
+    border-radius:4px;
+    font-size:14px;
+    line-height:1.65;
+    color:#2a2a2a;
+    margin-top:16px;
+  }
+  .note strong{color:var(--gruen);font-weight:500}
+
+  .verdict{
+    background:var(--gruen);
+    color:var(--cream);
+    padding:32px;
+    border-radius:4px;
+    margin-top:48px;
+  }
+  .verdict h3{
+    font-family:'DM Serif Display',serif;
+    font-weight:400;
+    font-size:22px;
+    margin-bottom:12px;
+    color:var(--cream);
+  }
+  .verdict p{font-size:15px;line-height:1.7;color:var(--off-white);margin-bottom:10px}
+  .verdict strong{color:var(--gold);font-weight:500}
+  .verdict ol{margin:14px 0 0 20px;color:var(--off-white);font-size:15px;line-height:1.7}
+  .verdict ol li{margin-bottom:8px}
+
+  @media (max-width:700px){
+    body{padding:24px 16px}
+    .logo,.v3-main,.v4-main,.v5 .logo-text,.v6 .logo-serif,.v7-text{font-size:48px}
+    .v4-suffix{font-size:22px}
+    .stage-row{padding:32px 20px;min-height:100px}
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Fraunces:opsz,wght@9..144,300..600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="wrap">
+
+  <h1>couvert — sieben Logo-Varianten</h1>
+  <p class="subtitle">Durchspielen der Wortmarke in unterschiedlichen Konstruktionen. GT Walsheim als Sans-Basis, Fraunces als Serif-Kontrast. Alle Varianten auf Dark- und Light-Stage plus Header-Kontext.</p>
+
+  <!-- ============ V1 ============ -->
+  <div class="variant">
+    <h2>Variante 1 — Pure Wordmark mit Kupfer-Punkt</h2>
+    <p class="variant-meta">Klassischer Aufbau, Kupfer nur auf dem Punkt. Der Punkt trägt die gesamte Brand-Spannung. Minimalistisch, hochlesbar, unauffällig professionell.</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo v1">couvert<span class="dot">.</span>ai</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo v1">couvert<span class="dot">.</span>ai</span></div></div>
+    <div class="context-header">
+      <span class="logo v1 logo-small">couvert<span class="dot">.</span>ai</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- ============ V2 ============ -->
+  <div class="variant">
+    <h2>Variante 2 — Couvert ohne Suffix, Kupfer-Markerpunkt</h2>
+    <p class="variant-meta">Nur "couvert", die Domain .ai verschwindet aus dem Logo. Der Kupferpunkt wird zum Wort-Anhang. Selbstbewusst, gastronomie-nah, kein Tech-Signal. Funktioniert wenn die Marke stark genug ist, das Tech ohne Label zu tragen.</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo v2">couvert<span class="dot"></span></span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo v2">couvert<span class="dot"></span></span></div></div>
+    <div class="context-header">
+      <span class="logo v2 logo-small">couvert<span class="dot"></span></span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- ============ V3 ============ -->
+  <div class="variant">
+    <h2>Variante 3 — Couvert + AI als Monospace-Tag</h2>
+    <p class="variant-meta">Trennt Markenname und Tech-Signal visuell. "AI" als kleiner Kupfer-Badge im JetBrains Mono signalisiert Software-Kategorie ohne die Wortmarke zu beschweren. Typografisch wie ein Versionstag.</p>
+    <div class="stage stage-dark"><div class="stage-row"><div class="v3-stack"><span class="v3-main">couvert</span><span class="v3-tag">AI</span></div></div></div>
+    <div class="stage stage-light"><div class="stage-row"><div class="v3-stack"><span class="v3-main">couvert</span><span class="v3-tag">AI</span></div></div></div>
+    <div class="context-header">
+      <div class="v3-stack"><span class="v3-main">couvert</span><span class="v3-tag">AI</span></div>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- ============ V4 ============ -->
+  <div class="variant">
+    <h2>Variante 4 — Kupfer-Unterstrich, .ai gedimmt</h2>
+    <p class="variant-meta">"couvert" als Hauptmarke mit schlankem Kupfer-Strich darunter (Assoziation: Linie unter dem Gedeck). ".ai" klein und ausgegraut. Starke Hierarchie, Tech-Zusatz als Kontext-Information.</p>
+    <div class="stage stage-dark"><div class="stage-row"><div class="v4-group"><span class="v4-main">couvert</span><span class="v4-suffix">.ai</span></div></div></div>
+    <div class="stage stage-light"><div class="stage-row"><div class="v4-group"><span class="v4-main">couvert</span><span class="v4-suffix">.ai</span></div></div></div>
+    <div class="context-header">
+      <div class="v4-group"><span class="v4-main">couvert</span><span class="v4-suffix">.ai</span></div>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- ============ V5 ============ -->
+  <div class="variant">
+    <h2>Variante 5 — Cover-Dot über dem "o"</h2>
+    <p class="variant-meta">Kupfer-Punkt sitzt auf dem "o" wie ein Gedeck-Marker von oben. Subtile Gastronomie-Semantik (Tischordnung, Platzierung). Der zweite Kupferpunkt im ".ai" schliesst den Rhythmus.</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="v5"><span class="logo-text">c<span class="o-wrap">o</span>uvert<span class="dot-ai">.</span>ai</span></span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="v5"><span class="logo-text">c<span class="o-wrap">o</span>uvert<span class="dot-ai">.</span>ai</span></span></div></div>
+    <div class="context-header">
+      <span class="v5"><span class="logo-text">c<span class="o-wrap">o</span>uvert<span class="dot-ai">.</span>ai</span></span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- ============ V6 ============ -->
+  <div class="variant">
+    <h2>Variante 6 — Serif-Variante (Fraunces)</h2>
+    <p class="variant-meta">Zum Kontrast: dieselbe Konstruktion wie V1, aber Fraunces statt GT Walsheim. Serif-Codes aus Editorial und Hospitality. Premium-Gastronomie-Signatur, weniger Tech.</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="v6"><span class="logo-serif">couvert<span class="dot">.</span>ai</span></span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="v6"><span class="logo-serif">couvert<span class="dot">.</span>ai</span></span></div></div>
+    <div class="context-header">
+      <span class="v6"><span class="logo-serif" style="font-size:22px">couvert<span class="dot">.</span>ai</span></span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- ============ V7 ============ -->
+  <div class="variant">
+    <h2>Variante 7 — Monogram-Mark "C" + Wordmark</h2>
+    <p class="variant-meta">Lockup aus Kreismarke und Wordmark. Das "C" im Fraunces Italic mit Kupfer-Punkt oben rechts (Signatur-Geste). Wordmark bleibt im GT Walsheim Sans. Funktioniert auch standalone als Favicon und App-Icon.</p>
+    <div class="stage stage-dark"><div class="stage-row"><div class="v7-lockup"><span class="v7-mark">C</span><span class="v7-text">couvert<span class="dot">.</span>ai</span></div></div></div>
+    <div class="stage stage-light"><div class="stage-row"><div class="v7-lockup"><span class="v7-mark">C</span><span class="v7-text">couvert<span class="dot">.</span>ai</span></div></div></div>
+    <div class="context-header">
+      <div class="v7-lockup"><span class="v7-mark">C</span><span class="v7-text">couvert<span class="dot">.</span>ai</span></div>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Was die Varianten semantisch tun:</strong> V1 ist Defaultversion, rund, unproblematisch. V2 macht couvert zur Lifestyle-Marke ohne Tech-Ballast. V3 trennt Marke und Kategorie sauber, AI-SaaS-Standard. V4 stellt "couvert" heraus und degradiert .ai zur Fussnote. V5 ist das typografisch interessanteste (Cover-Dot als Konzept), aber kleinteilig. V6 geht in Richtung Hospitality. V7 ist das einzige mit Bildmarke, erzeugt App-Fähigkeit.
+  </div>
+
+  <div class="verdict">
+    <h3>Empfehlung-Ranking</h3>
+    <p>Die Frage hinter der Entscheidung ist dieselbe wie bei mise.ai: will Couvert als <strong>Gastro-Partner</strong> oder als <strong>AI-Software</strong> wahrgenommen werden. Das Ops-Team-Positioning spricht für Sans und klare Tech-Signale.</p>
+    <ol>
+      <li><strong>V4 — Kupfer-Unterstrich.</strong> Stärkste Hierarchie, gute Balance aus Marke und Tech-Kategorie. Der Unterstrich ist das einzige wirklich eigene gestalterische Element.</li>
+      <li><strong>V3 — Monospace-Tag.</strong> Klar, modern, B2B-lesbar. Funktioniert besonders gut in der Produkt-Kommunikation (Dashboards, Reports).</li>
+      <li><strong>V1 — Pure Wordmark.</strong> Die sichere Wahl. Wenig Risiko, wenig Distinktion.</li>
+      <li><strong>V7 — Lockup mit Monogram.</strong> Wertvoll für App und Favicon, aber das "C"-im-Kreis wirkt generisch.</li>
+      <li><strong>V5 — Cover-Dot.</strong> Konzeptionell schön, visuell zu leise bei kleinen Grössen.</li>
+      <li><strong>V2 — ohne Suffix.</strong> Zu gewagt für B2B-Sales-Kontext, Domain-Verwirrung.</li>
+      <li><strong>V6 — Serif.</strong> Falsches Signal für AI-Ops-Positioning.</li>
+    </ol>
+  </div>
+
+</div>
+</body>
+</html>
