@@ -104,25 +104,54 @@ V1 Scope dieser Spezifikation: **nur die TEASER-Box.**
 
 ---
 
-## 5. Datenquellen pro Agent
+## 5. Agent-Struktur und Datenquellen
 
-| Agent | Primärquelle | Sekundärquelle | Cost/Lead |
+Couvert.ai besteht aus **12 Agents in 4 Teams** (siehe `couvert.ai/team.html`).
+Der Teaser aktiviert **6 Agents**, die mit rein öffentlichen Daten arbeiten.
+Die anderen 6 Agents werden auf dem Teaser **sichtbar als `🔒 locked` angezeigt** —
+sie bilden den Upgrade-Trigger zu Tier 2 / Aufbauphase.
+
+### 5.1 Active Agents (Public-Data-Only) — erscheinen mit Insight
+
+| Team | Agent | Datenquelle | Cost/Lead |
 |---|---|---|---|
-| Reputation Manager | Outscraper (Reviews) | — | $0.50 (cap 500 Reviews) |
-| Quality Watchdog | Outscraper (Review-Texte) | — | (same data as above) |
-| Revenue Analyst | Computed (Modell) | Outscraper Metadata | $0.00 |
-| Operations Advisor | Outscraper (timestamps) | — | (same data as above) |
-| Menu Intelligence | Firecrawl (Website) | Places API (competitors) | $0.10 |
-| Marketing Engine | Apify (Instagram-Profil) | Website (Firecrawl) | $0.20 |
+| Guest Experience | Reputation Manager | Outscraper (Reviews) | $0.50 |
+| Quality & Operations | Quality Watchdog | Outscraper (Review-Texte) | (same) |
+| Revenue & Menu | Revenue Analyst | Computed (Modell, Kap. 18) | $0 |
+| Revenue & Menu | Menu Intelligence | Firecrawl (Website) | $0.10 |
+| Market & Growth | Marketing Engine | Apify (Instagram) | $0.20 |
+| Market & Growth | Competitor Radar | Outscraper (3–4 Wettbewerber) | $0.30 |
 
-**Total Scrape-Kosten: ~$0.80 pro Lead.**
+### 5.2 Locked Agents — erscheinen auf Teaser als `🔒`, kein Insight
+
+| Team | Agent | Benötigt |
+|---|---|---|
+| Guest Experience | Guest Recovery | CRM/Reservierungssystem |
+| Guest Experience | Booking Optimizer | Reservierungssystem |
+| Quality & Operations | Operations Advisor | Reservierungs- + Schichtdaten |
+| Quality & Operations | Predictive Staffing | Rosterplan, Wetter-API |
+| Quality & Operations | Staff Communication | Interne Kommunikationssysteme |
+| Revenue & Menu | Food Waste Agent | POS + Einkaufsdaten |
+
+**Verteilung pro Team (auf Teaser sichtbar als `[X/Y]`-Counter):**
+- Guest Experience: **1/3 aktiv**
+- Quality & Operations: **1/4 aktiv**
+- Revenue & Menu: **2/3 aktiv**
+- Market & Growth: **2/2 aktiv**
+
+Die `[X/Y]`-Counter sind **psychologisch der stärkste Upgrade-Trigger** — sie
+machen sichtbar, was der Gastronom *noch nicht hat*. Loss Aversion > Gain.
+
+**Total Scrape-Kosten: ~$1.10 pro Lead.**
 
 ---
 
 ## 6. Agent Output Schemas
 
 Alle LLM-Calls verwenden **structured outputs via Claude Tool Use**.
-Schemas in `lib/schemas/agents.ts`.
+Schemas in `lib/schemas/agents.ts`. Es gibt 6 Schemas (nur für Active Agents).
+Locked Agents haben kein Schema — sie werden im Renderer als statische
+`🔒`-Einträge mit Tooltip-Text ausgegeben.
 
 ### 6.1 Reputation Manager
 
@@ -172,22 +201,7 @@ Schemas in `lib/schemas/agents.ts`.
 }
 ```
 
-### 6.4 Operations Advisor
-
-```typescript
-{
-  weekendNegativeShare: number,      // 0-100 %
-  peakHourPattern: string,           // z.B. "Fr/Sa 19-22 Uhr"
-  reservationProblems: {
-    mentioned: boolean,
-    percentOfNegative: number
-  },
-  headline: string,
-  insight: string
-}
-```
-
-### 6.5 Menu Intelligence
+### 6.4 Menu Intelligence
 
 ```typescript
 {
@@ -195,19 +209,15 @@ Schemas in `lib/schemas/agents.ts`.
   avgPricePerCategory: {
     category: string,                // "Pizza", "Pasta"
     ownPrice: number,                // CHF
-    benchmarkPrice: number | null    // if competitors scraped
+    benchmarkPrice: number | null
   }[],
   pricePositioning: "höchste" | "obere" | "mittlere" | "günstige",
-  riskyItem: {
-    name: string,                    // Gericht-Name
-    reason: string                   // kurze Begründung (abstract)
-  } | null,
   headline: string,
   insight: string
 }
 ```
 
-### 6.6 Marketing Engine
+### 6.5 Marketing Engine
 
 ```typescript
 {
@@ -215,6 +225,19 @@ Schemas in `lib/schemas/agents.ts`.
   postingFrequency: string,          // "3x/Woche"
   expectationGapPercent: number,     // % der negativen Reviews, die Erwartungslücke thematisieren
   influencerReliance: "hoch" | "mittel" | "niedrig",
+  headline: string,
+  insight: string
+}
+```
+
+### 6.6 Competitor Radar
+
+```typescript
+{
+  competitorsFound: number,          // 3-4 Wettbewerber im Umkreis
+  ownRatingVsBenchmark: number,      // Delta in Sternen (negativ = schlechter)
+  ownPriceVsBenchmark: number,       // Delta in CHF / % zum Median
+  benchmarkCompetitor: string,       // anonymisiert oder namentlich
   headline: string,
   insight: string
 }
@@ -282,28 +305,44 @@ Siehe Kapitel 13 für V1-Prompt-Beispiele pro Agent.
 | 5 | Hero-Claim | 80pt | "Ihr Betrieb verliert geschätzt **CHF 300'000 – 500'000** pro Jahr." |
 | 6 | Basis-Satz | 30pt | "Basierend auf [N] Reviews, [M] Wettbewerbern und der öffentlichen Speisekarte." |
 | 7 | 3 KPI-Boxen | 80pt | Grid: Reviews / Rating-Trend / Antwortquote |
-| 8 | Divider + H2 | 40pt | "Was unsere 6 Agents in Ihrem Betrieb sehen" |
-| 9 | 6-Agent-Grid | 340pt | 2 Spalten × 3 Zeilen, je Kachel Agent-Name + headline + insight |
-| 10 | Divider + H3 | 30pt | "Im Vollaudit" |
-| 11 | Bullet-Liste | 80pt | 4 Bullets: was im Vollreport dazukommt |
-| 12 | CTA-Box | 60pt | "Erstgespräch buchen →" mit Calendly-URL |
-| 13 | Footer | 20pt | hello@couvert.ai · couvert.ai |
+| 8 | Divider + H2 | 40pt | "12 Agents in 4 Teams · 6 aktiv auf Basis öffentlicher Daten" |
+| 9 | 4-Team-Grid | 400pt | 2 Spalten × 2 Zeilen. Jede Kachel = ein Team mit `[X/Y]`-Counter, aktiven Agent-Insights und `🔒`-Einträgen für locked Agents |
+| 10 | Locked-Hinweis | 20pt | "🔒 Agents werden mit Ihren Betriebsdaten aktiviert." |
+| 11 | Divider + H3 | 30pt | "Im Vollaudit" |
+| 12 | Bullet-Liste | 80pt | 4 Bullets: was im Vollreport dazukommt |
+| 13 | CTA-Box | 60pt | Dual-CTA: "Vollreport CHF 4'500" + "Erstgespräch buchen" |
+| 14 | Footer | 20pt | hello@couvert.ai · couvert.ai |
 
-### Agent-Kachel (Zellformat)
+### Team-Kachel (Zellformat)
 
 ```
-┌─────────────────────────────────┐
-│ [AGENT NAME]             (10pt) │
-│                                 │
-│ [headline]              (14pt)  │
-│ max 2 Zeilen                    │
-│                                 │
-│ [insight]                (11pt) │
-│ max 2 Zeilen                    │
-└─────────────────────────────────┘
+┌────────────────────────────────────┐
+│ [TEAM NAME]              [X/Y]     │ ← 12pt header + counter rechts
+│                                    │
+│ ✓ Active Agent 1          (11pt)   │ ← Icon + Agent-Name (bold)
+│   [headline]              (13pt)   │ ← Main Pain-Zahl
+│   [insight]               (10pt)   │ ← Cliffhanger (max 2 Zeilen)
+│                                    │
+│ ✓ Active Agent 2          (11pt)   │ ← Nur wenn Team ≥2 aktive Agents hat
+│   [headline + insight]             │
+│                                    │
+│ ─────────                          │ ← Visueller Trenner
+│ 🔒 Locked Agent 1         (10pt)   │ ← Graut, Name + lock icon, kein Insight
+│ 🔒 Locked Agent 2                  │
+│ 🔒 Locked Agent 3                  │
+└────────────────────────────────────┘
 ```
 
 Padding innen: 16pt. Zwischen Kacheln: 12pt gap.
+
+**Team-Counter-Logik:** `[X/Y]` in dezent-orange rechts oben in der Team-Kachel.
+- Guest Experience: [1/3]
+- Quality & Operations: [1/4]
+- Revenue & Menu: [2/3]
+- Market & Growth: [2/2]
+
+**Locked-Styling:** 40% Opacity auf Text, `🔒` Icon in Orange. Keine Headlines
+oder Insights — nur der Name. Das erzeugt die visuelle Spannung.
 
 ---
 

@@ -14,6 +14,14 @@ zum bestehenden manuellen Audit (`reports/Couvert_Report_60_Seconds_to_Napoli.pd
 **Grundlage:** Nur öffentlich verfügbare Daten (Google Reviews, Website, Speisekarte,
 Instagram, Wettbewerber-Profile). Interne Betriebsdaten bleiben Tier 2 vorbehalten.
 
+**Agent-Aktivierung:** Von den **12 Couvert-Agents in 4 Teams** sind auf Tier 1
+**6 Agents aktiv** (Reputation Manager, Quality Watchdog, Revenue Analyst, Menu
+Intelligence, Marketing Engine, Competitor Radar). Die 6 Internal-Data-Agents
+(Guest Recovery, Booking Optimizer, Operations Advisor, Predictive Staffing,
+Staff Communication, Food Waste) werden im Report sichtbar als `🔒 Tier 2`
+referenziert — jedes Kapitel endet mit einer "Precision Upgrade"-Box, die den
+nächsten Schritt zeigt.
+
 ---
 
 ## 2. Positionierung im Funnel
@@ -168,7 +176,7 @@ erzeugt.
 | Kap. 1 Reputation | Rating-Chart, Antwortquote, Wettbewerbsvergleich | Code (Chart) + LLM | 100 % (Public Data) |
 | Kap. 2 Qualität & Muster | Top-10 Kategorien-Chart, 6 Zitate | LLM-Klassifikation + Code-Zählung | 100 % |
 | Kap. 3 Umsatz-Wirkung | Modellbasierte Berechnung | Code-Formel mit geschätzten Inputs | **Range-basiert** |
-| Kap. 4 Betrieb | Muster aus Review-Metadaten | Code (Zeitmuster) + LLM (Interpretation) | 80 % (ohne interne Schichtdaten) |
+| Kap. 4 Betrieb | Muster aus Review-Metadaten, **Operations Advisor als 🔒 Tier 2 markiert** | Code (Zeitmuster) + LLM (Interpretation) | 60 % (ohne interne Schicht-/Reservierungsdaten) |
 | Kap. 5 Speisekarte | Menü-Analyse, Wettbewerbs-Preise | Code + LLM | 100 % |
 | Kap. 6 Marketing | Instagram-Analyse, Erwartungslücke | Code + LLM | 100 % |
 | Kap. 7 Wettbewerb | Tabelle 3–4 Wettbewerber | Code + LLM | 100 % |
@@ -177,10 +185,12 @@ erzeugt.
 | Anhang | Methodik, Quellen | Template (statisch) | 100 % |
 
 **Wo Tier 1 bewusst weicher ist:** Kapitel 3 (Ranges statt Punktwerte), Kapitel 4
-(Observational-Only-Insights, keine Schicht-Detailanalyse).
+(Observational-Only-Insights, Operations Advisor als 🔒 markiert).
 
-**Natürlicher Tier-2-Upsell:** Genau an diesen beiden Stellen wird im Report ein
-farblich markierter "Precision Upgrade"-Block gezeigt:
+**Natürlicher Tier-2-Upsell:** Jedes Kapitel, in dem ein Agent **gesperrt** ist,
+bekommt am Ende eine farblich markierte "Precision Upgrade"-Box. Zusätzlich
+nennt das Executive Summary explizit die 6 gesperrten Agents mit einem Satz
+pro Agent ("Was Guest Recovery bei Ihnen tun würde"):
 
 > *"Mit Ihren internen Betriebsdaten reduzieren wir diese Range von CHF 250K–450K
 > auf einen einzelnen Wert mit ±5 % Konfidenzintervall. → Tier 2 buchen."*
