@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Methodik - Couvert.ai</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.method-hero{padding-top:120px;padding-bottom:20px}
+.method-intro{font-size:17px;line-height:1.7;color:var(--text);font-weight:300;max-width:760px;margin-bottom:40px}
+.method-intro strong{color:var(--cream);font-weight:500}
+.sources-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:32px}
+.source-card{background:var(--bg);padding:32px 28px}
+.sc-tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--copper);margin-bottom:12px}
+.sc-formula{font-family:'JetBrains Mono',monospace;font-size:22px;color:var(--gold);line-height:1.2;margin-bottom:14px;letter-spacing:-0.3px}
+.sc-card-title{font-family:'DM Serif Display',serif;font-size:20px;color:var(--cream-bright);margin-bottom:10px;letter-spacing:-0.3px}
+.sc-body{font-size:14px;line-height:1.65;color:var(--text-dim);font-weight:300;margin-bottom:14px}
+.sc-source{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);letter-spacing:0.5px;border-top:1px solid var(--border);padding-top:12px;margin-top:auto}
+.sc-source a{color:var(--copper);text-decoration:none}
+.source-card{display:flex;flex-direction:column}
+.data-list{list-style:none;padding:0;margin:24px 0}
+.data-list li{padding:14px 0;border-top:1px solid var(--border);display:flex;gap:24px;align-items:flex-start;font-size:15px;line-height:1.55;color:var(--text);font-weight:300}
+.data-list li:first-child{border-top:none}
+.data-list .dl-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--copper);min-width:140px;flex-shrink:0;padding-top:3px}
+.data-list .dl-body strong{color:var(--cream);font-weight:500}
+.example-box{background:var(--bg2);border:1px solid var(--border);padding:28px 32px;margin:32px 0;border-left:3px solid var(--copper)}
+.example-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--copper);margin-bottom:14px}
+.example-calc{font-family:'JetBrains Mono',monospace;font-size:15px;line-height:1.9;color:var(--text)}
+.example-calc strong{color:var(--gold);font-weight:500}
+.example-calc .sep{color:var(--text-dim);display:inline-block;margin:0 6px}
+.example-result{border-top:1px solid var(--border);margin-top:16px;padding-top:16px;font-family:'JetBrains Mono',monospace;font-size:17px;color:var(--gold);font-weight:500}
+.commitment-box{margin-top:48px;padding:32px 36px;border-left:3px solid var(--copper);background:var(--bg2);border-radius:0 4px 4px 0}
+.commitment-box h3{font-family:'DM Serif Display',serif;font-size:22px;color:var(--cream-bright);margin-bottom:14px;letter-spacing:-0.3px}
+.commitment-box p{font-size:15px;line-height:1.7;color:var(--text);font-weight:300}
+.commitment-box p strong{color:var(--cream);font-weight:500}
+@media(min-width:801px){
+  .method-intro{font-size:18px}
+}
+@media(max-width:800px){
+  .sources-grid{grid-template-columns:1fr}
+  .data-list li{flex-direction:column;gap:6px}
+  .data-list .dl-label{min-width:auto}
+  .example-box{padding:22px 20px}
+  .example-calc{font-size:13.5px}
+}
+</style>
+</head>
+<body>
+
+<header><div class="container header-inner">
+<a href="index.html" class="logo"><div class="logo-icon"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="8" r="5.5" stroke="#C4673A" stroke-width="1.2" fill="none"/><circle cx="9" cy="8" r="2" stroke="#C4673A" stroke-width="0.8" fill="none" opacity="0.5"/><circle cx="9" cy="8" r="0.8" fill="#C4673A"/><line x1="5" y1="15" x2="13" y2="15" stroke="#C4673A" stroke-width="0.6" opacity="0.4"/></svg></div><div class="logo-name">couvert<span>.ai</span></div></a>
+<nav class="nav"><a href="index.html#ai-team">AI-Team</a><a href="fallbeispiel.html">Fallbeispiel</a><a href="ablauf.html">Ablauf</a><a href="ablauf.html#faq">FAQ</a><a href="https://calendly.com/hello-couvert/30min" target="_blank" class="nav-cta">Gespräch buchen</a></nav>
+<button class="burger" onclick="document.getElementById('mm').classList.add('open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+</div></header>
+
+<div class="mobile-menu" id="mm">
+<button class="mm-close" onclick="document.getElementById('mm').classList.remove('open')" aria-label="Schliessen"><svg viewBox="0 0 24 24" fill="none"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+<a href="index.html">Start</a><a href="index.html#ai-team">AI-Team</a><a href="fallbeispiel.html">Fallbeispiel</a><a href="ablauf.html">Ablauf & FAQ</a><a href="https://calendly.com/hello-couvert/30min" target="_blank" style="color:var(--copper)">Gespräch buchen</a>
+</div>
+
+<section class="subpage-hero method-hero"><div class="container">
+<a href="index.html" class="back-link">← Zurück zur Startseite</a>
+<div class="section-label">Methodik</div>
+<div class="section-title">Jede Zahl ist nachvollziehbar.</div>
+<p class="method-intro">Unsere Umsatz-Modelle verwenden keine erfundenen Annahmen. Jeder CHF-Wert in unseren Reports basiert auf drei etablierten Forschungsgrundlagen aus der Gastronomie-, CX- und Reputationsforschung — kombiniert mit den öffentlich verfügbaren Daten Ihres Betriebs. <strong>Wenn Sie einen Wert hinterfragen, zeigen wir Ihnen die Herleitung.</strong></p>
+</div></section>
+
+<section style="padding-top:0"><div class="container">
+<div class="section-label">Die drei Forschungsgrundlagen</div>
+<div class="sources-grid">
+
+<div class="source-card">
+<div class="sc-tag">Dunkelziffer</div>
+<div class="sc-formula">1 : 7</div>
+<div class="sc-card-title">Stumme unzufriedene Gäste</div>
+<div class="sc-body">Auf jede geschriebene negative Bewertung kommen durchschnittlich sieben unzufriedene Gäste, die nichts schreiben — und trotzdem abwandern. Für jede 1-2-Sterne-Bewertung multiplizieren wir mit 7, für 3-Sterne-Bewertungen konservativ mit 3.</div>
+<div class="sc-source">Esteban Kolsky / ThinkJar (2015)<br>Customer Experience Statistics</div>
+</div>
+
+<div class="source-card">
+<div class="sc-tag">Abwanderung</div>
+<div class="sc-formula">55%</div>
+<div class="sc-card-title">Churn bei 0% Antwortquote</div>
+<div class="sc-body">Unzufriedene Gäste kommen mit hoher Wahrscheinlichkeit nicht wieder — besonders bei Betrieben, die auf Kritik nicht reagieren. Bei 80%+ Antwortquote sinkt die Rate auf unter 20%. Wir rechnen konservativ mit 55% bei 0% Antwortquote.</div>
+<div class="sc-source">ReviewTrackers (2023)<br>Online Reviews Statistics and Trends</div>
+</div>
+
+<div class="source-card">
+<div class="sc-tag">Rating-Effekt</div>
+<div class="sc-formula">5–9%</div>
+<div class="sc-card-title">Umsatz pro Stern</div>
+<div class="sc-body">Ein Anstieg um einen Stern auf Google führt bei unabhängigen Restaurants zu 5–9% mehr Umsatz. Für Fraktionen (z.B. 0.2 Sterne Rating-Gap zum Benchmark) interpolieren wir linear im unteren Range (5%).</div>
+<div class="sc-source">Harvard Business School · Luca, M. (2016)<br>Reviews, Reputation, and Revenue</div>
+</div>
+
+</div></div></section>
+
+<section><div class="container">
+<div class="section-label">Datenquellen pro Audit</div>
+<div class="section-title">Worauf unsere Modelle operieren.</div>
+<ul class="data-list">
+<li><span class="dl-label">Reviews</span><span class="dl-body">Vollständige Analyse aller öffentlichen Google-Bewertungen (typisch 800–3'000 pro Standort) in Deutsch, Englisch, Französisch, Italienisch. Klassifikation in bis zu drei Beschwerdekategorien pro Bewertung.</span></li>
+<li><span class="dl-label">Speisekarte</span><span class="dl-body">Scraping der öffentlichen Online-Speisekarte (Website, Delivery-Apps). Preisvergleich gegen Wettbewerber, Sentiment-Korrelation pro Gericht nach Kartenwechseln.</span></li>
+<li><span class="dl-label">Wettbewerbsdaten</span><span class="dl-body">Rating, Review-Volumen, Antwortquote und Preisniveau der 3–4 relevantesten Wettbewerber im lokalen Marktsegment.</span></li>
+<li><span class="dl-label">Marketing-Präsenz</span><span class="dl-body">Social-Media-Kanäle, Influencer-Kampagnen-Rhythmus, Content-Realitätsabgleich mit Gästeerfahrung (Erwartungslücken-Analyse).</span></li>
+<li><span class="dl-label">Branchen-Benchmarks</span><span class="dl-body">Kennzahlen für vergleichbare Gastro-Konzepte (Casual-Dining, Fine-Casual, etc.) für Auslastung, Personaldecke, Bon-Werte. Quelle: öffentliche Branchenberichte + eigene Benchmark-Datenbank.</span></li>
+<li><span class="dl-label">Interne Daten (optional)</span><span class="dl-body">Ab der Aufbauphase: Reservierungssystem, POS, Schichtplanung — für präzisere Aussagen und aktive Agenten-Interventionen.</span></li>
+</ul>
+</div></section>
+
+<section style="padding-top:0"><div class="container">
+<div class="section-label">Rechenbeispiel</div>
+<div class="section-title">So entsteht eine Verlust-Zahl.</div>
+<p style="font-size:15px;color:var(--text-dim);line-height:1.7;max-width:720px;font-weight:300;margin-top:12px">Vereinfachte Herleitung für einen Standort mit CHF 6.5 Mio. Jahresumsatz, 169 Bewertungen mit 1-2 Sternen, 124 mit 3 Sternen, 0% Antwortquote.</p>
+
+<div class="example-box">
+<div class="example-label">Verlust durch Wartezeit-Beschwerden (Kategorie 45%)</div>
+<div class="example-calc">
+169 × 7<span class="sep">+</span>124 × 3<span class="sep">=</span><strong>1'740</strong> stumme unzufriedene Gäste<br>
+1'740<span class="sep">×</span>55% Abwanderung<span class="sep">=</span><strong>957</strong> verlorene Gäste<br>
+957<span class="sep">×</span>CHF 400 LTV<span class="sep">×</span>45% Kategorie-Anteil<span class="sep">=</span>
+</div>
+<div class="example-result">−CHF 172'260 ≈ −CHF 195K geschätzt</div>
+</div>
+
+<p style="font-size:14px;color:var(--text-dim);font-style:italic;line-height:1.65;max-width:720px;font-weight:300">Der in Reports ausgewiesene Wert (−CHF 195K) enthält zusätzlich Interaktionseffekte: Gäste, die mehrere Probleme gleichzeitig erleben (Wartezeit + Teigqualität), haben eine überproportional höhere Abwanderungswahrscheinlichkeit. Die Einzelkategorien sind konservativ geschätzt.</p>
+</div></section>
+
+<section><div class="container">
+<div class="section-label">Was die Agenten damit tun</div>
+<div class="section-title">Von der Zahl zur Intervention.</div>
+<p style="font-size:16px;color:var(--text);line-height:1.7;max-width:760px;font-weight:300;margin-top:12px">Die Methodik ist nicht Selbstzweck. Sie ist das Fundament, auf dem die zwölf AI Agents operieren. Jede Kategorie-Berechnung wird einem Team zugeordnet, das konkret handelt: Der <strong>Quality Watchdog</strong> trackt die dahinterliegenden Muster wöchentlich und briefed den Küchenchef. Der <strong>Operations Advisor</strong> passt Reservierungs-Buffer vor Spitzentagen an. Der <strong>Revenue Analyst</strong> beziffert jeden Monat, was tatsächlich zurückgeholt wurde. Der identifizierte Schaden wird nicht nur quantifiziert — er wird adressiert.</p>
+</div></section>
+
+<section class="quote-section" style="text-align:center;padding:64px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)"><div class="container">
+<div class="commitment-box" style="text-align:left;max-width:760px;margin:0 auto">
+<h3>Accuracy Guarantee</h3>
+<p>Jede Zahl in unseren Reports lässt sich aus echten Daten und dokumentierten Forschungsgrundlagen herleiten. Sollte uns ein sachlicher Fehler unterlaufen — eine falsche Zahl, ein erfundenes Zitat, eine fehlerhafte Wettbewerberzuordnung — prüfen wir den Befund innerhalb sieben Werktagen und korrigieren oder erstatten anteilig. <strong>Subjektive Unzufriedenheit mit der Analyse ist kein Erstattungsgrund.</strong> Das ist eine datengestützte Standortbestimmung, keine Produkt-Probe.</p>
+</div>
+</div></section>
+
+<section style="text-align:center"><div class="container">
+<div class="section-title">Offene Fragen zur Methodik?</div>
+<p style="font-size:16px;color:var(--text-dim);margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.7;font-weight:300">Im Erstgespräch gehen wir gerne durch, wie die Zahlen für Ihren Betrieb aussehen würden — inklusive Herleitung.</p>
+<a href="https://calendly.com/hello-couvert/30min" target="_blank" class="btn-primary">Erstgespräch vereinbaren</a>
+</div></section>
+
+<footer><div class="container">
+<div class="footer-inner"><div class="footer-left">© 2026 COUVERT.AI - ZÜRICH</div><div class="footer-right">Jedes Gedeck zählt.</div></div>
+<div class="footer-links"><a href="methodik.html">Methodik</a><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="mailto:hello@couvert.ai">hello@couvert.ai</a><div class="footer-trust"><span>Schweizer Hosting</span><span>nDSG-konform</span><span>Anthropic Claude</span></div></div>
+</div></footer>
+</body>
+</html>
