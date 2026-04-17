@@ -287,12 +287,14 @@ Siehe Kapitel 13 für V1-Prompt-Beispiele pro Agent.
 
 **Format:** A4 hochkant, 1 Seite.
 **Schrift:** Inter (Titel) + Source Serif Pro (Zahlen-Hero) — passend zum Vollreport.
-**Farben:**
-- Hintergrund: `#0A0A0A` (deep black, gleich wie Vollreport)
+**Farben** (gleich wie aktueller Vollreport `reports/Couvert_Report_60_Seconds_to_Napoli.pdf`):
+- Hintergrund: `#0E3531` (deep forest green)
 - Primär: `#E85D24` (Couvert orange)
 - Text primär: `#FFFFFF`
 - Text sekundär: `#9A9A9A`
-- Akzent (Zahlen): `#F5A623` (gelb-orange für CHF-Werte)
+- Akzent (Zahlen, CHF-Werte): `#F5A623` (warm yellow-orange)
+- Kritisch / negativ (Rot-Werte im Report): `#E85D24` (gleiches Orange, höhere Opacity)
+- Locked-Styling (Graut 🔒): `#9A9A9A` bei 50 % Opacity
 
 ### Sektionen (von oben nach unten)
 
@@ -305,9 +307,9 @@ Siehe Kapitel 13 für V1-Prompt-Beispiele pro Agent.
 | 5 | Hero-Claim | 80pt | "Ihr Betrieb verliert geschätzt **CHF 300'000 – 500'000** pro Jahr." |
 | 6 | Basis-Satz | 30pt | "Basierend auf [N] Reviews, [M] Wettbewerbern und der öffentlichen Speisekarte." |
 | 7 | 3 KPI-Boxen | 80pt | Grid: Reviews / Rating-Trend / Antwortquote |
-| 8 | Divider + H2 | 40pt | "12 Agents in 4 Teams · 6 aktiv auf Basis öffentlicher Daten" |
+| 8 | Divider + H2 | 40pt | "12 Agents in 4 Teams. 6 arbeiten heute. 6 warten auf Sie." |
 | 9 | 4-Team-Grid | 400pt | 2 Spalten × 2 Zeilen. Jede Kachel = ein Team mit `[X/Y]`-Counter, aktiven Agent-Insights und `🔒`-Einträgen für locked Agents |
-| 10 | Locked-Hinweis | 20pt | "🔒 Agents werden mit Ihren Betriebsdaten aktiviert." |
+| 10 | Locked-Hinweis | 20pt | "🔒 Diese Agents werden mit Ihren Betriebsdaten aktiviert — ab Aufbauphase." |
 | 11 | Divider + H3 | 30pt | "Im Vollaudit" |
 | 12 | Bullet-Liste | 80pt | 4 Bullets: was im Vollreport dazukommt |
 | 13 | CTA-Box | 60pt | Dual-CTA: "Vollreport CHF 4'500" + "Erstgespräch buchen" |
@@ -501,7 +503,47 @@ Gib das Ergebnis via `reputation_manager_output` Tool zurück.
 
 ---
 
-## 18. Revenue-Estimation-Heuristik (für Revenue Analyst ohne interne Daten)
+## 18. Copy-Guidelines — Soft FOMO, keine Angstmacherei
+
+Der Teaser nutzt **Loss Aversion** als Trigger, aber bleibt **professionell und nüchtern**.
+Keine Alarm-Sprache, keine aufgebauschten Schadenszahlen, keine Drohkulissen.
+
+### 18.1 Prinzipien
+
+- **Faktisch statt emotional.** "6 von 12 Agents arbeiten heute" ist stärker als "Sie verlieren Zugang zu 6 Agents"
+- **Offen statt gesperrt.** "Warten auf Ihre Betriebsdaten" ist einladender als "Gesperrt ohne Upgrade"
+- **Keine Schreckzahlen pro Agent.** Die Gesamt-CHF-Range im Hero reicht. Einzelne "kostet Sie CHF X/Monat"-Angaben pro locked Agent sind aggressiv und unseriös.
+- **CFO-kompatibler Ton.** Lies die Copy laut vor. Wenn sie wie ein Verkaufspitch klingt, ist sie zu laut.
+
+### 18.2 Do / Don't
+
+| ✓ Do (soft, professionell) | ✗ Don't (zu aggressiv) |
+|---|---|
+| "6 arbeiten heute. 6 warten auf Sie." | "Sie verlieren 6 Agents." |
+| "Warten auf Ihre Betriebsdaten" | "Gesperrt ohne Aufbauphase" |
+| "Aktivierung ab Aufbauphase" | "Nicht verfügbar — jetzt freischalten!" |
+| "[2/4]"-Counter als dezente Ziffern | "Nur 2 von 4!!!" |
+| "Was Guest Recovery bei Ihnen tun würde" | "Was Ihnen entgeht" |
+
+### 18.3 Der Hero-Satz
+
+Version V1 (final):
+
+> *"Ihr Betrieb verliert geschätzt CHF 300'000 – 500'000 pro Jahr. 6 unserer Agents haben das aus öffentlichen Daten erkannt. 6 weitere warten darauf, mit Ihnen zu arbeiten."*
+
+Drei Teile:
+1. **Schadensrange** — faktisch, mit "geschätzt" als Konfidenz-Signal
+2. **Active-Framing** — "6 haben erkannt" zeigt Kompetenz
+3. **Invitation** — "warten darauf, mit Ihnen zu arbeiten" statt "Sie brauchen"
+
+### 18.4 Kein Pricing oder CTA im FOMO-Bereich
+
+Der 🔒-Bereich bleibt **rein informativ**. Der Pricing-/CTA-Block kommt erst im
+dedizierten Abschnitt am Ende. Sonst wirkt's wie ein Upsell-Popup.
+
+---
+
+## 19. Revenue-Estimation-Heuristik (für Revenue Analyst ohne interne Daten)
 
 Der Revenue Analyst braucht eine belastbare Jahresumsatz-Schätzung als Input für
 das Verlust-Modell (Dunkelziffer, Rating-Effekt etc.) — auch wenn der Gastronom

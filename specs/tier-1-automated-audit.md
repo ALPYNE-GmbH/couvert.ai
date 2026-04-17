@@ -625,7 +625,64 @@ Zusätzliche Tier-1-spezifische Punkte:
 
 ---
 
-## 19. Nächste Schritte
+## 19. Agent-Positionierung — alle 12, scharf abgegrenzt
+
+Jeder Agent braucht in Report, Teaser und Sales eine **scharfe, nicht-austauschbare
+Positionierung**. Sonst verschwimmt der Scope und die Konkurrenz (Respondelligent,
+Planday, Quandoo, Amakori) nimmt Scheibe für Scheibe.
+
+### Team 1: Guest Experience
+
+| Agent | Schwache Positionierung (❌) | Scharfe Positionierung (✓) |
+|---|---|---|
+| **Reputation Manager** | "Beantwortet Bewertungen" | "Beantwortet in 4 Sprachen in Ihrer Tonalität. Eskaliert 1-2★ innerhalb 2 Stunden. 95%+ Antwortquote in 30 Tagen." |
+| **Guest Recovery** | "Unzufriedene Gäste zurückholen" | "Identifiziert unzufriedene Gäste aus Bewertungen, matcht sie mit Reservierungsdaten und Kontaktinformationen. Sendet personalisierte Einladungen. Recovery-Tracking ab Monat 6." |
+| **Booking Optimizer** | "Füllt leere Slots" | "Koppelt Recovery-Gäste an schwache Slots. Korreliert Auslastung mit Bewertungs-Sentiment, um Überlastungs-Tage zu vermeiden. Das kann kein Quandoo." |
+
+### Team 2: Quality & Operations
+
+| Agent | Schwache Positionierung (❌) | Scharfe Positionierung (✓) |
+|---|---|---|
+| **Quality Watchdog** | "Sentiment-Analyse" | "Erkennt Trend-Veränderungen ('8x nasser Teig diese Woche') und schickt rollenspezifische Briefings direkt an zuständige Mitarbeiter vor Schichtbeginn." |
+| **Operations Advisor** | "Kapazitätsmanagement" | "Korreliert Reservierungsdaten mit Bewertungs-Sentiment. Erkennt Überbuchungsmuster vor Spitzentagen und passt Reservierungseinstellungen proaktiv an." |
+| **Predictive Staffing** | "Schichtplanung mit AI" | "Stafft nicht nach Reservierungen, sondern nach Risiko. Freitag-Abendschicht erzeugt 3× mehr Beschwerden als Mittwoch — das Modell plant dagegen. Das macht kein Planday." |
+| **Staff Communication** | "Digitale Schichtübergaben" | "Ersetzt informelle Chat-Gruppen durch strukturierte, rollenspezifische Briefings. 7% der Beschwerden sind Symptome informeller Kommunikation — dieser Agent schliesst die Lücke." |
+
+### Team 3: Revenue & Menu
+
+| Agent | Schwache Positionierung (❌) | Scharfe Positionierung (✓) |
+|---|---|---|
+| **Revenue Analyst** | "KPI-Reports" | "Beziffert jede Schwachstelle in CHF. Priorisiert Massnahmen nach Hebel. Berechnet ROI pro umgesetzter Massnahme. Monatlicher Wirkungsbericht mit Trend-Vergleich." |
+| **Menu Intelligence** | "Menü-Optimierung" | "Überwacht jeden Kartenwechsel automatisch. Gleicht neue Gerichte mit historischem Feedback ab. Instagram-Content vs. tatsächliche Gästeerfahrung: Erkennt Erwartungslücken bevor sie in Bewertungen landen." |
+| **Food Waste Agent** | "Weniger Müll, mehr Marge" | "Verfügbar ab **Phase 3 Managed Service**. Korreliert POS-Bestellmuster mit Einkaufsdaten. Generiert optimierte Bestelllisten basierend auf Auslastungsprognosen." ⚠️ Expliziter Phase-3-Label, damit er auf dem 1-Pager nicht falsche Erwartungen weckt. |
+
+### Team 4: Market & Growth
+
+| Agent | Schwache Positionierung (❌) | Scharfe Positionierung (✓) |
+|---|---|---|
+| **Marketing Engine** | "Social Media Manager" | "Kein Content, sondern Budget. Schaltet Ads nur wenn Auslastung unter 60% fällt. Koppelt Paid-Budget an Sentiment-Entwicklung. Revenue-Tool, nicht Marketing-Tool. Klare Abgrenzung zu Amakori." |
+| **Competitor Radar** | "Konkurrenz-Monitoring" | "Wöchentlicher Scan der Top-3 Wettbewerber. Erkennt Strategiewechsel (neue Karte, Preisanpassung, Kampagnenstart) und schlägt Gegenreaktionen vor — bevor Gäste abwandern." |
+
+### 19.1 Warum alle 12 behalten (und nicht konsolidieren)
+
+1. **Pricing-Architektur:** Teams werden als Bundle verkauft (CHF 1'800–2'200/Monat).
+   Ein Team mit 2 Agents ist schwerer zu rechtfertigen als eins mit 3-4.
+2. **Sales-Story:** "Strukturierte Schichtübergaben" ist ein Verkaufspunkt, den
+   ein GM sofort versteht. "Predictive Staffing mit integrierter Kommunikation"
+   ist Fachchinesisch.
+3. **Expansion-Hooks:** Food Waste, Booking Optimizer und Competitor Radar sind
+   auch dann wertvoll, wenn sie am Anfang dünn sind — sie geben in Monat 6 den
+   Grund, Phase 3 auszuweiten. Das ist Retention-Mechanik.
+
+### 19.2 Food Waste Agent — Special Handling
+
+- Im Teaser: `🔒 Food Waste Agent · Phase 3`
+- Im Tier-1-Report: als Agent erwähnt mit Zusatz *"aktiv ab Phase 3 Managed Service"*
+- Im Sales-Gespräch: als **Expansions-Pfad** positioniert, nicht als Entry-Point
+
+---
+
+## 20. Nächste Schritte
 
 1. **V1 Teaser launchen** (aus `teaser-pipeline-v1.md`) — zuerst abschliessen
 2. **Mit 20+ Teaser-Generierungen Datengraph validieren** — Edge Cases finden
