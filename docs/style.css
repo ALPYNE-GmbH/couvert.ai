@@ -82,5 +82,5 @@ footer{padding:32px 0;border-top:1px solid var(--border)}
 @media(max-width:800px){
   .nav{display:none}
   .burger{display:block}
-  .hero h1{letter-spacing:-1px}
+  .hero-section h1{letter-spacing:-1.5px}
 }
