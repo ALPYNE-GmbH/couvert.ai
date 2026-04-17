@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Competitor Briefing - Couvert.ai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1A3C34;
+  --bg2:#162F29;
+  --bg3:#12261F;
+  --copper:#C4673A;
+  --copper-soft:#D4845A;
+  --gold:#E8B931;
+  --cream:#F5F0EB;
+  --cream-bright:#FAF7F2;
+  --text:#E0DCD6;
+  --text-dim:#9B958C;
+  --border:#2A4A42;
+  --border-soft:#234039;
+  --green-up:#6B9C7F;
+  --red-down:#B8564A;
+  --mail-bg:#1A3C34;
+  --mail-panel:#162F29;
+  --mail-sep:#2A4A42;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--bg3);font-family:'DM Sans',sans-serif;color:var(--text);-webkit-font-smoothing:antialiased}
+.wrap{padding:24px;max-width:1200px;margin:0 auto}
+
+/* Mail client frame */
+.mail{
+  background:var(--mail-panel);
+  border:1px solid var(--border);
+  border-radius:6px;
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,0.4);
+}
+.mail-toolbar{
+  background:var(--bg3);
+  padding:10px 16px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border-bottom:1px solid var(--border);
+}
+.mail-toolbar .dots{display:flex;gap:6px}
+.mail-toolbar .dots span{width:10px;height:10px;border-radius:50%;background:#2A4A42}
+.toolbar-actions{display:flex;gap:4px;margin-left:auto}
+.toolbar-btn{
+  padding:5px 10px;
+  border:1px solid var(--border);
+  border-radius:3px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--text-dim);
+  letter-spacing:1px;
+  text-transform:uppercase;
+  background:transparent;
+  cursor:pointer;
+}
+.toolbar-btn:hover{color:var(--cream);border-color:var(--copper)}
+.toolbar-label{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--text-dim);
+  letter-spacing:1px;
+  text-transform:uppercase;
+  padding:4px 10px;
+  border:1px solid var(--border);
+  border-radius:3px;
+}
+.toolbar-label .dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+
+/* Mail header */
+.mail-head{
+  padding:24px 36px 20px;
+  border-bottom:1px solid var(--border);
+  background:var(--mail-panel);
+}
+.mail-subject{
+  font-family:'DM Serif Display',serif;
+  font-size:24px;
+  color:var(--cream-bright);
+  line-height:1.25;
+  letter-spacing:-0.3px;
+  margin-bottom:16px;
+}
+.mail-meta{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:6px 16px;
+  font-size:13px;
+}
+.meta-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--text-dim);
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  padding-top:2px;
+}
+.meta-value{
+  color:var(--text);
+  font-weight:400;
+}
+.sender{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.sender-avatar{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:var(--copper);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'DM Serif Display',serif;
+  color:var(--cream);
+  font-size:14px;
+  flex-shrink:0;
+}
+.sender-main{display:flex;flex-direction:column}
+.sender-name{font-size:13px;color:var(--cream);font-weight:500}
+.sender-email{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--text-dim);letter-spacing:0.3px;margin-top:1px}
+
+/* Body */
+.mail-body{
+  padding:32px 36px 28px;
+  max-width:780px;
+  margin:0 auto;
+}
+.intro{
+  font-size:15px;
+  color:var(--text);
+  font-weight:300;
+  line-height:1.65;
+  margin-bottom:28px;
+}
+
+.headline{
+  font-family:'DM Serif Display',serif;
+  font-size:22px;
+  color:var(--cream-bright);
+  line-height:1.25;
+  letter-spacing:-0.3px;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:28px;
+}
+
+.development{
+  margin-bottom:32px;
+}
+.dev-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--copper);
+  margin-bottom:8px;
+}
+.dev-tag .num{
+  background:var(--copper);
+  color:var(--cream);
+  width:20px;
+  height:20px;
+  border-radius:3px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:10px;
+  letter-spacing:0;
+}
+.dev-tag.warn{color:var(--red-down)}
+.dev-tag.warn .num{background:var(--red-down)}
+.dev-title{
+  font-family:'DM Serif Display',serif;
+  font-size:20px;
+  color:var(--cream);
+  margin-bottom:14px;
+  letter-spacing:-0.2px;
+}
+.dev-facts{
+  list-style:none;
+  padding:0;
+  margin:0 0 16px;
+}
+.dev-facts li{
+  padding:9px 0 9px 20px;
+  font-size:14px;
+  line-height:1.55;
+  color:var(--text);
+  border-bottom:1px solid var(--border-soft);
+  position:relative;
+  font-weight:300;
+}
+.dev-facts li:last-child{border-bottom:none}
+.dev-facts li::before{
+  content:'·';
+  position:absolute;
+  left:6px;
+  top:6px;
+  color:var(--copper);
+  font-weight:700;
+  font-size:18px;
+}
+.dev-facts strong{color:var(--cream);font-weight:500}
+.dev-facts .num-mono{font-family:'JetBrains Mono',monospace;color:var(--gold);font-weight:500}
+.dev-facts .num-mono.down{color:var(--red-down)}
+
+/* Chart box */
+.chart-box{
+  padding:18px 18px 14px;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:4px;
+  margin:16px 0;
+}
+.chart-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--text-dim);
+  margin-bottom:10px;
+}
+.chart-svg{width:100%;height:120px;display:block}
+.chart-key{
+  display:flex;
+  gap:18px;
+  margin-top:10px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--text-dim);
+  flex-wrap:wrap;
+}
+.key-dot{
+  display:inline-block;
+  width:10px;
+  height:2px;
+  background:var(--copper);
+  margin-right:5px;
+  vertical-align:middle;
+}
+.key-dot.alt{background:var(--green-up)}
+
+/* Suggestion */
+.suggestion{
+  padding:14px 16px;
+  background:rgba(196,103,58,0.08);
+  border:1px solid rgba(196,103,58,0.3);
+  border-left:3px solid var(--copper);
+  border-radius:0 4px 4px 0;
+  margin-top:14px;
+}
+.sugg-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--copper);
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.sugg-text{
+  font-size:14px;
+  color:var(--cream);
+  line-height:1.55;
+  font-weight:300;
+}
+.sugg-text strong{color:var(--cream-bright);font-weight:500}
+
+/* Footer CTA */
+.mail-foot{
+  padding:22px 36px 26px;
+  border-top:1px solid var(--border);
+  background:var(--bg3);
+}
+.foot-box{
+  max-width:780px;
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.foot-text{
+  font-size:13px;
+  color:var(--text-dim);
+  font-weight:300;
+}
+.foot-text a{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  color:var(--copper);
+  text-decoration:none;
+  border-bottom:1px solid rgba(196,103,58,0.4);
+}
+.foot-reply{
+  font-size:12px;
+  color:var(--text-dim);
+}
+.sign-off{
+  margin-top:20px;
+  font-size:14px;
+  color:var(--text);
+  font-weight:300;
+}
+.sign-off strong{
+  display:block;
+  font-family:'DM Serif Display',serif;
+  font-size:16px;
+  color:var(--copper);
+  margin-top:4px;
+  font-weight:400;
+}
+
+@media(max-width:800px){
+  .wrap{padding:12px}
+  .mail-head{padding:20px 18px 18px}
+  .mail-body{padding:24px 18px}
+  .mail-foot{padding:18px 18px 22px}
+  .mail-subject{font-size:20px}
+  .dev-title{font-size:18px}
+  .headline{font-size:18px}
+  .mail-meta{grid-template-columns:1fr;gap:8px}
+  .meta-label{padding-top:0}
+  .foot-box{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="mail">
+
+    <div class="mail-toolbar">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <span class="toolbar-label"><span class="dot"></span>Posteingang · Couvert</span>
+      <div class="toolbar-actions">
+        <button class="toolbar-btn">Antworten</button>
+        <button class="toolbar-btn">Weiterleiten</button>
+        <button class="toolbar-btn">Archivieren</button>
+      </div>
+    </div>
+
+    <div class="mail-head">
+      <div class="mail-subject">Wettbewerbs-Briefing KW 17 · Bewegung bei Margheri</div>
+      <div class="mail-meta">
+        <div class="meta-label">Von</div>
+        <div class="meta-value">
+          <div class="sender">
+            <div class="sender-avatar">C</div>
+            <div class="sender-main">
+              <span class="sender-name">Couvert Competitor Radar</span>
+              <span class="sender-email">insights@couvert.ai</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="meta-label">An</div>
+        <div class="meta-value" style="display:flex;align-items:center;padding-top:6px">adrian@60seconds.ch</div>
+
+        <div class="meta-label">Datum</div>
+        <div class="meta-value" style="display:flex;align-items:center;padding-top:6px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-dim)">Montag · 20. April 2026 · 09:00</div>
+      </div>
+    </div>
+
+    <div class="mail-body">
+      <p class="intro">
+        Guten Morgen Adrian, diese Woche zwei Entwicklungen die Ihre Aufmerksamkeit verdienen. Eine Chance, eine Warnung die sich noch nicht zur Chance entwickelt hat.
+      </p>
+
+      <div class="headline">Zwei auffällige Entwicklungen diese Woche.</div>
+
+      <div class="development">
+        <div class="dev-tag"><span class="num">1</span><span>Chance · Margheri beschleunigt</span></div>
+        <div class="dev-title">Margheri zieht diese Woche 12 neue 5-Sterne-Reviews.</div>
+        <ul class="dev-facts">
+          <li><span class="num-mono">+12</span> neue 5-Sterne-Reviews diese Woche · <strong>+300%</strong> vs. 4-Wochen-Durchschnitt.</li>
+          <li>Review-Texte erwähnen mehrfach <strong>"neues Lunch-Menü"</strong>.</li>
+          <li>Preissenkung bei Classic Pizzen um <span class="num-mono">CHF 2</span>, gezielt 11:30-14:00.</li>
+        </ul>
+
+        <div class="chart-box">
+          <div class="chart-label">Reviews pro Woche · letzte 8 Wochen</div>
+          <svg class="chart-svg" viewBox="0 0 720 130" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Y axis -->
+            <line x1="36" y1="12" x2="36" y2="110" stroke="#2A4A42" stroke-width="1"/>
+            <line x1="36" y1="110" x2="710" y2="110" stroke="#2A4A42" stroke-width="1"/>
+
+            <!-- Y labels -->
+            <text x="30" y="16" font-family="JetBrains Mono, monospace" font-size="9" fill="#9B958C" text-anchor="end">16</text>
+            <text x="30" y="63" font-family="JetBrains Mono, monospace" font-size="9" fill="#9B958C" text-anchor="end">8</text>
+            <text x="30" y="113" font-family="JetBrains Mono, monospace" font-size="9" fill="#9B958C" text-anchor="end">0</text>
+
+            <!-- Bars: 8 weeks, 2 per week. Margheri values: 3,4,3,4,3,5,4,16; 60sec: 5,4,5,6,4,5,5,6 -->
+            <!-- x: start 56, each group ~82px, bar width 15 -->
+            <!-- scale: value v -> y = 110 - (v/16)*98 => 1 unit = 6.125 -->
+            <!-- Margheri bars (copper) -->
+            <g>
+              <rect x="56"  y="91.6" width="15" height="18.4" fill="#C4673A" opacity="0.85"/>
+              <rect x="138" y="85.5" width="15" height="24.5" fill="#C4673A" opacity="0.85"/>
+              <rect x="220" y="91.6" width="15" height="18.4" fill="#C4673A" opacity="0.85"/>
+              <rect x="302" y="85.5" width="15" height="24.5" fill="#C4673A" opacity="0.85"/>
+              <rect x="384" y="91.6" width="15" height="18.4" fill="#C4673A" opacity="0.85"/>
+              <rect x="466" y="79.4" width="15" height="30.6" fill="#C4673A" opacity="0.85"/>
+              <rect x="548" y="85.5" width="15" height="24.5" fill="#C4673A" opacity="0.85"/>
+              <rect x="630" y="12"   width="15" height="98"   fill="#C4673A"/>
+            </g>
+            <!-- 60 Seconds bars (green-up) -->
+            <g>
+              <rect x="73"  y="79.4" width="15" height="30.6" fill="#6B9C7F" opacity="0.85"/>
+              <rect x="155" y="85.5" width="15" height="24.5" fill="#6B9C7F" opacity="0.85"/>
+              <rect x="237" y="79.4" width="15" height="30.6" fill="#6B9C7F" opacity="0.85"/>
+              <rect x="319" y="73.3" width="15" height="36.7" fill="#6B9C7F" opacity="0.85"/>
+              <rect x="401" y="85.5" width="15" height="24.5" fill="#6B9C7F" opacity="0.85"/>
+              <rect x="483" y="79.4" width="15" height="30.6" fill="#6B9C7F" opacity="0.85"/>
+              <rect x="565" y="79.4" width="15" height="30.6" fill="#6B9C7F" opacity="0.85"/>
+              <rect x="647" y="73.3" width="15" height="36.7" fill="#6B9C7F" opacity="0.85"/>
+            </g>
+
+            <!-- Highlight Margheri spike -->
+            <text x="637" y="8" font-family="JetBrains Mono, monospace" font-size="10" fill="#E8B931" text-anchor="middle" font-weight="500">16</text>
+
+            <!-- X labels (weeks) -->
+            <text x="72"  y="124" font-family="JetBrains Mono, monospace" font-size="9" fill="#9B958C" text-anchor="middle">KW 10</text>
+            <text x="154" y="124" font-family="JetBrains Mono, monospace" font-size="9" fill="#9B958C" text-anchor="middle">KW 11</text>
+            <text x="236" y="124" font-family="JetBrains Mono, monospace" font-size="9" fill="#9B958C" text-anchor="middle">KW 12</text>
+            <text x="318" y="124" font-family="JetBrains Mono, monospace" font-size="9" fill="#9B958C" text-anchor="middle">KW 13</text>
+            <text x="400" y="124" font-family="JetBrains Mono, monospace" font-size="9" fill="#9B958C" text-anchor="middle">KW 14</text>
+            <text x="482" y="124" font-family="JetBrains Mono, monospace" font-size="9" fill="#9B958C" text-anchor="middle">KW 15</text>
+            <text x="564" y="124" font-family="JetBrains Mono, monospace" font-size="9" fill="#9B958C" text-anchor="middle">KW 16</text>
+            <text x="646" y="124" font-family="JetBrains Mono, monospace" font-size="9" fill="#E8B931" text-anchor="middle" font-weight="500">KW 17</text>
+          </svg>
+          <div class="chart-key">
+            <span><span class="key-dot"></span>Margheri</span>
+            <span><span class="key-dot alt"></span>60 Seconds to Napoli</span>
+          </div>
+        </div>
+
+        <div class="suggestion">
+          <div class="sugg-label">Vorschlag Couvert</div>
+          <div class="sugg-text">Eigenes <strong>Lunch-Special</strong> testen. Preispunkt <strong>CHF 18.90</strong>, Mo-Fr 11:30-14:00. Marketing Engine kann die Kampagne in 48h auf Meta und Google live haben. Budget-Rahmen CHF 400 für Woche 1.</div>
+        </div>
+      </div>
+
+      <div class="development" style="margin-bottom:0">
+        <div class="dev-tag warn"><span class="num">2</span><span>Warnung · San Gennaro verliert</span></div>
+        <div class="dev-title">San Gennaro fällt auf Rating 4.32, Service-Beschwerden häufen sich.</div>
+        <ul class="dev-facts">
+          <li>Rating auf <span class="num-mono down">4.32</span> gefallen (von <strong>4.40</strong>).</li>
+          <li><span class="num-mono down">4 kritische 1-Stern-Reviews</span>, alle erwähnen <strong>Service</strong>.</li>
+          <li>Keine Änderung bei Öffnungszeiten oder Menü, keine neue Marketing-Aktivität erkennbar.</li>
+        </ul>
+
+        <div class="suggestion">
+          <div class="sugg-label">Vorschlag Couvert</div>
+          <div class="sugg-text">Aktuell <strong>keine Aktion nötig</strong>. Wir beobachten ob sich das konsolidiert. Sollten wir eine Öffnung zur Abwerbung sehen, meldet sich Marketing Engine mit Details.</div>
+        </div>
+      </div>
+
+      <div class="sign-off">
+        Gute Woche,
+        <strong>Competitor Radar · Couvert.ai</strong>
+      </div>
+
+    </div>
+
+    <div class="mail-foot">
+      <div class="foot-box">
+        <div class="foot-text">Voller Benchmark-Report im Dashboard: <a href="#">cockpit.couvert.ai/benchmark</a></div>
+        <div class="foot-reply">Fragen? Antwort auf diese E-Mail.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

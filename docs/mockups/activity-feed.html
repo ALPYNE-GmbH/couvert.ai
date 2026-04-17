@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent Activity Feed - Couvert.ai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1A3C34;
+  --bg2:#162F29;
+  --bg3:#12261F;
+  --copper:#C4673A;
+  --copper-soft:#D4845A;
+  --gold:#E8B931;
+  --cream:#F5F0EB;
+  --cream-bright:#FAF7F2;
+  --text:#E0DCD6;
+  --text-dim:#9B958C;
+  --text-softer:#7A7469;
+  --border:#2A4A42;
+  --border-soft:#234039;
+  --green-up:#6B9C7F;
+  --red-down:#B8564A;
+  --idle:#E8B931;
+  --inactive:#4A5853;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--bg3);font-family:'DM Sans',sans-serif;color:var(--text);-webkit-font-smoothing:antialiased}
+.wrap{padding:24px;max-width:1200px;margin:0 auto}
+
+/* Browser */
+.browser{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:6px;
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,0.4);
+}
+.browser-bar{
+  background:var(--bg3);
+  padding:12px 16px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border-bottom:1px solid var(--border);
+}
+.dots{display:flex;gap:6px}
+.dots span{width:10px;height:10px;border-radius:50%;background:#2A4A42}
+.url{
+  flex:1;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:7px 12px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  color:var(--text-dim);
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.url-lock{width:10px;height:10px;opacity:0.5}
+.url-path{color:var(--text)}
+.url-current{color:var(--gold)}
+
+/* Cockpit head */
+.cockpit-head{
+  padding:18px 24px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:var(--bg2);
+  gap:16px;
+  flex-wrap:wrap;
+}
+.cockpit-title{font-family:'DM Serif Display',serif;font-size:20px;color:var(--cream)}
+.cockpit-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase}
+.live-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:3px 9px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--green-up);
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+.live-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green-up);
+  box-shadow:0 0 0 0 rgba(107,156,127,0.7);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(107,156,127,0.5)}
+  70%{box-shadow:0 0 0 6px rgba(107,156,127,0)}
+  100%{box-shadow:0 0 0 0 rgba(107,156,127,0)}
+}
+
+/* Layout */
+.cockpit-body{
+  display:grid;
+  grid-template-columns:240px 1fr 220px;
+  min-height:620px;
+}
+
+/* Sidebar */
+.sidebar{
+  background:var(--bg3);
+  border-right:1px solid var(--border);
+  padding:20px 0;
+}
+.team-group{padding:0 14px 14px;border-bottom:1px solid var(--border-soft);margin-bottom:10px}
+.team-group:last-child{border-bottom:none;margin-bottom:0}
+.team-name{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--copper);
+  margin:12px 0 8px;
+  display:flex;
+  justify-content:space-between;
+}
+.team-count{color:var(--text-softer)}
+
+.agent-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:7px 8px;
+  border-radius:3px;
+  font-size:12.5px;
+  color:var(--text);
+  cursor:pointer;
+}
+.agent-row:hover{background:var(--bg2)}
+.agent-row.active{background:var(--bg2)}
+.status-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  flex-shrink:0;
+}
+.status-dot.on{background:var(--green-up);box-shadow:0 0 6px rgba(107,156,127,0.4)}
+.status-dot.idle{background:var(--idle)}
+.status-dot.off{background:var(--inactive)}
+.agent-name{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.agent-phase{
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;
+  color:var(--text-softer);
+  letter-spacing:0.5px;
+}
+
+/* Feed */
+.feed{
+  padding:20px 24px;
+  overflow-y:auto;
+  max-height:620px;
+}
+.feed-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  margin-bottom:18px;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--border);
+}
+.feed-title{
+  font-family:'DM Serif Display',serif;
+  font-size:18px;
+  color:var(--cream);
+}
+.feed-filter{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--text-dim);
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.date-section{margin-bottom:20px}
+.date-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:9.5px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--text-softer);
+  padding:6px 0;
+  border-bottom:1px dashed var(--border-soft);
+  margin-bottom:8px;
+}
+
+.feed-item{
+  display:grid;
+  grid-template-columns:60px 160px 1fr;
+  gap:16px;
+  padding:11px 8px;
+  border-radius:3px;
+  align-items:start;
+  position:relative;
+}
+.feed-item:hover{background:var(--bg3)}
+.feed-time{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  color:var(--copper);
+  letter-spacing:0.3px;
+  padding-top:2px;
+}
+.feed-agent{
+  font-family:'DM Sans',sans-serif;
+  font-size:12px;
+  color:var(--cream);
+  font-weight:500;
+  padding-top:2px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.feed-agent-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--green-up);
+  flex-shrink:0;
+}
+.feed-text{
+  font-size:13px;
+  color:var(--text);
+  line-height:1.5;
+  font-weight:300;
+}
+.feed-text strong{font-weight:500;color:var(--cream)}
+.feed-meta{
+  display:inline-block;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--text-softer);
+  margin-top:3px;
+  letter-spacing:0.3px;
+}
+.feed-tag{
+  display:inline-block;
+  font-family:'JetBrains Mono',monospace;
+  font-size:9.5px;
+  padding:1px 6px;
+  border:1px solid var(--border);
+  border-radius:2px;
+  color:var(--text-dim);
+  letter-spacing:0.5px;
+  margin-left:6px;
+  text-transform:uppercase;
+}
+.feed-tag.gold{color:var(--gold);border-color:rgba(232,185,49,0.3)}
+
+/* Right panel */
+.right-panel{
+  background:var(--bg3);
+  border-left:1px solid var(--border);
+  padding:20px;
+}
+.kpi-head{
+  font-family:'DM Serif Display',serif;
+  font-size:18px;
+  color:var(--cream);
+  margin-bottom:4px;
+}
+.kpi-date{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  color:var(--text-softer);
+  margin-bottom:20px;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--border);
+}
+.kpi-item{
+  padding:14px 0;
+  border-bottom:1px solid var(--border-soft);
+}
+.kpi-item:last-child{border-bottom:none}
+.kpi-label{
+  font-family:'DM Sans',sans-serif;
+  font-size:12px;
+  color:var(--text-dim);
+  margin-bottom:4px;
+  font-weight:300;
+}
+.kpi-value{
+  font-family:'DM Serif Display',serif;
+  font-size:24px;
+  color:var(--cream-bright);
+  line-height:1;
+  letter-spacing:-0.3px;
+}
+.kpi-value.gold{color:var(--gold)}
+.kpi-value.copper{color:var(--copper)}
+.kpi-delta{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--green-up);
+  margin-top:3px;
+  letter-spacing:0.3px;
+}
+.kpi-delta.warn{color:var(--gold)}
+
+@media(max-width:1000px){
+  .cockpit-body{grid-template-columns:200px 1fr}
+  .right-panel{display:none}
+}
+@media(max-width:800px){
+  .wrap{padding:12px}
+  .cockpit-body{grid-template-columns:1fr;min-height:auto}
+  .sidebar{border-right:none;border-bottom:1px solid var(--border);padding:14px 0;max-height:280px;overflow-y:auto}
+  .feed{padding:16px;max-height:none}
+  .feed-item{grid-template-columns:50px 1fr;gap:10px}
+  .feed-agent{grid-column:1 / -1;padding-top:0;font-size:11px;color:var(--copper)}
+  .feed-agent-dot{display:none}
+  .feed-time{font-size:11px}
+  .cockpit-head{padding:14px 16px}
+  .url{font-size:10px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="browser">
+    <div class="browser-bar">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">
+        <svg class="url-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+        <span class="url-path">cockpit.couvert.ai</span><span>/</span><span class="url-current">activity</span>
+      </div>
+    </div>
+
+    <div class="cockpit-head">
+      <div>
+        <div class="cockpit-title">Agent Activity</div>
+        <div class="cockpit-meta" style="margin-top:3px">60 SECONDS TO NAPOLI · ZÜRICH</div>
+      </div>
+      <div class="live-pill"><span class="live-dot"></span>LIVE · 11 AKTIV</div>
+    </div>
+
+    <div class="cockpit-body">
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="team-group">
+          <div class="team-name"><span>Guest Experience</span><span class="team-count">3</span></div>
+          <div class="agent-row active"><span class="status-dot on"></span><span class="agent-name">Reputation Manager</span></div>
+          <div class="agent-row"><span class="status-dot on"></span><span class="agent-name">Guest Recovery</span></div>
+          <div class="agent-row"><span class="status-dot idle"></span><span class="agent-name">Booking Optimizer</span></div>
+        </div>
+
+        <div class="team-group">
+          <div class="team-name"><span>Quality &amp; Operations</span><span class="team-count">4</span></div>
+          <div class="agent-row"><span class="status-dot on"></span><span class="agent-name">Quality Watchdog</span></div>
+          <div class="agent-row"><span class="status-dot on"></span><span class="agent-name">Operations Advisor</span></div>
+          <div class="agent-row"><span class="status-dot on"></span><span class="agent-name">Predictive Staffing</span></div>
+          <div class="agent-row"><span class="status-dot on"></span><span class="agent-name">Staff Communication</span></div>
+        </div>
+
+        <div class="team-group">
+          <div class="team-name"><span>Revenue &amp; Menu</span><span class="team-count">3</span></div>
+          <div class="agent-row"><span class="status-dot idle"></span><span class="agent-name">Revenue Analyst</span></div>
+          <div class="agent-row"><span class="status-dot on"></span><span class="agent-name">Menu Intelligence</span></div>
+          <div class="agent-row"><span class="status-dot off"></span><span class="agent-name">Food Waste</span><span class="agent-phase">P3</span></div>
+        </div>
+
+        <div class="team-group">
+          <div class="team-name"><span>Market &amp; Growth</span><span class="team-count">2</span></div>
+          <div class="agent-row"><span class="status-dot on"></span><span class="agent-name">Marketing Engine</span></div>
+          <div class="agent-row"><span class="status-dot on"></span><span class="agent-name">Competitor Radar</span></div>
+        </div>
+      </aside>
+
+      <!-- Feed -->
+      <div class="feed">
+        <div class="feed-head">
+          <div class="feed-title">Aktivität heute</div>
+          <div class="feed-filter">Alle Teams · 24h</div>
+        </div>
+
+        <div class="date-section">
+          <div class="date-label">Freitag · 17. April 2026</div>
+
+          <div class="feed-item">
+            <div class="feed-time">22:18</div>
+            <div class="feed-agent"><span class="feed-agent-dot"></span>Reputation Manager</div>
+            <div>
+              <div class="feed-text">Antwort auf <strong>2-Stern-Bewertung</strong> live gepostet. Gast M. K., Kategorie Wartezeit.</div>
+              <span class="feed-tag">Google</span><span class="feed-tag">Freigegeben</span>
+            </div>
+          </div>
+
+          <div class="feed-item">
+            <div class="feed-time">22:04</div>
+            <div class="feed-agent"><span class="feed-agent-dot"></span>Guest Recovery</div>
+            <div>
+              <div class="feed-text">Einladung an Gast <strong>J. B.</strong> versendet. Gutschein CHF 50, Dienstag 28.04.</div>
+              <span class="feed-tag">E-Mail</span><span class="feed-tag gold">Wartet auf Antwort</span>
+            </div>
+          </div>
+
+          <div class="feed-item">
+            <div class="feed-time">19:47</div>
+            <div class="feed-agent"><span class="feed-agent-dot"></span>Operations Advisor</div>
+            <div>
+              <div class="feed-text">Reservierungs-Buffer Samstag 19-20 Uhr automatisch auf <strong>25 Min</strong> erhöht (von 15 Min).</div>
+              <span class="feed-tag">Auto</span>
+            </div>
+          </div>
+
+          <div class="feed-item">
+            <div class="feed-time">18:00</div>
+            <div class="feed-agent"><span class="feed-agent-dot"></span>Predictive Staffing</div>
+            <div>
+              <div class="feed-text">Schichtempfehlung KW 17: Samstag <strong>6 statt 5 Servicekräfte</strong>. Grund: Sechseläuten-Wochenende + 24°C.</div>
+              <span class="feed-tag">Empfehlung</span>
+            </div>
+          </div>
+
+          <div class="feed-item">
+            <div class="feed-time">17:30</div>
+            <div class="feed-agent"><span class="feed-agent-dot"></span>Staff Communication</div>
+            <div>
+              <div class="feed-text">Abendschicht-Briefing an <strong>4 Servicekräfte</strong> versendet.</div>
+              <span class="feed-tag">WhatsApp</span>
+            </div>
+          </div>
+
+          <div class="feed-item">
+            <div class="feed-time">14:32</div>
+            <div class="feed-agent"><span class="feed-agent-dot"></span>Quality Watchdog</div>
+            <div>
+              <div class="feed-text">Küchen-Briefing versendet: <strong>nasser Teig, +200% Trend</strong>. 8 Reviews als Beleg.</div>
+              <span class="feed-tag">WhatsApp</span>
+            </div>
+          </div>
+
+          <div class="feed-item">
+            <div class="feed-time">14:15</div>
+            <div class="feed-agent"><span class="feed-agent-dot"></span>Marketing Engine</div>
+            <div>
+              <div class="feed-text">Paid-Ad Dienstag-Kampagne gestartet. Budget <strong>CHF 40</strong>, Ziel Mittags-Auslastung.</div>
+              <span class="feed-tag">Meta Ads</span>
+            </div>
+          </div>
+
+          <div class="feed-item">
+            <div class="feed-time">09:00</div>
+            <div class="feed-agent"><span class="feed-agent-dot"></span>Competitor Radar</div>
+            <div>
+              <div class="feed-text">Wöchentliches Briefing: <strong>Margheri +12 neue 5-Sterne-Reviews</strong>. Details in E-Mail.</div>
+              <span class="feed-tag">E-Mail</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right panel -->
+      <aside class="right-panel">
+        <div class="kpi-head">Heute</div>
+        <div class="kpi-date">17.04.2026 · Stand 22:18</div>
+
+        <div class="kpi-item">
+          <div class="kpi-label">Reviews beantwortet</div>
+          <div class="kpi-value">7</div>
+          <div class="kpi-delta">+2 vs. gestern</div>
+        </div>
+
+        <div class="kpi-item">
+          <div class="kpi-label">Gäste kontaktiert (Recovery)</div>
+          <div class="kpi-value">3</div>
+          <div class="kpi-delta">CHF 150 Gutschein-Budget</div>
+        </div>
+
+        <div class="kpi-item">
+          <div class="kpi-label">Alerts gesendet</div>
+          <div class="kpi-value">2</div>
+          <div class="kpi-delta">Küche · Service</div>
+        </div>
+
+        <div class="kpi-item">
+          <div class="kpi-label">Automatisch ausgeführt</div>
+          <div class="kpi-value gold">14</div>
+          <div class="kpi-delta">ohne Freigabe nötig</div>
+        </div>
+
+        <div class="kpi-item">
+          <div class="kpi-label">Zur Freigabe</div>
+          <div class="kpi-value copper">2</div>
+          <div class="kpi-delta warn">Review-Antworten</div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>
