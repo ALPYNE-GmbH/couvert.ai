@@ -4,6 +4,23 @@
 
 ---
 
+## 0. Scope dieser Spec vs. Teaser V1 Spec
+
+Dieses Dokument spezifiziert **ausschliesslich den bezahlten 15-Seiter-Audit**
+(CHF 4'500), der nach Stripe-Checkout automatisch generiert wird.
+
+Der gratis 1-Pager-Teaser und die Scan-Form sind in `teaser-pipeline-v1.md`
+spezifiziert. Beide teilen sich ~80 % der Backend-Pipeline.
+
+**Wichtig: Vor Tier 1 gibt es KEIN Erstgespräch.** Der Kunde klickt direkt vom
+Teaser-PDF auf "Vollreport kaufen", zahlt via Stripe, und erhält den Report
+innerhalb 30 Minuten (Werktage).
+
+Wer vor dem Kauf mit uns sprechen will, geht über Pfad B (Erstgespräch) zum
+Tier 2 Custom Audit (CHF 9'500, mit internen Daten).
+
+---
+
 ## 1. Was das ist
 
 Ein **vollständiger 15-seitiger CX & Revenue Impact Report**, der nach Zahlung instant

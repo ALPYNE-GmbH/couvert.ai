@@ -4,54 +4,115 @@
 
 ---
 
+## 0. Scope dieser Spec vs. Tier 1 Spec
+
+Dieses Dokument spezifiziert **ausschliesslich den gratis 1-Pager-Teaser** und
+die Scan-Form auf `scan.couvert.ai`. Der bezahlte 15-Seiter-Audit (CHF 4'500)
+ist in `specs/tier-1-automated-audit.md` spezifiziert.
+
+| Diese Spec (Teaser V1) | `tier-1-automated-audit.md` |
+|---|---|
+| 1-Pager-PDF, 6 Agent-Insights | 15-Seiter, volle Analyse |
+| Gratis, automatisch | CHF 4'500, Stripe-Checkout |
+| Scan-Form auf `scan.couvert.ai` | Checkout + QA + Admin-Queue |
+| Lead-Magnet | Entry-Produkt |
+
+Beide teilen sich ~80 % der Backend-Pipeline (Scraping, Agent-LLM-Calls,
+Datengraph). Getrennt spezifiziert, um Focus und Build-Phasen sauber zu
+trennen.
+
+---
+
 ## 1. Zweck
 
 Der **Teaser** ist ein automatisch generierter 1-Pager-PDF, der Restaurantinhabern auf
 Basis öffentlich verfügbarer Daten einen Pain-spezifischen Anriss ihres Betriebs liefert.
 
-**Er ist kein Verkaufsdokument — er ist die Einladung zum Erstgespräch.**
+**Er ist der Lead-Magnet am oberen Ende des Funnels.** Nach dem Lesen hat der
+Gastronom **zwei Wege**, jeweils als CTA im PDF:
 
-Der eigentliche Wert (Vollaudit CHF 4'500) entsteht erst, wenn im Erstgespräch interne
-Betriebsdaten (Auslastung, Platzanzahl, Schichten, Durchschnittsbon) dazukommen.
+1. **Direkter Kauf** — Stripe-Checkout für Tier 1 Audit (CHF 4'500, ohne Gespräch)
+2. **Erstgespräch** — Calendly für Tier 2 Custom Audit (CHF 9'500, mit internen Daten)
+
+Beide Wege sind legitim. Der Teaser drängt weder in die eine noch in die andere
+Richtung — er lässt den Gastronomen je nach Präferenz entscheiden.
 
 ---
 
 ## 2. Funnel-Kontext
 
 ```
-┌──────────────────┐   ┌──────────────────┐   ┌──────────────────┐
-│  TEASER 1-PAGER  │→  │  ERSTGESPRÄCH    │→  │  VOLLAUDIT       │
-│  (gratis, auto)  │   │  (30 Min, manuell│   │  CHF 4'500       │
-│  V1 Scope        │   │   Datenaufnahme) │   │  Phase 1         │
-└──────────────────┘   └──────────────────┘   └──────────────────┘
-                                                       ↓
-                                         ┌──────────────────┐
-                                         │  AUFBAUPHASE     │
-                                         │  ab CHF 5'000    │
-                                         └──────────────────┘
-                                                       ↓
-                                         ┌──────────────────┐
-                                         │  MANAGED TEAM    │
-                                         │  ab CHF 2'500/M  │
-                                         └──────────────────┘
+                     ┌──────────────────┐
+                     │  TEASER 1-PAGER  │
+                     │  (gratis, auto)  │
+                     │  ◄── V1 Scope    │
+                     └────────┬─────────┘
+                              │
+              ┌───────────────┴───────────────┐
+              ▼                               ▼
+   ┌────────────────────┐         ┌────────────────────┐
+   │  TIER 1 AUDIT      │         │  ERSTGESPRÄCH      │
+   │  CHF 4'500         │         │  (30 Min, manuell) │
+   │  Stripe-Checkout   │         │       ↓            │
+   │  15-Seiter auto.   │         │  TIER 2 AUDIT      │
+   │  ◄── Tier-1-Spec   │         │  CHF 9'500         │
+   └──────────┬─────────┘         │  mit int. Daten    │
+              │                   └──────────┬─────────┘
+              │                              │
+              └──────────────┬───────────────┘
+                             ▼
+                  ┌──────────────────┐
+                  │  AUFBAUPHASE     │
+                  │  ab CHF 5'000    │
+                  │  (Tier-1-Käufer: │
+                  │   mit Fee-Credit)│
+                  └────────┬─────────┘
+                           ▼
+                  ┌──────────────────┐
+                  │  MANAGED TEAM    │
+                  │  ab CHF 2'500/M  │
+                  └──────────────────┘
 ```
 
 V1 Scope dieser Spezifikation: **nur die TEASER-Box.**
+Tier-1-Box siehe `specs/tier-1-automated-audit.md`.
 
 ---
 
 ## 3. User Journey
 
+### 3.1 Gemeinsamer Anfang (Teaser-Generierung)
+
 | Schritt | Touchpoint | Aktion | Zeit |
 |---|---|---|---|
 | 1 | `scan.couvert.ai` | Google-Maps-URL eingeben | 10 s |
-| 2 | Same page | Email-Gate (Pflichtfeld Business-Email) | 10 s |
+| 2 | Same page | Email-Gate (Pflichtfeld Business-Email) + Opt-In-Checkbox | 15 s |
 | 3 | Confirmation screen | "Ihr Teaser ist in 5 Minuten in Ihrer Inbox" | — |
-| 4 | Email (async) | PDF als Anhang **und** als signierter Link (Fallback bei Spamfiltern) + 1 CTA-Button "Erstgespräch buchen" | 5–10 min |
-| 5 | PDF geöffnet | 6-Agent-Teaser gelesen, CTA geklickt | 2–5 min |
-| 6 | Calendly | Termin wird gebucht | 1 min |
+| 4 | Email (async) | PDF als Anhang **und** als signierter Link + **Dual CTA** | 5–10 min |
+| 5 | PDF geöffnet | 6-Agent-Teaser gelesen, Gastronom entscheidet | 2–5 min |
 
-**Total Zeit bis Termin:** ~10–15 Minuten.
+### 3.2 Pfad A — Direkter Tier-1-Kauf (automatisch)
+
+| Schritt | Touchpoint | Aktion | Zeit |
+|---|---|---|---|
+| 6a | CTA-Klick im PDF | Redirect zu Stripe-Checkout | 3 s |
+| 7a | Stripe | Zahlung CHF 4'500 | 1 min |
+| 8a | Inngest-Job | Tier-1-Report wird generiert, QA läuft | 5–10 min |
+| 9a | Admin-Queue | Team-Freigabe (max. 2 h werktags) | — |
+| 10a | Email | 15-Seiter-Report in der Inbox | — |
+
+**Total bis Report in Inbox:** < 30 Min an Werktagen, < 24 h am Wochenende.
+
+### 3.3 Pfad B — Erstgespräch für Tier 2
+
+| Schritt | Touchpoint | Aktion | Zeit |
+|---|---|---|---|
+| 6b | CTA-Klick im PDF | Redirect zu Calendly | 3 s |
+| 7b | Calendly | Termin-Auswahl | 1 min |
+| 8b | Zoom/Telefon | 30-Min-Gespräch mit Datenaufnahme | 30 min |
+| 9b | Post-Call | Angebot Tier 2 (CHF 9'500) oder Aufbauphase direkt | — |
+
+**Beide Pfade** führen dann weiter in Aufbauphase + Managed Service.
 
 ---
 
@@ -348,13 +409,41 @@ oder Insights — nur der Name. Das erzeugt die visuelle Spannung.
 
 ---
 
-## 9. CTA & Calendly-Integration
+## 9. CTA-Block — Dual Path
 
-**Ein einziger CTA im PDF:** *"Erstgespräch buchen"* mit Direkt-Link zu Calendly.
+Das PDF hat am Ende **zwei gleichwertige CTAs nebeneinander**:
 
-Calendly-URL: `https://calendly.com/couvert/erstgespraech?utm_source=teaser&utm_medium=pdf&utm_campaign=v1&restaurant={slug}`
+```
+┌──────────────────────────────┐  ┌──────────────────────────────┐
+│  VOLLREPORT KAUFEN           │  │  ERSTGESPRÄCH BUCHEN         │
+│  CHF 4'500 · 15 Seiten       │  │  30 Minuten · mit internen   │
+│  Direktlieferung < 30 Min    │  │  Daten für CHF 9'500 Audit   │
+│  [Stripe-Checkout →]         │  │  [Calendly →]                │
+└──────────────────────────────┘  └──────────────────────────────┘
+```
 
-**`{slug}`** wird aus dem Restaurant-Namen generiert — so siehst du im Calendly, welches Restaurant kommt.
+### 9.1 Stripe-Checkout-Link (Pfad A)
+
+`https://scan.couvert.ai/checkout?scan_id={id}&utm_source=teaser&utm_medium=pdf`
+
+- `scan_id` identifiziert den bereits generierten Datensatz
+- Stripe Checkout Session mit **CHF 4'500 inkl. 8.1 % MWST** ausgewiesen
+- Nach Zahlung: Webhook triggert Tier-1-Report-Generierung
+  (Details: `specs/tier-1-automated-audit.md` Kap. 10)
+
+### 9.2 Calendly-Link (Pfad B)
+
+`https://calendly.com/couvert/erstgespraech?utm_source=teaser&utm_medium=pdf&restaurant={slug}`
+
+- `{slug}` aus Restaurant-Name generiert (MV sieht im Calendly, wer kommt)
+- Termine: 30 Min, Standard-Kalender
+
+### 9.3 Keine asymmetrische Priorisierung
+
+Beide CTAs visuell gleichwertig gestalten. Kein "empfohlen"-Badge auf einer
+Seite, kein grösserer Button. Der Gastronom wählt selbst. Empirisch: Direkt-
+Käufer wollen keinen Sales-Pitch, Erstgespräch-Leute wollen Beratung. Beide
+sind wertvolle Kundentypen.
 
 ---
 
@@ -567,7 +656,8 @@ Gib das Ergebnis via `reputation_manager_output` Tool zurück.
 - [ ] Pipeline verarbeitet 3 Test-Restaurants ohne Fehler
 - [ ] PDF ist visuell auf Niveau des Vollreports
 - [ ] Mindestens 5 Friendly-Test-Restaurants haben Teaser erhalten + Feedback gegeben
-- [ ] Conversion-Rate Teaser → Calendly-Klick > 20 %
+- [ ] Conversion-Rate Teaser → CTA-Klick (beliebiger Pfad) > 25 %
+- [ ] Verteilung beider Pfade messbar (Tier-1-Checkout vs. Erstgespräch) via UTM-Tracking
 - [ ] MV hat Prompts abgenommen und freigegeben
 - [ ] Legal-Abschnitt (Kap. 12) gefüllt und freigegeben
 - [ ] Monitoring/Sentry/PostHog aktiv
