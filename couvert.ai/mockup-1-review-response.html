@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Review Response in Action - Couvert.ai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1A3C34;
+  --bg2:#162F29;
+  --bg3:#12261F;
+  --copper:#C4673A;
+  --copper-soft:#D4845A;
+  --gold:#E8B931;
+  --cream:#F5F0EB;
+  --text:#E0DCD6;
+  --text-dim:#9B958C;
+  --border:#2A4A42;
+  --border-soft:#234039;
+  --green-up:#6B9C7F;
+  --red-down:#B8564A;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--bg3);font-family:'DM Sans',sans-serif;color:var(--text);-webkit-font-smoothing:antialiased}
+.wrap{padding:24px;max-width:1200px;margin:0 auto}
+
+/* Browser Frame */
+.browser{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:6px;
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,0.4);
+}
+.browser-bar{
+  background:var(--bg3);
+  padding:12px 16px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border-bottom:1px solid var(--border);
+}
+.dots{display:flex;gap:6px}
+.dots span{width:10px;height:10px;border-radius:50%;background:#2A4A42}
+.url{
+  flex:1;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:7px 12px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  color:var(--text-dim);
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.url-lock{width:10px;height:10px;opacity:0.5}
+.url-path{color:var(--text)}
+.url-current{color:var(--gold)}
+
+/* Header within cockpit */
+.cockpit-head{
+  padding:18px 24px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:var(--bg2);
+}
+.cockpit-title{
+  font-family:'DM Serif Display',serif;
+  font-size:20px;
+  color:var(--cream);
+}
+.cockpit-meta{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--text-dim);
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+/* Split View */
+.split{
+  display:grid;
+  grid-template-columns:60fr 40fr;
+  min-height:460px;
+}
+.col-left{
+  padding:28px;
+  border-right:1px solid var(--border);
+  background:var(--bg2);
+}
+.col-right{
+  padding:28px;
+  background:var(--bg);
+  display:flex;
+  flex-direction:column;
+}
+
+/* Review Source */
+.review-source{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:18px;
+}
+.source-badge{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:5px 10px;
+  border:1px solid var(--border);
+  border-radius:4px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--text-dim);
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+.g-icon{font-family:'DM Serif Display',serif;font-size:13px;color:var(--text);font-style:italic}
+
+/* Stars */
+.stars{display:flex;gap:3px;margin-bottom:12px}
+.star{width:18px;height:18px;display:inline-block}
+.star path{fill:#2A4A42}
+.star.on path{fill:var(--gold)}
+
+.review-author{
+  font-family:'DM Sans',sans-serif;
+  font-size:15px;
+  color:var(--cream);
+  font-weight:500;
+  margin-bottom:4px;
+}
+.review-date{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--text-dim);
+  margin-bottom:16px;
+}
+.lang-badge{
+  display:inline-block;
+  padding:2px 8px;
+  border:1px solid var(--border);
+  border-radius:3px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--text-dim);
+  letter-spacing:1px;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+.review-text{
+  font-size:15px;
+  line-height:1.6;
+  color:var(--text);
+  margin-bottom:20px;
+  font-weight:300;
+  padding:16px 18px;
+  background:var(--bg3);
+  border-left:2px solid var(--copper);
+  border-radius:0 4px 4px 0;
+}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{
+  padding:5px 10px;
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:3px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--text);
+  letter-spacing:0.5px;
+}
+
+/* Right column */
+.label-line{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--copper);
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.status-line{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--text-dim);
+  margin-bottom:18px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.pulse-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--gold);
+  box-shadow:0 0 0 0 rgba(232,185,49,0.7);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(232,185,49,0.5)}
+  70%{box-shadow:0 0 0 6px rgba(232,185,49,0)}
+  100%{box-shadow:0 0 0 0 rgba(232,185,49,0)}
+}
+
+.response-text{
+  font-size:14px;
+  line-height:1.65;
+  color:var(--cream);
+  font-weight:300;
+  padding:18px 20px;
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:4px;
+  margin-bottom:16px;
+  flex:1;
+}
+.response-text .signature{
+  display:block;
+  margin-top:10px;
+  font-family:'DM Serif Display',serif;
+  font-size:14px;
+  color:var(--copper);
+  font-style:italic;
+}
+
+.confidence{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 14px;
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:4px;
+  margin-bottom:16px;
+}
+.confidence-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--text-dim);
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+.confidence-bar{
+  flex:1;
+  height:4px;
+  background:var(--bg3);
+  border-radius:2px;
+  overflow:hidden;
+}
+.confidence-fill{
+  height:100%;
+  width:97%;
+  background:var(--green-up);
+}
+.confidence-val{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  color:var(--green-up);
+  font-weight:500;
+}
+
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{
+  padding:10px 16px;
+  border-radius:4px;
+  font-family:'DM Sans',sans-serif;
+  font-size:13px;
+  font-weight:500;
+  cursor:pointer;
+  border:1px solid transparent;
+  letter-spacing:0.2px;
+}
+.btn-primary{background:var(--copper);color:var(--cream)}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--border)}
+.btn-ghost:hover{border-color:var(--copper);color:var(--cream)}
+
+/* Timeline */
+.timeline{
+  padding:24px 28px;
+  border-top:1px solid var(--border);
+  background:var(--bg3);
+}
+.timeline-head{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--text-dim);
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:16px;
+}
+.timeline-track{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.timeline-track::before{
+  content:'';
+  position:absolute;
+  top:6px;
+  left:6%;
+  right:6%;
+  height:1px;
+  background:linear-gradient(to right, var(--copper), var(--copper));
+  z-index:1;
+}
+.tl-step{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+.tl-dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:var(--copper);
+  margin-bottom:10px;
+  border:2px solid var(--bg3);
+  box-sizing:content-box;
+}
+.tl-step:last-child .tl-dot{background:var(--gold)}
+.tl-time{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--copper);
+  letter-spacing:0.5px;
+  margin-bottom:4px;
+}
+.tl-label{
+  font-family:'DM Sans',sans-serif;
+  font-size:12px;
+  color:var(--text);
+  line-height:1.4;
+}
+
+@media(max-width:800px){
+  .wrap{padding:12px}
+  .split{grid-template-columns:1fr;min-height:auto}
+  .col-left{border-right:none;border-bottom:1px solid var(--border)}
+  .cockpit-head{flex-direction:column;align-items:flex-start;gap:6px}
+  .timeline-track{grid-template-columns:1fr 1fr;gap:18px}
+  .timeline-track::before{display:none}
+  .url{font-size:10px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+  .browser-bar{gap:8px;padding:10px 12px}
+  .col-left,.col-right{padding:20px}
+  .timeline{padding:18px 20px}
+  .response-text{font-size:13.5px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="browser">
+    <div class="browser-bar">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">
+        <svg class="url-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+        <span class="url-path">cockpit.couvert.ai</span><span>/</span><span>reputation</span><span>/</span><span class="url-current">reviews</span>
+      </div>
+    </div>
+
+    <div class="cockpit-head">
+      <div class="cockpit-title">Reputation Manager</div>
+      <div class="cockpit-meta">60 SECONDS TO NAPOLI · ZÜRICH</div>
+    </div>
+
+    <div class="split">
+      <div class="col-left">
+        <div class="review-source">
+          <div class="source-badge">
+            <span class="g-icon">G</span>
+            <span>Google Reviews</span>
+          </div>
+        </div>
+
+        <div class="stars">
+          <svg class="star on" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star on" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+
+        <div class="review-author">M. K.</div>
+        <div class="review-date">FREITAG · 17.04.2026 · 22:14</div>
+        <div class="lang-badge">Deutsch</div>
+
+        <div class="review-text">
+          Ich habe für Samstag um 19:00 Uhr einen Tisch für 4 Erwachsene und 3 Kinder reserviert. Wir sind pünktlich angekommen und mussten trotzdem 30 Minuten direkt bei der Eingangstür im Restaurant warten, zusammen mit einer grossen Menschenmenge.
+        </div>
+
+        <div class="tags">
+          <span class="tag">Wartezeit trotz Reservation</span>
+          <span class="tag">Gruppenbuchung</span>
+        </div>
+      </div>
+
+      <div class="col-right">
+        <div class="label-line">Vorgeschlagene Antwort</div>
+        <div class="status-line">
+          <span class="pulse-dot"></span>
+          <span>Generiert 22:16 · Freigabe erforderlich</span>
+        </div>
+
+        <div class="response-text">
+          Liebe Frau K., vielen Dank für Ihr ehrliches Feedback und dass Sie sich die Zeit genommen haben, Ihre Erfahrung zu teilen. Eine Wartezeit von 30 Minuten trotz Reservation entspricht nicht unserem Anspruch, und wir verstehen Ihre Enttäuschung, insbesondere mit einer Gruppe und Kindern. Wir haben unsere Reservierungskapazität für die Wochenenden bereits angepasst, damit dies nicht erneut vorkommt. Ich würde mich freuen, Sie bei einem weiteren Besuch persönlich zu begrüssen und Ihnen zu zeigen, dass wir Ihre Kritik ernst nehmen.
+          <span class="signature">Adrian, Geschäftsführer</span>
+        </div>
+
+        <div class="confidence">
+          <div class="confidence-label">Tonalität: Ihr Betrieb</div>
+          <div class="confidence-bar"><div class="confidence-fill"></div></div>
+          <div class="confidence-val">97%</div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary">Freigeben &amp; Posten</button>
+          <button class="btn btn-ghost">Bearbeiten</button>
+          <button class="btn btn-ghost">Eskalieren</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-head">Antwort-Timeline · 4 Minuten</div>
+      <div class="timeline-track">
+        <div class="tl-step">
+          <div class="tl-dot"></div>
+          <div class="tl-time">22:14</div>
+          <div class="tl-label">Review erkannt</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-dot"></div>
+          <div class="tl-time">22:15</div>
+          <div class="tl-label">Kategorisiert: Wartezeit, Gruppe</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-dot"></div>
+          <div class="tl-time">22:16</div>
+          <div class="tl-label">Antwort generiert</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-dot"></div>
+          <div class="tl-time">22:18</div>
+          <div class="tl-label">Bereit zur Freigabe</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
