@@ -463,12 +463,26 @@ den Folge-Phasen:
 | **Full-Funnel-Kunde (Jahr 1)** | **CHF 39'500** |
 
 **Blended LTV** bei Konversions-Annahmen:
-- 100 % bezahlen Tier 1
-- 20 % konvertieren in Aufbauphase + Managed Service
+
+Benchmark-Daten aus Deep Research (April 2026, Paid-Discovery-Modelle):
+- Paid Audit → Folgeauftrag: **70–90 % bei Agenturen mit Paid Discovery**
+- Realistischer Korridor für Couvert (etwas konservativer): **40–60 %**
 
 ```
-Blended LTV = 4'500 + 0.20 × (5'000 + 30'000) = CHF 11'500
+Szenario A (konservativ, 40 %):
+  Blended LTV = 4'500 + 0.40 × (5'000 + 30'000) = CHF 18'500
+
+Szenario B (realistisch, 50 %):
+  Blended LTV = 4'500 + 0.50 × (5'000 + 30'000) = CHF 22'000
+
+Szenario C (optimistisch, 70 %):
+  Blended LTV = 4'500 + 0.70 × (5'000 + 30'000) = CHF 29'000
 ```
+
+**Wir planen mit Szenario A (CHF 18'500) als konservativer Basis.**
+Vorher hatten wir CHF 11'500 mit 20 % — das war unterschätzt. Research zeigt,
+dass Paid-Audit-Käufer hoch qualifiziert sind (sie haben bereits CHF 4'500
+committed, emotional und finanziell).
 
 ### 13.3 Customer Acquisition Cost (CAC) — Kanal-Mix
 
@@ -497,25 +511,31 @@ von Anfang an in den Report.
 
 ### 13.4 LTV / CAC
 
+Mit konservativer Basis (Szenario A, 40 % Aufbauphase-Conversion):
+
 ```
-LTV / CAC = 11'500 / 1'500 = 7.7
+LTV / CAC = 18'500 / 1'500 = 12.3
 ```
 
 **Einordnung:**
 - < 1 → Geld verbrennen
 - 1–3 → dünnes Eis
 - 3–5 → gesund (SaaS-Benchmark)
-- **7.7 → Top-Quartile B2B**
-- 10+ → Geldmaschine
+- 7–10 → Top-Quartile B2B
+- **12+ → Outlier** (Research-bestätigt durch Paid-Discovery-Benchmarks)
 
 ### 13.5 Szenarien
 
-| Szenario | Blended CAC | LTV | LTV/CAC | Payback |
+| Szenario | CAC | LTV (40 % Aufbau) | LTV/CAC | Payback |
 |---|---|---|---|---|
-| **Launch** (Founder-led, starkes Netzwerk) | CHF 800 | CHF 11'500 | 14.4 | < 1 Monat |
-| **Scale** (Word-of-Mouth greift) | CHF 1'500 | CHF 11'500 | 7.7 | 1–2 Monate |
-| **Reifemarkt** (WoM-Potenzial schwindet) | CHF 2'500 | CHF 11'500 | 4.6 | 2–3 Monate |
-| **Stress-Test** (nur Paid, schwache Conversion) | CHF 5'000 | CHF 11'500 | 2.3 | 5 Monate |
+| **Launch** (Founder-led, starkes Netzwerk) | CHF 800 | CHF 18'500 | 23.1 | < 1 Monat |
+| **Scale** (Word-of-Mouth greift) | CHF 1'500 | CHF 18'500 | 12.3 | 1 Monat |
+| **Reifemarkt** (WoM-Potenzial schwindet) | CHF 2'500 | CHF 18'500 | 7.4 | 2 Monate |
+| **Stress-Test** (nur Paid, schwache Conversion) | CHF 5'000 | CHF 18'500 | 3.7 | 3 Monate |
+
+Selbst im Stress-Test bleibt das Modell profitabel. Das ist der Research-Befund
+in Zahlen: Paid-Audit-Käufer sind emotional/finanziell committed, Conversion
+zum Managed Service ist signifikant höher als bei klassischen SaaS-Trials.
 
 **Wichtig:** Der stärkste Hebel ist nicht der Preis, sondern die
 **Managed-Service-Conversion-Rate**. Jeder Prozentpunkt dort verschiebt LTV
@@ -526,9 +546,8 @@ zu verstehen, nicht als Standalone-Produkt.
 
 ## 14. Legal Considerations
 
-**PLACEHOLDER — abhängig von Deep-Research-Ergebnissen (siehe `teaser-pipeline-v1.md` Kap. 12).**
-
-Zusätzliche Tier-1-spezifische Punkte:
+Basis-Rechtsrahmen: siehe `teaser-pipeline-v1.md` Kap. 12 (UWG, revDSG, Opt-In-Flow).
+Tier-1-spezifische Ergänzungen:
 
 - **Kaufvertrag & AGB:** Klarer Leistungsumfang, Widerrufsrecht, Garantie
 - **Accuracy Guarantee** (ersetzt bedingungslose Geld-zurück-Garantie):
@@ -625,7 +644,57 @@ Zusätzliche Tier-1-spezifische Punkte:
 
 ---
 
-## 19. Agent-Positionierung — alle 12, scharf abgegrenzt
+## 19. Discovery-Fee-Credit (Funnel-Scharnier)
+
+Etabliertes Modell aus Paid-Discovery-Agenturen, bestätigt durch Deep Research
+(April 2026). Senkt emotionale Hürde zum Audit-Kauf und erhöht Aufbauphasen-
+Conversion.
+
+### 19.1 Mechanik
+
+```
+Kunde kauft Tier 1 Audit:                CHF 4'500
+  ↓ (innerhalb 60 Tagen Aufbauphase starten)
+Aufbauphase-Preis:                       CHF 5'000
+  ↓ (minus Audit-Anrechnung)
+Aufbauphase-Rechnung effektiv:           CHF 500
+```
+
+Der Kunde zahlt für Audit + Aufbauphase zusammen **CHF 5'000 statt CHF 9'500** —
+aber nur, wenn er in beide Phasen geht. Wer stehenbleibt, hat CHF 4'500 bezahlt.
+
+### 19.2 Psychologischer Effekt
+
+- **Vor dem Audit-Kauf:** *"Ich zahle nicht doppelt. Wenn der Audit überzeugt,
+  kostet mich die Aufbauphase nur CHF 500 on top."*
+- **Nach dem Audit:** *"Ich habe schon CHF 4'500 ausgegeben. Es wäre dumm, jetzt
+  nicht die Aufbauphase zu machen, die CHF 500 statt CHF 5'000 kostet."*
+
+Das ist **Sunk-Cost-Fallacy + Scarcity (60-Tage-Fenster)** in sauberer
+Kombination. Wirtschaftlich neutral bis leicht negativ für uns (max. CHF 4'500
+entgangen bei Aufbau-Kunden), aber Conversion-Gewinn kompensiert um ein
+Mehrfaches.
+
+### 19.3 Bedingungen
+
+- Anrechnung nur bei Aufbauphasen-Start innerhalb 60 Tage nach Audit-Kauf
+- Nur voller Audit-Preis (keine Teilanrechnung)
+- Nicht kombinierbar mit anderen Rabatten
+- Bei Tier 2 (CHF 9'500) wird voller Preis angerechnet
+
+### 19.4 Kommunikation
+
+Nicht im Teaser-1-Pager erwähnen (verwässert das Audit-Pricing).
+Nur im Audit-Report selbst (Kap. "Nächste Schritte") und im Erstgespräch.
+
+Wording:
+> *"Wenn Sie innerhalb der nächsten 60 Tage die Aufbauphase starten, wird der
+> Audit-Preis vollständig angerechnet. Effektiver Aufpreis für die Aufbauphase:
+> CHF 500."*
+
+---
+
+## 20. Agent-Positionierung — alle 12, scharf abgegrenzt
 
 Jeder Agent braucht in Report, Teaser und Sales eine **scharfe, nicht-austauschbare
 Positionierung**. Sonst verschwimmt der Scope und die Konkurrenz (Respondelligent,
@@ -682,7 +751,7 @@ Planday, Quandoo, Amakori) nimmt Scheibe für Scheibe.
 
 ---
 
-## 20. Nächste Schritte
+## 21. Nächste Schritte
 
 1. **V1 Teaser launchen** (aus `teaser-pipeline-v1.md`) — zuerst abschliessen
 2. **Mit 20+ Teaser-Generierungen Datengraph validieren** — Edge Cases finden

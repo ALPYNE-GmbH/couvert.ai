@@ -389,17 +389,99 @@ Calendly-URL: `https://calendly.com/couvert/erstgespraech?utm_source=teaser&utm_
 
 ---
 
-## 12. Legal & Privacy (TBD)
+## 12. Legal & Privacy
 
-**PLACEHOLDER — wird mit Deep-Research-Ergebnissen gefüllt.**
+Basierend auf Deep-Research (April 2026). Operative Checkliste: siehe
+`specs/legal-compliance-checklist.md`.
 
-Offene Fragen:
-- Rechtsgrundlage für unsolicited Business-Reports (nDSG, UWG Art. 3 lit. o)
-- Anonymisierung von Review-Texten: erforderlich oder optional?
-- Opt-Out-Mechanismus erforderlich?
-- AGB + Privacy-Policy-Passus für `/scan`
+### 12.1 Rechtsrahmen
 
-**TODO nach Research:** Dieses Kapitel mit konkreten Handlungsanweisungen füllen.
+Drei Gesetze sind einschlägig:
+
+| Gesetz | Relevanz |
+|---|---|
+| **UWG Art. 3 Abs. 1 lit. o** | Spam-Artikel: Opt-In vor E-Mail-Massenwerbung Pflicht |
+| **revDSG (nDSG, seit 09/2023)** | Bearbeitung von Personendaten (Review-Verfasser) |
+| **UWG (allgemein)** | Irreführungsverbot bei Verwendung von Bewertungen |
+
+### 12.2 V1 ist Opt-In — rechtlich sauber
+
+Der V1-Flow ist **user-initiiert**: Der Inhaber gibt selbst Google-URL + Email
+ein und bestätigt den Versand. Das ist **Opt-In nach Art. 3 lit. o UWG**, kein
+Massenmailing. Auf der Scan-Form muss allerdings stehen:
+
+- Klare Zweckangabe ("Sie erhalten einen kostenlosen Analyse-Teaser per E-Mail")
+- Checkbox mit explizitem Hinweis, dass die angegebene Email auch für einen
+  Follow-up-Kontakt verwendet werden darf (oder ausdrücklicher Verzicht darauf)
+- Link zur Datenschutzerklärung
+
+### 12.3 Anforderungen an die Scan-Seite `scan.couvert.ai`
+
+| Element | Pflicht | Hinweis |
+|---|---|---|
+| Impressum (Firma, Adresse, Kontakt) | ✅ | Klar verlinkt, leicht auffindbar |
+| Datenschutzerklärung | ✅ | Muss Google-Review-Analyse explizit nennen |
+| Cookie-Banner (wenn Tracking) | ✅ | Google Consent Mode kompatibel für CH |
+| Opt-In-Checkbox am Formular | ✅ | Nicht vorausgefüllt (Art. 6 nDSG) |
+| Opt-Out-Link in jeder Mail | ✅ | Ein-Klick, ohne Login |
+
+### 12.4 Review-Zitate: Was erlaubt ist
+
+| Umfang | Zulässig? | Regel |
+|---|---|---|
+| Aggregierte Kennzahlen (Rating, Count, %) | ✅ | Quelle nennen ("Quelle: Google") |
+| Kurze Zitate aus Reviews (1–3 Sätze) | ✅ | **Verfassername IMMER anonymisieren** → "Google-Gast, 1★, März 2026" |
+| Vollständige Review-Texte | ❌ | Urheberrecht unklar, DSG-Risiko |
+| Review-Verfasser-Profilbilder | ❌ | Personendaten, nie im Report |
+| Cherry-Picking nur negativer/positiver Reviews | ❌ | Irreführungstatbestand UWG |
+
+### 12.5 E-Mail-Formalia (Pflicht in jeder ausgehenden Mail)
+
+- Vollständige Absenderangaben: Firma, Postadresse, Kontakt
+- Klare Kennzeichnung als geschäftliche Kommunikation (Betreff + Einleitung)
+- Ein-Klick-Opt-Out-Link (kostenlos, kein Login nötig)
+- Kein Tracking ohne Consent (keine Pixel, die vor Consent laden)
+
+### 12.6 Phase 2 Outbound: Zwei-Stufen-Flow Pflicht
+
+Sobald wir **outbound** machen (Kaltakquise an Restaurants, die wir identifiziert
+haben), wechseln wir zum Zwei-Stufen-Flow:
+
+1. **Mail 1 (kurz, permission-request):** Keine Anhänge, kein Report. Fragt
+   nur, *ob* der Inhaber einen kostenlosen Teaser erhalten möchte. Muss
+   Impressum und Opt-Out enthalten. Kann als Einzelansprache an bekannte
+   Kontakte oder als Double-Opt-In-Anfrage versendet werden.
+2. **Mail 2 (nach explizitem "Ja"):** Report mit Anhang + Link. Damit nähern
+   wir uns dem Opt-In-Standard an.
+
+**Alternative Kanäle ohne Mail-Risiko:**
+- Telefon
+- Physische Besuche / Postversand
+- LinkedIn (Einzel-Nachrichten, kein Bulk)
+- Partner-Vermittlungen (z. B. Lieferanten, Gastro-Verbände)
+
+### 12.7 Dokumentation (revDSG-Pflicht)
+
+Couvert GmbH führt ein **Verzeichnis der Bearbeitungstätigkeiten**, in dem
+eingetragen ist:
+
+- **Bearbeitungszweck:** Betriebswirtschaftliche Analyse für Gastronomiebetriebe
+- **Datenkategorien:** Öffentlich zugängliche Online-Bewertungen, Review-Texte,
+  Speisekarten, Website-Content, Instagram-Profile
+- **Rechtsgrundlage:** Überwiegendes Interesse des Restaurant-Kunden
+  (Art. 31 Abs. 2 lit. e revDSG)
+- **Aufbewahrungsfristen:** Scan-Daten max. 90 Tage, danach Aggregate/Anonymisierung
+- **Betroffenenrechte:** Auskunft/Löschung via `privacy@couvert.ai` in 30 Tagen
+
+### 12.8 Offene rechtliche Punkte vor Launch
+
+| Punkt | Wer klärt |
+|---|---|
+| Vorlage Impressum + DSE für `scan.couvert.ai` | Schweizer IT-/Werberechtskanzlei |
+| Muster-Text für Opt-In-Checkbox am Scan-Formular | Kanzlei |
+| Finaler Text für Opt-Out-Link-Flow | MV + Kanzlei |
+| Prüfung: Ist "Couvert-System-Analyse geprüft durch unser Team" als Transparenz-Claim haltbar? | Kanzlei |
+| AGB-Template inkl. Accuracy Guarantee und Widerrufs-Ausschluss bei B2B-Digitalprodukten | Kanzlei |
 
 ---
 

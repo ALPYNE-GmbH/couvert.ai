@@ -148,16 +148,37 @@ Akzeptable Formulierungen:
 
 ---
 
-## 7. Offene Themen (Stand letzte Session)
+## 7. Legal-Kontext (Schweiz, Stand April 2026)
 
-- Legal-Research (Deep Research läuft): Rechtsgrundlage unsolicited Teaser + nDSG für Review-Texte
+Deep Research abgeschlossen, Ergebnisse eingearbeitet in `specs/teaser-pipeline-v1.md`
+Kap. 12 und `specs/legal-compliance-checklist.md`. Kernaussagen:
+
+- **V1 (User-initiiertes Scan-Formular) = Opt-In** → rechtlich sauber, keine Sperre
+- **Phase 2 Outbound (kalte E-Mail) = Massenwerbung** → Opt-In Pflicht nach UWG Art. 3
+  Abs. 1 lit. o. Nur mit Zwei-Stufen-Flow (erst Anfrage um Erlaubnis, dann Report)
+- **revDSG:** Review-Verfassernamen immer anonymisieren. Aggregate sind unproblematisch
+- **Impressum + Datenschutzerklärung** müssen auf `scan.couvert.ai` vor Launch stehen
+- **Verzeichnis der Bearbeitungstätigkeiten** muss intern geführt werden
+
+Kanzlei-Abnahme vor Launch ist Pflicht (siehe Compliance-Checklist).
+
+## 8. Pricing-Mechanik: Discovery-Fee-Credit
+
+Etabliertes Modell, eingebaut nach Research: Wer Tier 1 Audit kauft und innerhalb
+60 Tagen in Aufbauphase geht, bekommt den Audit-Preis angerechnet. Effektiver
+Aufbauphase-Preis dann: CHF 500 statt CHF 5'000. Nicht im Teaser erwähnen,
+nur im Audit-Report + Erstgespräch.
+
+## 9. Offene Themen (Stand letzte Session)
+
+- Kanzlei-Abnahme (Impressum, DSE, AGB, Opt-In-Formulierungen) — siehe `specs/legal-compliance-checklist.md`
+- 5 verbleibende Agent-Prompts für V1 (Reputation Manager ist ausformuliert)
 - Hybrid-Transparenz-Wording für Tier 1 Landing-Page
-- 6 Agent-Prompts für V1 (Reputation Manager ist ausformuliert, 5 weitere ausstehend)
-- V1 Build-Start nach Research-Ergebnissen und Agent-Prompts
+- Build-Start V1 sobald Legal grün und Prompts final
 
 ---
 
-## 8. Meta: Updates an dieser Datei
+## 10. Meta: Updates an dieser Datei
 
 Diese Datei ist **lebendig**. Wenn eine Entscheidung getroffen wird, die
 zukünftige Sessions wissen sollen, landet sie hier.
