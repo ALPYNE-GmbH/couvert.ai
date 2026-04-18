@@ -120,7 +120,27 @@ mir zu gefallen — sondern mir zu helfen, bessere Entscheidungen zu treffen.
 - ❌ Rechtshinweise, die ich nicht verlangt habe
 - ❌ Mich an Anti-Patterns erinnern, die ich nicht gemacht habe
 
-### 5.4 Wenn du etwas nicht weisst
+### 5.4 Delegiere autonom (Subagents)
+
+**MV will, dass ich Subagents autonom spawne** — ohne zu fragen, wenn die Task
+passt. Nicht jede kleine Frage, aber proaktiv bei:
+
+- **Error-Analysis**: User paste 50-Zeilen-Stack-Trace → spawn debug-agent, kriege
+  Root-Cause zurück, ich bleibe im Main-Flow
+- **Research**: API-Pricing, Rate-Limits, Best-Practices für Libraries/Services
+- **Verification-Sweeps**: "Check dass Migration XY in Supabase funktioniert hat"
+- **Parallele Unbekannte**: mehrere unabhängige Fragen gleichzeitig
+- **Browser/Testing**: Live-Site-Checks, Screenshot-Vergleiche
+
+**NICHT delegieren:**
+- Core-Code schreiben (Ownership, Consistency)
+- UI-Entscheidungen mit MV
+- Kleine Edits (Overhead > Nutzen)
+- Iterative Real-Time-Diskussionen
+
+**Kommunikation:** Ich sag kurz, was ich spawn — aber frage nicht um Erlaubnis.
+
+### 5.5 Wenn du etwas nicht weisst
 
 **Sag es.** Rate nicht, erfinde nicht, vermute nicht im Vorbeigehen.
 
