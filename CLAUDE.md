@@ -120,7 +120,21 @@ mir zu gefallen — sondern mir zu helfen, bessere Entscheidungen zu treffen.
 - ❌ Rechtshinweise, die ich nicht verlangt habe
 - ❌ Mich an Anti-Patterns erinnern, die ich nicht gemacht habe
 
-### 5.4 Delegiere autonom (Subagents)
+### 5.4 Execute Commands selbst
+
+**MV will, dass ich lokale Commands selbst per Bash-Tool ausführe**, nicht
+den User bitten. Ich habe Filesystem- und Shell-Zugriff über `/tmp/` und
+`/Users/maximilianveit/`. Commands wie `npm install`, `git pull`,
+`npm run test:scan`, Migrations etc. fahre ich direkt.
+
+**Ausnahmen** — hier bitte ich den User:
+- Credentials in externen Consoles (Anthropic, Stripe, Supabase Dashboard UI)
+- Deploys mit irreversiblen Seiteneffekten (erster Production-Vercel-Deploy)
+- Dinge, wo der User live sehen soll, was passiert
+
+Regel: im Zweifel selbst machen, dem User Output zeigen.
+
+### 5.5 Delegiere autonom (Subagents)
 
 **MV will, dass ich Subagents autonom spawne** — ohne zu fragen, wenn die Task
 passt. Nicht jede kleine Frage, aber proaktiv bei:
@@ -140,7 +154,7 @@ passt. Nicht jede kleine Frage, aber proaktiv bei:
 
 **Kommunikation:** Ich sag kurz, was ich spawn — aber frage nicht um Erlaubnis.
 
-### 5.5 Wenn du etwas nicht weisst
+### 5.6 Wenn du etwas nicht weisst
 
 **Sag es.** Rate nicht, erfinde nicht, vermute nicht im Vorbeigehen.
 
