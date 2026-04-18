@@ -9,10 +9,13 @@ aufgeschoben wurde. Gilt als Single Source of Truth für Roadmap-Fragen.
 
 ## 🔥 Blocker / In Arbeit
 
-### 🔴 T-HOT-001 · Sonnet-vs-Opus-A/B-Test für Agent-Outputs — HEUTE
-**Status:** MV hat explizit gesagt: *"später aber erinnere mich dran! ich verlasse mich drauf das du mich erinnerst, HEUTE noch"* (2026-04-18).
-**Plan:** Sobald E2E-Pipeline läuft, fahre denselben Agent-Call (Reputation Manager mit Napoli-Real-Daten) 1× mit Sonnet 4.5 und 1× mit Opus 4.7. Outputs nebeneinander zeigen, MV entscheidet anhand der tatsächlichen Qualität ob Opus den 5× Preis wert ist.
-**Trigger:** Ich (Claude) muss heute aktiv dran erinnern, nicht auf MV warten.
+*(Keine aktuell.)*
+
+### ✅ T-HOT-001 · Sonnet-vs-Opus-A/B (2026-04-18) — resolved
+Ran side-by-side on 500 Hamburg reviews. Opus 6.9× more expensive,
+~15-20% qualitatively better reasoning. Decision: Sonnet default,
+Opus selectively for Tier-1 report synthesis + Competitor Radar
+strategic suggestions. Code stays `MODELS.OPUS`-configurable per call.
 
 ---
 
