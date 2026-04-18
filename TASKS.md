@@ -1,6 +1,6 @@
 # TASKS — Couvert.ai Roadmap
 
-**Status:** Living document · **Owner:** MV · **Last update:** 2026-04-17
+**Status:** Living document · **Owner:** MV · **Last update:** 2026-04-18
 
 Zentrale Task-Liste für alles, was identifiziert, priorisiert oder explizit
 aufgeschoben wurde. Gilt als Single Source of Truth für Roadmap-Fragen.
@@ -20,6 +20,36 @@ strategic suggestions. Code stays `MODELS.OPUS`-configurable per call.
 ---
 
 ## 🟠 High Priority — als Nächstes anpacken
+
+### T-012 · Off-site SEO — Google-Recognition herstellen
+**Status:** On-site-Signale sind live (JSON-LD Organization, Meta-Tags, sitemap.xml, robots.txt auf allen 8 Seiten, Couvert GmbH i.G. als legalName). Google AI Overview verwechselt couvert.ai aktuell mit Coupert-Browser-Extension. Off-site-Hebel muss MV selbst bedienen:
+- [ ] **Google Search Console** — Property `https://couvert.ai` hinzufügen, via DNS oder HTML-File verifizieren, Sitemap `https://couvert.ai/sitemap.xml` einreichen, pro Seite "Request Indexing" klicken
+- [ ] **Google Business Profile** — anlegen als "Couvert GmbH i.G." · Pfäffikon SZ · Kategorie Softwareunternehmen/Unternehmensberatung · Website couvert.ai · Verifizieren
+- [ ] **AI Overview Feedback** absenden (Text wurde 2026-04-18 in Chat-Verlauf erstellt) — vor Submit "ALPYNE GmbH, Zürich" durch "Couvert GmbH i.G., Pfäffikon SZ" ersetzen
+- [ ] **LinkedIn Company Page** — "Couvert.ai (Couvert GmbH i.G.)" · Schweiz · Software für Gastronomie · Link auf couvert.ai
+- [ ] **Crunchbase-Profil** — Couvert.ai unter Couvert GmbH i.G. registrieren
+- [ ] **Rich-Result-Test** auf search.google.com/test/rich-results — couvert.ai prüfen, Organization-Schema-Erkennung verifizieren
+**Erwarteter Effekt:** 3–14 Tage bis Google Couvert als eigenständige Entity erkennt und Coupert-Verwechslung verschwindet.
+
+### T-013 · Google Workspace für couvert.ai separat aufsetzen
+**Status:** Derzeit läuft E-Mail über ALPYNE-Workspace. Widerspricht der Legal-Entity-Trennung (Couvert GmbH i.G. ≠ ALPYNE). DKIM-Signing zeigt aktuell ALPYNE als Infrastruktur-Betreiber, sichtbar in Mail-Headern beim Empfänger.
+**Plan:** Google Workspace Business Starter · ~CHF 6.50/User/Monat · initial nur MV.
+**Setup-Schritte (ca. 30 Min, einmalig):**
+1. Workspace anlegen auf workspace.google.com — Primary-Domain couvert.ai
+2. MX-Records bei DNS-Provider setzen (5 Google-Einträge)
+3. DKIM aktivieren, TXT-Record eintragen
+4. DMARC-Record setzen: `v=DMARC1; p=none; rua=mailto:dmarc@couvert.ai` (erstmal Monitoring, später auf `quarantine`)
+5. User hello@couvert.ai + Alias kontakt@couvert.ai anlegen
+6. ALPYNE-Mail-History via Google Takeout exportieren, später in Couvert-Workspace importieren falls Couvert-spezifische alte Mails nötig
+**Claude liefert auf Anforderung:** DNS-Records-Tabelle zum Copy-Paste, sobald Workspace-Setup startet.
+
+### T-014 · Backlinks CH-Gastro-Ökosystem aufbauen
+**Status:** Parallel zu T-012. CH-Domain-zu-CH-Domain-Backlinks in derselben Branche sind das stärkste Signal für Google, dass couvert.ai = Gastronomie-relevant (nicht Coupon-Extension).
+- [ ] **Gusto-Gruppe / 60 Seconds** — falls Kooperation aktiv, Backlink von deren Site (Fallbeispiel/Partner-Section) auf couvert.ai
+- [ ] **Hotellerie Gastronomie Zeitung** oder **Gastrojournal** — kurzer Artikel/Nennung mit Link
+- [ ] **Ludwig-Netzwerk** — falls Gastro-Blog oder Newsletter, Gast-Beitrag platzieren
+- [ ] **Zürich Tourism / Zürich City** — falls B2B-relevante Listings verfügbar
+**Trigger:** Nach T-012 abgeschlossen und erstem paying customer.
 
 ### T-004 · Switch von Outscraper zu DataForSEO — Kostenersparnis 80%
 **Status:** Reviews Research zeigt DataForSEO bietet identische Felder bei $0.60–$1.20 pro 1'000 Reviews (Standard/Priority) vs Outscraper $3/1'000.
