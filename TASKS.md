@@ -21,6 +21,31 @@ strategic suggestions. Code stays `MODELS.OPUS`-configurable per call.
 
 ## 🟠 High Priority — als Nächstes anpacken
 
+### T-004 · Switch von Outscraper zu DataForSEO — Kostenersparnis 80%
+**Status:** Reviews Research zeigt DataForSEO bietet identische Felder bei $0.60–$1.20 pro 1'000 Reviews (Standard/Priority) vs Outscraper $3/1'000.
+**Trigger:** Nach V1-Launch, wenn erste 20+ echte Scans durchgelaufen sind. Switch-Aufwand: ~2 Stunden (neuer Client in `src/lib/scraping/dataforseo.ts`, selbes Interface wie outscraper.ts).
+**Ersparnis bei 200 Scans/Monat × 2'500 Reviews:** $1'200/Monat → $240/Monat = **$960/Monat = $11'500/Jahr**.
+**Schritt-für-Schritt:** 2-wöchiger A/B-POC mit DataForSEO ($50 Prepaid), Felder gegen Outscraper-Output diffen, dann Switch.
+
+### T-005 · Tier 2 Deep Social Analysis
+**Status:** Für Tier 2 (CHF 9'500) ist vollständige Social-Intelligence vorgesehen — Competitor-Vergleich auf IG, saisonale Content-Analyse, Influencer-ROI-Schätzung, TikTok + Google Posts.
+**Trigger:** Nach Adrian-Gespräch, wenn wir wissen ob der echte Bedarf da ist. Bis dahin nur Tier 1 Light Touch in Marketing Engine Agent.
+**Inhalt Tier 2:**
+- Competitor-Vergleich auf Social (3 Wettbewerber)
+- Saisonale Content-Analyse (letzte 6 Monate)
+- Influencer-Kartographie mit ROI-Schätzung
+- TikTok, Google Posts
+- Audience-Growth-Attribution
+
+### T-006 · Sampling-Regel: Tier-Differenzierung implementiert
+**Status:** Aktuell hardcoded 500 Reviews für alle Scans. Braucht Tier-Logik.
+**Plan:**
+- Teaser: newest 500 Reviews (fast, cheap)
+- Tier 1: 12 Monate, max 2'500 Reviews (trend + state)
+- Tier 2: 24 Monate, max 10'000 Reviews (historical depth)
+- Change Detector bestimmt Analyse-Fenster (post-change bei Change, sonst voll)
+- Trend-Chart zeigt immer alle Reviews, mit Change-Marker wenn vorhanden
+
 ### T-001 · Interaktiver Scan-Lead-Magnet auf `scan.couvert.ai`
 
 **Was:** User-initiierte Scan-Form, die in 60s einen 1-Pager-Teaser-PDF
