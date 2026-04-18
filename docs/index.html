@@ -13,7 +13,7 @@
 .hero-overline{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--copper);margin-bottom:20px;display:flex;align-items:center;gap:12px}
 .hero-overline::before{content:'';width:32px;height:1px;background:var(--copper)}
 .hero-section h1{font-family:'DM Sans',sans-serif;font-weight:600;font-size:clamp(44px,7.5vw,94px);line-height:1.04;color:var(--cream-bright);letter-spacing:-2px;margin-bottom:28px}
-.hero-section h1 em{font-style:italic;color:var(--copper)}
+.hero-section h1 em{font-family:'DM Serif Display',serif;font-weight:400;font-style:italic;color:var(--copper);letter-spacing:-1.5px}
 .hero-sub{font-size:17px;line-height:1.6;color:var(--text);font-weight:300;margin-bottom:32px}
 .hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:28px}
 .hero-bullets{display:flex;gap:24px;font-size:15px;color:var(--text-dim);flex-wrap:wrap}
@@ -106,6 +106,14 @@
 .mc-agent{font-size:13px;color:var(--text-dim);font-weight:300;line-height:1.5}
 .mc-agent strong{color:var(--text);font-weight:500}
 .mc-preview{flex:1;display:flex;align-items:center;justify-content:center;padding:16px 0;margin:4px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-softer,var(--text-dim));letter-spacing:0.3px}
+.mc-preview-frame{position:relative;height:220px;margin:4px -28px;overflow:hidden;background:var(--bg3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);pointer-events:none;transition:opacity 0.3s}
+.mc-preview-frame iframe{width:250%;height:280%;border:0;transform:scale(0.4);transform-origin:top left;position:absolute;top:0;left:0;pointer-events:none}
+.mc-preview-frame-phone iframe{width:300%;height:300%;transform:scale(0.35);transform-origin:top center;left:50%;margin-left:-150%}
+.mockup-card:hover .mc-preview-frame{opacity:0.95}
+.mockup-card:hover .mc-preview-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(196,103,58,0.08));pointer-events:none}
+@media(max-width:800px){
+  .mc-preview-frame{margin:4px -22px;height:180px}
+}
 .mc-preview-stars{display:flex;gap:2px;color:var(--gold);font-size:14px}
 .mc-preview-chat{background:var(--bg2);border:1px solid var(--border);border-radius:8px 8px 8px 2px;padding:8px 12px;font-size:11.5px;color:var(--cream);line-height:1.5;max-width:80%;border-left:2px solid var(--copper);font-style:italic;font-family:'DM Sans',sans-serif}
 .mc-preview-num{font-family:'DM Serif Display',serif;font-size:32px;color:var(--gold);line-height:1;letter-spacing:-0.5px}
@@ -347,11 +355,10 @@
 <div class="mc-title">Jede Bewertung beantwortet — in vier Sprachen.</div>
 <div class="mc-agent">Team <strong>Guest Experience</strong> · Reputation Manager</div>
 </div>
-<div class="mc-preview">
-<div class="mc-preview-stars">★★<span style="opacity:0.3">★★★</span></div>
-<div style="margin-left:12px;font-family:'DM Sans',sans-serif;font-style:italic;color:var(--text);max-width:180px;font-size:12px;line-height:1.4">"30 Minuten gewartet trotz Reservation…"</div>
+<div class="mc-preview-frame">
+<iframe src="mockups/review-response.html" loading="lazy" tabindex="-1" aria-hidden="true" title="Review Response Preview"></iframe>
 </div>
-<div class="mc-cta">Anschauen <span class="mc-cta-arrow">→</span></div>
+<div class="mc-cta">Vollansicht öffnen <span class="mc-cta-arrow">→</span></div>
 </a>
 
 <a href="mockups/monthly-report.html" class="mockup-card" target="_blank">
@@ -360,13 +367,10 @@
 <div class="mc-title">Was gewirkt hat. In Franken.</div>
 <div class="mc-agent">Team <strong>Revenue & Menu</strong> · Revenue Analyst</div>
 </div>
-<div class="mc-preview">
-<div style="text-align:center">
-<div class="mc-preview-num">CHF 24K</div>
-<div class="mc-preview-num-label">REALISIERT · APRIL 2026</div>
+<div class="mc-preview-frame">
+<iframe src="mockups/monthly-report.html" loading="lazy" tabindex="-1" aria-hidden="true" title="Monthly Report Preview"></iframe>
 </div>
-</div>
-<div class="mc-cta">Anschauen <span class="mc-cta-arrow">→</span></div>
+<div class="mc-cta">Vollansicht öffnen <span class="mc-cta-arrow">→</span></div>
 </a>
 
 <a href="mockups/shift-briefing.html" class="mockup-card" target="_blank">
@@ -375,10 +379,10 @@
 <div class="mc-title">Briefings vor Schichtbeginn — dort, wo Ihr Team schreibt.</div>
 <div class="mc-agent">Team <strong>Quality & Operations</strong> · Staff Communication</div>
 </div>
-<div class="mc-preview">
-<div class="mc-preview-chat">"8 Bewertungen erwähnen nassen Teig, +200% vs. Vorwoche. Ofen-Temperatur prüfen."</div>
+<div class="mc-preview-frame mc-preview-frame-phone">
+<iframe src="mockups/shift-briefing.html" loading="lazy" tabindex="-1" aria-hidden="true" title="Shift Briefing Preview"></iframe>
 </div>
-<div class="mc-cta">Anschauen <span class="mc-cta-arrow">→</span></div>
+<div class="mc-cta">Vollansicht öffnen <span class="mc-cta-arrow">→</span></div>
 </a>
 
 <a href="mockups/competitor-briefing.html" class="mockup-card" target="_blank">
@@ -387,16 +391,10 @@
 <div class="mc-title">Was Ihre Wettbewerber diese Woche anders machen.</div>
 <div class="mc-agent">Team <strong>Market & Growth</strong> · Competitor Radar</div>
 </div>
-<div class="mc-preview">
-<div class="mc-preview-mail">
-<div class="mc-preview-mail-avatar">C</div>
-<div class="mc-preview-mail-text">
-<div class="mc-preview-mail-subject">Bewegung bei Margheri</div>
-<div style="color:var(--text-dim);font-size:11px">+12 neue 5★-Reviews · Lunch-Special-Launch</div>
+<div class="mc-preview-frame">
+<iframe src="mockups/competitor-briefing.html" loading="lazy" tabindex="-1" aria-hidden="true" title="Competitor Briefing Preview"></iframe>
 </div>
-</div>
-</div>
-<div class="mc-cta">Anschauen <span class="mc-cta-arrow">→</span></div>
+<div class="mc-cta">Vollansicht öffnen <span class="mc-cta-arrow">→</span></div>
 </a>
 
 <a href="mockups/activity-feed.html" class="mockup-card" target="_blank">
@@ -405,18 +403,10 @@
 <div class="mc-title">12 Agents. Ein Feed. Alles was heute passiert ist.</div>
 <div class="mc-agent">Alle Teams · zentrale Live-Übersicht</div>
 </div>
-<div class="mc-preview">
-<div style="text-align:center">
-<div class="mc-preview-agents-row" style="margin-bottom:8px">
-<span class="mc-preview-dot"></span><span class="mc-preview-dot"></span><span class="mc-preview-dot"></span>
-<span class="mc-preview-dot"></span><span class="mc-preview-dot"></span><span class="mc-preview-dot"></span>
-<span class="mc-preview-dot"></span><span class="mc-preview-dot"></span><span class="mc-preview-dot"></span>
-<span class="mc-preview-dot idle"></span><span class="mc-preview-dot idle"></span><span class="mc-preview-dot off"></span>
+<div class="mc-preview-frame">
+<iframe src="mockups/activity-feed.html" loading="lazy" tabindex="-1" aria-hidden="true" title="Activity Feed Preview"></iframe>
 </div>
-<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);letter-spacing:1px">9 LIVE · 2 IDLE · 1 P3</div>
-</div>
-</div>
-<div class="mc-cta">Anschauen <span class="mc-cta-arrow">→</span></div>
+<div class="mc-cta">Vollansicht öffnen <span class="mc-cta-arrow">→</span></div>
 </a>
 
 <a href="https://calendly.com/hello-couvert/30min" target="_blank" class="mockup-card cta-tile">
