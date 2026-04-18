@@ -224,3 +224,26 @@ zukünftige Sessions wissen sollen, landet sie hier.
 - Du bemerkst, dass ein Teil stale ist
 
 Immer mit Commit-Message `CLAUDE.md: <kurze Beschreibung>`.
+
+---
+
+## 11. Session-Handshake (gegen Context-Verlust)
+
+Claude-Sessions haben endliche Kontext-Fenster. Damit jede neue Session in
+< 30 Sekunden ready ist, gibt es drei Handshake-Dateien — zwei strategisch
+(hier), zwei operativ (im Platform-Repo):
+
+| Datei | Repo | Zweck |
+|---|---|---|
+| `CLAUDE.md` (diese) | `couvert.ai` | Strategie, Pricing, Legal, Agents, Stil |
+| `TASKS.md` | `couvert.ai` | Roadmap-Items, Reminders |
+| `docs/decisions.md` | `couvert-platform` | Architektur-Entscheidungen als ADRs |
+| `docs/open-questions.md` | `couvert-platform` | Aktiver State, offene Entscheide |
+
+**Jede neue Session liest alle vier**, bevor sie Code anfasst oder Fragen
+beantwortet. Handshake-Details und Maintenance-Regeln für die Platform-Docs:
+`couvert-platform/CLAUDE.md`.
+
+**Wichtigste Pflege-Regel:** Entscheidungen und offene Fragen werden **sofort**
+eingetragen, nicht am Session-Ende. ADRs im couvert-platform-Repo, strategische
+Änderungen hier. Commits separiert (`docs: ADR-NNN ...`).
