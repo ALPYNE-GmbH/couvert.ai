@@ -104,7 +104,9 @@
 .origin-layout h2{font-family:'DM Serif Display',serif;font-weight:400;font-style:italic;font-size:clamp(30px,4vw,44px);color:var(--cream-bright);letter-spacing:-0.5px;line-height:1.1}
 .origin-body{font-size:17px;line-height:1.75;color:var(--text);font-weight:300}
 .origin-body p{margin-bottom:18px}
-.origin-signature{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--copper);margin-top:24px;padding-top:20px;border-top:1px solid var(--border)}
+.origin-link{display:inline-block;margin-top:8px;font-size:15px;color:var(--copper);text-decoration:none;border-bottom:1px solid transparent;transition:border-color 0.2s;letter-spacing:0.2px}
+.origin-link:hover{border-color:var(--copper)}
+.origin-signature{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--copper);margin-top:28px;padding-top:20px;border-top:1px solid var(--border)}
 @media(max-width:800px){
   .science-grid{grid-template-columns:1fr;gap:1px}
   .origin-layout{grid-template-columns:1fr;gap:24px}
@@ -400,22 +402,20 @@
 </div>
 </div></section>
 
-<!-- ORIGIN / GESCHICHTE
-     TODO(MV): den Platzhalter-Text durch die echte Origin-Story ersetzen —
-     Penthouse, Mitbewohner (Gastronom), Stammgast-Beobachtung, Auslöser zur
-     Gründung. Ziel: menschliches Differenzierungs-Moment gegenüber Amakori
-     (Solo-Founder ohne erzählte Story). 2-4 kurze Absätze. -->
+<!-- ORIGIN / GESCHICHTE -->
 <section class="origin-section">
 <div class="container">
 <div class="origin-layout">
 <div>
-<div class="origin-overline">Woher Couvert kommt</div>
-<h2>Couvert ist im Gespräch am Küchentisch entstanden.</h2>
+<div class="origin-overline">Die Geschichte</div>
+<h2>Couvert ist in einer Zürcher WG entstanden.</h2>
 </div>
 <div class="origin-body">
-<p><em>[Platzhalter — echte Story einfügen.]</em> Wir haben in Zürich in einer WG gelebt. Mein Mitbewohner führt einen Gastronomie-Betrieb. Über Monate habe ich zugehört, was ihn abends nach Hause begleitet: nicht die grossen strategischen Fragen, sondern die kleinen, wiederkehrenden. Eine Bewertung, die niemand beantwortet hat. Ein Stammgast, der seit drei Wochen nicht mehr aufgetaucht ist. Die Vermutung, dass etwas im Service kippt — ohne Daten, die das bestätigen.</p>
-<p>Couvert ist die Antwort auf diese Abende. Kein Beratungs-Deck, sondern ein AI-Operations-Team, das genau diese kleinen Signale erkennt, beziffert und systematisch in Umsetzung bringt.</p>
-<div class="origin-signature">Maximilian Veit · Gründer, ALPYNE GmbH</div>
+<p>Anfang 2025 zog ich nach Zürich — Penthouse an der Europaallee, neuer Job in der Tech-Branche, eine WG-Anzeige online. Mein Mitbewohner wurde Restaurantmanager eines neapolitanischen Konzepts direkt um die Ecke. Sein Laden wurde mein zweites Wohnzimmer.</p>
+<p>Ich sass dort jeden Tag. Abends in der Küche unserer WG erzählte mein Mitbewohner was lief, was nicht lief, wo es brannte. <strong>CHF 6+ Millionen Jahresumsatz</strong> — und gleichzeitig Geld verbrannt an Stellen, die niemand misst. Antwortquote null auf tausende Bewertungen. Sechsstellige Influencer-Budgets ohne Wirkungsmessung.</p>
+<p>Das Problem war nie die Qualität der Menschen. Es war die Lücke zwischen dem was passiert und dem was die Führung davon mitbekommt.</p>
+<a href="geschichte.html" class="origin-link">Ganze Geschichte lesen →</a>
+<div class="origin-signature">Maximilian Veit · Gründer, Couvert.ai</div>
 </div>
 </div>
 </div>
@@ -571,7 +571,7 @@
 
 <footer><div class="container">
 <div class="footer-inner"><div class="footer-left">© 2026 COUVERT.AI - ZÜRICH</div><div class="footer-right">Jedes Gedeck zählt.</div></div>
-<div class="footer-links"><a href="methodik.html">Methodik</a><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="mailto:hello@couvert.ai">hello@couvert.ai</a><div class="footer-trust"><span>Daten in der Schweiz</span><span>Monatlich kündbar</span><span>Gegründet in Zürich</span></div></div>
+<div class="footer-links"><a href="methodik.html">Methodik</a><a href="geschichte.html">Geschichte</a><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="mailto:hello@couvert.ai">hello@couvert.ai</a><div class="footer-trust"><span>Daten in der Schweiz</span><span>Monatlich kündbar</span><span>Gegründet in Zürich</span></div></div>
 </div></footer>
 
 <div class="mobile-sticky-results" id="mobile-sticky">
