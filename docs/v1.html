@@ -47,7 +47,7 @@
 }
 </script>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="v1-style.css">
 <style>
 .hero-section{padding-top:140px;padding-bottom:60px;position:relative}
 .hero-section::before{content:'';position:absolute;top:80px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(196,103,58,0.06) 0%,transparent 65%);pointer-events:none}
@@ -70,7 +70,7 @@
 .proof-bar{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0}
 .proof-item{padding:28px 16px;text-align:center;position:relative}
 .proof-item:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:var(--border)}
-.proof-num{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:var(--copper);margin-bottom:4px}
+.proof-num{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:var(--gold);margin-bottom:4px}
 .proof-label{font-size:13px;color:var(--text-dim);line-height:1.5}
 .proof-context{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--copper);margin-bottom:16px;text-align:center;padding-top:20px}
 .steps-section{background:var(--bg2)}
@@ -104,7 +104,7 @@
 .calc-detail-panel{background:var(--bg2);border:1px solid var(--border);padding:20px}
 .churn-indicator{background:var(--bg);border:1px solid var(--border);padding:16px}
 .churn-bar-bg{width:100%;height:6px;background:var(--border);border-radius:3px;margin-bottom:10px;overflow:hidden}
-.churn-bar-fill{height:100%;background:linear-gradient(90deg,var(--green-up),var(--copper-soft),var(--red-down));border-radius:3px;transition:width 0.4s ease}
+.churn-bar-fill{height:100%;background:linear-gradient(90deg,var(--green-up),var(--gold),var(--red-down));border-radius:3px;transition:width 0.4s ease}
 .churn-row{display:flex;justify-content:space-between;align-items:center}
 .churn-label{font-size:13px;color:var(--text-dim)}
 .churn-value{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:600;color:var(--red-down);transition:color 0.3s}
@@ -132,7 +132,7 @@
 .science-header p{font-size:15px;color:var(--text-dim);line-height:1.6;font-weight:300}
 .science-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
 .science-card{background:var(--bg2);padding:28px 24px}
-.science-num{font-family:'JetBrains Mono',monospace;font-size:clamp(28px,3.4vw,36px);font-weight:600;color:var(--copper);line-height:1;margin-bottom:8px;letter-spacing:-0.5px}
+.science-num{font-family:'JetBrains Mono',monospace;font-size:clamp(28px,3.4vw,36px);font-weight:600;color:var(--gold);line-height:1;margin-bottom:8px;letter-spacing:-0.5px}
 .science-title{font-family:'DM Serif Display',serif;font-size:17px;color:var(--cream);margin-bottom:10px;line-height:1.3}
 .science-body{font-size:14px;line-height:1.55;color:var(--text-dim);font-weight:300;margin-bottom:14px}
 .science-src{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--copper)}
@@ -159,7 +159,7 @@
 .ts-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--copper);margin-bottom:10px}
 .ts-title{font-family:'DM Serif Display',serif;font-size:20px;color:var(--cream-bright);margin-bottom:10px;line-height:1.2}
 .ts-body{font-size:14px;line-height:1.6;color:var(--text-dim);font-weight:300}
-.ts-body strong{color:var(--cream);font-weight:500}
+.ts-body strong{color:var(--gold);font-weight:500}
 .timeline-arrow{font-family:'JetBrains Mono',monospace;font-size:28px;color:var(--copper);align-self:center;font-weight:300}
 .loop-tagline{margin-top:36px;padding:20px 24px;border-left:2px solid var(--copper);font-size:16px;color:var(--text);font-weight:300;line-height:1.6;font-style:italic}
 @media(max-width:800px){
@@ -184,9 +184,9 @@
 @media(max-width:800px){
   .mc-preview-frame{margin:4px -22px;height:180px}
 }
-.mc-preview-stars{display:flex;gap:2px;color:var(--copper);font-size:14px}
+.mc-preview-stars{display:flex;gap:2px;color:var(--gold);font-size:14px}
 .mc-preview-chat{background:var(--bg2);border:1px solid var(--border);border-radius:8px 8px 8px 2px;padding:8px 12px;font-size:11.5px;color:var(--cream);line-height:1.5;max-width:80%;border-left:2px solid var(--copper);font-style:italic;font-family:'DM Sans',sans-serif}
-.mc-preview-num{font-family:'DM Serif Display',serif;font-size:32px;color:var(--copper);line-height:1;letter-spacing:-0.5px}
+.mc-preview-num{font-family:'DM Serif Display',serif;font-size:32px;color:var(--gold);line-height:1;letter-spacing:-0.5px}
 .mc-preview-num-label{font-size:11px;color:var(--text-dim);margin-top:4px;text-align:center;letter-spacing:0.5px}
 .mc-preview-mail{display:flex;align-items:flex-start;gap:10px;width:100%;max-width:240px}
 .mc-preview-mail-avatar{width:28px;height:28px;border-radius:50%;background:var(--copper);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;color:var(--cream);font-size:12px;flex-shrink:0}
@@ -228,7 +228,7 @@
 .scan-teaser-left p{font-size:16px;line-height:1.65;color:var(--text);font-weight:300;margin-bottom:16px}
 .scan-teaser-left small{font-size:13px;color:var(--text-dim);font-style:italic}
 .scan-teaser-right{text-align:center}
-.scan-count{font-family:'DM Serif Display',serif;font-size:clamp(48px,7vw,96px);color:var(--copper);line-height:1;margin-bottom:8px}
+.scan-count{font-family:'DM Serif Display',serif;font-size:clamp(48px,7vw,96px);color:var(--gold);line-height:1;margin-bottom:8px}
 .scan-count-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:24px}
 @media(max-width:800px){
   .scan-teaser-grid{grid-template-columns:1fr;gap:32px}
@@ -272,7 +272,7 @@
   .msr-box{text-align:center}
   .msr-label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dim);margin-bottom:2px}
   .msr-label-red{color:var(--red-down)}.msr-label-green{color:var(--green-up)}
-  .msr-num{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:var(--cream)}
+  .msr-num{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:var(--gold)}
   .msr-num-green{color:var(--green-up)}
 }
 </style>
@@ -280,7 +280,7 @@
 <body>
 
 <header><div class="container header-inner">
-<a href="index.html" class="logo"><div class="logo-name">c<span>o</span>uvert</div></a>
+<a href="index.html" class="logo"><div class="logo-icon"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="8" r="5.5" stroke="#C4673A" stroke-width="1.2" fill="none"/><circle cx="9" cy="8" r="2" stroke="#C4673A" stroke-width="0.8" fill="none" opacity="0.5"/><circle cx="9" cy="8" r="0.8" fill="#C4673A"/><line x1="5" y1="15" x2="13" y2="15" stroke="#C4673A" stroke-width="0.6" opacity="0.4"/></svg></div><div class="logo-name">couvert<span>.ai</span></div></a>
 <nav class="nav"><a href="#ai-team">AI-Team</a><a href="fallbeispiel.html">Fallbeispiel</a><a href="ablauf.html">Ablauf</a><a href="ablauf.html#faq">FAQ</a><a href="https://calendly.com/hello-couvert/30min" target="_blank" class="nav-cta">Gespräch buchen</a></nav>
 <button class="burger" onclick="document.getElementById('mm').classList.add('open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
 </div></header>
@@ -296,8 +296,8 @@
 
 <!-- A/B SWITCHER (temporary — remove after decision) -->
 <div style="position:fixed;top:12px;right:12px;z-index:9999;background:rgba(0,0,0,0.6);backdrop-filter:blur(8px);border-radius:999px;padding:4px;display:flex;gap:2px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px">
-<span style="background:#C4673A;color:#F5F0EB;padding:6px 12px;border-radius:999px">V2 HELL</span>
-<a href="v1.html" style="color:#F5F0EB;padding:6px 12px;text-decoration:none;border-radius:999px">V1 DARK →</a>
+<a href="index.html" style="color:#F5F0EB;padding:6px 12px;text-decoration:none;border-radius:999px">← V2 HELL</a>
+<span style="background:#C4673A;color:#F5F0EB;padding:6px 12px;border-radius:999px">V1 DARK</span>
 </div>
 
 <!-- HERO -->
@@ -316,7 +316,7 @@
 </div></section>
 
 <!-- PROOF BAR -->
-<section class="proof-bar light-section"><div class="proof-context">Beispiel: Gastro-Betrieb Zürich</div><div class="container">
+<section class="proof-bar"><div class="proof-context">Beispiel: Gastro-Betrieb Zürich</div><div class="container">
 <div class="proof-item"><div class="proof-num">2.825</div><div class="proof-label">Bewertungen analysiert</div></div>
 <div class="proof-item"><div class="proof-num">0%</div><div class="proof-label">Antwortquote</div></div>
 <div class="proof-item"><div class="proof-num">10</div><div class="proof-label">Schwachstellen identifiziert</div></div>
@@ -324,7 +324,7 @@
 </div></section>
 
 <!-- WISSENSCHAFT -->
-<section class="science-section light-section"><div class="container">
+<section class="science-section"><div class="container">
 <div class="science-header">
 <div class="science-overline">Methodik</div>
 <h2>Warum die Zahlen <em>belastbar</em> sind.</h2>
@@ -335,7 +335,7 @@
     <div class="science-num">1 : 26</div>
     <div class="science-title">Die stummen Gäste</div>
     <div class="science-body">Auf jeden unzufriedenen Gast, der sich beschwert, kommen 26, die wortlos nicht wiederkommen. Eine ausgesprochene Beschwerde steht für 7 stumme Gäste bei 1–2★, 3 bei 3★.</div>
-    <div class="science-src">Kolsky · ThinkJar-Praxisstudie 2015</div>
+    <div class="science-src">Kolsky · ThinkJar / Gartner</div>
   </div>
   <div class="science-card">
     <div class="science-num">5 – 9%</div>
@@ -344,17 +344,17 @@
     <div class="science-src">Luca · Harvard Business School 2016</div>
   </div>
   <div class="science-card">
-    <div class="science-num">88% vs 47%</div>
-    <div class="science-title">Antwort-Effekt</div>
-    <div class="science-body">88% der Konsumenten würden ein Unternehmen eher nutzen, wenn es auf alle Bewertungen antwortet - gegenüber nur 47% bei keiner Antwort. 56% ändern ihre Meinung durch Owner-Responses.</div>
-    <div class="science-src">BrightLocal Local Consumer Review Survey 2024</div>
+    <div class="science-num">55%</div>
+    <div class="science-title">Churn ohne Antwort</div>
+    <div class="science-body">55% der unzufriedenen Gäste kommen nicht wieder, wenn ihre Bewertung unbeantwortet bleibt. Bei 50%+ Antwortquote sinkt die Churn-Rate auf 30%.</div>
+    <div class="science-src">ReviewTrackers 2023</div>
   </div>
 </div>
 <div class="science-footer">Vollständige Methodik mit allen Formeln und Quellen: <a href="methodik.html">methodik.html →</a></div>
 </div></section>
 
 <!-- SO ARBEITET COUVERT -->
-<section class="steps-section light-section"><div class="container">
+<section class="steps-section"><div class="container">
 <div class="section-label">Unser Ansatz</div>
 <div class="section-title">Erkennen. Handeln. Messen. Optimieren.</div>
 <div class="section-sub">Kein Report der in der Schublade landet. Ein geschlossener Kreislauf der jeden Tag besser wird.</div>
@@ -393,7 +393,7 @@
 </div></section>
 
 <!-- AI TEAM -->
-<section class="ai-team-section light-section" id="ai-team"><div class="container">
+<section class="ai-team-section" id="ai-team"><div class="container">
 <div class="section-label">Ihr AI Operations Team</div>
 <div class="section-title">Vier spezialisierte Teams. Zwölf Agents.</div>
 <div class="section-sub">Jedes Team löst ein konkretes Problem. Die Agents teilen sich Daten und Entscheidungen — damit deckt das Team den gesamten operativen Kreislauf ab, von der einzelnen Bewertung bis zur strategischen Standort-Optimierung.</div>
@@ -450,7 +450,7 @@
 </div></section>
 
 <!-- ORIGIN / GESCHICHTE -->
-<section class="origin-section light-section">
+<section class="origin-section">
 <div class="container">
 <div class="origin-layout">
 <div>
@@ -469,7 +469,7 @@
 </section>
 
 <!-- MOCKUPS GALLERY -->
-<section class="mockups-section light-section" id="produkt"><div class="container">
+<section class="mockups-section" id="produkt"><div class="container">
 <div class="section-label">Was Sie bekommen</div>
 <div class="section-title">Fünf Kanäle. Ein Betrieb.</div>
 <div class="section-sub">Keine Software zum Bedienen. Ergebnisse in den Kanälen, die Ihr Team ohnehin nutzt — Dashboard, Email, WhatsApp, PDF-Bericht.</div>
@@ -551,7 +551,7 @@
 </div></section>
 
 <!-- SCAN TEASER -->
-<section class="scan-teaser-section light-section"><div class="container">
+<section class="scan-teaser-section"><div class="container">
 <div class="scan-teaser-grid">
 <div class="scan-teaser-left">
 <div class="section-label">Couvert Scan</div>
@@ -649,7 +649,7 @@ const recoveryPotential=Math.max(0,totalLoss-recTotalLoss),ratingUplift=Math.rou
 document.getElementById('result-loss').textContent=formatCHF(totalLoss);document.getElementById('result-recovery').textContent='+'+formatCHF(totalRecovery);
 const churnPct=Math.round(churnRate*100);document.getElementById('churn-display').textContent=churnPct+'%';document.getElementById('churn-fill').style.width=churnPct+'%';
 document.getElementById('churn-explain').textContent=churnPct+'% Ihrer unzufriedenen Gäste kommen nicht wieder'+(response===0?' – Sie antworten auf keine Bewertung':'');
-document.getElementById('churn-display').style.color=churnPct>40?'var(--red-down)':churnPct>25?'var(--copper-soft)':'var(--green-up)';
+document.getElementById('churn-display').style.color=churnPct>40?'var(--red-down)':churnPct>25?'var(--gold)':'var(--green-up)';
 document.getElementById('bd-neg-reviews').textContent='~'+formatNum(negReviews);document.getElementById('bd-unhappy').textContent='~'+formatNum(unhappyGuests)+' unzufriedene Gäste';document.getElementById('bd-churned').textContent='~'+formatNum(churnedGuests)+' verlorene Gäste';document.getElementById('bd-ltv').textContent='CHF '+ltv+' ('+bon+' × 3 Besuche)';
 document.getElementById('bd-service').textContent='-'+formatCHF(serviceLoss);document.getElementById('bd-quality').textContent='-'+formatCHF(qualityLoss);document.getElementById('bd-rating').textContent=ratingGap>0?'-'+formatCHF(ratingLoss):'CHF 0';
 document.getElementById('bd-response').textContent='+'+formatCHF(recoveryPotential);document.getElementById('bd-uplift').textContent='+'+formatCHF(ratingUplift);
