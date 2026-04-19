@@ -55,7 +55,6 @@
 .hero-overline::before{content:'';width:32px;height:1px;background:var(--copper)}
 .hero-section h1{font-family:'DM Sans',sans-serif;font-weight:600;font-size:clamp(44px,7.5vw,94px);line-height:1.04;color:var(--cream-bright);letter-spacing:-2px;margin-bottom:28px}
 .hero-section h1 em{font-family:'DM Serif Display',serif;font-weight:400;font-style:italic;color:var(--copper);letter-spacing:-1.5px}
-.hero-tagline{font-family:'DM Serif Display',serif;font-style:italic;font-weight:400;font-size:clamp(20px,2.4vw,26px);color:var(--copper);letter-spacing:-0.3px;margin:-10px 0 24px;line-height:1.2}
 .hero-sub{font-size:17px;line-height:1.6;color:var(--text);font-weight:300;margin-bottom:32px}
 .hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:28px}
 .hero-bullets{display:flex;gap:24px;font-size:15px;color:var(--text-dim);flex-wrap:wrap}
@@ -312,7 +311,6 @@ html{scroll-behavior:smooth}
 <section class="hero-section" id="top"><div class="container">
 <div class="hero-overline animate d1">AI Operations für die Gastronomie</div>
 <h1 class="animate d2">Gastro-Beratung.<br><em>Ohne Berater.</em></h1>
-<p class="hero-tagline animate d2b">Mehr Wert an jedem Tisch.</p>
 <p class="hero-sub animate d3">Zwölf AI Agents in vier Teams erstellen die Diagnose, setzen Massnahmen um und beziffern jeden Monat in Franken, was sich verändert hat. Kein Slide-Deck. Keine Stundenabrechnung.</p>
 <div class="hero-cta animate d4"><a href="https://calendly.com/hello-couvert/30min" target="_blank" class="btn-primary">Erstgespräch buchen</a><a href="fallbeispiel.html" class="btn-ghost">Beispielanalyse ansehen</a></div>
 <a href="#calculator" class="hero-teaser animate d5" data-scroll-target="calculator">
@@ -330,6 +328,47 @@ html{scroll-behavior:smooth}
 <div class="proof-item"><div class="proof-num">10</div><div class="proof-label">Schwachstellen identifiziert</div></div>
 <div class="proof-item"><div class="proof-num">CHF 390K+</div><div class="proof-label">Geschätzter Umsatzverlust / Jahr</div></div>
 </div></section>
+<!-- CALCULATOR -->
+<section class="calc-section" id="calculator"><div class="container">
+<div class="section-label">Umsatzrechner</div>
+<div class="section-title">Wie viel Umsatz kosten ungelöste Gästeprobleme Ihren Betrieb?</div>
+<div class="section-sub" style="margin-bottom:36px">Geben Sie die Eckdaten Ihres Betriebs ein und sehen Sie sofort eine erste Einschätzung.</div>
+<div class="calc-layout">
+<div class="calc-form">
+<div class="calc-hint" id="calc-hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Regler verschieben und Ergebnis live sehen</div>
+<div class="calc-group"><label>Jahresumsatz (CHF)</label><div class="slider-wrap"><input type="range" id="revenue" min="500000" max="15000000" step="100000" value="6500000"><div class="slider-pulse" id="slider-pulse"></div></div><div class="calc-value"><span id="rev-display">CHF 6.500.000</span></div></div>
+<div class="calc-group"><label>Durchschnittlicher Bon pro Person (CHF)</label><input type="range" id="avgbon" min="20" max="120" step="5" value="50"><div class="calc-value"><span id="rev-bon">CHF 50</span></div></div>
+<div class="calc-group"><label>Anzahl Google-Bewertungen</label><input type="range" id="reviews" min="50" max="5000" step="50" value="2800"><div class="calc-value"><span id="rev-reviews">2.800</span></div></div>
+<div class="calc-group"><label>Durchschnittliches Rating (Sterne)</label><input type="range" id="rating" min="30" max="50" step="1" value="45"><div class="calc-value"><span id="rev-rating">4.5 ★</span></div></div>
+<div class="calc-group"><label>Antwortquote auf Bewertungen (%)</label><input type="range" id="response" min="0" max="100" step="5" value="0"><div class="calc-value"><span id="rev-response">0%</span></div></div>
+<div class="calc-note">Beispielrechnung auf Basis öffentlicher Studien. Im Audit wird diese Schätzung mit Ihren echten Daten präzisiert.</div>
+</div>
+<div class="calc-right">
+<div class="calc-results-row">
+<div class="calc-result calc-result-loss"><div class="cr-label">Geschätzter Umsatzverlust / Jahr</div><div class="cr-number" id="result-loss">CHF 390K</div><div class="cr-unit">durch ungelöste Gästeprobleme</div></div>
+<div class="calc-result calc-result-recovery"><div class="cr-label cr-label-green">Recovery-Potenzial</div><div class="cr-number cr-number-green" id="result-recovery">+CHF 285K</div><div class="cr-unit">zurückholbar mit Couvert.ai</div></div>
+</div>
+<div class="calc-detail-panel">
+<div class="churn-indicator"><div class="churn-bar-bg"><div class="churn-bar-fill" id="churn-fill"></div></div><div class="churn-row"><span class="churn-label">Geschätzte Abwanderungsrate</span><span class="churn-value" id="churn-display">55%</span></div><div class="churn-explain" id="churn-explain">Ihrer unzufriedenen Gäste kommen nicht wieder</div></div>
+<details class="calc-details">
+<summary>Herleitung anzeigen</summary>
+<div class="calc-breakdown">
+<div class="calc-breakdown-row"><span class="cbr-label"><span class="tip">Negative Bewertungen (geschätzt)<span class="tip-icon">?</span><span class="tip-text">Anteil negativer Bewertungen basierend auf dem Rating: Bei 4.5★ ca. 10%, bei 4.0★ ca. 18%, unter 3.5★ bis zu 40%.</span></span></span><span class="cbr-value" id="bd-neg-reviews">~280</span></div>
+<div class="calc-breakdown-row"><span class="cbr-label"><span class="tip">× Dunkelziffer (Faktor 7)<span class="tip-icon">?</span><span class="tip-text">Branchenstudien zeigen: Auf jede geschriebene negative Bewertung kommen ca. 7 unzufriedene Gäste, die nichts schreiben. Quelle: ReviewTrackers, Esteban Kolsky.</span></span></span><span class="cbr-value" id="bd-unhappy">~1.960 unzufriedene Gäste</span></div>
+<div class="calc-breakdown-row"><span class="cbr-label"><span class="tip">× Abwanderungsrate<span class="tip-icon">?</span><span class="tip-text">Anteil der unzufriedenen Gäste, die nicht wiederkommen. Sinkt deutlich, wenn Bewertungen beantwortet werden (von ca. 55% auf unter 20%).</span></span></span><span class="cbr-value" id="bd-churned">~1.078 verlorene Gäste</span></div>
+<div class="calc-breakdown-row"><span class="cbr-label"><span class="tip">× Ø Gastwert pro Jahr<span class="tip-icon">?</span><span class="tip-text">Durchschnittlicher Bon × geschätzte 3 Besuche pro Jahr. Zeigt, was ein verlorener Stammgast Sie jährlich kostet.</span></span></span><span class="cbr-value" id="bd-ltv">CHF 150</span></div>
+<div style="border-top:1px solid var(--border);margin:10px 0"></div>
+<div class="calc-breakdown-row negative"><span class="cbr-label">Verlust: Service und Wartezeit (45%)</span><span class="cbr-value" id="bd-service">-CHF 195K</span></div>
+<div class="calc-breakdown-row negative"><span class="cbr-label">Verlust: Produktqualität (35%)</span><span class="cbr-value" id="bd-quality">-CHF 130K</span></div>
+<div class="calc-breakdown-row negative"><span class="cbr-label"><span class="tip">Verlust: Rating-Erosion<span class="tip-icon">?</span><span class="tip-text">Abstand zum Benchmark von 4.7★ × 6.5% Umsatzeffekt pro Stern. Basierend auf Harvard Business School-Studie (Luca, 2016).</span></span></span><span class="cbr-value" id="bd-rating">-CHF 65K</span></div>
+<div style="border-top:1px solid var(--border);margin:10px 0"></div>
+<div class="calc-breakdown-row positive"><span class="cbr-label"><span class="tip">Recovery: Weniger Abwanderung durch Antworten<span class="tip-icon">?</span><span class="tip-text">Differenz zwischen aktuellem Verlust und dem geschätzten Verlust bei 80% Antwortquote. Aktives Antworten senkt die Abwanderung messbar.</span></span></span><span class="cbr-value" id="bd-response">+CHF 160K</span></div>
+<div class="calc-breakdown-row positive"><span class="cbr-label"><span class="tip">Recovery: Rating-Verbesserung +0.2★<span class="tip-icon">?</span><span class="tip-text">Geschätzter Umsatzeffekt bei einer Verbesserung um 0.2 Sterne: ca. 2% vom Jahresumsatz, basierend auf Branchendaten.</span></span></span><span class="cbr-value" id="bd-uplift">+CHF 130K</span></div>
+</div></details>
+</div></div></div>
+<div class="calc-bridge">Genau diese Verluste adressiert Ihr Couvert-Team im laufenden Betrieb. <a href="team.html" style="color:var(--copper)">Lernen Sie die 12 Agents in 4 Teams kennen →</a></div>
+</div></section>
+
 
 <!-- WISSENSCHAFT -->
 <section class="science-section light-section"><div class="container">
@@ -398,47 +437,6 @@ html{scroll-behavior:smooth}
 </div>
 </div>
 <div class="loop-tagline">Kein Audit, der in der Schublade landet. Ein geschlossener Kreislauf, der jeden Monat beweist, dass die Zahl aus dem Report real ist.</div>
-</div></section>
-
-<!-- CALCULATOR -->
-<section class="calc-section" id="calculator"><div class="container">
-<div class="section-label">Umsatzrechner</div>
-<div class="section-title">Wie viel Umsatz kosten ungelöste Gästeprobleme Ihren Betrieb?</div>
-<div class="section-sub" style="margin-bottom:36px">Geben Sie die Eckdaten Ihres Betriebs ein und sehen Sie sofort eine erste Einschätzung.</div>
-<div class="calc-layout">
-<div class="calc-form">
-<div class="calc-hint" id="calc-hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Regler verschieben und Ergebnis live sehen</div>
-<div class="calc-group"><label>Jahresumsatz (CHF)</label><div class="slider-wrap"><input type="range" id="revenue" min="500000" max="15000000" step="100000" value="6500000"><div class="slider-pulse" id="slider-pulse"></div></div><div class="calc-value"><span id="rev-display">CHF 6.500.000</span></div></div>
-<div class="calc-group"><label>Durchschnittlicher Bon pro Person (CHF)</label><input type="range" id="avgbon" min="20" max="120" step="5" value="50"><div class="calc-value"><span id="rev-bon">CHF 50</span></div></div>
-<div class="calc-group"><label>Anzahl Google-Bewertungen</label><input type="range" id="reviews" min="50" max="5000" step="50" value="2800"><div class="calc-value"><span id="rev-reviews">2.800</span></div></div>
-<div class="calc-group"><label>Durchschnittliches Rating (Sterne)</label><input type="range" id="rating" min="30" max="50" step="1" value="45"><div class="calc-value"><span id="rev-rating">4.5 ★</span></div></div>
-<div class="calc-group"><label>Antwortquote auf Bewertungen (%)</label><input type="range" id="response" min="0" max="100" step="5" value="0"><div class="calc-value"><span id="rev-response">0%</span></div></div>
-<div class="calc-note">Beispielrechnung auf Basis öffentlicher Studien. Im Audit wird diese Schätzung mit Ihren echten Daten präzisiert.</div>
-</div>
-<div class="calc-right">
-<div class="calc-results-row">
-<div class="calc-result calc-result-loss"><div class="cr-label">Geschätzter Umsatzverlust / Jahr</div><div class="cr-number" id="result-loss">CHF 390K</div><div class="cr-unit">durch ungelöste Gästeprobleme</div></div>
-<div class="calc-result calc-result-recovery"><div class="cr-label cr-label-green">Recovery-Potenzial</div><div class="cr-number cr-number-green" id="result-recovery">+CHF 285K</div><div class="cr-unit">zurückholbar mit Couvert.ai</div></div>
-</div>
-<div class="calc-detail-panel">
-<div class="churn-indicator"><div class="churn-bar-bg"><div class="churn-bar-fill" id="churn-fill"></div></div><div class="churn-row"><span class="churn-label">Geschätzte Abwanderungsrate</span><span class="churn-value" id="churn-display">55%</span></div><div class="churn-explain" id="churn-explain">Ihrer unzufriedenen Gäste kommen nicht wieder</div></div>
-<details class="calc-details">
-<summary>Herleitung anzeigen</summary>
-<div class="calc-breakdown">
-<div class="calc-breakdown-row"><span class="cbr-label"><span class="tip">Negative Bewertungen (geschätzt)<span class="tip-icon">?</span><span class="tip-text">Anteil negativer Bewertungen basierend auf dem Rating: Bei 4.5★ ca. 10%, bei 4.0★ ca. 18%, unter 3.5★ bis zu 40%.</span></span></span><span class="cbr-value" id="bd-neg-reviews">~280</span></div>
-<div class="calc-breakdown-row"><span class="cbr-label"><span class="tip">× Dunkelziffer (Faktor 7)<span class="tip-icon">?</span><span class="tip-text">Branchenstudien zeigen: Auf jede geschriebene negative Bewertung kommen ca. 7 unzufriedene Gäste, die nichts schreiben. Quelle: ReviewTrackers, Esteban Kolsky.</span></span></span><span class="cbr-value" id="bd-unhappy">~1.960 unzufriedene Gäste</span></div>
-<div class="calc-breakdown-row"><span class="cbr-label"><span class="tip">× Abwanderungsrate<span class="tip-icon">?</span><span class="tip-text">Anteil der unzufriedenen Gäste, die nicht wiederkommen. Sinkt deutlich, wenn Bewertungen beantwortet werden (von ca. 55% auf unter 20%).</span></span></span><span class="cbr-value" id="bd-churned">~1.078 verlorene Gäste</span></div>
-<div class="calc-breakdown-row"><span class="cbr-label"><span class="tip">× Ø Gastwert pro Jahr<span class="tip-icon">?</span><span class="tip-text">Durchschnittlicher Bon × geschätzte 3 Besuche pro Jahr. Zeigt, was ein verlorener Stammgast Sie jährlich kostet.</span></span></span><span class="cbr-value" id="bd-ltv">CHF 150</span></div>
-<div style="border-top:1px solid var(--border);margin:10px 0"></div>
-<div class="calc-breakdown-row negative"><span class="cbr-label">Verlust: Service und Wartezeit (45%)</span><span class="cbr-value" id="bd-service">-CHF 195K</span></div>
-<div class="calc-breakdown-row negative"><span class="cbr-label">Verlust: Produktqualität (35%)</span><span class="cbr-value" id="bd-quality">-CHF 130K</span></div>
-<div class="calc-breakdown-row negative"><span class="cbr-label"><span class="tip">Verlust: Rating-Erosion<span class="tip-icon">?</span><span class="tip-text">Abstand zum Benchmark von 4.7★ × 6.5% Umsatzeffekt pro Stern. Basierend auf Harvard Business School-Studie (Luca, 2016).</span></span></span><span class="cbr-value" id="bd-rating">-CHF 65K</span></div>
-<div style="border-top:1px solid var(--border);margin:10px 0"></div>
-<div class="calc-breakdown-row positive"><span class="cbr-label"><span class="tip">Recovery: Weniger Abwanderung durch Antworten<span class="tip-icon">?</span><span class="tip-text">Differenz zwischen aktuellem Verlust und dem geschätzten Verlust bei 80% Antwortquote. Aktives Antworten senkt die Abwanderung messbar.</span></span></span><span class="cbr-value" id="bd-response">+CHF 160K</span></div>
-<div class="calc-breakdown-row positive"><span class="cbr-label"><span class="tip">Recovery: Rating-Verbesserung +0.2★<span class="tip-icon">?</span><span class="tip-text">Geschätzter Umsatzeffekt bei einer Verbesserung um 0.2 Sterne: ca. 2% vom Jahresumsatz, basierend auf Branchendaten.</span></span></span><span class="cbr-value" id="bd-uplift">+CHF 130K</span></div>
-</div></details>
-</div></div></div>
-<div class="calc-bridge">Genau diese Verluste adressiert Ihr Couvert-Team im laufenden Betrieb. <a href="team.html" style="color:var(--copper)">Lernen Sie die 12 Agents in 4 Teams kennen →</a></div>
 </div></section>
 
 
