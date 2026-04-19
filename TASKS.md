@@ -21,6 +21,32 @@ strategic suggestions. Code stays `MODELS.OPUS`-configurable per call.
 
 ## 🟠 High Priority — als Nächstes anpacken
 
+### T-015 · Patent- und Markenschutz für Couvert prüfen lassen
+**Status:** noch nicht initiiert. Mit Blick auf DACH-Expansion (GTM-Phase-2 DE ab Q3 2027) und potenzielle Nachahmer (Gastronovi, re:spondelligent, mögliche US-Player-Eindringung) muss IP-Schutz früh geklärt werden.
+
+**Zwei Schienen parallel:**
+
+1. **Markenschutz (prioritär, niedrige Hürde):**
+   - Wortmarke "Couvert" DACH-weit registrieren
+   - Entweder via **IGE** (Schweiz nur, CHF 550 + Klassen) + **DPMA** (Deutschland, EUR 290 + Klassen) + **ÖPA** (Österreich) einzeln
+   - Oder **EUIPO** (EU-weit, EUR 850 für 1 Klasse, 2 weitere Klassen je EUR 50 + EUR 100) → deckt DE + AT ab, nicht CH
+   - Klassen vermutlich: 9 (Software), 35 (Business Management), 42 (SaaS)
+   - Logo-Design-Schutz als eigene Marke zusätzlich
+   - Prüfen ob "Couvert" (französisch für Gedeck) bereits von Dritten im Gastro-Kontext markiert ist
+
+2. **Patentschutz (niedrigere Priorität, hohe Hürde):**
+   - Software-Patente in EU restriktiv (Art. 52 EPÜ schliesst "Computerprogramme als solche" aus) — nur Patent wenn technischer Effekt über reine Datenverarbeitung hinaus
+   - Potenzielle Angle: Kombination aus deterministischer CHF-Math-Engine + AI-Agent-Orchestrierung + Expectation-Reference-Signal-Klassifikation könnte als "Verfahren zur automatisierten Quantifizierung von Gastronomie-Reputations-Verlusten" formuliert werden
+   - Realistisch: Aufwand EUR 15'000–40'000, Erfolgsquote mittel, Durchsetzbarkeit schwierig — **Business-Secret + schneller Markteintritt schlägt in diesem Segment fast immer den Patentweg**
+
+**Action:**
+- [ ] Schweizer Marken-Anwalt (z.B. Vischer, Rentsch Partner, Meyerlustenberger Lachenal) für 1h-Erstgespräch (typisch CHF 300–500) kontaktieren
+- [ ] EUIPO-Recherche-Tool + IGE-Database nach "Couvert"-Vorbestand prüfen (selbst machen, kostenlos)
+- [ ] Entscheidung: EUIPO + IGE-Kombination oder je einzeln
+- [ ] Parallel: Domain-Portfolio absichern (couvert.de, couvert.at, couvert.com ggf. nachregistrieren)
+
+**Timing:** vor Phase-2-DE-Launch abschliessen (Q3 2027). Je früher, desto kleiner das Risiko einer Namens-Kollision die nachträgliches Rebranding erzwingt.
+
 ### T-012 · Off-site SEO — Google-Recognition herstellen
 **Status:** On-site-Signale sind live (JSON-LD Organization, Meta-Tags, sitemap.xml, robots.txt auf allen 8 Seiten, Couvert GmbH i.G. als legalName). Google AI Overview verwechselt couvert.ai aktuell mit Coupert-Browser-Extension. Off-site-Hebel muss MV selbst bedienen:
 - [ ] **Google Search Console** — Property `https://couvert.ai` hinzufügen, via DNS oder HTML-File verifizieren, Sitemap `https://couvert.ai/sitemap.xml` einreichen, pro Seite "Request Indexing" klicken
