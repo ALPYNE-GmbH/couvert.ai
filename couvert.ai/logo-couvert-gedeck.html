@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>couvert — Gedeck im O</title>
+<style>
+  @font-face{font-family:'GT Walsheim';src:url('./fonts/GT-Walsheim-Light.woff2') format('woff2');font-weight:300;font-style:normal;font-display:swap}
+  @font-face{font-family:'GT Walsheim';src:url('./fonts/GT-Walsheim-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:'GT Walsheim';src:url('./fonts/GT-Walsheim-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+
+  :root{
+    --gruen:#1A3C34;
+    --gruen-tief:#12261F;
+    --kupfer:#C4673A;
+    --gold:#E8B931;
+    --cream:#F5F0EB;
+    --off-white:#E0DCD6;
+    --muted:#8B9A95;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:'GT Walsheim','Helvetica Neue',Arial,sans-serif;
+    background:var(--cream);
+    color:#1a1a1a;
+    padding:48px 32px;
+    line-height:1.6;
+  }
+  .wrap{max-width:1080px;margin:0 auto}
+
+  h1{
+    font-family:'DM Serif Display',serif;
+    font-size:32px;
+    color:var(--gruen);
+    margin-bottom:8px;
+    letter-spacing:-0.01em;
+  }
+  .subtitle{
+    font-weight:400;
+    font-size:15px;
+    color:#4a4a4a;
+    margin-bottom:48px;
+    max-width:720px;
+  }
+
+  h2{
+    font-weight:500;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--gruen);
+    margin:0 0 4px;
+  }
+  .variant-meta{
+    font-size:13px;
+    color:#5a5a5a;
+    margin-bottom:16px;
+    max-width:680px;
+    line-height:1.55;
+  }
+
+  .variant{margin-bottom:56px}
+
+  .stage{
+    border-radius:4px;
+    overflow:hidden;
+    border:1px solid #d5cfc7;
+    margin-bottom:10px;
+  }
+  .stage-dark{background:var(--gruen-tief);color:var(--cream)}
+  .stage-light{background:#fff;color:var(--gruen)}
+  .stage-row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:64px 40px;
+    min-height:160px;
+  }
+
+  .label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  /* Base Logo */
+  .logo{
+    font-family:'GT Walsheim',sans-serif;
+    font-weight:500;
+    font-size:80px;
+    letter-spacing:-0.02em;
+    line-height:1;
+    display:inline-flex;
+    align-items:baseline;
+  }
+
+  /* O-Wrapper — enthält natürliches Font-O + positionierte Marker */
+  .o-wrap{
+    position:relative;
+    display:inline-block;
+  }
+  .o-wrap::before,
+  .o-wrap::after{
+    content:'';
+    position:absolute;
+    background:var(--kupfer);
+  }
+
+  /* ========== V1 — Zwei horizontale parallele Striche ========== */
+  .v1-o::before,
+  .v1-o::after{
+    left:50%;
+    transform:translateX(-50%);
+    width:0.22em;
+    height:0.035em;
+    border-radius:0.02em;
+  }
+  .v1-o::before{top:0.30em}
+  .v1-o::after{top:0.42em}
+
+  /* ========== V2 — Zwei vertikale parallele Striche ========== */
+  .v2-o::before,
+  .v2-o::after{
+    top:50%;
+    transform:translateY(-50%);
+    width:0.035em;
+    height:0.34em;
+    border-radius:0.02em;
+  }
+  .v2-o::before{left:0.28em}
+  .v2-o::after{left:0.39em}
+
+  /* ========== V3 — Plus-Kreuz (Messer horizontal, Gabel vertikal) ========== */
+  .v3-o::before{
+    /* horizontal */
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:0.36em;
+    height:0.035em;
+    border-radius:0.02em;
+  }
+  .v3-o::after{
+    /* vertikal */
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:0.035em;
+    height:0.36em;
+    border-radius:0.02em;
+  }
+
+  /* ========== V4 — X-Kreuz diagonal ========== */
+  .v4-o::before{
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) rotate(45deg);
+    width:0.38em;
+    height:0.035em;
+    border-radius:0.02em;
+  }
+  .v4-o::after{
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) rotate(-45deg);
+    width:0.38em;
+    height:0.035em;
+    border-radius:0.02em;
+  }
+
+  /* ========== V5 — Ein einzelner horizontaler Strich ========== */
+  .v5-o::before{
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:0.26em;
+    height:0.035em;
+    border-radius:0.02em;
+  }
+  .v5-o::after{display:none}
+
+  /* ========== V6 — Ø-Referenz: diagonaler Strich durch das O ========== */
+  .v6-o{overflow:visible}
+  .v6-o::before{
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) rotate(-25deg);
+    width:0.78em;
+    height:0.035em;
+    border-radius:0.02em;
+  }
+  .v6-o::after{display:none}
+
+  /* ========== V7 — Zwei parallele Diagonalen ========== */
+  .v7-o::before,
+  .v7-o::after{
+    left:50%;
+    transform:translate(-50%,-50%) rotate(-30deg);
+    width:0.32em;
+    height:0.035em;
+    border-radius:0.02em;
+  }
+  .v7-o::before{top:44%}
+  .v7-o::after{top:60%}
+
+  /* ========== V8 — Strich oberhalb des O (Deckel/Serviette) ========== */
+  .v8-o::before{
+    top:0.09em;
+    left:50%;
+    transform:translateX(-50%);
+    width:0.44em;
+    height:0.04em;
+    border-radius:0.02em;
+  }
+  .v8-o::after{display:none}
+
+  /* ========== V9 — Gedehntes O (Teller von oben, Amakori-Style) + ein Strich ========== */
+  .v9-wrap{display:inline-flex;align-items:baseline;font-family:'GT Walsheim',sans-serif;font-weight:500;font-size:80px;letter-spacing:-0.02em;line-height:1}
+  .v9-o{
+    display:inline-block;
+    width:0.95em;
+    height:0.68em;
+    border:0.075em solid currentColor;
+    border-radius:50%;
+    margin:0 0.02em;
+    position:relative;
+    align-self:center;
+    transform:translateY(0.04em);
+  }
+  .v9-o::before{
+    content:'';
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:0.38em;
+    height:0.06em;
+    background:var(--kupfer);
+    border-radius:0.03em;
+  }
+
+  /* Header Mockup */
+  .context-header{
+    background:var(--gruen);
+    color:var(--cream);
+    padding:18px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-radius:4px;
+    margin-top:14px;
+  }
+  .context-header .logo,
+  .context-header .v9-wrap{font-size:24px}
+  .context-header .nav{
+    display:flex;
+    gap:24px;
+    font-size:13px;
+    font-weight:400;
+    color:var(--off-white);
+  }
+
+  /* Size-Test Row */
+  .size-test{
+    display:flex;
+    align-items:baseline;
+    gap:40px;
+    padding:28px 40px;
+    background:#fff;
+    border:1px solid #d5cfc7;
+    border-radius:4px;
+    margin-top:10px;
+    flex-wrap:wrap;
+  }
+  .size-test .logo{color:var(--gruen)}
+  .size-test .s-xl{font-size:80px}
+  .size-test .s-l{font-size:48px}
+  .size-test .s-m{font-size:28px}
+  .size-test .s-s{font-size:18px}
+  .size-test .s-xs{font-size:13px}
+
+  .verdict{
+    background:var(--gruen);
+    color:var(--cream);
+    padding:32px;
+    border-radius:4px;
+    margin-top:48px;
+  }
+  .verdict h3{
+    font-family:'DM Serif Display',serif;
+    font-weight:400;
+    font-size:22px;
+    margin-bottom:12px;
+    color:var(--cream);
+  }
+  .verdict p{font-size:15px;line-height:1.7;color:var(--off-white);margin-bottom:10px}
+  .verdict strong{color:var(--gold);font-weight:500}
+  .verdict ol{margin:14px 0 0 20px;color:var(--off-white);font-size:15px;line-height:1.7}
+  .verdict ol li{margin-bottom:10px}
+  .verdict ol li strong{color:var(--gold)}
+
+  .note{
+    background:#fff;
+    border:1px solid #d5cfc7;
+    padding:24px 28px;
+    border-radius:4px;
+    font-size:14px;
+    line-height:1.65;
+    color:#2a2a2a;
+    margin-top:16px;
+  }
+  .note strong{color:var(--gruen);font-weight:500}
+
+  @media (max-width:700px){
+    body{padding:24px 16px}
+    .logo,.v9-wrap{font-size:52px}
+    .stage-row{padding:36px 20px;min-height:100px}
+    .size-test .s-xl{font-size:52px}
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="wrap">
+
+  <h1>couvert — Gedeck im O</h1>
+  <p class="subtitle">Neun Konstruktionen mit Besteck-Signalen innerhalb des O. Ohne AI-Suffix. GT Walsheim Medium als Basis, Kupfer für alle Marker. Strichstärke 0.035em, skaliert proportional mit der Logo-Grösse. Zentrales Ziel: maximal schlicht, semantisch gastronomisch, keine Smiley-Verwechslung.</p>
+
+  <!-- V1 -->
+  <div class="variant">
+    <h2>Variante 1 — Zwei horizontale Striche</h2>
+    <p class="variant-meta">Besteck flach übereinander gelegt. Riskiert den Smiley-Effekt bei zu weitem Abstand, dagegen eng gesetzt bleibt es als Besteck lesbar. Ruhig, ordentlich.</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo">c<span class="o-wrap v1-o">o</span>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo">c<span class="o-wrap v1-o">o</span>uvert</span></div></div>
+    <div class="context-header">
+      <span class="logo">c<span class="o-wrap v1-o">o</span>uvert</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- V2 -->
+  <div class="variant">
+    <h2>Variante 2 — Zwei vertikale Striche</h2>
+    <p class="variant-meta">Besteck aufrecht nebeneinander. Entspricht der traditionellen Schweizer Anrichte (Messer und Gabel stehen parallel zum Teller). Klar als Besteck lesbar, kein Smiley-Risiko.</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo">c<span class="o-wrap v2-o">o</span>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo">c<span class="o-wrap v2-o">o</span>uvert</span></div></div>
+    <div class="context-header">
+      <span class="logo">c<span class="o-wrap v2-o">o</span>uvert</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- V3 -->
+  <div class="variant">
+    <h2>Variante 3 — Plus-Kreuz</h2>
+    <p class="variant-meta">Messer horizontal, Gabel vertikal. Kreuzform als Plus. Visuell streng, aber nahe an einem medizinischen Kreuz. Tendenziell zu formalistisch für Gastronomie.</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo">c<span class="o-wrap v3-o">o</span>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo">c<span class="o-wrap v3-o">o</span>uvert</span></div></div>
+    <div class="context-header">
+      <span class="logo">c<span class="o-wrap v3-o">o</span>uvert</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- V4 -->
+  <div class="variant">
+    <h2>Variante 4 — X-Kreuz diagonal</h2>
+    <p class="variant-meta">Messer und Gabel diagonal gekreuzt. Der internationale Piktogramm-Standard für "Restaurant". Sofortige Lesbarkeit, aber auch generisch.</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo">c<span class="o-wrap v4-o">o</span>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo">c<span class="o-wrap v4-o">o</span>uvert</span></div></div>
+    <div class="context-header">
+      <span class="logo">c<span class="o-wrap v4-o">o</span>uvert</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- V5 -->
+  <div class="variant">
+    <h2>Variante 5 — Ein Strich mittig</h2>
+    <p class="variant-meta">Die minimalste Geste: ein einzelner horizontaler Kupfer-Strich im O. Kann gelesen werden als Messer auf Teller, als Tellerrand von der Seite, als Notation. Schlicht bis abstrakt.</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo">c<span class="o-wrap v5-o">o</span>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo">c<span class="o-wrap v5-o">o</span>uvert</span></div></div>
+    <div class="context-header">
+      <span class="logo">c<span class="o-wrap v5-o">o</span>uvert</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- V6 -->
+  <div class="variant">
+    <h2>Variante 6 — Ø-Referenz: diagonaler Strich durchs O</h2>
+    <p class="variant-meta">Das Ø ist ein etabliertes typografisches Zeichen (Skandinavien), hier semantisch umgenutzt als Teller mit diagonal aufliegendem Messer. Sehr schlicht, sehr distinktiv, typografisch legitim, kein Piktogramm-Gefühl.</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo">c<span class="o-wrap v6-o">o</span>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo">c<span class="o-wrap v6-o">o</span>uvert</span></div></div>
+    <div class="context-header">
+      <span class="logo">c<span class="o-wrap v6-o">o</span>uvert</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- V7 -->
+  <div class="variant">
+    <h2>Variante 7 — Zwei parallele Diagonalen</h2>
+    <p class="variant-meta">Besteck leger diagonal aufgelegt. Weniger streng als V4, hat Bewegung. Wirkt wie ein fertiges Couvert nach dem Essen (Messer und Gabel parallel bei 4-Uhr-Position).</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo">c<span class="o-wrap v7-o">o</span>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo">c<span class="o-wrap v7-o">o</span>uvert</span></div></div>
+    <div class="context-header">
+      <span class="logo">c<span class="o-wrap v7-o">o</span>uvert</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- V8 -->
+  <div class="variant">
+    <h2>Variante 8 — Strich oberhalb (Serviette/Deckel)</h2>
+    <p class="variant-meta">Der Strich sitzt nicht im O, sondern direkt darüber, als würde eine Serviette oder ein Besteckpärchen am oberen Tellerrand liegen. Sehr unaufdringlich, funktioniert als typografisches Akzent-Zeichen.</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo">c<span class="o-wrap v8-o">o</span>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo">c<span class="o-wrap v8-o">o</span>uvert</span></div></div>
+    <div class="context-header">
+      <span class="logo">c<span class="o-wrap v8-o">o</span>uvert</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- V9 -->
+  <div class="variant">
+    <h2>Variante 9 — Teller statt O (elliptisch, Amakori-Style)</h2>
+    <p class="variant-meta">Das O wird ersetzt durch eine liegende Ellipse — ein Teller von oben. Darin ein horizontaler Kupfer-Strich als Besteck. Gleichzeitig typografischer Eingriff und semantische Figur. Stärkster eigener Gestaltungsanspruch.</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="v9-wrap">c<span class="v9-o"></span>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="v9-wrap">c<span class="v9-o"></span>uvert</span></div></div>
+    <div class="context-header">
+      <span class="v9-wrap">c<span class="v9-o"></span>uvert</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- Size Test für die beiden Finalisten -->
+  <h2 style="margin-top:48px">Skalierungs-Test</h2>
+  <p class="variant-meta">Lesbarkeit von 80px bis 13px. Kritisch für Favicons und Footer.</p>
+
+  <div class="size-test">
+    <span class="logo s-xl">c<span class="o-wrap v6-o">o</span>uvert</span>
+    <span class="logo s-l">c<span class="o-wrap v6-o">o</span>uvert</span>
+    <span class="logo s-m">c<span class="o-wrap v6-o">o</span>uvert</span>
+    <span class="logo s-s">c<span class="o-wrap v6-o">o</span>uvert</span>
+    <span class="logo s-xs">c<span class="o-wrap v6-o">o</span>uvert</span>
+  </div>
+
+  <div class="size-test">
+    <span class="logo s-xl">c<span class="o-wrap v2-o">o</span>uvert</span>
+    <span class="logo s-l">c<span class="o-wrap v2-o">o</span>uvert</span>
+    <span class="logo s-m">c<span class="o-wrap v2-o">o</span>uvert</span>
+    <span class="logo s-s">c<span class="o-wrap v2-o">o</span>uvert</span>
+    <span class="logo s-xs">c<span class="o-wrap v2-o">o</span>uvert</span>
+  </div>
+
+  <div class="size-test">
+    <span class="v9-wrap s-xl">c<span class="v9-o"></span>uvert</span>
+    <span class="v9-wrap s-l">c<span class="v9-o"></span>uvert</span>
+    <span class="v9-wrap s-m">c<span class="v9-o"></span>uvert</span>
+  </div>
+
+  <div class="note">
+    <strong>Technisch:</strong> Alle Marker sind CSS-positioniert über dem natürlichen Font-O. Für die finale Produktion empfehle ich SVG-Export, weil sub-pixel Rendering in Browsern das Kupfer bei kleinen Grössen leicht verfälscht. V6 und V9 skalieren am saubersten bis ins Favicon-Format.
+  </div>
+
+  <div class="verdict">
+    <h3>Empfehlung</h3>
+    <p>Drei Varianten sind ernsthaft verteidigungsfähig. Alle anderen scheitern entweder an Smiley-Verwechslung (V1), Piktogramm-Generik (V4) oder Sichtbarkeit bei Header-Grösse (V3, V8).</p>
+    <ol>
+      <li><strong>V6 — Ø durchs O.</strong> Meine Top-Empfehlung. Das diagonale Kupfer-Messer erzeugt sofortigen Wiedererkennungswert ohne Gimmick. Typografisch legitimiert durchs skandinavische Ø, semantisch lesbar als Besteck auf Teller. Skaliert bis Favicon. Das ist die "geniale Geste" um die du gebeten hast.</li>
+      <li><strong>V2 — zwei vertikale Striche.</strong> Die pragmatische Wahl. Eindeutig Besteck, keine Verwechslungsgefahr, keine Smiley-Augen. Klassisch, ruhig. Wer's konservativ will nimmt diese.</li>
+      <li><strong>V9 — Teller-Ellipse.</strong> Stärkste eigene Geste, aber verlässt die Font-Logik (O wird durch gezeichnete Form ersetzt). Höchstes Distinktionspotenzial, aber braucht Handwerk in der Umsetzung: die Ellipse muss zur Wortmarke passen, Strichstärke zur Font-Stroke. Produktion würde einen Typografen brauchen.</li>
+    </ol>
+    <p style="margin-top:16px">Mein Vote: <strong>V6</strong>. Das ist die Variante, die in zehn Jahren noch funktioniert — weil sie kein Bild ist, sondern ein Zeichen. Adrian wird sie sich merken.</p>
+  </div>
+
+</div>
+</body>
+</html>

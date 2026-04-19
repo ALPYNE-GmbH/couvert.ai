@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>couvert — Besteck im Teller</title>
+<style>
+  :root{
+    --gruen:#1A3C34;
+    --gruen-tief:#12261F;
+    --kupfer:#C4673A;
+    --gold:#E8B931;
+    --cream:#F5F0EB;
+    --off-white:#E0DCD6;
+    --muted:#8B9A95;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:'GT Walsheim','Helvetica Neue',Arial,sans-serif;
+    background:var(--cream);
+    color:#1a1a1a;
+    padding:48px 32px;
+    line-height:1.6;
+  }
+  .wrap{max-width:1080px;margin:0 auto}
+
+  h1{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:36px;
+    color:var(--gruen);
+    margin-bottom:8px;
+    letter-spacing:-0.01em;
+  }
+  .subtitle{
+    font-weight:400;
+    font-size:15px;
+    color:#4a4a4a;
+    margin-bottom:48px;
+    max-width:720px;
+  }
+
+  h2{
+    font-family:'Fraunces',serif;
+    font-size:22px;
+    color:var(--gruen);
+    margin:32px 0 4px;
+    font-weight:500;
+  }
+  h3{
+    font-weight:500;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gruen);
+    margin:0 0 4px;
+  }
+  .spec{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:#7a7a7a;
+    margin-bottom:14px;
+  }
+  .note-meta{
+    font-size:14px;
+    color:#4a4a4a;
+    margin-bottom:20px;
+    max-width:720px;
+    line-height:1.6;
+  }
+
+  .variant{margin-bottom:40px}
+
+  .stage{
+    border-radius:4px;
+    overflow:hidden;
+    border:1px solid #d5cfc7;
+    margin-bottom:10px;
+  }
+  .stage-dark{background:var(--gruen-tief);color:var(--cream)}
+  .stage-light{background:#fff;color:var(--gruen)}
+  .stage-row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:80px 40px;
+    min-height:200px;
+  }
+
+  /* ============= Logo Engine ============= */
+  .logo{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:128px;
+    letter-spacing:-0.02em;
+    line-height:1;
+    display:inline-flex;
+    align-items:baseline;
+    font-variation-settings:'SOFT' 50,'WONK' 0,'opsz' 144;
+  }
+
+  .o-wrap{
+    position:relative;
+    display:inline-block;
+  }
+  /* Besteck-SVG exakt im x-height-Bereich des o positioniert */
+  .utensils{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    overflow:visible;
+    pointer-events:none;
+  }
+
+  /* ============= Header + Size Tests ============= */
+  .context-header{
+    background:var(--gruen);
+    color:var(--cream);
+    padding:18px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-radius:4px;
+    margin-top:14px;
+  }
+  .context-header .logo{font-size:30px}
+  .context-header .nav{
+    display:flex;
+    gap:24px;
+    font-family:'GT Walsheim','Helvetica Neue',sans-serif;
+    font-size:13px;
+    font-weight:400;
+    color:var(--off-white);
+  }
+
+  .size-test{
+    display:flex;
+    align-items:baseline;
+    gap:44px;
+    padding:36px 40px;
+    background:#fff;
+    border:1px solid #d5cfc7;
+    border-radius:4px;
+    margin-top:10px;
+    flex-wrap:wrap;
+  }
+  .size-test .logo{color:var(--gruen)}
+  .s-xl{font-size:112px}
+  .s-l{font-size:64px}
+  .s-m{font-size:36px}
+  .s-s{font-size:22px}
+  .s-xs{font-size:14px}
+
+  .verdict{
+    background:var(--gruen);
+    color:var(--cream);
+    padding:32px;
+    border-radius:4px;
+    margin-top:48px;
+  }
+  .verdict h3{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:22px;
+    margin-bottom:12px;
+    color:var(--cream);
+    letter-spacing:0;
+    text-transform:none;
+  }
+  .verdict p{font-size:15px;line-height:1.7;color:var(--off-white);margin-bottom:10px}
+  .verdict strong{color:var(--gold);font-weight:500}
+
+  .section-divider{
+    margin:64px 0 0;
+    padding-top:32px;
+    border-top:1px solid #d5cfc7;
+  }
+
+  @media (max-width:700px){
+    body{padding:24px 16px}
+    .logo{font-size:80px}
+    .stage-row{padding:48px 20px;min-height:140px}
+    .s-xl{font-size:64px}
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="wrap">
+
+  <h1>couvert — Besteck jetzt im Teller</h1>
+  <p class="subtitle">Korrigierte Proportionen: Besteck klein genug, um komplett innerhalb des O-Counters zu sitzen. Das O bleibt der natürliche Fraunces-Buchstabe, wird typografisch zum Teller. Zacken und Löffelkelle tippen den Ring nicht an.</p>
+
+  <!-- SVG Symbole — alle Koordinaten relativ zur Fraunces-o-Counter-Geometrie -->
+  <!-- Counter von Fraunces o (opsz 144, weight 500): ca. y=-20 bis y=18, x=-16 bis x=16 -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- V1: Gabel links, Löffel rechts, senkrecht -->
+      <symbol id="v1-utensils" viewBox="-50 -60 100 120">
+        <g fill="#C4673A">
+          <!-- Gabel (center x=-7) -->
+          <rect x="-8" y="-2" width="2" height="15" rx="1"/>
+          <rect x="-10.2" y="-16" width="1.2" height="14" rx="0.6"/>
+          <rect x="-7.6" y="-16" width="1.2" height="14" rx="0.6"/>
+          <rect x="-5" y="-16" width="1.2" height="14" rx="0.6"/>
+          <rect x="-10.2" y="-3" width="5.2" height="1.6" rx="0.8"/>
+          <!-- Löffel (center x=+7) -->
+          <rect x="6" y="-2" width="2" height="15" rx="1"/>
+          <ellipse cx="7" cy="-10" rx="3.6" ry="5.5"/>
+        </g>
+      </symbol>
+
+      <!-- V2: Löffel links, Gabel rechts (europäische Tischordnung) -->
+      <symbol id="v2-utensils" viewBox="-50 -60 100 120">
+        <g fill="#C4673A">
+          <!-- Löffel (center x=-7) -->
+          <rect x="-8" y="-2" width="2" height="15" rx="1"/>
+          <ellipse cx="-7" cy="-10" rx="3.6" ry="5.5"/>
+          <!-- Gabel (center x=+7) -->
+          <rect x="6" y="-2" width="2" height="15" rx="1"/>
+          <rect x="3.8" y="-16" width="1.2" height="14" rx="0.6"/>
+          <rect x="6.4" y="-16" width="1.2" height="14" rx="0.6"/>
+          <rect x="9" y="-16" width="1.2" height="14" rx="0.6"/>
+          <rect x="3.8" y="-3" width="5.2" height="1.6" rx="0.8"/>
+        </g>
+      </symbol>
+
+      <!-- V3: Robuster (dickere Striche, für kleine Grössen) -->
+      <symbol id="v3-utensils" viewBox="-50 -60 100 120">
+        <g fill="#C4673A">
+          <!-- Löffel -->
+          <rect x="-8.5" y="-2" width="3" height="16" rx="1.5"/>
+          <ellipse cx="-7" cy="-10" rx="4" ry="6"/>
+          <!-- Gabel -->
+          <rect x="5.5" y="-2" width="3" height="16" rx="1.5"/>
+          <rect x="3" y="-16" width="1.6" height="15" rx="0.8"/>
+          <rect x="6.2" y="-16" width="1.6" height="15" rx="0.8"/>
+          <rect x="9.4" y="-16" width="1.6" height="15" rx="0.8"/>
+          <rect x="3" y="-2.5" width="8" height="2" rx="1"/>
+        </g>
+      </symbol>
+
+      <!-- V4: Eng zusammengelegt (weniger Gap zwischen Besteck) -->
+      <symbol id="v4-utensils" viewBox="-50 -60 100 120">
+        <g fill="#C4673A">
+          <!-- Löffel (center x=-5) -->
+          <rect x="-6" y="-2" width="2" height="15" rx="1"/>
+          <ellipse cx="-5" cy="-10" rx="3.4" ry="5.5"/>
+          <!-- Gabel (center x=+5) -->
+          <rect x="4" y="-2" width="2" height="15" rx="1"/>
+          <rect x="2" y="-16" width="1.2" height="14" rx="0.6"/>
+          <rect x="4.4" y="-16" width="1.2" height="14" rx="0.6"/>
+          <rect x="6.8" y="-16" width="1.2" height="14" rx="0.6"/>
+          <rect x="2" y="-3" width="5" height="1.6" rx="0.8"/>
+        </g>
+      </symbol>
+
+      <!-- V5: Nur Löffel und Gabel, feiner -->
+      <symbol id="v5-utensils" viewBox="-50 -60 100 120">
+        <g fill="#C4673A">
+          <rect x="-7.5" y="-1" width="1.5" height="13" rx="0.75"/>
+          <ellipse cx="-6.75" cy="-8" rx="3" ry="4.5"/>
+          <rect x="5" y="-1" width="1.5" height="13" rx="0.75"/>
+          <rect x="3.2" y="-14" width="0.9" height="12" rx="0.45"/>
+          <rect x="5.25" y="-14" width="0.9" height="12" rx="0.45"/>
+          <rect x="7.3" y="-14" width="0.9" height="12" rx="0.45"/>
+          <rect x="3.2" y="-2" width="4.9" height="1.2" rx="0.6"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ============== V1 ============== -->
+  <div class="variant">
+    <h3>Variante 1 — Gabel links, Löffel rechts</h3>
+    <p class="spec">Senkrecht parallel, im Counter zentriert. Zacken ragen nach oben, Kelle liegt über dem Stielansatz. Keine Berührung mit dem Ring.</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v1-utensils"/></svg></span>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v1-utensils"/></svg></span>uvert</span></div></div>
+    <div class="context-header">
+      <span class="logo">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v1-utensils"/></svg></span>uvert</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- ============== V2 ============== -->
+  <div class="variant">
+    <h3>Variante 2 — Löffel links, Gabel rechts (europäische Tischordnung)</h3>
+    <p class="spec">Die klassische Couvert-Etiquette: Löffel aussen, Gabel innen. Detail das Gastro-Pros erkennen.</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v2-utensils"/></svg></span>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v2-utensils"/></svg></span>uvert</span></div></div>
+    <div class="context-header">
+      <span class="logo">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v2-utensils"/></svg></span>uvert</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- ============== V3 ============== -->
+  <div class="variant">
+    <h3>Variante 3 — Robust (dickere Striche)</h3>
+    <p class="spec">Für kleine Grössen optimiert. Das Besteck bleibt im Counter, ist aber bei 22px noch erkennbar.</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v3-utensils"/></svg></span>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v3-utensils"/></svg></span>uvert</span></div></div>
+    <div class="context-header">
+      <span class="logo">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v3-utensils"/></svg></span>uvert</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- ============== V4 ============== -->
+  <div class="variant">
+    <h3>Variante 4 — Eng zusammengelegt</h3>
+    <p class="spec">Besteck kompakter, mehr Luft zum Ring. Die zentrale Position betont den Teller-Charakter des O.</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v4-utensils"/></svg></span>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v4-utensils"/></svg></span>uvert</span></div></div>
+    <div class="context-header">
+      <span class="logo">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v4-utensils"/></svg></span>uvert</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- ============== V5 ============== -->
+  <div class="variant">
+    <h3>Variante 5 — Fein</h3>
+    <p class="spec">Sehr zurückhaltend, fast kalligrafisch. Für grosse Displays und Print.</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v5-utensils"/></svg></span>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v5-utensils"/></svg></span>uvert</span></div></div>
+    <div class="context-header">
+      <span class="logo">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v5-utensils"/></svg></span>uvert</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- ===== SIZE TEST ===== -->
+  <div class="section-divider"></div>
+  <h2>Skalierungs-Test — Variante 2</h2>
+  <p class="note-meta">Von 112px bis 14px. Die Zacken gehen bei 14px verloren, die Kelle bleibt erkennbar.</p>
+  <div class="size-test">
+    <span class="logo s-xl">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v2-utensils"/></svg></span>uvert</span>
+    <span class="logo s-l">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v2-utensils"/></svg></span>uvert</span>
+    <span class="logo s-m">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v2-utensils"/></svg></span>uvert</span>
+    <span class="logo s-s">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v2-utensils"/></svg></span>uvert</span>
+    <span class="logo s-xs">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v2-utensils"/></svg></span>uvert</span>
+  </div>
+
+  <h2 style="margin-top:24px">Skalierungs-Test — Variante 3 (robust)</h2>
+  <div class="size-test">
+    <span class="logo s-xl">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v3-utensils"/></svg></span>uvert</span>
+    <span class="logo s-l">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v3-utensils"/></svg></span>uvert</span>
+    <span class="logo s-m">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v3-utensils"/></svg></span>uvert</span>
+    <span class="logo s-s">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v3-utensils"/></svg></span>uvert</span>
+    <span class="logo s-xs">c<span class="o-wrap">o<svg class="utensils" viewBox="-50 -60 100 120"><use href="#v3-utensils"/></svg></span>uvert</span>
+  </div>
+
+  <div class="verdict">
+    <h3>Empfehlung</h3>
+    <p>Mein Vote: <strong>V2 in der Standard-Grösse, V3 als Alternative für Favicon und kleine Anwendungen</strong>. V2 hat die saubere Balance aus Lesbarkeit und Zurückhaltung, V3 übernimmt wenn es klein werden muss. V5 ist typografisch am elegantesten, aber scheitert ab 50px an der Erkennbarkeit.</p>
+    <p style="margin-top:14px">Wichtig: Das Besteck funktioniert bei grossen Grössen (ab ~60px) klar erkennbar. Bei kleinen Anwendungen (Favicon 32px, Mobile-Header 22px) müssen wir eine vereinfachte Version machen — vielleicht nur zwei senkrechte Striche ohne Zacken und Kelle, weil die Details sonst verschmelzen.</p>
+  </div>
+
+</div>
+</body>
+</html>

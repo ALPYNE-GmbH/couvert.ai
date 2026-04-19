@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>couvert — Teller mit Besteck</title>
+<style>
+  @font-face{font-family:'GT Walsheim';src:url('./fonts/GT-Walsheim-Light.woff2') format('woff2');font-weight:300;font-style:normal;font-display:swap}
+  @font-face{font-family:'GT Walsheim';src:url('./fonts/GT-Walsheim-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:'GT Walsheim';src:url('./fonts/GT-Walsheim-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+  @font-face{font-family:'GT Walsheim';src:url('./fonts/GT-Walsheim-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+
+  :root{
+    --gruen:#1A3C34;
+    --gruen-tief:#12261F;
+    --kupfer:#C4673A;
+    --kupfer-tief:#A85830;
+    --gold:#E8B931;
+    --cream:#F5F0EB;
+    --off-white:#E0DCD6;
+    --muted:#8B9A95;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:'GT Walsheim','Helvetica Neue',Arial,sans-serif;
+    background:var(--cream);
+    color:#1a1a1a;
+    padding:48px 32px;
+    line-height:1.6;
+  }
+  .wrap{max-width:1080px;margin:0 auto}
+
+  h1{
+    font-family:'DM Serif Display',serif;
+    font-size:32px;
+    color:var(--gruen);
+    margin-bottom:8px;
+    letter-spacing:-0.01em;
+  }
+  .subtitle{
+    font-weight:400;
+    font-size:15px;
+    color:#4a4a4a;
+    margin-bottom:48px;
+    max-width:720px;
+  }
+
+  h2{
+    font-family:'DM Serif Display',serif;
+    font-size:22px;
+    color:var(--gruen);
+    margin:32px 0 4px;
+    font-weight:400;
+  }
+  .concept-meta{
+    font-size:14px;
+    color:#4a4a4a;
+    margin-bottom:20px;
+    max-width:720px;
+    line-height:1.6;
+  }
+
+  h3{
+    font-weight:500;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gruen);
+    margin:0 0 4px;
+  }
+  .font-note{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:#7a7a7a;
+    margin-bottom:14px;
+  }
+
+  .variant{margin-bottom:40px}
+
+  .stage{
+    border-radius:4px;
+    overflow:hidden;
+    border:1px solid #d5cfc7;
+    margin-bottom:10px;
+  }
+  .stage-dark{background:var(--gruen-tief);color:var(--cream)}
+  .stage-light{background:#fff;color:var(--gruen)}
+  .stage-row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:72px 40px;
+    min-height:180px;
+  }
+
+  /* ============= Logo Engine ============= */
+  .logo{
+    display:inline-flex;
+    align-items:baseline;
+    line-height:1;
+    letter-spacing:-0.02em;
+    font-size:96px;
+  }
+
+  .logo.f-walsheim{font-family:'GT Walsheim',sans-serif;font-weight:500;letter-spacing:-0.02em}
+  .logo.f-fraunces{font-family:'Fraunces',serif;font-weight:500;letter-spacing:-0.02em;font-variation-settings:'SOFT' 50,'WONK' 0,'opsz' 96}
+  .logo.f-dmserif{font-family:'DM Serif Display',serif;font-weight:400;letter-spacing:-0.01em}
+
+  .o-mark{
+    display:inline-block;
+    vertical-align:baseline;
+    height:0.78em;
+    width:auto;
+  }
+  /* Font-spezifische Kalibrierung */
+  .f-walsheim .o-mark{height:0.76em;margin:0 0.01em;transform:translateY(0.01em)}
+  .f-fraunces .o-mark{height:0.78em;margin:0 0.01em;transform:translateY(0em)}
+  .f-dmserif .o-mark{height:0.80em;margin:0 0.01em;transform:translateY(0em)}
+
+  /* ============= Header + Size Tests ============= */
+  .context-header{
+    background:var(--gruen);
+    color:var(--cream);
+    padding:18px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-radius:4px;
+    margin-top:14px;
+  }
+  .context-header .logo{font-size:26px}
+  .context-header .nav{
+    display:flex;
+    gap:24px;
+    font-size:13px;
+    font-weight:400;
+    color:var(--off-white);
+  }
+
+  .size-test{
+    display:flex;
+    align-items:baseline;
+    gap:40px;
+    padding:32px 40px;
+    background:#fff;
+    border:1px solid #d5cfc7;
+    border-radius:4px;
+    margin-top:10px;
+    flex-wrap:wrap;
+  }
+  .size-test .logo{color:var(--gruen)}
+  .s-xl{font-size:80px}
+  .s-l{font-size:48px}
+  .s-m{font-size:28px}
+  .s-s{font-size:18px}
+  .s-xs{font-size:13px}
+
+  .verdict{
+    background:var(--gruen);
+    color:var(--cream);
+    padding:32px;
+    border-radius:4px;
+    margin-top:48px;
+  }
+  .verdict h3{
+    font-family:'DM Serif Display',serif;
+    font-weight:400;
+    font-size:22px;
+    margin-bottom:12px;
+    color:var(--cream);
+    letter-spacing:0;
+    text-transform:none;
+  }
+  .verdict p{font-size:15px;line-height:1.7;color:var(--off-white);margin-bottom:10px}
+  .verdict strong{color:var(--gold);font-weight:500}
+  .verdict ol{margin:14px 0 0 20px;color:var(--off-white);font-size:15px;line-height:1.7}
+  .verdict ol li{margin-bottom:10px}
+
+  .section-divider{
+    margin:64px 0 0;
+    padding-top:32px;
+    border-top:1px solid #d5cfc7;
+  }
+
+  .concept-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:12px;
+    margin-top:14px;
+  }
+  .concept-grid .stage-row{padding:40px 16px;min-height:140px}
+  .concept-grid .logo{font-size:52px}
+  .concept-grid .cap{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+    text-align:center;
+    padding:8px 0;
+    background:#fff;
+    border-top:1px solid #e8e2d9;
+  }
+
+  @media (max-width:700px){
+    body{padding:24px 16px}
+    .logo{font-size:56px}
+    .stage-row{padding:40px 20px;min-height:120px}
+    .concept-grid{grid-template-columns:1fr}
+    .concept-grid .logo{font-size:56px}
+    .s-xl{font-size:52px}
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Fraunces:opsz,wght@9..144,300..600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="wrap">
+
+  <h1>couvert — Teller mit Besteck im O</h1>
+  <p class="subtitle">Unterer Teil des O in Kupfer gefüllt (der "Teller" mit Inhalt), darüber zwei senkrechte Striche als Besteck. Drei Font-Optionen: GT Walsheim als Sans, Fraunces als Serif-Wiedervorlage, DM Serif Display als dritte Option. Alle SVG-basiert für saubere Skalierung bis ins Favicon.</p>
+
+  <!-- ================= KONZEPT A: TELLER MIT INHALT ================= -->
+
+  <h2>Konzept A — Teller halb gefüllt + Besteck senkrecht</h2>
+  <p class="concept-meta">Unterer Halbkreis innerhalb des O in Kupfer (wie ein Teller mit Suppe oder Sauce), darüber zwei dünne senkrechte Kupfer-Striche als Messer und Gabel. Semantisch direkt an 60 Seconds-Logik, aber abstrahiert — kein Piktogramm.</p>
+
+  <!-- SVG-Definitionen -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- Konzept A: Teller mit Inhalt unten + Besteck -->
+      <symbol id="o-teller-a" viewBox="-50 -60 100 120">
+        <!-- Unterer Halbkreis-Fill (Teller-Inhalt) -->
+        <path d="M -34 0 A 34 44 0 0 1 34 0 Z" fill="#C4673A"/>
+        <!-- Ring -->
+        <ellipse cx="0" cy="0" rx="40" ry="50" fill="none" stroke="currentColor" stroke-width="11"/>
+        <!-- Besteck: zwei senkrechte Striche -->
+        <rect x="-12" y="-30" width="5" height="36" rx="2.5" fill="#C4673A"/>
+        <rect x="7" y="-30" width="5" height="36" rx="2.5" fill="#C4673A"/>
+      </symbol>
+
+      <!-- Konzept B: Nur unterer Ring-Halbkreis in Kupfer + Besteck -->
+      <symbol id="o-teller-b" viewBox="-50 -60 100 120">
+        <!-- Oberer Ring-Halbkreis in currentColor -->
+        <path d="M -40 0 A 40 50 0 0 1 40 0" fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="butt"/>
+        <!-- Unterer Ring-Halbkreis in Kupfer -->
+        <path d="M -40 0 A 40 50 0 0 0 40 0" fill="none" stroke="#C4673A" stroke-width="11" stroke-linecap="butt"/>
+        <!-- Besteck -->
+        <rect x="-12" y="-30" width="5" height="36" rx="2.5" fill="#C4673A"/>
+        <rect x="7" y="-30" width="5" height="36" rx="2.5" fill="#C4673A"/>
+      </symbol>
+
+      <!-- Konzept C: Beides — gefüllter Teller + unterer Ring zusätzlich in Kupfer -->
+      <symbol id="o-teller-c" viewBox="-50 -60 100 120">
+        <!-- Unterer Halbkreis-Fill -->
+        <path d="M -34 0 A 34 44 0 0 1 34 0 Z" fill="#C4673A"/>
+        <!-- Oberer Ring currentColor -->
+        <path d="M -40 0 A 40 50 0 0 1 40 0" fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="butt"/>
+        <!-- Unterer Ring in Kupfer-dunkel (Tellerrand-Schatten) -->
+        <path d="M -40 0 A 40 50 0 0 0 40 0" fill="none" stroke="#A85830" stroke-width="11" stroke-linecap="butt"/>
+        <!-- Besteck -->
+        <rect x="-12" y="-30" width="5" height="36" rx="2.5" fill="#C4673A"/>
+        <rect x="7" y="-30" width="5" height="36" rx="2.5" fill="#C4673A"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="variant">
+    <h3>A / GT Walsheim Medium</h3>
+    <p class="font-note">Sans-Serif, Schweizer Herkunft. Modernes AI-Tech-Signal.</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo f-walsheim">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo f-walsheim">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span></div></div>
+    <div class="context-header">
+      <span class="logo f-walsheim">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <div class="variant">
+    <h3>A / Fraunces</h3>
+    <p class="font-note">Moderne Serif mit Charakter, SOFT-Achse weich. Gastronomie-Code, hospitable.</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo f-fraunces">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo f-fraunces">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span></div></div>
+    <div class="context-header">
+      <span class="logo f-fraunces">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <div class="variant">
+    <h3>A / DM Serif Display</h3>
+    <p class="font-note">Didone-Serif mit hohem Kontrast. Editorial, Luxus-Restaurant-Signatur.</p>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo f-dmserif">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo f-dmserif">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span></div></div>
+    <div class="context-header">
+      <span class="logo f-dmserif">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- ================= KONZEPT B: UNTERER RING ZWEIFARBIG ================= -->
+
+  <div class="section-divider"></div>
+  <h2>Konzept B — Unterer Ring in Kupfer (zweifarbiges O)</h2>
+  <p class="concept-meta">Statt Füllung: nur der untere Halbkreis des Ring-Buchstabens wird Kupfer. Der Ring selbst wechselt die Farbe in der Mitte. Subtiler als Konzept A, bewahrt die Offenheit des O. Besteck weiter als senkrechte Striche mittig.</p>
+
+  <div class="variant">
+    <h3>B / GT Walsheim Medium</h3>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo f-walsheim">c<svg class="o-mark"><use href="#o-teller-b"/></svg>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo f-walsheim">c<svg class="o-mark"><use href="#o-teller-b"/></svg>uvert</span></div></div>
+    <div class="context-header">
+      <span class="logo f-walsheim">c<svg class="o-mark"><use href="#o-teller-b"/></svg>uvert</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <div class="variant">
+    <h3>B / Fraunces</h3>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo f-fraunces">c<svg class="o-mark"><use href="#o-teller-b"/></svg>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo f-fraunces">c<svg class="o-mark"><use href="#o-teller-b"/></svg>uvert</span></div></div>
+    <div class="context-header">
+      <span class="logo f-fraunces">c<svg class="o-mark"><use href="#o-teller-b"/></svg>uvert</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <div class="variant">
+    <h3>B / DM Serif Display</h3>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo f-dmserif">c<svg class="o-mark"><use href="#o-teller-b"/></svg>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo f-dmserif">c<svg class="o-mark"><use href="#o-teller-b"/></svg>uvert</span></div></div>
+    <div class="context-header">
+      <span class="logo f-dmserif">c<svg class="o-mark"><use href="#o-teller-b"/></svg>uvert</span>
+      <nav class="nav"><span>Team</span><span>Fallbeispiel</span><span>Ablauf</span><span>Kontakt</span></nav>
+    </div>
+  </div>
+
+  <!-- ================= KONZEPT C: KOMBINATION ================= -->
+
+  <div class="section-divider"></div>
+  <h2>Konzept C — Gefüllter Teller + zweifarbiger Ring (Kombination)</h2>
+  <p class="concept-meta">Beides: unterer Halbkreis gefüllt (Teller-Inhalt) plus unterer Ring in einem dunkleren Kupfer (Tellerrand). Mehr Präsenz, stärkere Signatur. Risiko: zu viel Information im O, verliert bei kleinen Grössen.</p>
+
+  <div class="variant">
+    <h3>C / GT Walsheim Medium</h3>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo f-walsheim">c<svg class="o-mark"><use href="#o-teller-c"/></svg>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo f-walsheim">c<svg class="o-mark"><use href="#o-teller-c"/></svg>uvert</span></div></div>
+  </div>
+
+  <div class="variant">
+    <h3>C / Fraunces</h3>
+    <div class="stage stage-dark"><div class="stage-row"><span class="logo f-fraunces">c<svg class="o-mark"><use href="#o-teller-c"/></svg>uvert</span></div></div>
+    <div class="stage stage-light"><div class="stage-row"><span class="logo f-fraunces">c<svg class="o-mark"><use href="#o-teller-c"/></svg>uvert</span></div></div>
+  </div>
+
+  <!-- ================= VERGLEICH NEBENEINANDER ================= -->
+
+  <div class="section-divider"></div>
+  <h2>Direktvergleich — Konzept A in allen drei Fonts</h2>
+  <p class="concept-meta">Gleiches SVG-O, unterschiedlicher Font für "c" und "uvert". So siehst du die reine Font-Wirkung isoliert.</p>
+
+  <div class="concept-grid">
+    <div class="stage stage-dark">
+      <div class="stage-row"><span class="logo f-walsheim">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span></div>
+      <div class="cap">GT Walsheim</div>
+    </div>
+    <div class="stage stage-dark">
+      <div class="stage-row"><span class="logo f-fraunces">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span></div>
+      <div class="cap">Fraunces</div>
+    </div>
+    <div class="stage stage-dark">
+      <div class="stage-row"><span class="logo f-dmserif">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span></div>
+      <div class="cap">DM Serif Display</div>
+    </div>
+  </div>
+  <div class="concept-grid">
+    <div class="stage stage-light">
+      <div class="stage-row"><span class="logo f-walsheim">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span></div>
+      <div class="cap">GT Walsheim</div>
+    </div>
+    <div class="stage stage-light">
+      <div class="stage-row"><span class="logo f-fraunces">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span></div>
+      <div class="cap">Fraunces</div>
+    </div>
+    <div class="stage stage-light">
+      <div class="stage-row"><span class="logo f-dmserif">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span></div>
+      <div class="cap">DM Serif Display</div>
+    </div>
+  </div>
+
+  <!-- ================= SIZE TEST ================= -->
+
+  <div class="section-divider"></div>
+  <h2>Skalierungs-Test — Konzept A / Fraunces</h2>
+  <div class="size-test">
+    <span class="logo f-fraunces s-xl">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span>
+    <span class="logo f-fraunces s-l">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span>
+    <span class="logo f-fraunces s-m">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span>
+    <span class="logo f-fraunces s-s">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span>
+    <span class="logo f-fraunces s-xs">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span>
+  </div>
+
+  <h2 style="margin-top:24px">Skalierungs-Test — Konzept A / GT Walsheim</h2>
+  <div class="size-test">
+    <span class="logo f-walsheim s-xl">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span>
+    <span class="logo f-walsheim s-l">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span>
+    <span class="logo f-walsheim s-m">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span>
+    <span class="logo f-walsheim s-s">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span>
+    <span class="logo f-walsheim s-xs">c<svg class="o-mark"><use href="#o-teller-a"/></svg>uvert</span>
+  </div>
+
+  <div class="verdict">
+    <h3>Empfehlung</h3>
+    <p>Konzeptionell ist <strong>A</strong> der klare Sieger. Der halb gefüllte Teller mit zwei senkrechten Besteck-Strichen liest sich sofort als Gedeck, ist semantisch geladen (Couvert = Besteckauflage auf gedecktem Tisch), und funktioniert als eigenständiges Zeichen. Konzept B wirkt dagegen eher wie ein Farbakzent ohne Erzählung, C ist zu laut.</p>
+
+    <p style="margin-top:14px">Zur Font-Frage: Fraunces ist wieder drin und tatsächlich der stärkste Match zum Teller-Konzept.</p>
+
+    <ol>
+      <li><strong>Fraunces</strong> — meine Top-Empfehlung. Der halbgefüllte Teller in Kupfer bekommt durch die warmen humanistischen Serif-Formen den passenden Gastro-Kontext. Fraunces ist zeitgenössisch (nicht Jahrhundertwende-Serif) und funktioniert trotzdem für Hospitality. 60 Seconds nutzt das Besteck, Fraunces nutzt die Gastro-Codes ohne klischeehaft zu werden.</li>
+      <li><strong>GT Walsheim</strong> — die analytische Alternative. Wenn du die AI-Ops-Seite stärker positionieren willst, ist Walsheim richtig. Verliert aber durch den Kontrast zur gastronomischen Teller-Geste etwas an Kohärenz.</li>
+      <li><strong>DM Serif Display</strong> — zu dramatisch im Kontrast. Das O wird durch die dicken Stems rechts und links optisch erschlagen. Für Display-Titel super, für ein Logo mit detailreichem O zu unruhig.</li>
+    </ol>
+
+    <p style="margin-top:16px">Mein Vote: <strong>Konzept A in Fraunces</strong>. Das ist die Variante, die sowohl gastronomisch als auch zeitgemäss wirkt, und deren O sofort als Teller mit Besteck erkennbar ist — auch ohne dass Adrian die Intention erklärt bekommt.</p>
+  </div>
+
+</div>
+</body>
+</html>
