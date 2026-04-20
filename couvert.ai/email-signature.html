@@ -21,7 +21,7 @@
     padding:48px 24px;
     line-height:1.6;
   }
-  .wrap{max-width:900px;margin:0 auto}
+  .wrap{max-width:880px;margin:0 auto}
   h1{
     font-family:'Fraunces',serif;
     font-weight:500;
@@ -38,9 +38,9 @@
   }
   h2{
     font-family:'Fraunces',serif;
-    font-size:20px;
+    font-size:22px;
     color:var(--gruen);
-    margin:48px 0 10px;
+    margin:48px 0 12px;
     font-weight:500;
   }
   h3{
@@ -49,7 +49,7 @@
     letter-spacing:0.14em;
     text-transform:uppercase;
     color:var(--gruen);
-    margin:24px 0 8px;
+    margin:18px 0 10px;
   }
   .meta{
     font-family:'JetBrains Mono',monospace;
@@ -57,59 +57,112 @@
     color:#7a7a7a;
     margin-bottom:14px;
   }
-  .stage{
+
+  /* Copy Card */
+  .copy-card{
     background:#fff;
     border:1px solid var(--border);
-    border-radius:4px;
-    padding:44px 40px;
+    border-radius:6px;
     margin-bottom:14px;
-  }
-  .stage-mail{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:4px;
     overflow:hidden;
-    margin-bottom:14px;
   }
-  .fake-mail-body{
-    padding:32px 40px 20px;
+  .copy-bar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    padding:14px 20px;
+    background:var(--gruen);
+    color:var(--cream);
+  }
+  .copy-bar-label{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:15px;
+    letter-spacing:-0.01em;
+  }
+  .copy-bar-sub{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    color:#B8C5C0;
+  }
+  .copy-btn{
+    background:var(--kupfer);
+    color:var(--cream);
+    border:0;
+    padding:10px 18px;
+    border-radius:4px;
     font-family:'Inter','Helvetica Neue',Arial,sans-serif;
-    font-size:14px;
-    color:#222;
-    line-height:1.55;
-    border-bottom:1px solid #EFEBE5;
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:0.2px;
+    cursor:pointer;
+    transition:background .15s;
+    white-space:nowrap;
   }
-  .code{
+  .copy-btn:hover{background:#B55A30}
+  .copy-btn.ok{background:#3D7958}
+  .copy-btn.ok::before{content:"✓ "}
+
+  .sig-preview{
+    padding:28px 24px;
+    background:#FCFAF6;
+    border-top:1px solid #EFEBE5;
+  }
+  .sig-preview-inner{
+    display:inline-block;
+    /* no padding, no margin: this is what gets copied */
+  }
+
+  .plain-box{
     background:#fff;
     border:1px solid var(--border);
     padding:20px 22px;
     border-radius:4px;
     font-family:'JetBrains Mono',monospace;
-    font-size:11.5px;
+    font-size:12px;
     color:#2a2a2a;
     line-height:1.7;
-    margin-top:8px;
     white-space:pre-wrap;
     overflow-x:auto;
   }
-  .note{
+
+  .guide-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:24px 28px;
+    margin-bottom:16px;
+  }
+  .guide-card h3{margin-top:0;margin-bottom:12px}
+  .guide-card ol{padding-left:20px;font-size:14px;line-height:1.7;color:#1a1a1a}
+  .guide-card ol li{margin-bottom:4px}
+  .kbd{
+    background:var(--cream);
+    padding:2px 7px;
+    border-radius:3px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    border:1px solid #E5DFD6;
+  }
+  .guide-card .note{
+    margin-top:12px;
     font-size:12.5px;
     color:var(--muted);
-    line-height:1.55;
-    margin:6px 0 20px;
+    font-style:italic;
   }
 
-  /* ==========================================================
-     SIGNATUR — Variante A (Full, mit Logo + Datenblock)
-     Alle Styles INLINE wiederholt für E-Mail-Clients,
-     hier im Preview über Klassen plus direkt als Inline-Style.
-     ========================================================== */
-  .sig-a{
-    font-family:'Helvetica Neue','Helvetica',Arial,sans-serif;
-    color:#1A3C34;
-    font-size:13px;
-    line-height:1.5;
+  .callout{
+    background:var(--gruen-tief);
+    color:var(--cream);
+    border-radius:6px;
+    padding:22px 26px;
+    margin-bottom:24px;
   }
+  .callout h3{color:var(--cream);margin-top:0}
+  .callout p{font-size:13.5px;line-height:1.65;color:#E0DCD6}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -117,7 +170,7 @@
 </head>
 <body>
 
-<!-- couvert logo symbols -->
+<!-- couvert logo symbols (nur für die Vorschau auf dieser Seite) -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="couvert-utensils" viewBox="-50 -60 100 120">
@@ -137,139 +190,172 @@
 <div class="wrap">
 
   <h1>couvert — E-Mail-Signatur</h1>
-  <p class="subtitle">Zwei Varianten. Logo als Inline-SVG (bleibt scharf, auch in Dark-Mode-Clients). Datenblock in Helvetica, damit alle Clients korrekt rendern. Copy-paste-ready HTML darunter.</p>
+  <p class="subtitle">Zwei Varianten. Klicke den Kupfer-Button, damit die Signatur exakt und ohne Einzug auf deine Zwischenablage kommt. Dann in Gmail → Einstellungen → Signatur mit <span class="kbd">Cmd + V</span> einfügen, speichern, fertig.</p>
 
-  <!-- ================================================== -->
-  <!-- PREVIEW IM E-MAIL-KONTEXT                           -->
-  <!-- ================================================== -->
-  <h2>Variante A · Full Signature (empfohlen)</h2>
-  <p class="meta">Mit Logo links, Datenblock rechts, inkl. Tagline und Legal. Breite ca. 460 px.</p>
+  <!-- ============================================================== -->
+  <!-- VARIANTE A                                                      -->
+  <!-- ============================================================== -->
+  <h2>Variante A · Full (empfohlen)</h2>
+  <p class="meta">Mit Logo, Datenblock, Tagline und Legal. Breite ca. 460 px.</p>
 
-  <div class="stage-mail">
-    <div class="fake-mail-body">
-      Lieber Herr Müller,<br><br>
-      vielen Dank für das angenehme Gespräch gestern. Anbei der kurze Überblick, den ich Ihnen zugesagt habe. Bei Rückfragen jederzeit gerne.<br><br>
-      Beste Grüsse<br>
-      Max
+  <div class="copy-card">
+    <div class="copy-bar">
+      <div>
+        <div class="copy-bar-label">Variante A</div>
+        <div class="copy-bar-sub">Klick zum Kopieren · bereit zum Einfügen in Gmail</div>
+      </div>
+      <button class="copy-btn" data-target="sig-a">Kopieren</button>
     </div>
-
-    <!-- ============ SIGNATUR A (HTML) ============ -->
-    <div style="padding:24px 40px 32px;">
-    <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#1A3C34;font-size:13px;line-height:1.5">
-      <tr>
-        <!-- Logo -->
-        <td valign="top" style="padding:0 22px 0 0;border-right:1px solid #D5CFC7;">
-          <div style="font-family:Georgia,'Times New Roman',serif;font-weight:500;font-size:34px;line-height:1;color:#1A3C34;letter-spacing:-0.02em;white-space:nowrap;">
-            <span style="display:inline-block;vertical-align:baseline;">c</span><span style="position:relative;display:inline-block;vertical-align:baseline;"><span>o</span><svg width="22" height="26" viewBox="-50 -60 100 120" style="position:absolute;left:0;top:0;overflow:visible;pointer-events:none;"><use href="#couvert-utensils"/></svg></span><span style="display:inline-block;vertical-align:baseline;">uvert</span>
-          </div>
-          <div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:#C4673A;margin-top:6px;font-weight:500;">AI Operations · Gastronomie</div>
-        </td>
-
-        <!-- Datenblock -->
-        <td valign="top" style="padding:2px 0 0 22px;">
-          <div style="font-size:14px;font-weight:500;color:#1A3C34;margin-bottom:1px;">Maximilian Veit</div>
-          <div style="font-size:12px;color:#6B6B6B;margin-bottom:10px;letter-spacing:0.2px;">Founder</div>
-
-          <div style="font-size:12.5px;color:#1A3C34;margin-bottom:2px;">
-            <a href="tel:+41782688662" style="color:#1A3C34;text-decoration:none;">+41 78 268 86 62</a>
-          </div>
-          <div style="font-size:12.5px;color:#1A3C34;margin-bottom:2px;">
-            <a href="mailto:max@couvert.ai" style="color:#1A3C34;text-decoration:none;">max@couvert.ai</a>
-          </div>
-          <div style="font-size:12.5px;color:#1A3C34;margin-bottom:10px;">
-            <a href="https://couvert.ai" style="color:#C4673A;text-decoration:none;border-bottom:1px solid rgba(196,103,58,0.35);">couvert.ai</a>
-          </div>
-
-          <div style="font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:11.5px;color:#6B6B6B;line-height:1.4;margin-bottom:10px;max-width:230px;">
-            AI Operations für die Gastronomie.
-          </div>
-
-          <div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10.5px;color:#9A958C;letter-spacing:0.2px;line-height:1.5;">
-            Couvert GmbH i. G.<br>
-            Churerstrasse 105 · 8808 Freienbach SZ
-          </div>
-        </td>
-      </tr>
-    </table>
+    <div class="sig-preview">
+      <div class="sig-preview-inner">
+        <!-- SIGNATUR A · das hier wird kopiert (genau dieses Element) -->
+        <table id="sig-a" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#1A3C34;font-size:13px;line-height:1.5">
+          <tr>
+            <td valign="top" style="padding:0 22px 0 0;border-right:1px solid #D5CFC7;">
+              <div style="font-family:Georgia,'Times New Roman',serif;font-weight:500;font-size:34px;line-height:1;color:#1A3C34;letter-spacing:-0.02em;white-space:nowrap;">
+                <span>c</span><span style="position:relative;display:inline-block;"><span>o</span><svg width="22" height="26" viewBox="-50 -60 100 120" xmlns="http://www.w3.org/2000/svg" style="position:absolute;left:0;top:0;overflow:visible;"><g fill="#C4673A"><rect x="-8" y="-2" width="2" height="15" rx="1"/><ellipse cx="-7" cy="-10" rx="3.6" ry="5.5"/><rect x="6" y="-2" width="2" height="15" rx="1"/><rect x="3.8" y="-16" width="1.2" height="14" rx="0.6"/><rect x="6.4" y="-16" width="1.2" height="14" rx="0.6"/><rect x="9" y="-16" width="1.2" height="14" rx="0.6"/><rect x="3.8" y="-3" width="5.2" height="1.6" rx="0.8"/></g></svg></span><span>uvert</span>
+              </div>
+              <div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:#C4673A;margin-top:6px;font-weight:500;">AI Operations · Gastronomie</div>
+            </td>
+            <td valign="top" style="padding:2px 0 0 22px;">
+              <div style="font-size:14px;font-weight:500;color:#1A3C34;margin-bottom:1px;">Maximilian Veit</div>
+              <div style="font-size:12px;color:#6B6B6B;margin-bottom:10px;letter-spacing:0.2px;">Founder</div>
+              <div style="font-size:12.5px;color:#1A3C34;margin-bottom:2px;">
+                <a href="tel:+41782688662" style="color:#1A3C34;text-decoration:none;">+41 78 268 86 62</a>
+              </div>
+              <div style="font-size:12.5px;color:#1A3C34;margin-bottom:2px;">
+                <a href="mailto:max@couvert.ai" style="color:#1A3C34;text-decoration:none;">max@couvert.ai</a>
+              </div>
+              <div style="font-size:12.5px;color:#1A3C34;margin-bottom:10px;">
+                <a href="https://couvert.ai" style="color:#C4673A;text-decoration:none;border-bottom:1px solid rgba(196,103,58,0.35);">couvert.ai</a>
+              </div>
+              <div style="font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:11.5px;color:#6B6B6B;line-height:1.4;margin-bottom:10px;max-width:230px;">AI Operations für die Gastronomie.</div>
+              <div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10.5px;color:#9A958C;letter-spacing:0.2px;line-height:1.5;">Couvert GmbH i. G.<br>Churerstrasse 105 · 8808 Freienbach SZ</div>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <!-- ============ / SIGNATUR A ============ -->
   </div>
 
-  <h3>HTML — Variante A (zum Kopieren)</h3>
-  <p class="note">In Gmail: Einstellungen → Allgemein → Signatur → HTML-Modus bei manchen Clients nicht nötig, einfach den gerenderten Block oben markieren und per Cmd+C kopieren, dann in Gmails Signatur-Editor einfügen. In Apple Mail: neue Signatur anlegen, leer lassen, Mail beenden, Datei `~/Library/Mail/V10/MailData/Signatures/*.mailsignature` editieren und folgenden Block nach `&lt;body&gt;` einfügen. Alternativ: Preview-Signatur oben mit Cmd+A/Cmd+C kopieren → in Apple Mail einfügen (behält Layout).</p>
-  <div class="code">&lt;table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#1A3C34;font-size:13px;line-height:1.5"&gt;
-  &lt;tr&gt;
-    &lt;td valign="top" style="padding:0 22px 0 0;border-right:1px solid #D5CFC7;"&gt;
-      &lt;div style="font-family:Georgia,'Times New Roman',serif;font-weight:500;font-size:34px;line-height:1;color:#1A3C34;letter-spacing:-0.02em;white-space:nowrap;"&gt;
-        &lt;span&gt;c&lt;/span&gt;&lt;span style="position:relative;display:inline-block;"&gt;&lt;span&gt;o&lt;/span&gt;&lt;svg width="22" height="26" viewBox="-50 -60 100 120" style="position:absolute;left:0;top:0;overflow:visible;"&gt;&lt;g fill="#C4673A"&gt;&lt;rect x="-8" y="-2" width="2" height="15" rx="1"/&gt;&lt;ellipse cx="-7" cy="-10" rx="3.6" ry="5.5"/&gt;&lt;rect x="6" y="-2" width="2" height="15" rx="1"/&gt;&lt;rect x="3.8" y="-16" width="1.2" height="14" rx="0.6"/&gt;&lt;rect x="6.4" y="-16" width="1.2" height="14" rx="0.6"/&gt;&lt;rect x="9" y="-16" width="1.2" height="14" rx="0.6"/&gt;&lt;rect x="3.8" y="-3" width="5.2" height="1.6" rx="0.8"/&gt;&lt;/g&gt;&lt;/svg&gt;&lt;/span&gt;&lt;span&gt;uvert&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;div style="font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:#C4673A;margin-top:6px;font-weight:500;"&gt;AI Operations · Gastronomie&lt;/div&gt;
-    &lt;/td&gt;
-    &lt;td valign="top" style="padding:2px 0 0 22px;"&gt;
-      &lt;div style="font-size:14px;font-weight:500;color:#1A3C34;"&gt;Maximilian Veit&lt;/div&gt;
-      &lt;div style="font-size:12px;color:#6B6B6B;margin-bottom:10px;"&gt;Founder&lt;/div&gt;
-      &lt;div style="font-size:12.5px;"&gt;&lt;a href="tel:+41782688662" style="color:#1A3C34;text-decoration:none;"&gt;+41 78 268 86 62&lt;/a&gt;&lt;/div&gt;
-      &lt;div style="font-size:12.5px;"&gt;&lt;a href="mailto:max@couvert.ai" style="color:#1A3C34;text-decoration:none;"&gt;max@couvert.ai&lt;/a&gt;&lt;/div&gt;
-      &lt;div style="font-size:12.5px;margin-bottom:10px;"&gt;&lt;a href="https://couvert.ai" style="color:#C4673A;text-decoration:none;border-bottom:1px solid rgba(196,103,58,0.35);"&gt;couvert.ai&lt;/a&gt;&lt;/div&gt;
-      &lt;div style="font-family:Georgia,serif;font-style:italic;font-size:11.5px;color:#6B6B6B;margin-bottom:10px;max-width:230px;"&gt;AI Operations für die Gastronomie.&lt;/div&gt;
-      &lt;div style="font-size:10.5px;color:#9A958C;line-height:1.5;"&gt;Couvert GmbH i. G.&lt;br&gt;Churerstrasse 105 · 8808 Freienbach SZ&lt;/div&gt;
-    &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;</div>
+  <!-- ============================================================== -->
+  <!-- VARIANTE B                                                      -->
+  <!-- ============================================================== -->
+  <h2>Variante B · Minimal</h2>
+  <p class="meta">Ohne Tagline, ohne Trennlinie. Für schnelle Korrespondenz. Breite ca. 320 px.</p>
 
-  <!-- ================================================== -->
-  <!-- VARIANTE B · MINIMAL                                -->
-  <!-- ================================================== -->
-  <h2>Variante B · Minimal (für schnelle Korrespondenz)</h2>
-  <p class="meta">Ohne Tagline, ohne vertikale Linie. Breite ca. 280 px.</p>
-
-  <div class="stage-mail">
-    <div class="fake-mail-body">
-      Danke dir, passt so. Ich melde mich Freitag nochmal.<br><br>
-      Max
+  <div class="copy-card">
+    <div class="copy-bar">
+      <div>
+        <div class="copy-bar-label">Variante B</div>
+        <div class="copy-bar-sub">Klick zum Kopieren</div>
+      </div>
+      <button class="copy-btn" data-target="sig-b">Kopieren</button>
     </div>
-
-    <!-- ============ SIGNATUR B (HTML) ============ -->
-    <div style="padding:24px 40px 32px;">
-    <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#1A3C34;font-size:12.5px;line-height:1.55">
-      <tr>
-        <td valign="top">
-          <div style="font-family:Georgia,'Times New Roman',serif;font-weight:500;font-size:24px;line-height:1;color:#1A3C34;letter-spacing:-0.02em;white-space:nowrap;margin-bottom:10px;">
-            <span>c</span><span style="position:relative;display:inline-block;"><span>o</span><svg width="16" height="19" viewBox="-50 -60 100 120" style="position:absolute;left:0;top:0;overflow:visible;"><use href="#couvert-utensils"/></svg></span><span>uvert</span>
-          </div>
-          <div style="font-size:13px;font-weight:500;color:#1A3C34;">Max Veit · <span style="color:#6B6B6B;font-weight:400;">Founder</span></div>
-          <div style="font-size:12px;color:#1A3C34;margin-top:2px;">
-            <a href="tel:+41782688662" style="color:#1A3C34;text-decoration:none;">+41 78 268 86 62</a>
-            &nbsp;·&nbsp;
-            <a href="mailto:max@couvert.ai" style="color:#1A3C34;text-decoration:none;">max@couvert.ai</a>
-          </div>
-          <div style="font-size:10.5px;color:#9A958C;margin-top:8px;">Couvert GmbH i. G. · Churerstrasse 105, 8808 Freienbach SZ · <a href="https://couvert.ai" style="color:#C4673A;text-decoration:none;">couvert.ai</a></div>
-        </td>
-      </tr>
-    </table>
+    <div class="sig-preview">
+      <div class="sig-preview-inner">
+        <table id="sig-b" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#1A3C34;font-size:12.5px;line-height:1.55">
+          <tr>
+            <td valign="top">
+              <div style="font-family:Georgia,'Times New Roman',serif;font-weight:500;font-size:24px;line-height:1;color:#1A3C34;letter-spacing:-0.02em;white-space:nowrap;margin-bottom:10px;">
+                <span>c</span><span style="position:relative;display:inline-block;"><span>o</span><svg width="16" height="19" viewBox="-50 -60 100 120" xmlns="http://www.w3.org/2000/svg" style="position:absolute;left:0;top:0;overflow:visible;"><g fill="#C4673A"><rect x="-8" y="-2" width="2" height="15" rx="1"/><ellipse cx="-7" cy="-10" rx="3.6" ry="5.5"/><rect x="6" y="-2" width="2" height="15" rx="1"/><rect x="3.8" y="-16" width="1.2" height="14" rx="0.6"/><rect x="6.4" y="-16" width="1.2" height="14" rx="0.6"/><rect x="9" y="-16" width="1.2" height="14" rx="0.6"/><rect x="3.8" y="-3" width="5.2" height="1.6" rx="0.8"/></g></svg></span><span>uvert</span>
+              </div>
+              <div style="font-size:13px;font-weight:500;color:#1A3C34;">Maximilian Veit · <span style="color:#6B6B6B;font-weight:400;">Founder</span></div>
+              <div style="font-size:12px;color:#1A3C34;margin-top:2px;">
+                <a href="tel:+41782688662" style="color:#1A3C34;text-decoration:none;">+41 78 268 86 62</a>
+                &nbsp;·&nbsp;
+                <a href="mailto:max@couvert.ai" style="color:#1A3C34;text-decoration:none;">max@couvert.ai</a>
+              </div>
+              <div style="font-size:10.5px;color:#9A958C;margin-top:8px;">Couvert GmbH i. G. · Churerstrasse 105, 8808 Freienbach SZ · <a href="https://couvert.ai" style="color:#C4673A;text-decoration:none;">couvert.ai</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <!-- ============ / SIGNATUR B ============ -->
   </div>
 
-  <h3>HTML — Variante B (zum Kopieren)</h3>
-  <div class="code">&lt;table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#1A3C34;font-size:12.5px;line-height:1.55"&gt;
-  &lt;tr&gt;&lt;td valign="top"&gt;
-    &lt;div style="font-family:Georgia,serif;font-weight:500;font-size:24px;line-height:1;color:#1A3C34;letter-spacing:-0.02em;margin-bottom:10px;"&gt;
-      &lt;span&gt;c&lt;/span&gt;&lt;span style="position:relative;display:inline-block;"&gt;&lt;span&gt;o&lt;/span&gt;&lt;svg width="16" height="19" viewBox="-50 -60 100 120" style="position:absolute;left:0;top:0;overflow:visible;"&gt;&lt;g fill="#C4673A"&gt;&lt;rect x="-8" y="-2" width="2" height="15" rx="1"/&gt;&lt;ellipse cx="-7" cy="-10" rx="3.6" ry="5.5"/&gt;&lt;rect x="6" y="-2" width="2" height="15" rx="1"/&gt;&lt;rect x="3.8" y="-16" width="1.2" height="14" rx="0.6"/&gt;&lt;rect x="6.4" y="-16" width="1.2" height="14" rx="0.6"/&gt;&lt;rect x="9" y="-16" width="1.2" height="14" rx="0.6"/&gt;&lt;rect x="3.8" y="-3" width="5.2" height="1.6" rx="0.8"/&gt;&lt;/g&gt;&lt;/svg&gt;&lt;/span&gt;&lt;span&gt;uvert&lt;/span&gt;
-    &lt;/div&gt;
-    &lt;div style="font-size:13px;font-weight:500;"&gt;Max Veit · &lt;span style="color:#6B6B6B;font-weight:400;"&gt;Founder&lt;/span&gt;&lt;/div&gt;
-    &lt;div style="font-size:12px;margin-top:2px;"&gt;&lt;a href="tel:+41782688662" style="color:#1A3C34;text-decoration:none;"&gt;+41 78 268 86 62&lt;/a&gt; · &lt;a href="mailto:max@couvert.ai" style="color:#1A3C34;text-decoration:none;"&gt;max@couvert.ai&lt;/a&gt;&lt;/div&gt;
-    &lt;div style="font-size:10.5px;color:#9A958C;margin-top:8px;"&gt;Couvert GmbH i. G. · Churerstrasse 105, 8808 Freienbach SZ · &lt;a href="https://couvert.ai" style="color:#C4673A;text-decoration:none;"&gt;couvert.ai&lt;/a&gt;&lt;/div&gt;
-  &lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;</div>
+  <!-- ============================================================== -->
+  <!-- GMAIL ANLEITUNG                                                 -->
+  <!-- ============================================================== -->
+  <h2>Gmail — Schritt für Schritt</h2>
 
-  <!-- ================================================== -->
-  <!-- PLAIN TEXT                                          -->
-  <!-- ================================================== -->
-  <h2>Plain-Text-Variante</h2>
-  <p class="meta">Fallback für Text-only-Clients oder interne Kurznachrichten.</p>
-  <div class="code">—
-Max Veit · Founder
+  <div class="guide-card">
+    <h3>1. Signatur kopieren</h3>
+    <ol>
+      <li>Oben bei Variante A (oder B) den Kupfer-Button <strong>Kopieren</strong> klicken.</li>
+      <li>Der Button wird kurz grün <strong>✓ Kopiert</strong>. Die Signatur liegt jetzt exakt und ohne Einzug auf deiner Zwischenablage.</li>
+    </ol>
+  </div>
+
+  <div class="guide-card">
+    <h3>2. Alte Signatur in Gmail löschen</h3>
+    <ol>
+      <li>Gmail öffnen. Oben rechts Zahnrad → <em>Alle Einstellungen ansehen</em>.</li>
+      <li>Tab <em>Allgemein</em> → runter scrollen zu <em>Signatur</em>.</li>
+      <li>Falls noch eine alte Signatur drin steht: ins Signatur-Textfeld klicken, <span class="kbd">Cmd + A</span> drücken (alles markieren), <span class="kbd">Entf</span> (alles löschen). Das Feld muss komplett leer sein.</li>
+    </ol>
+    <p class="note">Dieser Schritt ist wichtig: Reste von alten Einfügeversuchen (versteckte `&lt;div&gt;`-Wrapper, Listen, Quote-Blocks) verursachen den Einzug, den du gesehen hast.</p>
+  </div>
+
+  <div class="guide-card">
+    <h3>3. Neue Signatur einfügen</h3>
+    <ol>
+      <li>Cursor ins leere Signatur-Feld setzen.</li>
+      <li><span class="kbd">Cmd + V</span> (Mac) oder <span class="kbd">Ctrl + V</span> (Windows).</li>
+      <li>Die Signatur erscheint direkt gerendert — Logo, Kupfer-Akzent, Datenblock.</li>
+      <li>Unten bei <em>Standardwerte für Signatur</em> die neue auswählen für <em>Neue E-Mails</em> und <em>Antworten/Weiterleitungen</em>.</li>
+      <li>Ganz unten <em>Änderungen speichern</em>.</li>
+    </ol>
+  </div>
+
+  <div class="guide-card">
+    <h3>4. Test</h3>
+    <ol>
+      <li>Neue E-Mail öffnen. Die Signatur sollte jetzt am linken Rand bündig mit deinem Fliesstext anliegen, nicht eingezogen.</li>
+      <li>Probemail an dich selbst schicken — so siehst du genau, wie die Empfänger die Signatur bekommen.</li>
+    </ol>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- WARUM HTML-CODE EINFÜGEN NICHT FUNKTIONIERT                     -->
+  <!-- ============================================================== -->
+  <div class="callout">
+    <h3>Warum der HTML-Code allein nicht reicht</h3>
+    <p>Gmail hat keinen HTML-Quellcode-Modus für die Signatur. Wenn du den Code <code>&lt;table&gt;...&lt;/table&gt;</code> direkt ins Signatur-Feld kopierst, bleibt er als Text stehen, weil das Feld ein WYSIWYG-Editor ist, kein Code-Editor. Der Kopieren-Button oben löst das: er legt die Signatur als <em>rendered HTML</em> auf die Zwischenablage (nicht als Text), und Gmail übernimmt beim Einfügen Layout plus Logo direkt.</p>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- APPLE MAIL + OUTLOOK                                            -->
+  <!-- ============================================================== -->
+  <h2>Apple Mail</h2>
+  <div class="guide-card">
+    <ol>
+      <li>Mail → Einstellungen → Tab <em>Signaturen</em>.</li>
+      <li>Links deinen Account auswählen, <strong>+</strong> für neue Signatur. Namen vergeben (z. B. "couvert").</li>
+      <li>Rechts im Textfeld den Standard-Text markieren und löschen.</li>
+      <li>Kopieren-Button oben klicken, dann zurück in Apple Mail, ins leere Feld klicken und <span class="kbd">Cmd + V</span>.</li>
+      <li>Falls das Häkchen <em>"Immer meinen Standardschriftschnitt verwenden"</em> aktiviert ist — wegklicken. Sonst überschreibt Apple Mail die Formatierung der Signatur.</li>
+      <li>Einstellungsfenster schliessen. Neue Mail öffnen, Signatur sollte automatisch erscheinen.</li>
+    </ol>
+  </div>
+
+  <h2>Outlook (Web oder Desktop)</h2>
+  <div class="guide-card">
+    <ol>
+      <li>Outlook Web: Zahnrad → <em>Alle Outlook-Einstellungen anzeigen</em> → <em>E-Mail</em> → <em>Verfassen und Antworten</em>.</li>
+      <li>Bei <em>E-Mail-Signatur</em> einen Namen vergeben, ins Feld klicken, Kopieren-Button hier oben drücken, dann <span class="kbd">Cmd + V</span> / <span class="kbd">Ctrl + V</span>.</li>
+      <li>Speichern. Outlook Desktop: derselbe Weg über <em>Einstellungen → Signaturen</em>.</li>
+    </ol>
+    <p class="note">Hinweis: Outlook Desktop für Windows rendert inline-SVG manchmal nicht. Wenn das Logo bei Empfängern als leerer Kasten ankommt, sag Bescheid — dann exportiere ich das Logo als PNG und hänge es als Inline-Bild ein.</p>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- PLAIN TEXT                                                      -->
+  <!-- ============================================================== -->
+  <h2>Plain-Text-Fallback</h2>
+  <p class="meta">Für Text-only-Clients oder interne Tools (CRM, Ticketing, etc.).</p>
+  <div class="plain-box">—
+Maximilian Veit · Founder
 couvert — AI Operations für die Gastronomie
 
 +41 78 268 86 62
@@ -278,55 +364,60 @@ couvert.ai
 
 Couvert GmbH i. G. · Churerstrasse 105, 8808 Freienbach SZ</div>
 
-  <!-- ================================================== -->
-  <!-- EINBETTUNG — SCHRITT FÜR SCHRITT                    -->
-  <!-- ================================================== -->
-  <h2>So baust du die Signatur in deinen Mail-Client ein</h2>
-  <p class="meta">Der einfachste Weg ist <strong>Copy-Paste des gerenderten Blocks</strong> — nicht des HTML-Codes. Gmail, Apple Mail und Outlook-Web übernehmen dabei Layout, Farben und das Logo 1:1.</p>
-
-  <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:24px 28px;margin-bottom:24px;">
-    <h3 style="margin-top:0;">Gmail (im Browser) — empfohlener Weg</h3>
-    <ol style="padding-left:20px;font-size:14px;line-height:1.7;color:#1a1a1a;">
-      <li>Diese Seite hier in Chrome oder Safari öffnen.</li>
-      <li>Zu Variante A oder B scrollen. Mit der Maus <strong>direkt vor dem "c" von couvert</strong> klicken und halten, dann <strong>bis zum Ende der Adresszeile</strong> ziehen. Nur die Signatur selbst markieren — nicht den "Dear Herr Müller"-Beispieltext darüber.</li>
-      <li>Kopieren mit <code style="background:#F5F0EB;padding:2px 6px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:12px;">Cmd + C</code> (Mac) oder <code style="background:#F5F0EB;padding:2px 6px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:12px;">Ctrl + C</code> (Windows).</li>
-      <li>Gmail öffnen. Oben rechts auf das Zahnrad → <em>Alle Einstellungen ansehen</em> → Tab <em>Allgemein</em> → nach unten scrollen zu <em>Signatur</em>.</li>
-      <li>Auf <em>+ Neu erstellen</em>, Namen vergeben (z. B. "couvert Full"), ins Editor-Feld klicken und <code style="background:#F5F0EB;padding:2px 6px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:12px;">Cmd + V</code> drücken.</li>
-      <li>Unten bei <em>Standardwerte für Signatur</em> die neue Signatur auswählen (für neue Mails und für Antworten).</li>
-      <li>Ganz unten auf <em>Änderungen speichern</em> klicken. Testmail an dich selbst schicken — fertig.</li>
-    </ol>
-    <p style="margin-top:14px;font-size:13px;color:#6B6B6B;font-style:italic;">Warum das funktioniert: Gmail übernimmt beim Einfügen den kompletten HTML-Code aus der Zwischenablage, inklusive der Inline-SVG-Grafik und der Inline-Styles. Du musst keinen HTML-Code direkt einfügen.</p>
-  </div>
-
-  <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:24px 28px;margin-bottom:24px;">
-    <h3 style="margin-top:0;">Apple Mail (macOS)</h3>
-    <ol style="padding-left:20px;font-size:14px;line-height:1.7;color:#1a1a1a;">
-      <li>Mail → Einstellungen → Tab <em>Signaturen</em>.</li>
-      <li>Links unter deinem Account auf <strong>+</strong>, eine leere Signatur anlegen. Namen vergeben (z. B. "couvert").</li>
-      <li>Im rechten Feld den Standardtext markieren und löschen.</li>
-      <li>Diese Seite in Safari öffnen, Signatur markieren und kopieren (Schritte 2-3 oben).</li>
-      <li>Ins leere Signatur-Feld in Apple Mail klicken und <code style="background:#F5F0EB;padding:2px 6px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:12px;">Cmd + V</code>.</li>
-      <li>Einstellungs-Fenster schliessen, eine neue Mail öffnen — die Signatur erscheint automatisch unten.</li>
-    </ol>
-    <p style="margin-top:14px;font-size:13px;color:#6B6B6B;font-style:italic;">Falls die Logo-Grafik nicht mitkommt: Häkchen bei "Anhänge immer am Ende der Nachricht mitschicken" entfernen, dann nochmal einfügen.</p>
-  </div>
-
-  <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:24px 28px;margin-bottom:24px;">
-    <h3 style="margin-top:0;">Outlook (Web oder Desktop)</h3>
-    <ol style="padding-left:20px;font-size:14px;line-height:1.7;color:#1a1a1a;">
-      <li>Outlook Web: Zahnrad oben rechts → <em>Alle Outlook-Einstellungen anzeigen</em> → <em>E-Mail</em> → <em>Verfassen und Antworten</em>.</li>
-      <li>Bei "E-Mail-Signatur" einen Namen vergeben und ins Editor-Feld klicken.</li>
-      <li>Signatur aus diesem Browser-Tab kopieren (Schritte 2-3 oben), dann <code style="background:#F5F0EB;padding:2px 6px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:12px;">Cmd + V</code> / <code style="background:#F5F0EB;padding:2px 6px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:12px;">Ctrl + V</code>.</li>
-      <li>Speichern. Bei Outlook Desktop (Mac/Windows): gleicher Weg über Einstellungen → Signaturen.</li>
-    </ol>
-    <p style="margin-top:14px;font-size:13px;color:#6B6B6B;font-style:italic;">Hinweis: Outlook Desktop für Windows rendert SVG manchmal nicht. Wenn das Logo bei Empfängern als leerer Kasten ankommt, sag Bescheid — dann exportiere ich dir das Logo als PNG und wir hängen es als Inline-Bild ein.</p>
-  </div>
-
-  <div style="background:#1A3C34;color:#F5F0EB;border-radius:6px;padding:22px 26px;margin-bottom:24px;">
-    <h3 style="margin-top:0;color:#F5F0EB;letter-spacing:0.14em;">Wenn doch der HTML-Code direkt</h3>
-    <p style="font-size:13.5px;line-height:1.65;margin-top:8px;color:#E0DCD6;">Manche Clients (z. B. Thunderbird, manche CRM-Tools, Mail-Automation in HubSpot/Apollo/lemlist) verlangen HTML-Code direkt. In dem Fall den grauen <em>HTML — Variante A</em>-Block oben kopieren — das ist der rohe HTML-Code — und in das HTML-Feld des Signatur-Editors einfügen. Wichtig: nicht in ein "Plain Text"-Feld, sondern explizit in ein "HTML"- oder "Quellcode"-Feld.</p>
-  </div>
-
 </div>
+
+<!-- ============================================================== -->
+<!-- COPY SCRIPT                                                     -->
+<!-- ============================================================== -->
+<script>
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const id = btn.getAttribute('data-target');
+    const el = document.getElementById(id);
+    if(!el){return}
+
+    // outerHTML = das reine <table>...</table> mit allen Inline-Styles
+    // Kein umliegender Wrapper, keine Padding-Margins vom Preview-Rahmen.
+    const html = el.outerHTML;
+    const plain = el.innerText.replace(/\n{3,}/g,'\n\n');
+
+    try{
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          'text/html': new Blob([html], {type:'text/html'}),
+          'text/plain': new Blob([plain], {type:'text/plain'})
+        })
+      ]);
+      const orig = btn.textContent;
+      btn.textContent = 'Kopiert';
+      btn.classList.add('ok');
+      setTimeout(() => {
+        btn.textContent = orig;
+        btn.classList.remove('ok');
+      }, 1800);
+    }catch(e){
+      // Fallback für ältere Browser
+      try{
+        const range = document.createRange();
+        range.selectNode(el);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        document.execCommand('copy');
+        sel.removeAllRanges();
+        btn.textContent = 'Kopiert (Fallback)';
+        btn.classList.add('ok');
+        setTimeout(() => {
+          btn.textContent = 'Kopieren';
+          btn.classList.remove('ok');
+        }, 1800);
+      }catch(err){
+        alert('Kopieren fehlgeschlagen. Bitte manuell markieren und Cmd+C drücken.');
+      }
+    }
+  });
+});
+</script>
+
 </body>
 </html>
