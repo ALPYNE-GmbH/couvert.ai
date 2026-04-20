@@ -48,6 +48,7 @@
 </script>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 <style>
 .hero-section{padding-top:140px;padding-bottom:60px;position:relative}
 .hero-section::before{content:'';position:absolute;top:80px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(196,103,58,0.06) 0%,transparent 65%);pointer-events:none}
@@ -316,13 +317,13 @@ html{scroll-behavior:smooth}
 </div>
 
 <!-- HERO -->
-<section class="hero-section" id="top"><div class="container">
+<section class="hero-section reveal" id="top"><div class="container">
 <div class="hero-overline animate d1">Couvert</div>
 <h1 class="animate d2">Agentic Operating System<br><em>für Gastronomie.</em></h1>
 <p class="hero-sub animate d3">Von Scan über Intelligence bis Operations: Wir erkennen, priorisieren und steuern die Hebel, die Ihren Betrieb messbar besser machen.</p>
 <div class="hero-cta animate d4"><a href="#scan" class="btn-primary">Kostenlosen Scan starten</a><a href="#intelligence" class="btn-ghost">Intelligence Playbook ansehen</a></div>
 <a href="#calculator" class="hero-teaser animate d5" data-scroll-target="calculator">
-  <div class="hero-teaser-number" id="hero-counter">CHF 0</div>
+  <div class="hero-teaser-number" id="hero-counter"><span class="count-up" data-target="390000" data-prefix="CHF " data-suffix="+" data-format="de">CHF 390'000+</span></div>
   <div class="hero-teaser-sub">So viel Umsatz verliert ein Gastro-Betrieb mit CHF 5 Mio.+ Jahresumsatz im Schnitt pro Jahr</div>
   <div class="hero-teaser-cta">Was kostet Sie das pro Jahr? <span class="hero-teaser-arrow">→</span></div>
 </a>
@@ -334,11 +335,11 @@ html{scroll-behavior:smooth}
 <div class="proof-item"><div class="proof-num">2.825</div><div class="proof-label">Bewertungen analysiert</div></div>
 <div class="proof-item"><div class="proof-num">0%</div><div class="proof-label">Antwortquote</div></div>
 <div class="proof-item"><div class="proof-num">10</div><div class="proof-label">Schwachstellen identifiziert</div></div>
-<div class="proof-item"><div class="proof-num">CHF 390K+</div><div class="proof-label">Geschätzter Umsatzverlust / Jahr</div></div>
+<div class="proof-item"><div class="proof-num"><span class="count-up" data-target="390000" data-prefix="CHF " data-suffix="+" data-format="k">CHF 390K+</span></div><div class="proof-label">Geschätzter Umsatzverlust / Jahr</div></div>
 </div></section>
 
 <!-- PRODUKTSTUFEN: SCAN / INTELLIGENCE / OPERATIONS -->
-<section class="stages-section"><div class="container">
+<section class="stages-section reveal"><div class="container">
 <div class="stages-header">
 <div class="stages-overline">Produktstufen</div>
 <h2>Scan. Intelligence. <em>Operations.</em></h2>
@@ -371,7 +372,7 @@ html{scroll-behavior:smooth}
 </div></section>
 
 <!-- WISSENSCHAFT -->
-<section class="science-section light-section"><div class="container">
+<section class="science-section light-section reveal"><div class="container">
 <div class="science-header">
 <div class="science-overline">Methodik</div>
 <h2>Warum die Zahlen <em>belastbar</em> sind.</h2>
@@ -441,7 +442,7 @@ html{scroll-behavior:smooth}
 
 
 <!-- CALCULATOR -->
-<section class="calc-section" id="calculator"><div class="container">
+<section class="calc-section reveal" id="calculator"><div class="container">
 <div class="section-label">Umsatzrechner</div>
 <div class="section-title">Wie viel Umsatz kosten ungelöste Gästeprobleme Ihren Betrieb?</div>
 <div class="section-sub" style="margin-bottom:36px">Geben Sie die Eckdaten Ihres Betriebs ein und sehen Sie sofort eine erste Einschätzung.</div>
@@ -482,7 +483,7 @@ html{scroll-behavior:smooth}
 </div></section>
 
 <!-- AI TEAM -->
-<section class="ai-team-section light-section" id="ai-team"><div class="container">
+<section class="ai-team-section light-section reveal" id="ai-team"><div class="container">
 <div class="section-label">Ihr AI Operations Team</div>
 <div class="section-title">Vier spezialisierte Teams. Zwölf Agents.</div>
 <div class="section-sub">Jedes Team löst ein konkretes Problem. Die Agents teilen sich Daten und Entscheidungen — damit deckt das Team den gesamten operativen Kreislauf ab, von der einzelnen Bewertung bis zur strategischen Standort-Optimierung.</div>
@@ -542,7 +543,7 @@ html{scroll-behavior:smooth}
 
 
 <!-- MOCKUPS GALLERY -->
-<section class="mockups-section light-section" id="produkt"><div class="container">
+<section class="mockups-section light-section reveal" id="produkt"><div class="container">
 <div class="section-label">Was Sie bekommen</div>
 <div class="section-title">Fünf Kanäle. Ein Betrieb.</div>
 <div class="section-sub">Keine Software zum Bedienen. Ergebnisse in den Kanälen, die Ihr Team ohnehin nutzt — Dashboard, Email, WhatsApp, PDF-Bericht.</div>
@@ -624,7 +625,7 @@ html{scroll-behavior:smooth}
 </div></section>
 
 <!-- SCAN TEASER -->
-<section class="scan-teaser-section light-section"><div class="container">
+<section class="scan-teaser-section light-section reveal"><div class="container">
 <div class="scan-teaser-grid">
 <div class="scan-teaser-left">
 <div class="section-label">Couvert Scan</div>
@@ -633,7 +634,7 @@ html{scroll-behavior:smooth}
 <p><small>Der Scan geht in Kürze live. Tragen Sie sich für die Beta ein — erste Plätze für Schweizer Betriebe mit CHF 5 Mio.+ Jahresumsatz.</small></p>
 </div>
 <div class="scan-teaser-right">
-<div class="scan-count">12</div>
+<div class="scan-count"><span class="count-up" data-target="12">12</span></div>
 <div class="scan-count-label">Agents in 4 Teams</div>
 <a href="https://calendly.com/hello-couvert/30min" target="_blank" class="btn-primary">Scan-Beta anfragen</a>
 </div>
@@ -641,7 +642,7 @@ html{scroll-behavior:smooth}
 </div></section>
 
 <!-- CTA -->
-<section class="cta-section" id="contact"><div class="container">
+<section class="cta-section cta-final reveal" id="contact"><div class="container">
 <div class="section-label" style="text-align:center">Nächster Schritt</div>
 <h2>Wir zeigen Ihnen, wo Ihr Betrieb Umsatz liegen lässt.</h2>
 <p>In einem kurzen Erstgespräch sehen Sie, welche Signale heute schon auf Schwachstellen, verlorene Gäste und ungenutztes Potenzial hinweisen.</p>
@@ -696,10 +697,53 @@ function positionPulse(){const s=revenueSlider,pct=(s.value-s.min)/(s.max-s.min)
 positionPulse();
 new IntersectionObserver(e=>{if(e[0].isIntersecting&&!hintDismissed){calcHint.classList.add('visible');positionPulse();sliderPulse.classList.add('active')}},{threshold:.3}).observe(calcForm);
 [revenueSlider,bonSlider,reviewsSlider,ratingSlider,responseSlider].forEach(s=>s.addEventListener('input',()=>{if(!hintDismissed){hintDismissed=true;calcHint.classList.remove('visible');sliderPulse.classList.remove('active')}},{once:true}));
-// Hero counter animation
-const heroCounter=document.getElementById('hero-counter');
-let counterDone=false;
-new IntersectionObserver(e=>{if(e[0].isIntersecting&&!counterDone){counterDone=true;const target=390000;const duration=2000;const start=performance.now();function tick(now){const elapsed=now-start;const progress=Math.min(elapsed/duration,1);const eased=1-Math.pow(1-progress,3);const current=Math.round(target*eased);heroCounter.textContent='CHF '+Math.round(current/1000)+'K+';if(progress<1)requestAnimationFrame(tick)}requestAnimationFrame(tick)}},{threshold:0.5}).observe(heroCounter);
+// Scroll-reveal + count-up
+(function(){
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Count-up formatter
+  function formatCountUp(el,value){
+    const target=+el.dataset.target||0;
+    const prefix=el.dataset.prefix||'';
+    const suffix=el.dataset.suffix||'';
+    const fmt=el.dataset.format||'';
+    let out;
+    if(fmt==='k'){out=Math.round(value/1000)+'K'}
+    else if(fmt==='de'){out=Math.round(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g,"'")}
+    else{out=Math.round(value).toString()}
+    el.textContent=prefix+out+suffix;
+    void target;
+  }
+  function runCountUp(el){
+    if(el.dataset.counted==='1')return;el.dataset.counted='1';
+    const target=+el.dataset.target||0;
+    if(reduce){formatCountUp(el,target);return}
+    const duration=1500;const start=performance.now();
+    function tick(now){
+      const p=Math.min((now-start)/duration,1);
+      const eased=1-Math.pow(1-p,3);
+      formatCountUp(el,target*eased);
+      if(p<1)requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  // Reveal sections
+  const reveals=document.querySelectorAll('.reveal');
+  if(reduce){reveals.forEach(r=>r.classList.add('is-visible'))}
+  else if('IntersectionObserver' in window){
+    const io=new IntersectionObserver((entries,obs)=>{
+      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');obs.unobserve(e.target)}});
+    },{threshold:0.15,rootMargin:'0px 0px -5% 0px'});
+    reveals.forEach(r=>io.observe(r));
+  }else{reveals.forEach(r=>r.classList.add('is-visible'))}
+  // Count-up
+  const counters=document.querySelectorAll('.count-up');
+  if('IntersectionObserver' in window && !reduce){
+    const co=new IntersectionObserver((entries,obs)=>{
+      entries.forEach(e=>{if(e.isIntersecting){runCountUp(e.target);obs.unobserve(e.target)}});
+    },{threshold:0.5});
+    counters.forEach(c=>co.observe(c));
+  }else{counters.forEach(c=>runCountUp(c))}
+})();
 
 // Target-pulse on in-page hash navigation (e.g. Hero-Teaser → Calculator)
 function pulseTarget(id){const el=document.getElementById(id);if(!el)return;el.classList.remove('target-pulse-anim');void el.offsetWidth;el.classList.add('target-pulse-anim');setTimeout(()=>el.classList.remove('target-pulse-anim'),1300)}

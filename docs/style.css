@@ -66,6 +66,42 @@ footer{padding:32px 0;border-top:1px solid var(--border)}
 .animate{opacity:0;animation:fadeUp 0.6s ease forwards}
 .d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.35s}.d5{animation-delay:.4s}
 
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease-out,transform 0.6s ease-out;will-change:opacity,transform}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+/* Stagger stage cards + ai-team cards when their section reveals */
+.stages-section.reveal.is-visible .stage-card{animation:fadeUp 0.6s ease-out both}
+.stages-section.reveal.is-visible .stage-card:nth-child(1){animation-delay:.1s}
+.stages-section.reveal.is-visible .stage-card:nth-child(2){animation-delay:.2s}
+.stages-section.reveal.is-visible .stage-card:nth-child(3){animation-delay:.3s}
+.ai-team-section.reveal.is-visible .ai-team-card{animation:fadeUp 0.6s ease-out both}
+.ai-team-section.reveal.is-visible .ai-team-card:nth-child(1){animation-delay:.1s}
+.ai-team-section.reveal.is-visible .ai-team-card:nth-child(2){animation-delay:.2s}
+.ai-team-section.reveal.is-visible .ai-team-card:nth-child(3){animation-delay:.3s}
+.ai-team-section.reveal.is-visible .ai-team-card:nth-child(4){animation-delay:.4s}
+
+/* Card depth — stage cards (Scan / Intelligence / Operations) */
+.stages-grid .stage-card{transition:transform 0.25s ease-out,box-shadow 0.25s ease-out,border-color 0.25s ease-out;box-shadow:0 1px 2px rgba(0,0,0,0.3),0 8px 24px rgba(10,20,16,0.18);position:relative;border:1px solid transparent}
+@media(hover:hover){.stages-grid .stage-card:hover{transform:translateY(-4px);box-shadow:0 2px 4px rgba(0,0,0,0.3),0 16px 40px rgba(10,20,16,0.28);border-color:rgba(196,103,58,0.35)}}
+.stages-grid .stage-card:active{transform:translateY(-2px);box-shadow:0 2px 4px rgba(0,0,0,0.3),0 12px 32px rgba(10,20,16,0.24);border-color:rgba(196,103,58,0.35)}
+
+/* Card depth — AI-Team cards (already have border-color hover; add lift) */
+.ai-team-card{transition:transform 0.25s ease-out,box-shadow 0.25s ease-out,border-color 0.3s!important;box-shadow:0 1px 2px rgba(0,0,0,0.25),0 8px 24px rgba(10,20,16,0.15)}
+@media(hover:hover){.ai-team-card:hover{transform:translateY(-4px);box-shadow:0 2px 4px rgba(0,0,0,0.3),0 16px 40px rgba(10,20,16,0.25)}}
+.ai-team-card:active{transform:translateY(-2px)}
+
+/* Count-up: without JS, show final value — JS will overwrite with 0 then count */
+.count-up{font-variant-numeric:tabular-nums}
+
+/* Reduced motion — disable all animations, show final state immediately */
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1!important;transform:none!important;transition:none!important}
+  .reveal.is-visible .stage-card,.reveal.is-visible .ai-team-card{animation:none!important;opacity:1!important}
+  .animate{opacity:1!important;animation:none!important}
+  .stages-grid .stage-card,.ai-team-card{transition:none!important}
+  .stages-grid .stage-card:hover,.ai-team-card:hover{transform:none!important}
+}
+
 /* SUBPAGE */
 .subpage-hero{padding-top:120px;padding-bottom:40px}
 .back-link{font-size:14px;color:var(--text-dim);text-decoration:none;letter-spacing:0.3px;transition:color 0.3s;display:inline-block;margin-bottom:24px}
