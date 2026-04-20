@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monatlicher Wirkungsbericht - April 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1A3C34;--bg3:#12261F;--copper:#C4673A;--gold:#E8B931;--cream:#F5F0EB;--ink:#1F2B27;--ink-dim:#6D6A63;--border:#E4E1D8;--red:#B8564A;--green:#6B9C7F}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg3);padding:40px 24px;min-height:100vh;color:var(--ink);font-size:14px;line-height:1.55}
+.page{max-width:820px;margin:0 auto;background:#FFFFFF;border:1px solid var(--border);border-radius:6px;box-shadow:0 12px 40px rgba(0,0,0,0.35);padding:48px;position:relative;min-height:calc(100vh - 80px)}
+.page-head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--border);padding-bottom:24px;margin-bottom:32px}
+.logo{font-family:'DM Serif Display',serif;font-size:26px;color:var(--bg)}
+.logo span{color:var(--copper)}
+.overline{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--copper);margin-bottom:8px}
+.h1{font-family:'DM Serif Display',serif;font-size:28px;color:var(--ink);line-height:1.2;letter-spacing:-0.5px}
+.hero-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px}
+.kpi{border:1px solid var(--border);border-radius:6px;padding:20px;background:#FAFAF7}
+.kpi-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--ink-dim);text-transform:uppercase;margin-bottom:8px}
+.kpi-num{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:600;line-height:1.1;margin-bottom:6px}
+.kpi-num.gold{color:#B8940A}
+.kpi-num.cream{color:var(--copper)}
+.kpi-num.off{color:var(--ink)}
+.kpi-sub{font-size:11px;color:var(--ink-dim)}
+.sec{margin-bottom:32px}
+.sec h2{font-family:'DM Serif Display',serif;font-size:20px;color:var(--ink);margin-bottom:14px;letter-spacing:-0.3px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border)}
+th{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--ink-dim);text-transform:uppercase;font-weight:500}
+td.effect{font-family:'JetBrains Mono',monospace;color:#0E7A3F;font-weight:600;text-align:right}
+td.eff-agent{color:var(--ink-dim);font-size:12px}
+.next-list{list-style:none;padding:0}
+.next-list li{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px}
+.next-list li:last-child{border-bottom:none}
+.arrow{color:var(--copper);font-family:'JetBrains Mono',monospace;flex-shrink:0}
+.lever{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--copper);font-weight:600}
+.chart{background:#FAFAF7;border:1px solid var(--border);border-radius:6px;padding:20px;margin-top:12px}
+.chart svg{width:100%;height:180px;display:block}
+.chart-caption{font-size:12px;color:var(--ink-dim);font-style:italic;margin-top:10px;text-align:center}
+.footer{position:absolute;bottom:20px;left:48px;right:48px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-dim);letter-spacing:1px;padding-top:14px;border-top:1px solid var(--border)}
+@media(max-width:800px){
+  body{padding:16px 8px}
+  .page{padding:24px 20px 60px}
+  .hero-row{grid-template-columns:1fr;gap:10px}
+  .kpi-num{font-size:22px}
+  .h1{font-size:22px}
+  .footer{left:20px;right:20px;font-size:9px}
+  th:nth-child(2),td:nth-child(2){display:none}
+}
+@media(max-width:400px){.page{padding:20px 14px 70px}.h1{font-size:19px}.logo{font-size:22px}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="page-head">
+    <div>
+      <div class="logo">c<span>o</span>uvert</div>
+    </div>
+    <div style="text-align:right">
+      <div class="overline">MONATLICHER WIRKUNGSBERICHT</div>
+      <div class="h1">60 Seconds to Napoli<br>April 2026</div>
+    </div>
+  </div>
+
+  <div class="hero-row">
+    <div class="kpi">
+      <div class="kpi-label">Realisierter Effekt</div>
+      <div class="kpi-num gold">CHF 24.300</div>
+      <div class="kpi-sub">letzter Monat</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Identifiziertes Potenzial</div>
+      <div class="kpi-num cream">CHF 256.000</div>
+      <div class="kpi-sub">Rest-Verbesserung</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Aktive Massnahmen</div>
+      <div class="kpi-num off">4 von 10</div>
+      <div class="kpi-sub">in Umsetzung</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>Was diesen Monat gewirkt hat</h2>
+    <table>
+      <thead><tr><th>Massnahme</th><th>Aufwand</th><th style="text-align:right">Effekt</th></tr></thead>
+      <tbody>
+        <tr><td>Antwortquote 0% auf 94%</td><td class="eff-agent">Reputation Manager automatisch</td><td class="effect">+CHF 6.500</td></tr>
+        <tr><td>Teigqualität-Briefings an Küchenchef</td><td class="eff-agent">Quality Watchdog</td><td class="effect">+CHF 24.000</td></tr>
+        <tr><td>Reservierungs-Buffer Samstagabend</td><td class="eff-agent">Operations Advisor</td><td class="effect">+CHF 13.800</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec">
+    <h2>Was als nächstes dran ist</h2>
+    <ul class="next-list">
+      <li><span class="arrow">&rarr;</span>Überbuchungsproblem systemisch lösen<span class="lever">CHF 80K+ Hebel</span></li>
+      <li><span class="arrow">&rarr;</span>Personaldecke Spitzenzeiten<span class="lever">CHF 40K Hebel</span></li>
+      <li><span class="arrow">&rarr;</span>Truffle Pasta Bowl überarbeiten<span class="lever">CHF 25K Hebel</span></li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <h2>Rating-Entwicklung</h2>
+    <div class="chart">
+      <svg viewBox="0 0 600 180" preserveAspectRatio="none">
+        <line x1="40" y1="40" x2="580" y2="40" stroke="#C4673A" stroke-width="1" stroke-dasharray="4 4" opacity="0.6"/>
+        <text x="584" y="44" font-family="JetBrains Mono" font-size="10" fill="#C4673A">4.70</text>
+        <g stroke="#E4E1D8" stroke-width="1">
+          <line x1="40" y1="160" x2="580" y2="160"/>
+        </g>
+        <polyline points="60,80 140,104 220,102 300,124 380,130 460,114" fill="none" stroke="#1A3C34" stroke-width="2"/>
+        <g fill="#1A3C34">
+          <circle cx="60" cy="80" r="4"/><circle cx="140" cy="104" r="4"/><circle cx="220" cy="102" r="4"/><circle cx="300" cy="124" r="4"/><circle cx="380" cy="130" r="4"/><circle cx="460" cy="114" r="5" fill="#6B9C7F"/>
+        </g>
+        <g font-family="JetBrains Mono" font-size="10" fill="#6D6A63" text-anchor="middle">
+          <text x="60" y="176">Dez</text><text x="140" y="176">Jan</text><text x="220" y="176">Feb</text><text x="300" y="176">Mär</text><text x="380" y="176">Apr</text><text x="460" y="176">Mai</text>
+        </g>
+        <g font-family="JetBrains Mono" font-size="9" fill="#1F2B27">
+          <text x="60" y="72" text-anchor="middle">4.65</text><text x="140" y="96" text-anchor="middle">4.53</text><text x="220" y="94" text-anchor="middle">4.54</text><text x="300" y="116" text-anchor="middle">4.43</text><text x="380" y="122" text-anchor="middle">4.40</text><text x="460" y="104" text-anchor="middle" fill="#6B9C7F">4.48</text>
+        </g>
+      </svg>
+      <div class="chart-caption">Erster Aufwärtstrend seit Dezember. Benchmark Margheri 4.70 (gestrichelt).</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Generiert am 1. Mai 2026, couvert.ai</span>
+    <span>Seite 3 / 12</span>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Review Response - Couvert Cockpit</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1A3C34;--bg2:#162F29;--bg3:#12261F;--copper:#C4673A;--gold:#E8B931;--cream:#F5F0EB;--text:#E0DCD6;--dim:#9B958C;--border:#2A4A42;--green:#6B9C7F;--red:#B8564A}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg3);color:var(--text);padding:24px;min-height:100vh;font-size:14px;line-height:1.55}
+.browser{max-width:1180px;margin:0 auto;background:var(--bg2);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.browser-bar{background:var(--bg3);border-bottom:1px solid var(--border);padding:10px 14px;display:flex;align-items:center;gap:10px}
+.dots{display:flex;gap:6px}
+.dots span{width:10px;height:10px;border-radius:50%;background:var(--border)}
+.url{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:6px 12px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--dim)}
+.url b{color:var(--cream);font-weight:500}
+.content{display:grid;grid-template-columns:60% 40%;gap:0}
+.panel{padding:28px}
+.panel.left{border-right:1px solid var(--border);background:var(--bg2)}
+.panel.right{background:var(--bg)}
+.review-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:16px}
+.source{display:flex;align-items:center;gap:10px}
+.g-logo{width:28px;height:28px;border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;color:var(--dim);font-size:16px}
+.stars{letter-spacing:3px;color:var(--gold);font-size:16px}
+.stars .off{color:var(--border)}
+.meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);margin-top:4px}
+.author{font-family:'DM Serif Display',serif;font-size:20px;color:var(--cream);margin-top:10px}
+.lang-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--copper);border:1px solid var(--copper);padding:2px 8px;border-radius:4px;margin-top:8px}
+.review-text{margin-top:18px;padding:18px;background:var(--bg3);border-left:2px solid var(--border);border-radius:0 4px 4px 0;font-size:15px;color:var(--text);line-height:1.65}
+.tags{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.5px;color:var(--dim);border:1px solid var(--border);background:var(--bg3);padding:4px 10px;border-radius:4px}
+.r-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--copper);margin-bottom:6px}
+.r-status{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);margin-bottom:14px}
+.r-status b{color:var(--gold);font-weight:500}
+.response-text{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:18px;font-size:14px;line-height:1.7;color:var(--text)}
+.sig{margin-top:12px;font-family:'DM Serif Display',serif;font-style:italic;color:var(--cream)}
+.conf{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);display:flex;align-items:center;gap:6px}
+.conf::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green)}
+.btns{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+.btn{font-size:13px;padding:10px 16px;border-radius:4px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;font-family:inherit}
+.btn.primary{background:var(--copper);border-color:var(--copper);color:var(--cream)}
+.btn.primary:hover{background:#D4845A}
+.btn:hover{border-color:var(--copper)}
+.timeline{background:var(--bg3);border-top:1px solid var(--border);padding:20px 28px;display:flex;gap:14px;align-items:center;overflow-x:auto}
+.tl-step{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.tl-dot{width:8px;height:8px;border-radius:50%;background:var(--copper)}
+.tl-line{width:28px;height:1px;background:var(--copper);opacity:0.6}
+.tl-time{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--copper)}
+.tl-text{font-size:12px;color:var(--text)}
+@media(max-width:800px){
+  body{padding:8px}
+  .content{grid-template-columns:1fr}
+  .panel.left{border-right:none;border-bottom:1px solid var(--border)}
+  .panel{padding:20px}
+  .timeline{padding:14px 16px;font-size:11px}
+  .tl-line{width:16px}
+}
+@media(max-width:400px){.panel{padding:16px}.review-text{padding:14px;font-size:14px}}
+</style>
+</head>
+<body>
+<div class="browser">
+  <div class="browser-bar">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <div class="url">cockpit.<b>couvert.ai</b>/reputation/reviews</div>
+  </div>
+  <div class="content">
+    <div class="panel left">
+      <div class="review-head">
+        <div class="source">
+          <div class="g-logo">G</div>
+          <div>
+            <div class="stars">★★<span class="off">★★★</span></div>
+            <div class="meta">Freitag, 17. April 2026, 22:14</div>
+          </div>
+        </div>
+      </div>
+      <div class="author">M. K.</div>
+      <span class="lang-badge">Deutsch</span>
+      <div class="review-text">Ich habe für Samstag um 19:00 Uhr einen Tisch für 4 Erwachsene und 3 Kinder reserviert. Wir sind pünktlich angekommen und mussten trotzdem 30 Minuten direkt bei der Eingangstür im Restaurant warten, zusammen mit einer grossen Menschenmenge.</div>
+      <div class="tags">
+        <span class="tag">Wartezeit trotz Reservation</span>
+        <span class="tag">Gruppenbuchung</span>
+      </div>
+    </div>
+    <div class="panel right">
+      <div class="r-label">VORGESCHLAGENE ANTWORT</div>
+      <div class="r-status">Generiert 22:16, <b>Freigabe erforderlich</b></div>
+      <div class="response-text">
+        Liebe Frau K., vielen Dank für Ihr ehrliches Feedback und dass Sie sich die Zeit genommen haben, Ihre Erfahrung zu teilen. Eine Wartezeit von 30 Minuten trotz Reservation entspricht nicht unserem Anspruch, und wir verstehen Ihre Enttäuschung, insbesondere mit einer Gruppe und Kindern. Wir haben unsere Reservierungskapazität für die Wochenenden bereits angepasst, damit dies nicht erneut vorkommt. Ich würde mich freuen, Sie bei einem weiteren Besuch persönlich zu begrüssen und Ihnen zu zeigen, dass wir Ihre Kritik ernst nehmen.
+        <div class="sig">Die Geschäftsführung</div>
+      </div>
+      <div class="conf">Tonalität: Ihr Betrieb, 97%</div>
+      <div class="btns">
+        <button class="btn primary">Freigeben &amp; Posten</button>
+        <button class="btn">Bearbeiten</button>
+        <button class="btn">Eskalieren</button>
+      </div>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="tl-step"><div class="tl-dot"></div><div><div class="tl-time">22:14</div><div class="tl-text">Review erkannt</div></div></div>
+    <div class="tl-line"></div>
+    <div class="tl-step"><div class="tl-dot"></div><div><div class="tl-time">22:15</div><div class="tl-text">Kategorisiert: Wartezeit, Gruppe</div></div></div>
+    <div class="tl-line"></div>
+    <div class="tl-step"><div class="tl-dot"></div><div><div class="tl-time">22:16</div><div class="tl-text">Antwort generiert</div></div></div>
+    <div class="tl-line"></div>
+    <div class="tl-step"><div class="tl-dot"></div><div><div class="tl-time">22:18</div><div class="tl-text">Bereit zur Freigabe</div></div></div>
+  </div>
+</div>
+</body>
+</html>

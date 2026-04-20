@@ -297,6 +297,56 @@ html{scroll-behavior:smooth}
   .msr-num{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:var(--cream)}
   .msr-num-green{color:var(--green-up)}
 }
+
+/* SOLUTIONS-FOR-EVERY-TEAM SECTION */
+.solutions-section{background:var(--bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.solutions-head{text-align:center;margin-bottom:36px}
+.solutions-head h2{font-family:'DM Serif Display',serif;font-size:clamp(26px,4vw,42px);color:var(--cream-bright);line-height:1.15;letter-spacing:-0.5px;margin-bottom:12px}
+.solutions-head p{font-size:17px;color:var(--text-dim);max-width:640px;margin:0 auto;font-weight:300}
+.sol-tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:6px;max-width:720px;margin-left:auto;margin-right:auto}
+.sol-tab{font-family:'DM Sans',sans-serif;background:transparent;border:none;color:var(--text-dim);font-size:13px;padding:10px 18px;border-radius:4px;cursor:pointer;font-weight:500;letter-spacing:0.2px;transition:all 0.25s;white-space:nowrap}
+.sol-tab:hover{color:var(--cream)}
+.sol-tab.active{background:var(--bg);color:var(--cream);box-shadow:0 1px 4px rgba(0,0,0,0.25);border:1px solid var(--border)}
+.sol-panel{display:none;grid-template-columns:65% 35%;gap:16px;animation:fadeUp 0.4s ease-out}
+.sol-panel.active{display:grid}
+.sol-main{position:relative;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:28px;overflow:hidden}
+.sol-main.tint-copper{background:linear-gradient(180deg,rgba(196,103,58,0.08),rgba(196,103,58,0.02));border-color:rgba(196,103,58,0.3)}
+.sol-main.tint-green{background:linear-gradient(180deg,rgba(107,156,127,0.08),rgba(107,156,127,0.02));border-color:rgba(107,156,127,0.3)}
+.sol-main.tint-gold{background:linear-gradient(180deg,rgba(232,185,49,0.08),rgba(232,185,49,0.02));border-color:rgba(232,185,49,0.3)}
+.sol-main.tint-soft{background:linear-gradient(180deg,rgba(212,132,90,0.08),rgba(212,132,90,0.02));border-color:rgba(212,132,90,0.3)}
+.sol-sub-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--copper);text-transform:uppercase;margin-bottom:10px}
+.sol-main h3{font-family:'DM Serif Display',serif;font-size:28px;color:var(--cream-bright);line-height:1.15;letter-spacing:-0.4px;margin-bottom:12px}
+.sol-main .sol-body{font-size:15px;color:var(--text);line-height:1.6;margin-bottom:14px;max-width:520px}
+.sol-agents{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);letter-spacing:0.5px;margin-bottom:18px}
+.sol-agents b{color:var(--cream);font-weight:500}
+.sol-cta{display:inline-block;background:var(--copper);color:var(--cream);padding:10px 18px;text-decoration:none;font-size:13px;font-weight:500;border-radius:4px;transition:background 0.25s;margin-bottom:20px}
+.sol-cta:hover{background:var(--copper-soft)}
+.ai-chip{position:absolute;top:18px;right:18px;background:linear-gradient(135deg,#C4673A,#E8B931);color:#FFFFFF;padding:6px 12px;border-radius:20px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.5px;font-weight:600;box-shadow:0 4px 14px rgba(196,103,58,0.35);z-index:2;display:flex;align-items:center;gap:6px}
+.ai-chip::before{content:'';width:5px;height:5px;background:#FFF;border-radius:50%;box-shadow:0 0 4px rgba(255,255,255,0.8)}
+.mockup-embed-frame{background:#12261F;border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-top:6px;position:relative;height:320px}
+.mockup-embed-frame iframe{width:200%;height:640px;border:0;transform:scale(0.5);transform-origin:top left;pointer-events:none;display:block}
+.mockup-embed-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-family:'JetBrains Mono',monospace;font-size:12px}
+.sol-side{display:flex;flex-direction:column;gap:16px}
+.sol-kpi,.sol-quote{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:22px}
+.sol-kpi-num{font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:600;color:var(--cream-bright);line-height:1;margin-bottom:8px;letter-spacing:-0.5px}
+.sol-kpi-cap{font-size:13px;color:var(--text-dim);line-height:1.5}
+.sol-quote p{font-family:'DM Serif Display',serif;font-size:15px;font-style:italic;color:var(--cream);line-height:1.45;margin-bottom:10px}
+.sol-quote cite{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--copper);font-style:normal;text-transform:uppercase}
+@media(max-width:900px){
+  .sol-panel{grid-template-columns:1fr}
+  .sol-main{padding:22px}
+  .sol-tabs{overflow-x:auto;flex-wrap:nowrap;justify-content:flex-start;-webkit-overflow-scrolling:touch;padding:6px}
+  .sol-tabs::-webkit-scrollbar{display:none}
+  .sol-main h3{font-size:22px}
+  .mockup-embed-frame{height:240px}
+  .mockup-embed-frame iframe{transform:scale(0.45)}
+  .ai-chip{font-size:9px;padding:5px 10px;top:14px;right:14px}
+}
+@media(max-width:400px){
+  .sol-main{padding:18px}
+  .sol-kpi-num{font-size:28px}
+  .sol-main h3{font-size:19px}
+}
 </style>
 </head>
 <body>
@@ -369,6 +419,127 @@ html{scroll-behavior:smooth}
 </div>
 
 </div>
+</div></section>
+
+<!-- SOLUTIONS FOR EVERY TEAM -->
+<section class="solutions-section reveal" id="solutions"><div class="container">
+<div class="solutions-head">
+<div class="section-label" style="text-align:center">Solutions</div>
+<h2>Ein Team für jede Dimension Ihres Betriebs.</h2>
+<p>4 spezialisierte AI-Teams. 12 Agents. Ein Operating System.</p>
+</div>
+
+<div class="sol-tabs" role="tablist">
+<button class="sol-tab active" data-sol="guest" role="tab" aria-selected="true">Guest Experience</button>
+<button class="sol-tab" data-sol="quality" role="tab" aria-selected="false">Quality &amp; Operations</button>
+<button class="sol-tab" data-sol="revenue" role="tab" aria-selected="false">Revenue &amp; Menu</button>
+<button class="sol-tab" data-sol="market" role="tab" aria-selected="false">Market &amp; Growth</button>
+</div>
+
+<!-- GUEST EXPERIENCE -->
+<div class="sol-panel active" data-sol-panel="guest">
+  <div class="sol-main tint-copper">
+    <div class="ai-chip">Beantworte Review #1247</div>
+    <div class="sol-sub-label">Guest Experience</div>
+    <h3>Gäste halten und zurückholen.</h3>
+    <p class="sol-body">Reputation Manager, Guest Recovery und Booking Optimizer pflegen jede Gast-Beziehung aktiv. Echtzeit-Reviews werden beantwortet, unzufriedene Gäste persönlich kontaktiert, Auslastung gezielt gesteuert.</p>
+    <div class="sol-agents"><b>Agents:</b> Reputation Manager, Guest Recovery, Booking Optimizer</div>
+    <a href="mockups/mockup-1-review-response.html" target="_blank" class="sol-cta">Mehr erfahren →</a>
+    <div class="mockup-embed-frame">
+      <div class="mockup-embed-fallback">Mockup lädt…</div>
+      <iframe src="mockups/mockup-1-review-response.html" loading="lazy" title="Review Response Mockup"></iframe>
+    </div>
+  </div>
+  <div class="sol-side">
+    <div class="sol-kpi">
+      <div class="sol-kpi-num">95%</div>
+      <div class="sol-kpi-cap">Antwortquote unter 2h, im Betrieb erreichbar mit Reputation Manager.</div>
+    </div>
+    <div class="sol-quote">
+      <p>"Aktive Review-Antworten reduzieren Churn um 37%."</p>
+      <cite>ReviewTrackers 2023</cite>
+    </div>
+  </div>
+</div>
+
+<!-- QUALITY & OPERATIONS -->
+<div class="sol-panel" data-sol-panel="quality">
+  <div class="sol-main tint-green">
+    <div class="ai-chip">Eskalation: Küchen-Briefing</div>
+    <div class="sol-sub-label">Quality &amp; Operations</div>
+    <h3>Muster erkennen, bevor sie zu Eskalationen werden.</h3>
+    <p class="sol-body">Quality Watchdog, Operations Advisor, Predictive Staffing und Staff Communication erkennen Trend-Veränderungen, Schicht-Engpässe und Kommunikations-Lücken. Bevor Gäste eskalieren.</p>
+    <div class="sol-agents"><b>Agents:</b> Quality Watchdog, Operations Advisor, Predictive Staffing, Staff Communication</div>
+    <a href="mockups/mockup-3-shift-briefing-whatsapp.html" target="_blank" class="sol-cta">Mehr erfahren →</a>
+    <div class="mockup-embed-frame">
+      <div class="mockup-embed-fallback">Mockup lädt…</div>
+      <iframe src="mockups/mockup-3-shift-briefing-whatsapp.html" loading="lazy" title="Shift Briefing Mockup"></iframe>
+    </div>
+  </div>
+  <div class="sol-side">
+    <div class="sol-kpi">
+      <div class="sol-kpi-num">+200%</div>
+      <div class="sol-kpi-cap">Teig-Beschwerden-Trend erkannt, bevor das Rating reagiert hat.</div>
+    </div>
+    <div class="sol-quote">
+      <p>"Pro geschriebener 1-2★ Beschwerde bleiben 7 unzufriedene Gäste stumm."</p>
+      <cite>Kolsky 2015</cite>
+    </div>
+  </div>
+</div>
+
+<!-- REVENUE & MENU -->
+<div class="sol-panel" data-sol-panel="revenue">
+  <div class="sol-main tint-gold">
+    <div class="ai-chip">CHF 256.000 Potenzial</div>
+    <div class="sol-sub-label">Revenue &amp; Menu</div>
+    <h3>Umsatz sichtbar machen und steigern.</h3>
+    <p class="sol-body">Revenue Analyst, Menu Intelligence und Food Waste Agent quantifizieren Umsatzlecks, identifizieren Preis-Leistungs-Anomalien, optimieren Wareneinsatz. Alles in CHF, mit Quellen-Herleitung.</p>
+    <div class="sol-agents"><b>Agents:</b> Revenue Analyst, Menu Intelligence, Food Waste Agent</div>
+    <a href="mockups/mockup-2-monthly-impact-report.html" target="_blank" class="sol-cta">Mehr erfahren →</a>
+    <div class="mockup-embed-frame">
+      <div class="mockup-embed-fallback">Mockup lädt…</div>
+      <iframe src="mockups/mockup-2-monthly-impact-report.html" loading="lazy" title="Monthly Impact Report Mockup"></iframe>
+    </div>
+  </div>
+  <div class="sol-side">
+    <div class="sol-kpi">
+      <div class="sol-kpi-num">CHF 280K+</div>
+      <div class="sol-kpi-cap">Verbesserungspotenzial p.a., identifiziert im 60-Sekunden-Scan.</div>
+    </div>
+    <div class="sol-quote">
+      <p>"5-9% Umsatz pro Rating-Stern bei unabhängigen Restaurants."</p>
+      <cite>Luca HBS 2016</cite>
+    </div>
+  </div>
+</div>
+
+<!-- MARKET & GROWTH -->
+<div class="sol-panel" data-sol-panel="market">
+  <div class="sol-main tint-soft">
+    <div class="ai-chip">Margheri +300% Reviews</div>
+    <div class="sol-sub-label">Market &amp; Growth</div>
+    <h3>Wettbewerb verstehen, Marketing messbar machen.</h3>
+    <p class="sol-body">Marketing Engine und Competitor Radar bewerten Marketing-Wirkung, vergleichen Preis und Content-Level mit dem Wettbewerb. Messbar, nicht bauchgefühl-basiert.</p>
+    <div class="sol-agents"><b>Agents:</b> Marketing Engine, Competitor Radar</div>
+    <a href="mockups/mockup-5-competitor-briefing-email.html" target="_blank" class="sol-cta">Mehr erfahren →</a>
+    <div class="mockup-embed-frame">
+      <div class="mockup-embed-fallback">Mockup lädt…</div>
+      <iframe src="mockups/mockup-5-competitor-briefing-email.html" loading="lazy" title="Competitor Briefing Mockup"></iframe>
+    </div>
+  </div>
+  <div class="sol-side">
+    <div class="sol-kpi">
+      <div class="sol-kpi-num">€22</div>
+      <div class="sol-kpi-cap">Cost pro Neugast via Paid Ads vs. CHF 50 bis 100 bei Influencer-Kampagnen.</div>
+    </div>
+    <div class="sol-quote">
+      <p>"88% vs 47% Conversion-Effekt durch Review-Response."</p>
+      <cite>BrightLocal 2024</cite>
+    </div>
+  </div>
+</div>
+
 </div></section>
 
 <!-- WISSENSCHAFT -->
@@ -750,6 +921,19 @@ function pulseTarget(id){const el=document.getElementById(id);if(!el)return;el.c
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',()=>{const id=a.getAttribute('href').slice(1);if(id)setTimeout(()=>pulseTarget(id),450)})});
 // Also on initial load with hash
 if(location.hash)setTimeout(()=>pulseTarget(location.hash.slice(1)),600);
+
+// Solutions tab switcher
+(function(){
+  const tabs=document.querySelectorAll('.sol-tab');
+  const panels=document.querySelectorAll('.sol-panel');
+  tabs.forEach(t=>{
+    t.addEventListener('click',()=>{
+      const k=t.getAttribute('data-sol');
+      tabs.forEach(x=>{x.classList.toggle('active',x===t);x.setAttribute('aria-selected',x===t?'true':'false')});
+      panels.forEach(p=>p.classList.toggle('active',p.getAttribute('data-sol-panel')===k));
+    });
+  });
+})();
 </script>
 </body>
 </html>
