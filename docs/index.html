@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Couvert.ai — AI Operations für die Schweizer Gastronomie</title>
-<meta name="description" content="Zwölf AI-Agents analysieren Bewertungen, Speisekarten und Betriebsdaten von Schweizer Restaurants. Schwachstellen werden in Franken beziffert. Entwickelt von Couvert GmbH i.G., Zürich.">
+<title>Couvert — Agentic Operations OS für die Gastronomie</title>
+<meta name="description" content="Agentic Operations OS für die Gastronomie. Von Scan über Intelligence bis Operations: Wir erkennen, priorisieren und steuern die Hebel, die Ihren Betrieb messbar besser machen.">
 <link rel="canonical" href="https://couvert.ai/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Couvert.ai">
-<meta property="og:title" content="Couvert.ai — AI Operations für die Schweizer Gastronomie">
-<meta property="og:description" content="Zwölf AI-Agents analysieren Bewertungen, Speisekarten und Betriebsdaten von Schweizer Restaurants. Schwachstellen werden in Franken beziffert.">
+<meta property="og:title" content="Couvert — Agentic Operations OS für die Gastronomie">
+<meta property="og:description" content="Von Scan über Intelligence bis Operations: Wir erkennen, priorisieren und steuern die Hebel, die Ihren Betrieb messbar besser machen.">
 <meta property="og:url" content="https://couvert.ai/">
 <meta property="og:locale" content="de_CH">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Couvert.ai — AI Operations für die Schweizer Gastronomie">
-<meta name="twitter:description" content="Zwölf AI-Agents identifizieren und beziffern Umsatzlücken in Restaurant-Betrieben.">
+<meta name="twitter:title" content="Couvert — Agentic Operations OS für die Gastronomie">
+<meta name="twitter:description" content="Von Scan über Intelligence bis Operations: Wir erkennen, priorisieren und steuern die Hebel, die Ihren Betrieb messbar besser machen.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <script type="application/ld+json">
 {
@@ -245,6 +245,20 @@ html{scroll-behavior:smooth}
 .cta-section h2{font-family:'DM Serif Display',serif;font-size:clamp(26px,4vw,42px);color:var(--cream-bright);letter-spacing:-0.5px;margin-bottom:14px}
 .cta-section p{font-size:17px;color:var(--text-dim);margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.6;font-weight:300}
 .cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.stages-section{background:var(--bg);padding-top:80px;padding-bottom:80px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stages-header{max-width:720px;margin-bottom:40px}
+.stages-overline{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--copper);margin-bottom:14px}
+.stages-header h2{font-family:'DM Sans',sans-serif;font-weight:600;font-size:clamp(28px,3.6vw,40px);color:var(--cream-bright);letter-spacing:-1px;line-height:1.15;margin-bottom:12px}
+.stages-header h2 em{font-family:'DM Serif Display',serif;font-style:italic;font-weight:400;color:var(--copper)}
+.stages-header p{font-size:15px;color:var(--text-dim);line-height:1.6;font-weight:300}
+.stages-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.stage-card{background:var(--bg2);padding:32px 28px;display:flex;flex-direction:column;gap:14px;scroll-margin-top:100px}
+.stage-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--copper)}
+.stage-title{font-family:'DM Serif Display',serif;font-size:26px;color:var(--cream-bright);line-height:1.2;letter-spacing:-0.3px}
+.stage-body{font-size:15px;line-height:1.65;color:var(--text);font-weight:300;flex:1}
+.stage-cta{font-size:14px;color:var(--copper);text-decoration:none;font-weight:500;letter-spacing:0.3px;border-bottom:1px solid transparent;transition:border-color 0.2s;align-self:flex-start}
+.stage-cta:hover{border-color:var(--copper)}
+@media(max-width:800px){.stages-grid{grid-template-columns:1fr}}
 .mobile-sticky-results{display:none}
 @media(min-width:801px){
   .hero-section{padding-top:160px;padding-bottom:80px}
@@ -303,10 +317,10 @@ html{scroll-behavior:smooth}
 
 <!-- HERO -->
 <section class="hero-section" id="top"><div class="container">
-<div class="hero-overline animate d1">AI Operations für die Gastronomie</div>
-<h1 class="animate d2">Gastro-Beratung.<br><em>Ohne Berater.</em></h1>
-<p class="hero-sub animate d3">Zwölf AI Agents in vier Teams erstellen die Diagnose, setzen Massnahmen um und beziffern jeden Monat in Franken, was sich verändert hat. Kein Slide-Deck. Keine Stundenabrechnung.</p>
-<div class="hero-cta animate d4"><a href="https://calendly.com/hello-couvert/30min" target="_blank" class="btn-primary">Erstgespräch buchen</a><a href="fallbeispiel.html" class="btn-ghost">Beispielanalyse ansehen</a></div>
+<div class="hero-overline animate d1">Couvert</div>
+<h1 class="animate d2">Agentic Operations OS<br><em>für die Gastronomie.</em></h1>
+<p class="hero-sub animate d3">Von Scan über Intelligence bis Operations: Wir erkennen, priorisieren und steuern die Hebel, die Ihren Betrieb messbar besser machen.</p>
+<div class="hero-cta animate d4"><a href="#scan" class="btn-primary">Kostenlosen Scan starten</a><a href="#intelligence" class="btn-ghost">Intelligence ansehen</a></div>
 <a href="#calculator" class="hero-teaser animate d5" data-scroll-target="calculator">
   <div class="hero-teaser-number" id="hero-counter">CHF 0</div>
   <div class="hero-teaser-sub">So viel Umsatz verliert ein Gastro-Betrieb mit CHF 5 Mio.+ Jahresumsatz im Schnitt pro Jahr</div>
@@ -321,6 +335,39 @@ html{scroll-behavior:smooth}
 <div class="proof-item"><div class="proof-num">0%</div><div class="proof-label">Antwortquote</div></div>
 <div class="proof-item"><div class="proof-num">10</div><div class="proof-label">Schwachstellen identifiziert</div></div>
 <div class="proof-item"><div class="proof-num">CHF 390K+</div><div class="proof-label">Geschätzter Umsatzverlust / Jahr</div></div>
+</div></section>
+
+<!-- PRODUKTSTUFEN: SCAN / INTELLIGENCE / OPERATIONS -->
+<section class="stages-section"><div class="container">
+<div class="stages-header">
+<div class="stages-overline">Produktstufen</div>
+<h2>Scan. Intelligence. <em>Operations.</em></h2>
+<p>Drei aufeinander aufbauende Stufen — vom kostenlosen Teaser über den tiefen Report bis zum laufenden AI-Betrieb.</p>
+</div>
+<div class="stages-grid">
+
+<div class="stage-card" id="scan">
+<div class="stage-label">Stufe 1 · Scan</div>
+<div class="stage-title">Scan</div>
+<p class="stage-body">Gratis-Teaser-Report für Restaurants — in 3–5 Minuten sehen, wo Ihr Betrieb Geld verliert.</p>
+<a href="https://calendly.com/hello-couvert/30min" target="_blank" class="stage-cta">Scan starten →</a>
+</div>
+
+<div class="stage-card" id="intelligence">
+<div class="stage-label">Stufe 2 · Intelligence</div>
+<div class="stage-title">Intelligence</div>
+<p class="stage-body">Der vollständige Couvert Intelligence Report — Tiefenanalyse mit allen zwölf Agents, datenbasierte Betriebsanalyse mit Interviews und Systemanbindung.</p>
+<a href="fallbeispiel.html" class="stage-cta">Beispielbericht ansehen →</a>
+</div>
+
+<div class="stage-card" id="operations">
+<div class="stage-label">Stufe 3 · Operations</div>
+<div class="stage-title">Operations</div>
+<p class="stage-body">Laufender AI-Betrieb für Reviews, Staffing, Revenue und Guest Experience — operative Steuerung mit wöchentlichen Alerts und monatlichen Wirkungsberichten.</p>
+<a href="#ai-team" class="stage-cta">Das Operations-Team →</a>
+</div>
+
+</div>
 </div></section>
 
 <!-- WISSENSCHAFT -->
