@@ -8,7 +8,8 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;backdrop-f
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
 .logo-icon{width:32px;height:32px;border:1.5px solid var(--copper);border-radius:6px;display:flex;align-items:center;justify-content:center}
 .logo-icon svg{width:18px;height:18px}
-.logo-name{font-family:'DM Serif Display',serif;font-size:22px;color:var(--cream)}
+.logo-name{font-family:'DM Serif Display',serif;font-size:32px;color:var(--cream);letter-spacing:-0.5px}
+@media(max-width:768px){.logo-name{font-size:26px}}
 .logo-name span{color:var(--copper)}
 .nav{display:flex;gap:28px;align-items:center}
 .nav a{font-size:13px;color:var(--text-dim);text-decoration:none;letter-spacing:0.3px;transition:color 0.3s}
