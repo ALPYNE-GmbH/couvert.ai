@@ -365,6 +365,16 @@ footer{padding:var(--sp-6) 0;border-top:1px solid var(--hairline);background:var
 
 .count-up{font-variant-numeric:tabular-nums}
 
+/* ============================================================
+   Chips (styleguide §4.5)
+   ============================================================ */
+.chip{display:inline-flex;align-items:center;gap:6px;border-radius:var(--radius-pill);font-family:'JetBrains Mono',monospace;font-weight:500;font-size:12px;line-height:1;padding:6px 10px;letter-spacing:0.04em}
+.chip--agent{background:var(--canvas-sunken);color:var(--ink-2)}
+.chip--agent::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--success)}
+.chip--status{background:var(--success-bg);color:var(--success);text-transform:uppercase;letter-spacing:0.08em}
+.chip--status-warn{background:#FAEFD7;color:var(--warning);text-transform:uppercase;letter-spacing:0.08em}
+.chip--status-danger{background:var(--danger-bg);color:var(--danger);text-transform:uppercase;letter-spacing:0.08em}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:0ms!important;transition-duration:0ms!important}
