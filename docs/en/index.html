@@ -449,8 +449,8 @@
 <h1 class="animate d1">Hospitality.<br><em>No blindspots.</em></h1>
 <p class="hero-sub animate d2">Couvert is the Agentic Service OS for revenue-strong restaurants. Guests, revenue, and operations — measured, prioritized, steered. From Scan to Intelligence to Operations.</p>
 <div class="hero-cta animate d3">
-  <a href="https://calendly.com/hello-couvert/30min" target="_blank" class="btn-primary">Book a Scan</a>
-  <a href="example-report/" class="btn-ghost">View Intelligence Dossier</a>
+  <a href="example-report/" class="btn-primary">View Intelligence Dossier →</a>
+  <a href="https://calendly.com/hello-couvert/30min" target="_blank" class="btn-ghost">Book an intro call</a>
 </div>
 <div class="hero-bullets animate d4">
 <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>Swiss hosting</span>
@@ -943,6 +943,21 @@ if(location.hash)setTimeout(()=>pulseTarget(location.hash.slice(1)),600);
         });
       }
       window.addEventListener('scroll',onScroll,{passive:true});
+    }
+    // One-time demo-scroll of hero dashboard content
+    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches && !sessionStorage.getItem('hero-demo-played')){
+      const heroIframe=heroDash.querySelector('iframe');
+      if(heroIframe){
+        function playHeroDemo(){
+          sessionStorage.setItem('hero-demo-played','1');
+          try{const win=heroIframe.contentWindow;if(!win)return;
+            setTimeout(()=>win.scrollTo({top:220,behavior:'smooth'}),1400);
+            setTimeout(()=>win.scrollTo({top:0,behavior:'smooth'}),3200);
+          }catch(e){}
+        }
+        if(heroIframe.contentDocument && heroIframe.contentDocument.readyState==='complete')playHeroDemo();
+        else heroIframe.addEventListener('load',playHeroDemo,{once:true});
+      }
     }
   }
 })();
