@@ -903,6 +903,30 @@ if(location.hash)setTimeout(()=>pulseTarget(location.hash.slice(1)),600);
       if(visible){activate(visible.target.dataset.solLayer)}
     },{rootMargin:'-40% 0px -40% 0px', threshold:[0,0.25,0.5,0.75,1]});
     chapters.forEach(c=>io.observe(c));
+
+    // One-time auto-scroll demo on first chapter's iframe — shows it's scrollable.
+    if(!window.matchMedia('(max-width:1023px)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !sessionStorage.getItem('sol-demo-played')){
+      const stage=document.querySelector('.sol-stage');
+      const firstLayer=document.querySelector('.dashboard-embed__layer[data-sol-target="guest"]');
+      const iframe=firstLayer?firstLayer.querySelector('iframe'):null;
+      if(stage&&iframe){
+        function playDemo(){
+          sessionStorage.setItem('sol-demo-played','1');
+          try{const win=iframe.contentWindow;if(!win)return;
+            setTimeout(()=>win.scrollTo({top:180,behavior:'smooth'}),600);
+            setTimeout(()=>win.scrollTo({top:0,behavior:'smooth'}),2000);
+          }catch(e){}
+        }
+        const demoObs=new IntersectionObserver(es=>{
+          if(es[0].isIntersecting && es[0].intersectionRatio>0.35){
+            demoObs.disconnect();
+            if(iframe.contentDocument && iframe.contentDocument.readyState==='complete')playDemo();
+            else iframe.addEventListener('load',playDemo,{once:true});
+          }
+        },{threshold:[0,0.35,0.6]});
+        demoObs.observe(stage);
+      }
+    }
   }
   const heroDash=document.getElementById('hero-dashboard');
   if(heroDash){
