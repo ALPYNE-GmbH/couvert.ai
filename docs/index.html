@@ -819,7 +819,7 @@
   </div>
 </div>
 
-<div class="mg-footer"><a href="https://calendly.com/hello-couvert/30min" target="_blank" class="btn-primary">In 30 Min live durchgehen</a></div>
+<div class="mg-footer" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><a href="/cockpit/" class="btn-primary">Cockpit live durchklicken →</a><a href="https://calendly.com/hello-couvert/30min" target="_blank" class="btn-ghost">In 30 Min live durchgehen</a></div>
 </div></section>
 
 <script>
@@ -1046,6 +1046,22 @@ if(location.hash)setTimeout(()=>pulseTarget(location.hash.slice(1)),600);
         });
       }
       window.addEventListener('scroll',onScroll,{passive:true});
+    }
+    // One-time demo-scroll of hero dashboard content — shows "this is alive + interactive"
+    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches && !sessionStorage.getItem('hero-demo-played')){
+      const heroIframe=heroDash.querySelector('iframe');
+      if(heroIframe){
+        function playHeroDemo(){
+          sessionStorage.setItem('hero-demo-played','1');
+          try{const win=heroIframe.contentWindow;if(!win)return;
+            // Wait for reveal animation + a beat so user actually sees the motion
+            setTimeout(()=>win.scrollTo({top:220,behavior:'smooth'}),1400);
+            setTimeout(()=>win.scrollTo({top:0,behavior:'smooth'}),3200);
+          }catch(e){}
+        }
+        if(heroIframe.contentDocument && heroIframe.contentDocument.readyState==='complete')playHeroDemo();
+        else heroIframe.addEventListener('load',playHeroDemo,{once:true});
+      }
     }
   }
 })();
