@@ -454,8 +454,8 @@ html{scroll-behavior:smooth}
 
 <!-- HERO -->
 <section class="hero-section reveal" id="top"><div class="container">
-<h1 class="animate d1">Agentic Service OS<br><em>for Hospitality.</em></h1>
-<p class="hero-sub animate d2">From Scan to Intelligence to Operations: we find and steer the levers that make your operation measurably better.</p>
+<h1 class="animate d1">Hospitality.<br><em>No blindspots.</em></h1>
+<p class="hero-sub animate d2">Couvert is the Agentic Service OS for revenue-strong restaurants. Guests, revenue, and operations — measured, prioritized, steered. From Scan to Intelligence to Operations.</p>
 <a href="#calculator" class="hero-teaser animate d3" data-scroll-target="calculator">
   <div class="hero-teaser-number" id="hero-counter"><span class="count-up" data-target="390000" data-prefix="CHF " data-suffix="+" data-format="de">CHF 390'000+</span></div>
   <div class="hero-teaser-sub">That is the average annual revenue a restaurant with CHF 5M+ turnover leaves on the table each year.</div>
@@ -1114,7 +1114,7 @@ new IntersectionObserver(e=>{if(e[0].isIntersecting&&!hintDismissed){calcHint.cl
     }
     requestAnimationFrame(tick);
   }
-  const reveals=document.querySelectorAll('.reveal');
+  const reveals=document.querySelectorAll('.reveal, .reveal-stagger');
   if(reduce){reveals.forEach(r=>r.classList.add('is-visible'))}
   else if('IntersectionObserver' in window){
     const io=new IntersectionObserver((entries,obs)=>{

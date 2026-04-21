@@ -453,8 +453,8 @@ html{scroll-behavior:smooth}
 
 <!-- HERO -->
 <section class="hero-section reveal" id="top"><div class="container">
-<h1 class="animate d1">Agentic Service OS<br><em>für Gastronomie.</em></h1>
-<p class="hero-sub animate d2">Von Scan über Intelligence bis Operations: Wir finden und steuern die Hebel, die Ihren Betrieb messbar besser machen.</p>
+<h1 class="animate d1">Gastronomie.<br><em>Ohne Blindflug.</em></h1>
+<p class="hero-sub animate d2">Couvert ist das Agentic Service OS für umsatzstarke Betriebe. Gäste, Umsatz und Betrieb — gemessen, priorisiert, gesteuert. Von Scan über Intelligence bis Operations.</p>
 <a href="#calculator" class="hero-teaser animate d3" data-scroll-target="calculator">
   <div class="hero-teaser-number" id="hero-counter"><span class="count-up" data-target="390000" data-prefix="CHF " data-suffix="+" data-format="de">CHF 390'000+</span></div>
   <div class="hero-teaser-sub">So viel Umsatz verliert ein Gastro-Betrieb mit CHF 5 Mio.+ Jahresumsatz im Schnitt pro Jahr</div>
@@ -1116,8 +1116,8 @@ new IntersectionObserver(e=>{if(e[0].isIntersecting&&!hintDismissed){calcHint.cl
     }
     requestAnimationFrame(tick);
   }
-  // Reveal sections
-  const reveals=document.querySelectorAll('.reveal');
+  // Reveal sections (and stagger containers)
+  const reveals=document.querySelectorAll('.reveal, .reveal-stagger');
   if(reduce){reveals.forEach(r=>r.classList.add('is-visible'))}
   else if('IntersectionObserver' in window){
     const io=new IntersectionObserver((entries,obs)=>{
