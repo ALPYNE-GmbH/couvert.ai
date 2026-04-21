@@ -1,6 +1,6 @@
-# CX & Revenue Impact Analysis — Pizzeria X, Zürich
+# CX & Revenue Impact Analysis — Pizzeria X
 
-**Standort:** Kreis 4, Zürich
+**Standort:** Schweizer Gastronomiebetrieb
 **Erstellt von:** Couvert.ai
 **Datum:** April 2026
 **Klassifizierung:** Vertraulich
@@ -27,9 +27,9 @@
 
 **Wo Ihr Betrieb Umsatz verliert — und wie vier spezialisierte Teams mit zwölf AI Agents das ändern.**
 
-Couvert.ai hat den Standort Pizzeria X, Kreis 4 in Zürich vollständig durchleuchtet: **2.825 Google-Bewertungen** in vier Sprachen, die aktuelle **Speisekarte mit 38 Positionen**, das Preisniveau und die Gästezufriedenheit der **vier wichtigsten Zürcher Wettbewerber**, die Reservierungs- und Kapazitätssituation sowie die Wirksamkeit der aktuellen Marketing-Strategie.
+Couvert.ai hat den Schweizer Gastronomiebetrieb vollständig durchleuchtet: **~2.900 Google-Bewertungen** in vier Sprachen, die aktuelle **Speisekarte mit 38 Positionen**, das Preisniveau und die Gästezufriedenheit der **vier wichtigsten lokalen Wettbewerber**, die Reservierungs- und Kapazitätssituation sowie die Wirksamkeit der aktuellen Marketing-Strategie.
 
-Die Analyse identifiziert **zehn operative Schwachstellen** mit einem geschätzten Gesamteffekt von **CHF 390.000+ pro Jahr** an entgangenem Umsatz. Die grössten Hebel liegen in drei Bereichen: **Wartezeit trotz Reservation, Teigqualität und eine Antwortquote von 0%** auf sämtliche 2.825 Bewertungen.
+Die Analyse identifiziert **zehn operative Schwachstellen** mit einem geschätzten Gesamteffekt von **CHF 390.000+ pro Jahr** an entgangenem Umsatz. Die grössten Hebel liegen in drei Bereichen: **Wartezeit trotz Reservation, Teigqualität und eine Antwortquote von 0%** auf sämtliche ~2.900 Bewertungen.
 
 Couvert.ai ist ein AI Operations Team, organisiert in vier Teams — **Guest Experience, Quality & Operations, Revenue & Menu und Market & Growth** — mit zwölf Agents, die den gesamten operativen Kreislauf abdecken.
 
@@ -38,7 +38,7 @@ Couvert.ai ist ein AI Operations Team, organisiert in vier Teams — **Guest Exp
 | Kennzahl | Wert |
 |---|---|
 | Geschätzter jährlicher Umsatzverlust | **CHF 390.000+** |
-| Antwortquote auf 2.825 Reviews | **0%** |
+| Antwortquote auf ~2.900 Reviews | **0%** |
 | Operative Schwachstellen identifiziert | **10** |
 | Verbesserungspotenzial (erreichbar) | **CHF 280.000+** |
 
@@ -50,11 +50,11 @@ Couvert.ai ist ein AI Operations Team, organisiert in vier Teams — **Guest Exp
 
 ### Datengrundlage
 
-2.825 Google-Bewertungen, davon **169 mit 1–2 Sternen** und **124 mit 3 Sternen**. 150 negative Bewertungen enthalten ausformulierten Text. Bewertungen in Deutsch, Englisch, Französisch und Italienisch.
+~2.900 Google-Bewertungen, davon **169 mit 1–2 Sternen** und **124 mit 3 Sternen**. 150 negative Bewertungen enthalten ausformulierten Text. Bewertungen in Deutsch, Englisch, Französisch und Italienisch.
 
 ### Kernbefund: Antwortquote 0%
 
-Keine einzige der 2.825 Bewertungen wurde je beantwortet. Wettbewerber A (4.7 Sterne, 1.420 Reviews) beantwortet aktiv. Laut ReviewTrackers (2023) reduziert das Beantworten negativer Bewertungen die Abwanderungsrate um bis zu **37%**.
+Keine einzige der ~2.900 Bewertungen wurde je beantwortet. Wettbewerber A (4.7 Sterne, 1.420 Reviews) beantwortet aktiv. Laut ReviewTrackers (2023) reduziert das Beantworten negativer Bewertungen die Abwanderungsrate um bis zu **37%**.
 
 ### Rating-Entwicklung
 
@@ -133,7 +133,7 @@ Basis: 249 Bewertungen (1–3 Sterne) mit Text. Mehrfachnennungen möglich.
 
 | Kennzahl | Wert |
 |---|---|
-| Jahresumsatz (Standort Zürich) | ca. CHF 6.500.000 |
+| Jahresumsatz (Jahresumsatz) | ca. CHF 6.500.000 |
 | Gedecke Jan–Apr 2026 | ca. 50.000 |
 | Durchschn. Bestellwert pro Tisch | CHF 100 |
 | Durchschn. Gedeck-Wert | CHF 35 |
@@ -213,7 +213,7 @@ Strukturierte Schicht-Übergaben per Rolle (Küche/Service). Reduziert Bestellch
 |---|---|---|---|---|
 | Google Rating | 4.5 | **4.7** | 4.6 | 4.4 |
 | Durchschn. Pizza | **CHF 25.50** | CHF 23.80 | CHF 22.50 | CHF 21.90 |
-| Reviews | **2.825** | 1.420 | 890 | 2.100 |
+| Reviews | **~2.900** | 1.420 | 890 | 2.100 |
 | Preisposition | Höchste | Mittel-hoch | Mittel | Günstig |
 
 Pizzeria X = **höchster Preis** bei **zweitniedrigstem Rating**. 23% der negativen Bewertungen thematisieren Preis/Upselling.
@@ -270,7 +270,7 @@ Kartenwechsel alle 8 Wochen, 5–7 neue Specials. Geschätztes Jahresbudget für
 | | Pizzeria X | Wettbewerber A | Wettbewerber B | Wettbewerber C |
 |---|---|---|---|---|
 | Rating | 4.5 | 4.7 | 4.6 | 4.4 |
-| Reviews | 2.825 | 1.420 | 890 | 2.100 |
+| Reviews | ~2.900 | 1.420 | 890 | 2.100 |
 | Durchschn. Pizza | CHF 25.50 | CHF 23.80 | CHF 22.50 | CHF 21.90 |
 | Antwortquote | **0%** | Aktiv | Gering | Gering |
 | Stärken | Bekanntheit, Reichweite, Lage | Qualität, Konsistenz, Service | Authentizität, Preis-Leistung | Grosse Basis, Stammkunden |
@@ -377,7 +377,7 @@ Vier spezialisierte Teams, zwölf AI Agents. Vernetzt über gemeinsame Datenquel
 
 ### Datenquellen
 
-- 2.825 Google-Bewertungen (vollständige Analyse, Stand April 2026)
+- ~2.900 Google-Bewertungen (vollständige Analyse, Stand April 2026)
 - Öffentlich einsehbare Speisekarte (38 Positionen, Stand April 2026)
 - Öffentlich verfügbare Wettbewerbsdaten (Google Maps)
 - Luca, M. (2016): *Reviews, Reputation, and Revenue* (Harvard Business School)
