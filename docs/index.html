@@ -61,9 +61,13 @@
 .hero-section h1 em{font-family:'DM Serif Display',serif;font-weight:400;font-style:italic;color:var(--copper);letter-spacing:-1px}
 .hero-sub{font-size:17px;line-height:1.6;color:var(--text);font-weight:300;margin-bottom:32px}
 .hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:28px}
-.hero-bullets{display:flex;gap:20px;font-size:14px;color:var(--text-dim);flex-wrap:wrap;align-items:center;justify-content:flex-start}
-.hero-bullets span{display:inline-flex;align-items:center;gap:8px;line-height:1}
-.hero-bullets span svg{width:16px;height:16px;stroke:var(--copper);flex-shrink:0}
+.hero-bullets{display:flex;gap:14px 28px;font-size:14px;color:var(--text-dim);flex-wrap:wrap;align-items:center;justify-content:flex-start;margin-top:4px}
+.hero-bullets span{display:inline-flex;align-items:center;gap:8px;line-height:1.2;font-weight:400}
+.hero-bullets span svg{width:16px;height:16px;stroke:var(--copper);fill:none;flex-shrink:0;display:block}
+@media(max-width:640px){
+  .hero-bullets{display:grid;grid-template-columns:repeat(2,auto);column-gap:20px;row-gap:12px;justify-content:start;font-size:13.5px}
+  .hero-bullets span{white-space:nowrap}
+}
 html{scroll-behavior:smooth}
 .hero-teaser{display:block;text-decoration:none;background:var(--bg2);border:1px solid var(--border);padding:28px 32px;margin-bottom:28px;transition:border-color 0.3s,background 0.3s,transform 0.2s;cursor:pointer;position:relative}
 .hero-teaser::after{content:'';position:absolute;inset:-1px;border-radius:inherit;box-shadow:0 0 0 0 rgba(196,103,58,0);transition:box-shadow 0.3s;pointer-events:none}
@@ -460,7 +464,7 @@ html{scroll-behavior:smooth}
   <div class="hero-teaser-sub">So viel Umsatz verliert ein Gastro-Betrieb mit CHF 5 Mio.+ Jahresumsatz im Schnitt pro Jahr</div>
   <div class="hero-teaser-cta">Was kostet Sie das pro Jahr? <span class="hero-teaser-arrow">→</span></div>
 </a>
-<div class="hero-cta animate d4"><a href="#intelligence" class="btn-ghost">Intelligence Dossier ansehen</a></div>
+<div class="hero-cta animate d4"><a href="beispiel-report/" class="btn-ghost">Intelligence Dossier ansehen</a></div>
 <div class="hero-bullets animate d5">
 <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>Schweizer Hosting</span>
 <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>nDSG-konform</span>
