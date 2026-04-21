@@ -281,7 +281,7 @@ html{scroll-behavior:smooth}
   .tip .tip-text{left:-40px;width:220px}
   .hero-section{padding-top:56px;padding-bottom:32px}
   .hero-section .container{display:flex;flex-direction:column}
-  .hero-teaser{order:-1;margin-top:8px;margin-bottom:20px;padding:16px 20px}
+  .hero-teaser{margin-top:8px;margin-bottom:20px;padding:16px 20px}
   .hero-teaser-number{font-size:32px}
   .hero-teaser-sub{font-size:13px}
   .hero-teaser-cta{font-size:13px}
@@ -406,7 +406,14 @@ html{scroll-behavior:smooth}
   .sol-main{padding:40px 32px;min-height:0}
   .sol-side{gap:16px}
   .sol-side > *{flex:none}
-  .sol-tabs{display:flex;overflow-x:auto;flex-wrap:nowrap;justify-content:flex-start;-webkit-overflow-scrolling:touch;max-width:100%;left:auto;transform:none;border-radius:999px}
+  .sol-tabs{display:flex;overflow-x:auto;flex-wrap:nowrap;justify-content:flex-start;-webkit-overflow-scrolling:touch;max-width:100%;left:auto;transform:none;border-radius:999px;overscroll-behavior-x:contain;touch-action:pan-x;scroll-snap-type:x proximity;position:relative}
+  .sol-tab{scroll-snap-align:start}
+  .sol-tabs-wrap{position:relative}
+  .sol-tabs-wrap::after{content:'';position:absolute;top:0;right:0;bottom:0;width:56px;background:linear-gradient(90deg,transparent 0%,#F2F1EC 85%);pointer-events:none;border-radius:0 999px 999px 0;opacity:1;transition:opacity 0.25s}
+  .sol-tabs-wrap.at-end::after{opacity:0}
+  .sol-scroll-hint{position:absolute;top:50%;right:6px;transform:translateY(-50%);width:26px;height:26px;border-radius:50%;background:var(--copper);color:#FFF;display:flex;align-items:center;justify-content:center;pointer-events:none;animation:solHintPulse 1.8s ease-in-out infinite;z-index:2;box-shadow:0 2px 6px rgba(0,0,0,0.12)}
+  .sol-tabs-wrap.at-end .sol-scroll-hint{display:none}
+  @keyframes solHintPulse{0%,100%{transform:translateY(-50%) translateX(0);opacity:0.95}50%{transform:translateY(-50%) translateX(4px);opacity:0.65}}
   .sol-tabs::-webkit-scrollbar{display:none}
   .ai-chip{top:20px;right:20px;font-size:10px;padding:8px 12px}
 }
@@ -458,7 +465,7 @@ html{scroll-behavior:smooth}
 </div></section>
 
 <!-- PROOF BAR -->
-<section class="proof-bar light-section"><div class="proof-context">Beispiel: Gastro-Betrieb Zürich</div><div class="container">
+<section class="proof-bar light-section reveal"><div class="proof-context">Beispiel: Gastro-Betrieb Zürich</div><div class="container reveal-stagger">
 <div class="proof-item"><div class="proof-num">2.825</div><div class="proof-label">Bewertungen analysiert</div></div>
 <div class="proof-item"><div class="proof-num">0%</div><div class="proof-label">Antwortquote</div></div>
 <div class="proof-item"><div class="proof-num">10</div><div class="proof-label">Schwachstellen identifiziert</div></div>
@@ -745,7 +752,7 @@ html{scroll-behavior:smooth}
 </div></section>
 
 <!-- SO ARBEITET COUVERT -->
-<section class="steps-section light-section"><div class="container">
+<section class="steps-section light-section reveal"><div class="container">
 <div class="section-label">Unser Ansatz</div>
 <div class="section-title">Erkennen. Handeln. Messen. Optimieren.</div>
 <div class="section-sub">Keine Diagnose, die in der Schublade landet. Ein geschlossener Kreislauf, der jeden Tag besser wird.</div>
@@ -757,7 +764,7 @@ html{scroll-behavior:smooth}
 </div></div></section>
 
 <!-- LEARNING LOOP -->
-<section class="learning-loop-section"><div class="container">
+<section class="learning-loop-section reveal"><div class="container">
 <div class="section-label">Der Couvert Loop</div>
 <div class="section-title">Monat 6 beweist, was Monat 1 versprochen hat.</div>
 <div class="section-sub">Agents arbeiten. Effekte werden gemessen. Nächster Monat wird besser.</div>
@@ -1077,7 +1084,7 @@ new IntersectionObserver(e=>{if(e[0].isIntersecting&&!hintDismissed){calcHint.cl
   else if('IntersectionObserver' in window){
     const io=new IntersectionObserver((entries,obs)=>{
       entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');obs.unobserve(e.target)}});
-    },{threshold:0.15,rootMargin:'0px 0px -5% 0px'});
+    },{threshold:0.08,rootMargin:'0px 0px -10% 0px'});
     reveals.forEach(r=>io.observe(r));
   }else{reveals.forEach(r=>r.classList.add('is-visible'))}
   // Count-up

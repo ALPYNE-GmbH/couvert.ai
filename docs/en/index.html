@@ -282,7 +282,7 @@ html{scroll-behavior:smooth}
   .tip .tip-text{left:-40px;width:220px}
   .hero-section{padding-top:56px;padding-bottom:32px}
   .hero-section .container{display:flex;flex-direction:column}
-  .hero-teaser{order:-1;margin-top:8px;margin-bottom:20px;padding:16px 20px}
+  .hero-teaser{margin-top:8px;margin-bottom:20px;padding:16px 20px}
   .hero-teaser-number{font-size:32px}
   .hero-teaser-sub{font-size:13px}
   .hero-teaser-cta{font-size:13px}
@@ -459,7 +459,7 @@ html{scroll-behavior:smooth}
 </div></section>
 
 <!-- PROOF BAR -->
-<section class="proof-bar light-section"><div class="proof-context">Example: Zurich restaurant</div><div class="container">
+<section class="proof-bar light-section reveal"><div class="proof-context">Example: Zurich restaurant</div><div class="container reveal-stagger">
 <div class="proof-item"><div class="proof-num">2,825</div><div class="proof-label">Reviews analyzed</div></div>
 <div class="proof-item"><div class="proof-num">0%</div><div class="proof-label">Response rate</div></div>
 <div class="proof-item"><div class="proof-num">10</div><div class="proof-label">Weak points identified</div></div>
@@ -746,7 +746,7 @@ html{scroll-behavior:smooth}
 </div></section>
 
 <!-- HOW COUVERT WORKS -->
-<section class="steps-section light-section"><div class="container">
+<section class="steps-section light-section reveal"><div class="container">
 <div class="section-label">Our approach</div>
 <div class="section-title">Detect. Act. Measure. Improve.</div>
 <div class="section-sub">No diagnosis that ends up in a drawer. A closed loop that gets better every day.</div>
@@ -758,7 +758,7 @@ html{scroll-behavior:smooth}
 </div></div></section>
 
 <!-- LEARNING LOOP -->
-<section class="learning-loop-section"><div class="container">
+<section class="learning-loop-section reveal"><div class="container">
 <div class="section-label">The Couvert Loop</div>
 <div class="section-title">Month 6 proves what month 1 promised.</div>
 <div class="section-sub">Agents work. Effects get measured. Next month is better.</div>
@@ -1074,7 +1074,7 @@ new IntersectionObserver(e=>{if(e[0].isIntersecting&&!hintDismissed){calcHint.cl
   else if('IntersectionObserver' in window){
     const io=new IntersectionObserver((entries,obs)=>{
       entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');obs.unobserve(e.target)}});
-    },{threshold:0.15,rootMargin:'0px 0px -5% 0px'});
+    },{threshold:0.08,rootMargin:'0px 0px -10% 0px'});
     reveals.forEach(r=>io.observe(r));
   }else{reveals.forEach(r=>r.classList.add('is-visible'))}
   const counters=document.querySelectorAll('.count-up');
