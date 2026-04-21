@@ -54,41 +54,48 @@
 <link rel="stylesheet" href="/style.css">
 <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 <style>
-.hero-section{padding-top:140px;padding-bottom:60px;position:relative}
-.hero-section::before{content:'';position:absolute;top:80px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(196,103,58,0.06) 0%,transparent 65%);pointer-events:none}
-.hero-overline{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--copper);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+/* HERO — 2-col, dashboard-as-hero (Phase 1) */
+.hero-section{padding-top:120px;padding-bottom:var(--sp-9);position:relative;background:var(--canvas)}
+.hero-section .container{display:grid;grid-template-columns:1fr;gap:var(--sp-7);align-items:center}
+@media(min-width:1024px){.hero-section .container{grid-template-columns:1.1fr 1fr}}
+.hero-overline{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:var(--fs-label);letter-spacing:0.18em;text-transform:uppercase;color:var(--copper);margin-bottom:var(--sp-4);display:flex;align-items:center;gap:12px}
 .hero-overline::before{content:'';width:32px;height:1px;background:var(--copper)}
-.hero-section h1{font-family:'DM Sans',sans-serif;font-weight:600;font-size:clamp(34px,5.85vw,72px);line-height:1.06;color:var(--cream-bright);letter-spacing:-1.5px;margin-bottom:28px}
-.hero-section h1 em{font-family:'DM Serif Display',serif;font-weight:400;font-style:italic;color:var(--copper);letter-spacing:-1px}
-.hero-sub{font-size:17px;line-height:1.6;color:var(--text);font-weight:300;margin-bottom:32px}
-.hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:28px}
-.hero-bullets{display:flex;gap:14px 28px;font-size:14px;color:var(--text-dim);flex-wrap:wrap;align-items:center;justify-content:flex-start;margin-top:4px}
+.hero-section h1{font-family:'DM Sans',sans-serif;font-weight:600;font-size:var(--fs-display);line-height:var(--lh-tight);color:var(--ink);letter-spacing:-0.04em;margin-bottom:var(--sp-5)}
+.hero-section h1 em{font-family:'DM Serif Display',serif;font-weight:400;font-style:italic;color:var(--copper);letter-spacing:-0.02em}
+.hero-sub{font-size:var(--fs-body-lg);line-height:var(--lh-body);color:var(--ink-2);font-weight:400;margin-bottom:var(--sp-6);max-width:540px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:var(--sp-5)}
+.hero-bullets{display:flex;gap:12px 24px;font-size:13px;color:var(--ink-3);flex-wrap:wrap;align-items:center;justify-content:flex-start}
 .hero-bullets span{display:inline-flex;align-items:center;gap:8px;line-height:1.2;font-weight:400}
-.hero-bullets span svg{width:16px;height:16px;stroke:var(--copper);fill:none;flex-shrink:0;display:block}
+.hero-bullets span svg{width:14px;height:14px;stroke:var(--copper);fill:none;flex-shrink:0;display:block}
 @media(max-width:640px){
-  .hero-bullets{display:grid;grid-template-columns:repeat(2,auto);column-gap:20px;row-gap:12px;justify-content:start;font-size:13.5px}
+  .hero-bullets{display:grid;grid-template-columns:repeat(2,auto);column-gap:20px;row-gap:10px;justify-content:start}
   .hero-bullets span{white-space:nowrap}
 }
-html{scroll-behavior:smooth}
-.hero-teaser{display:block;text-decoration:none;background:var(--bg2);border:1px solid var(--border);padding:28px 32px;margin-bottom:28px;transition:border-color 0.3s,background 0.3s,transform 0.2s;cursor:pointer;position:relative}
-.hero-teaser::after{content:'';position:absolute;inset:-1px;border-radius:inherit;box-shadow:0 0 0 0 rgba(196,103,58,0);transition:box-shadow 0.3s;pointer-events:none}
-.hero-teaser:hover{border-color:var(--copper);background:rgba(196,103,58,0.04);transform:translateY(-1px)}
-.hero-teaser:hover::after{box-shadow:0 0 0 3px rgba(196,103,58,0.08)}
-.hero-teaser-number{font-family:'JetBrains Mono',monospace;font-size:clamp(32px,5vw,48px);font-weight:600;color:var(--gold);line-height:1;margin-bottom:6px}
-.hero-teaser-sub{font-size:14px;color:var(--text-dim);line-height:1.5;margin-bottom:14px}
-.hero-teaser-cta{font-size:15px;color:var(--copper);font-weight:600;letter-spacing:0.3px;display:flex;align-items:center;gap:10px}
-.hero-teaser-arrow{display:inline-block;transition:transform 0.3s;animation:hero-arrow-nudge 2.4s ease-in-out infinite}
-.hero-teaser:hover .hero-teaser-arrow{animation:none;transform:translateX(6px)}
-@keyframes hero-arrow-nudge{0%,70%,100%{transform:translateX(0)}85%{transform:translateX(5px)}}
+.hero-teaser{display:inline-flex;align-items:center;gap:14px;text-decoration:none;background:var(--canvas-sunken);border:1px solid var(--hairline);padding:14px 18px;margin-top:var(--sp-5);border-radius:var(--radius-md);transition:border-color var(--dur-fast),background var(--dur-fast),transform var(--dur-instant);cursor:pointer;position:relative;max-width:100%;flex-wrap:wrap}
+@media(max-width:640px){.hero-teaser{gap:10px;padding:12px 14px}.hero-teaser-number{font-size:17px}.hero-teaser-sub{font-size:12px;max-width:180px}}
+.hero-teaser:hover{border-color:var(--hairline-strong);background:var(--copper-tint);transform:translateY(-1px)}
+.hero-teaser-number{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;color:var(--gold-ink);line-height:1;letter-spacing:-0.01em}
+.hero-teaser-sub{font-size:12.5px;color:var(--ink-3);line-height:1.4;max-width:240px}
+.hero-teaser-cta{font-size:13px;color:var(--copper);font-weight:600;letter-spacing:0;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.hero-teaser-arrow{display:inline-block;transition:transform var(--dur-fast)}
+.hero-teaser:hover .hero-teaser-arrow{transform:translateX(4px)}
+.hero-dashboard{position:relative;margin:0;opacity:0;transform:scale(0.96) translateY(20px);transition:opacity var(--dur-slow) var(--ease-out-quint), transform var(--dur-slow) var(--ease-out-quint);will-change:opacity,transform}
+.hero-dashboard.is-revealed{opacity:1;transform:scale(1) translateY(0)}
+@media(min-width:1024px){
+  .hero-dashboard{transform-origin:center left;transform:scale(0.96) translateY(20px) rotate(0deg)}
+  .hero-dashboard.is-revealed{transform:scale(1) translateY(var(--parallax-y,0px)) rotate(-0.8deg)}
+}
+@keyframes target-pulse{0%{box-shadow:inset 0 0 0 2px rgba(196,103,58,0.8),0 0 0 0 rgba(196,103,58,0.4)}70%{box-shadow:inset 0 0 0 2px rgba(196,103,58,0),0 0 0 16px rgba(196,103,58,0)}100%{box-shadow:inset 0 0 0 0 rgba(196,103,58,0),0 0 0 0 rgba(196,103,58,0)}}
+.target-pulse-anim{animation:target-pulse 1.2s ease-out}
 @keyframes target-pulse{0%{box-shadow:inset 0 0 0 2px rgba(196,103,58,0.8),0 0 0 0 rgba(196,103,58,0.4)}70%{box-shadow:inset 0 0 0 2px rgba(196,103,58,0),0 0 0 16px rgba(196,103,58,0)}100%{box-shadow:inset 0 0 0 0 rgba(196,103,58,0),0 0 0 0 rgba(196,103,58,0)}}
 .target-pulse-anim{animation:target-pulse 1.2s ease-out}
 .proof-bar .container{display:grid;grid-template-columns:repeat(4,1fr);gap:1px}
-.proof-bar{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0}
+.proof-bar{background:var(--canvas-sunken);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);padding:0}
 .proof-item{padding:28px 16px;text-align:center;position:relative}
-.proof-item:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:var(--border)}
-.proof-num{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:var(--copper);margin-bottom:4px}
-.proof-label{font-size:13px;color:var(--text-dim);line-height:1.5}
-.proof-context{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--copper);margin-bottom:16px;text-align:center;padding-top:20px}
+.proof-item:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:var(--hairline)}
+.proof-num{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:clamp(22px,2.4vw,28px);color:var(--gold-ink);margin-bottom:4px;font-variant-numeric:tabular-nums}
+.proof-label{font-size:13px;color:var(--ink-3);line-height:1.5}
+.proof-context{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--copper);margin-bottom:16px;text-align:center;padding-top:20px}
 .steps-section{background:var(--bg2)}
 .steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:36px}
 .step-card{background:var(--bg2);padding:28px 20px}
@@ -310,41 +317,56 @@ html{scroll-behavior:smooth}
   .msr-num-green{color:var(--green-up)}
 }
 
-/* SOLUTIONS-FOR-EVERY-TEAM SECTION (light break) */
-.solutions-section{background:#FAF7F2;padding:0;border:0}
-.solutions-section > .sol-container{max-width:1280px;margin:0 auto;padding:120px 24px}
-.solutions-head{text-align:center;margin-bottom:48px}
-.solutions-head .section-label{color:#8A867C;margin-bottom:14px}
-.solutions-head h2{font-family:'DM Serif Display',serif;font-size:clamp(32px,4.2vw,48px);color:#1F2B27;line-height:1.1;letter-spacing:-0.6px;margin-bottom:14px;font-weight:400}
-.solutions-head p{font-family:'DM Sans',sans-serif;font-size:18px;color:#6D6A63;max-width:680px;margin:0 auto;font-weight:400;line-height:1.55}
-.sol-tabs{display:inline-flex;gap:4px;justify-content:center;flex-wrap:wrap;margin:0 auto 48px;background:#F2F1EC;border-radius:999px;padding:6px;max-width:100%;position:relative;left:50%;transform:translateX(-50%)}
-.sol-tab{font-family:'DM Sans',sans-serif;background:transparent;border:none;color:#6D6A63;font-size:15px;padding:12px 28px;border-radius:999px;cursor:pointer;font-weight:500;letter-spacing:0;transition:all 0.25s ease;white-space:nowrap}
-.sol-tab:hover{background:rgba(0,0,0,0.04);color:#1F2B27}
-.sol-tab.active{color:#FFFFFF}
-.sol-tab[data-sol="guest"].active{background:#C4673A}
-.sol-tab[data-sol="quality"].active{background:#1A3C34}
-.sol-tab[data-sol="revenue"].active{background:#B8893A}
-.sol-tab[data-sol="market"].active{background:#7A4A5A}
-.sol-tab.active:hover{background:inherit;color:#FFFFFF;filter:brightness(1.06)}
-.sol-panel{display:none;animation:fadeUp 0.35s ease-out}
-.sol-panel.active{display:block}
-.sol-grid{display:grid;grid-template-columns:1.85fr 1fr;gap:24px;align-items:stretch}
-.sol-main{position:relative;border-radius:6px;padding:56px;overflow:hidden;min-height:540px;display:flex;flex-direction:column;color:#FFFFFF}
-.sol-main.team-guest{background:#C4673A;--team-color:#C4673A}
-.sol-main.team-quality{background:#1A3C34;--team-color:#1A3C34}
-.sol-main.team-revenue{background:#B8893A;--team-color:#B8893A}
-.sol-main.team-market{background:#7A4A5A;--team-color:#7A4A5A}
-.sol-sub-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.75);text-transform:uppercase;margin-bottom:18px}
-.sol-main h3{font-family:'DM Serif Display',serif;font-size:clamp(30px,3.2vw,42px);color:#FFFFFF;line-height:1.1;letter-spacing:-0.5px;margin-bottom:18px;font-weight:400;max-width:560px}
-.sol-main .sol-body{font-family:'DM Sans',sans-serif;font-size:17px;color:rgba(255,255,255,0.85);line-height:1.55;margin-bottom:22px;max-width:560px;font-weight:400}
-.sol-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
-.sol-chips span{font-family:'JetBrains Mono',monospace;font-size:11px;color:#FFFFFF;background:rgba(255,255,255,0.14);padding:6px 12px;border-radius:999px;letter-spacing:0.3px;font-weight:500}
-.sol-cta{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:transparent;color:#FFFFFF;border:1.5px solid rgba(255,255,255,0.5);border-radius:6px;text-decoration:none;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;align-self:flex-start;margin-bottom:28px;transition:background 0.2s,color 0.2s,border-color 0.2s}
-.sol-cta:hover{background:#FFFFFF;color:var(--team-color);border-color:#FFFFFF}
-.ai-chip{position:absolute;top:28px;right:28px;background:var(--team-color);color:#FFFFFF;padding:10px 18px;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.3px;font-weight:600;box-shadow:0 4px 12px rgba(0,0,0,0.15);z-index:3;display:inline-flex;align-items:center;gap:8px;transform:rotate(-2deg)}
-.ai-chip::before{content:'';width:6px;height:6px;border-radius:50%;background:#FFFFFF;box-shadow:0 0 6px rgba(255,255,255,0.6)}
+/* SOLUTIONS — sticky-chapter scroll (Phase 1) */
+.solutions-section{background:var(--canvas);padding:0;border:0}
+.solutions-section > .sol-container{max-width:var(--container-max);margin:0 auto;padding:var(--sp-9) var(--container-pad)}
+.solutions-head{text-align:center;margin-bottom:var(--sp-7);max-width:720px;margin-left:auto;margin-right:auto}
+.solutions-head .section-label{color:var(--copper);margin-bottom:var(--sp-3)}
+.solutions-head h2{font-family:'DM Sans',sans-serif;font-weight:600;font-size:var(--fs-h1);color:var(--ink);line-height:var(--lh-heading);letter-spacing:-0.03em;margin-bottom:var(--sp-3)}
+.solutions-head p{font-size:var(--fs-body-lg);color:var(--ink-2);margin:0 auto;font-weight:400;line-height:var(--lh-body)}
+.sol-sticky{display:grid;grid-template-columns:1fr;gap:var(--sp-7);align-items:start}
+@media(min-width:1024px){
+  .sol-sticky{grid-template-columns:0.9fr 1.1fr;gap:var(--sp-8)}
+}
+.sol-chapters{display:flex;flex-direction:column;gap:var(--sp-7)}
+@media(min-width:1024px){.sol-chapters{gap:0}}
+.sol-chapter{
+  position:relative;padding:var(--sp-6) 0 var(--sp-6) var(--sp-5);
+  border-left:2px solid transparent;
+  opacity:1;
+  transition:opacity 300ms var(--ease-out-quint),border-color 300ms var(--ease-out-quint);
+}
+@media(min-width:1024px){
+  .sol-chapter{min-height:80vh;display:flex;flex-direction:column;justify-content:center;opacity:.45}
+  .sol-chapter.is-active{opacity:1}
+}
+.sol-chapter[data-team="guest"].is-active{border-left-color:var(--copper)}
+.sol-chapter[data-team="quality"].is-active{border-left-color:var(--green-accent)}
+.sol-chapter[data-team="revenue"].is-active{border-left-color:var(--gold-ink)}
+.sol-chapter[data-team="market"].is-active{border-left-color:#7A4A5A}
+.sol-chapter__overline{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:var(--sp-3);color:var(--ink-3)}
+.sol-chapter[data-team="guest"] .sol-chapter__overline{color:var(--copper)}
+.sol-chapter[data-team="quality"] .sol-chapter__overline{color:var(--green-accent)}
+.sol-chapter[data-team="revenue"] .sol-chapter__overline{color:var(--gold-ink)}
+.sol-chapter[data-team="market"] .sol-chapter__overline{color:#7A4A5A}
+.sol-chapter h3{font-family:'DM Sans',sans-serif;font-weight:600;font-size:var(--fs-h2);color:var(--ink);line-height:var(--lh-heading);letter-spacing:-0.03em;margin-bottom:var(--sp-4);max-width:520px}
+.sol-chapter .sol-body{font-size:var(--fs-body);color:var(--ink-2);line-height:var(--lh-body);margin-bottom:var(--sp-4);max-width:520px}
+.sol-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:var(--sp-4)}
+.sol-chips span{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11px;color:var(--ink-2);background:var(--canvas-sunken);padding:6px 10px;border-radius:var(--radius-pill);letter-spacing:0.04em}
+.sol-chips span::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--success)}
+.sol-outcome{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:clamp(28px,3vw,36px);color:var(--gold-ink);line-height:1;letter-spacing:-0.02em;margin-bottom:var(--sp-2);font-variant-numeric:tabular-nums}
+.sol-outcome-cap{font-size:13px;color:var(--ink-3);margin-bottom:var(--sp-4)}
+.sol-cta{display:inline-flex;align-items:center;gap:6px;color:var(--copper);text-decoration:none;font-weight:600;font-size:14px;letter-spacing:0.01em}
+.sol-cta:hover{color:var(--copper-hover)}
+.sol-cta::after{content:'→';transition:transform var(--dur-fast) var(--ease-out-quint)}
+.sol-cta:hover::after{transform:translateX(4px)}
+.sol-stage{position:relative}
+@media(min-width:1024px){.sol-stage{position:sticky;top:96px}}
+.sol-dashboard{aspect-ratio:16/10}
+.sol-inline-dash{display:none;margin-top:var(--sp-5);aspect-ratio:16/10}
+@media(max-width:1023px){.sol-stage{display:none}.sol-inline-dash{display:block}}
 
-/* Inline mockup snippets (no iframes) */
+/* (legacy mock-* styles below are kept only if referenced by other sections — most unused after Phase 1) */
 .sol-mock{margin-top:auto;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:6px;padding:20px;font-family:'DM Sans',sans-serif;cursor:pointer;transition:border-color 0.2s,transform 0.2s,background 0.2s;display:block;text-decoration:none;color:inherit}
 .sol-mock:hover{border-color:rgba(255,255,255,0.55);background:rgba(255,255,255,0.14);transform:translateY(-2px)}
 .sol-mock-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:14px}
@@ -458,19 +480,37 @@ html{scroll-behavior:smooth}
 
 <!-- HERO -->
 <section class="hero-section reveal" id="top"><div class="container">
+<div class="hero-copy">
+<div class="hero-overline animate d1">From Scan to Operations</div>
 <h1 class="animate d1">Hospitality.<br><em>No blindspots.</em></h1>
 <p class="hero-sub animate d2">Couvert is the Agentic Service OS for revenue-strong restaurants. Guests, revenue, and operations — measured, prioritized, steered. From Scan to Intelligence to Operations.</p>
-<a href="#calculator" class="hero-teaser animate d3" data-scroll-target="calculator">
-  <div class="hero-teaser-number" id="hero-counter"><span class="count-up" data-target="390000" data-prefix="CHF " data-suffix="+" data-format="de">CHF 390'000+</span></div>
-  <div class="hero-teaser-sub">That is the average annual revenue a restaurant with CHF 5M+ turnover leaves on the table each year.</div>
-  <div class="hero-teaser-cta">What is it costing you per year? <span class="hero-teaser-arrow">→</span></div>
-</a>
-<div class="hero-cta animate d4"><a href="example-report/" class="btn-ghost">View Intelligence Dossier</a></div>
-<div class="hero-bullets animate d5">
+<div class="hero-cta animate d3">
+  <a href="https://calendly.com/hello-couvert/30min" target="_blank" class="btn-primary">Book a Scan</a>
+  <a href="example-report/" class="btn-ghost">View Intelligence Dossier</a>
+</div>
+<div class="hero-bullets animate d4">
 <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>Swiss hosting</span>
 <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>nFADP-compliant</span>
 <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Anthropic Claude</span>
 <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Cancel monthly</span>
+</div>
+<a href="#calculator" class="hero-teaser animate d5" data-scroll-target="calculator">
+  <div class="hero-teaser-number" id="hero-counter"><span class="count-up" data-target="390000" data-prefix="CHF " data-suffix="+" data-format="de">CHF 390'000+</span></div>
+  <div class="hero-teaser-sub">Avg annual revenue left on the table by a CHF 5M+ restaurant</div>
+  <div class="hero-teaser-cta">Calculator <span class="hero-teaser-arrow">→</span></div>
+</a>
+</div>
+<div class="hero-dashboard" id="hero-dashboard">
+  <div class="dashboard-embed">
+    <div class="dashboard-embed__chrome">
+      <span class="dashboard-embed__dot"></span><span class="dashboard-embed__dot"></span><span class="dashboard-embed__dot"></span>
+    </div>
+    <div class="dashboard-embed__content">
+      <div class="dashboard-embed__layer is-active">
+        <iframe src="/mockups/product-report.html" loading="lazy" title="Couvert Monthly Impact Report Preview" aria-label="Monthly Impact Dashboard"></iframe>
+      </div>
+    </div>
+  </div>
 </div>
 </div></section>
 
@@ -545,7 +585,7 @@ html{scroll-behavior:smooth}
 </div>
 </div></section>
 
-<!-- SOLUTIONS FOR EVERY TEAM -->
+<!-- SOLUTIONS — sticky-chapter scroll -->
 <section class="solutions-section reveal" id="solutions"><div class="sol-container">
 <div class="solutions-head">
 <div class="section-label" style="text-align:center">Solutions</div>
@@ -553,213 +593,79 @@ html{scroll-behavior:smooth}
 <p>4 specialized teams. 12 Couvert Agents. One Operating System that makes every dimension of your operation visible.</p>
 </div>
 
-<div class="sol-tabs-wrap">
-<div class="sol-tabs" role="tablist">
-<button class="sol-tab active" data-sol="guest" role="tab" aria-selected="true">Guest Experience</button>
-<button class="sol-tab" data-sol="quality" role="tab" aria-selected="false">Quality &amp; Operations</button>
-<button class="sol-tab" data-sol="revenue" role="tab" aria-selected="false">Revenue &amp; Menu</button>
-<button class="sol-tab" data-sol="market" role="tab" aria-selected="false">Market &amp; Growth</button>
-</div>
-<div class="sol-scroll-hint" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
-</div>
+<div class="sol-sticky">
+  <div class="sol-chapters">
 
-<!-- GUEST EXPERIENCE -->
-<div class="sol-panel active" data-sol-panel="guest">
-  <div class="sol-grid">
-    <div class="sol-main team-guest">
-      <div class="ai-chip">Respond to review #1247</div>
-      <div class="sol-sub-label">Couvert Guest Experience</div>
-      <h3>Keep guests coming back.</h3>
-      <p class="sol-body">Reputation Manager, Guest Recovery, and Booking Optimizer actively nurture every guest relationship. Real-time review responses. Unhappy guests contacted personally. Occupancy guided deliberately.</p>
+    <article class="sol-chapter is-active" data-team="guest" data-sol-layer="guest">
+      <div class="sol-chapter__overline">Team 01 · Guest Experience</div>
+      <h3>Retain guests and win them back.</h3>
+      <p class="sol-body">Reputation Manager, Guest Recovery and Booking Optimizer actively maintain every guest relationship. Real-time reviews answered. Unhappy guests personally contacted. Occupancy steered deliberately.</p>
       <div class="sol-chips"><span>Reputation Manager</span><span>Guest Recovery</span><span>Booking Optimizer</span></div>
-      <a href="/mockups/product-reviews.html" class="sol-cta">Learn more →</a>
-      <a href="/mockups/product-reviews.html" class="sol-mock" aria-label="Open Review Response mockup">
-        <div class="sol-mock-title">Review Response · Live</div>
-        <div class="mock-review">
-          <div class="mock-review-col">
-            <div class="mock-review-head">Google · 42 min ago</div>
-            <div class="mock-review-stars">★★☆☆☆</div>
-            <div class="mock-review-text">Pizza war innen noch nass. Schade, hatte mich auf den Abend gefreut. <em>(Pizza was still soggy inside. Disappointing, I was looking forward to the evening.)</em></div>
-            <div class="mock-review-tags"><span>Dough quality</span><span>Expectation</span></div>
-          </div>
-          <div class="mock-review-col">
-            <div class="mock-review-head">Auto-draft · 14s</div>
-            <div class="mock-review-stars" style="color:rgba(255,255,255,0.5)">Reply</div>
-            <div class="mock-review-text">Thank you for your feedback. A soggy crust is not our standard. May we invite you back personally?</div>
-            <div class="mock-review-tags"><span>Tone: personal</span><span>Recovery</span></div>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="sol-side">
-      <div class="sol-kpi">
-        <div>
-          <div class="sol-kpi-glyph team-guest-glyph">G</div>
-          <div class="sol-kpi-num">95%</div>
-        </div>
-        <div class="sol-kpi-cap">Response rate within 2h.</div>
+      <div class="sol-outcome">CHF 80'000+</div>
+      <div class="sol-outcome-cap">Recovered annual revenue</div>
+      <a href="/mockups/product-reviews.html" class="sol-cta">See more</a>
+      <div class="sol-inline-dash dashboard-embed">
+        <div class="dashboard-embed__chrome"><span class="dashboard-embed__dot"></span><span class="dashboard-embed__dot"></span><span class="dashboard-embed__dot"></span></div>
+        <div class="dashboard-embed__content"><div class="dashboard-embed__layer is-active"><iframe src="/mockups/product-reviews.html" loading="lazy" title="Reviews Dashboard"></iframe></div></div>
       </div>
-      <div class="sol-quote">
-        <p>"Active review responses reduce churn by 37%."</p>
-        <cite class="team-guest-cite">ReviewTrackers 2023</cite>
-      </div>
-      <div class="sol-extra">
-        <div class="sol-extra-title">More Signals</div>
-        <ul>
-          <li><span class="sol-extra-label">Sentiment trend</span><span class="sol-extra-val">+12% MoM</span></li>
-          <li><span class="sol-extra-label">Avg response time</span><span class="sol-extra-val">1.8h</span></li>
-          <li><span class="sol-extra-label">Recovery rate</span><span class="sol-extra-val">24%</span></li>
-          <li><span class="sol-extra-label">Regular guests share</span><span class="sol-extra-val">41%</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+    </article>
 
-<!-- QUALITY & OPERATIONS -->
-<div class="sol-panel" data-sol-panel="quality">
-  <div class="sol-grid">
-    <div class="sol-main team-quality">
-      <div class="ai-chip">Kitchen briefing, evening shift</div>
-      <div class="sol-sub-label">Couvert Quality &amp; Operations</div>
-      <h3>Spot patterns before they turn into escalations.</h3>
-      <p class="sol-body">Quality Watchdog, Operations Advisor, Predictive Staffing, and Staff Communication see trend shifts, shift bottlenecks, and handover gaps. Before guests escalate.</p>
+    <article class="sol-chapter" data-team="quality" data-sol-layer="quality">
+      <div class="sol-chapter__overline">Team 02 · Quality &amp; Operations</div>
+      <h3>Spot patterns before they escalate.</h3>
+      <p class="sol-body">Quality Watchdog, Operations Advisor, Predictive Staffing and Staff Communication see trend shifts, shift bottlenecks and communication gaps. Before the guest escalates.</p>
       <div class="sol-chips"><span>Quality Watchdog</span><span>Operations Advisor</span><span>Predictive Staffing</span><span>Staff Communication</span></div>
-      <a href="/mockups/product-shift.html" class="sol-cta">Learn more →</a>
-      <a href="/mockups/product-shift.html" class="sol-mock" aria-label="Open Kitchen Briefing mockup">
-        <div class="sol-mock-title">Sub-themes · Last 14 days</div>
-        <div class="mock-themes">
-          <div class="mock-theme">
-            <div class="mock-theme-label">Soggy dough <span class="mock-theme-count">8×</span></div>
-            <div class="mock-theme-quote">"Crispy outside, still raw inside."</div>
-          </div>
-          <div class="mock-theme">
-            <div class="mock-theme-label">Service overwhelmed <span class="mock-theme-count">3×</span></div>
-            <div class="mock-theme-quote">"Waited 30 min for drinks."</div>
-          </div>
-          <div class="mock-theme">
-            <div class="mock-theme-label">Wait despite reservation <span class="mock-theme-count">3×</span></div>
-            <div class="mock-theme-quote">"Table was not ready yet."</div>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="sol-side">
-      <div class="sol-kpi">
-        <div>
-          <div class="sol-kpi-glyph team-quality-glyph">Q</div>
-          <div class="sol-kpi-num">+200%</div>
-        </div>
-        <div class="sol-kpi-cap">Dough-complaint trend detected before the rating reacted.</div>
+      <div class="sol-outcome">+200%</div>
+      <div class="sol-outcome-cap">Complaint trend detected before rating reacts</div>
+      <a href="/mockups/product-shift.html" class="sol-cta">See more</a>
+      <div class="sol-inline-dash dashboard-embed">
+        <div class="dashboard-embed__chrome"><span class="dashboard-embed__dot"></span><span class="dashboard-embed__dot"></span><span class="dashboard-embed__dot"></span></div>
+        <div class="dashboard-embed__content"><div class="dashboard-embed__layer is-active"><iframe src="/mockups/product-shift.html" loading="lazy" title="Shift Briefing Dashboard"></iframe></div></div>
       </div>
-      <div class="sol-quote">
-        <p>"For every written 1-2★ complaint, 7 unhappy guests stay silent."</p>
-        <cite class="team-quality-cite">Kolsky 2015</cite>
-      </div>
-      <div class="sol-extra">
-        <div class="sol-extra-title">More Signals</div>
-        <ul>
-          <li><span class="sol-extra-label">Sub-themes detected</span><span class="sol-extra-val">9 active</span></li>
-          <li><span class="sol-extra-label">Waiting-time cluster</span><span class="sol-extra-val">Sat+Sun 44%</span></li>
-          <li><span class="sol-extra-label">Shift alerts</span><span class="sol-extra-val">3 this week</span></li>
-          <li><span class="sol-extra-label">Communication gaps</span><span class="sol-extra-val">2 open</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+    </article>
 
-<!-- REVENUE & MENU -->
-<div class="sol-panel" data-sol-panel="revenue">
-  <div class="sol-grid">
-    <div class="sol-main team-revenue">
-      <div class="ai-chip">CHF 256,000 potential</div>
-      <div class="sol-sub-label">Couvert Revenue &amp; Menu</div>
-      <h3>Make revenue visible. Then grow it.</h3>
-      <p class="sol-body">Revenue Analyst, Menu Intelligence, and Food Waste Agent quantify revenue leaks, flag price-value anomalies, and optimize purchasing. All in CHF, all with source attribution.</p>
+    <article class="sol-chapter" data-team="revenue" data-sol-layer="revenue">
+      <div class="sol-chapter__overline">Team 03 · Revenue &amp; Menu</div>
+      <h3>Make revenue visible and grow it.</h3>
+      <p class="sol-body">Revenue Analyst, Menu Intelligence and Food Waste Agent quantify revenue leaks, identify price-value anomalies, optimize ingredient use. All in CHF, sourced.</p>
       <div class="sol-chips"><span>Revenue Analyst</span><span>Menu Intelligence</span><span>Food Waste Agent</span></div>
-      <a href="/mockups/product-report.html" class="sol-cta">Learn more →</a>
-      <a href="/mockups/product-report.html" class="sol-mock" aria-label="Open Monthly Impact mockup">
-        <div class="sol-mock-title">Monthly Impact · April 2026</div>
-        <div class="mock-kpis">
-          <div class="mock-kpi"><div class="mock-kpi-num">CHF 24,300</div><div class="mock-kpi-cap">realized</div></div>
-          <div class="mock-kpi"><div class="mock-kpi-num">CHF 256,000</div><div class="mock-kpi-cap">identified</div></div>
-          <div class="mock-kpi"><div class="mock-kpi-num">4 / 10</div><div class="mock-kpi-cap">actions live</div></div>
-        </div>
-        <div class="mock-table">
-          <div class="mock-row"><span>Price adjustment, Classic Pizza</span><b>+CHF 6,800</b></div>
-          <div class="mock-row"><span>Menu trimmed from 14 to 9 dishes</span><b>+CHF 11,200</b></div>
-        </div>
-      </a>
-    </div>
-    <div class="sol-side">
-      <div class="sol-kpi">
-        <div>
-          <div class="sol-kpi-glyph team-revenue-glyph">R</div>
-          <div class="sol-kpi-num">CHF 280K+</div>
-        </div>
-        <div class="sol-kpi-cap">Improvement potential per year.</div>
+      <div class="sol-outcome">CHF 280K+</div>
+      <div class="sol-outcome-cap">Annual improvement potential</div>
+      <a href="/mockups/product-report.html" class="sol-cta">See more</a>
+      <div class="sol-inline-dash dashboard-embed">
+        <div class="dashboard-embed__chrome"><span class="dashboard-embed__dot"></span><span class="dashboard-embed__dot"></span><span class="dashboard-embed__dot"></span></div>
+        <div class="dashboard-embed__content"><div class="dashboard-embed__layer is-active"><iframe src="/mockups/product-report.html" loading="lazy" title="Monthly Impact Dashboard"></iframe></div></div>
       </div>
-      <div class="sol-quote">
-        <p>"5-9% revenue lift per rating star at independent restaurants."</p>
-        <cite class="team-revenue-cite">Luca HBS 2016</cite>
-      </div>
-      <div class="sol-extra">
-        <div class="sol-extra-title">More Signals</div>
-        <ul>
-          <li><span class="sol-extra-label">Avg ticket from menu</span><span class="sol-extra-val">CHF 47</span></li>
-          <li><span class="sol-extra-label">Top loss position</span><span class="sol-extra-val">CHF 195K</span></li>
-          <li><span class="sol-extra-label">Menu items tracked</span><span class="sol-extra-val">38</span></li>
-          <li><span class="sol-extra-label">Food waste alerts</span><span class="sol-extra-val">2 active</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+    </article>
 
-<!-- MARKET & GROWTH -->
-<div class="sol-panel" data-sol-panel="market">
-  <div class="sol-grid">
-    <div class="sol-main team-market">
-      <div class="ai-chip">Margheri +300% reviews this week</div>
-      <div class="sol-sub-label">Couvert Market &amp; Growth</div>
-      <h3>Understand competition. Measure marketing.</h3>
-      <p class="sol-body">Marketing Engine and Competitor Radar evaluate marketing impact and compare price and content level against competitors. Measurable, not gut-feel.</p>
+    <article class="sol-chapter" data-team="market" data-sol-layer="market">
+      <div class="sol-chapter__overline">Team 04 · Market &amp; Growth</div>
+      <h3>Understand competition, make marketing measurable.</h3>
+      <p class="sol-body">Marketing Engine and Competitor Radar assess marketing impact and benchmark pricing and content against competitors. Measurable, not gut-feel.</p>
       <div class="sol-chips"><span>Marketing Engine</span><span>Competitor Radar</span></div>
-      <a href="/mockups/product-competitor.html" class="sol-cta">Learn more →</a>
-      <a href="/mockups/product-competitor.html" class="sol-mock" aria-label="Open Competitor Pulse mockup">
-        <div class="sol-mock-title">Competitor Pulse · Average rating</div>
-        <div class="mock-bars">
-          <div class="mock-bar"><div class="mock-bar-name">60 Seconds</div><div class="mock-bar-track"><div class="mock-bar-fill" style="width:92%"></div></div><div class="mock-bar-val">4.6</div></div>
-          <div class="mock-bar"><div class="mock-bar-name">Margheri</div><div class="mock-bar-track"><div class="mock-bar-fill" style="width:88%"></div></div><div class="mock-bar-val">4.4</div></div>
-          <div class="mock-bar"><div class="mock-bar-name">Da Pone</div><div class="mock-bar-track"><div class="mock-bar-fill" style="width:82%"></div></div><div class="mock-bar-val">4.1</div></div>
-        </div>
-        <div class="mock-note">12 new 5-star reviews this week at Margheri. Classic Pizza price cut by CHF 2.</div>
-      </a>
-    </div>
-    <div class="sol-side">
-      <div class="sol-kpi">
-        <div>
-          <div class="sol-kpi-glyph team-market-glyph">M</div>
-          <div class="sol-kpi-num">CHF 22 vs 100</div>
-        </div>
-        <div class="sol-kpi-cap">CAC: Paid Ads vs Influencer.</div>
+      <div class="sol-outcome">CHF 22 vs 100</div>
+      <div class="sol-outcome-cap">CAC: paid ads vs influencer</div>
+      <a href="/mockups/product-competitor.html" class="sol-cta">See more</a>
+      <div class="sol-inline-dash dashboard-embed">
+        <div class="dashboard-embed__chrome"><span class="dashboard-embed__dot"></span><span class="dashboard-embed__dot"></span><span class="dashboard-embed__dot"></span></div>
+        <div class="dashboard-embed__content"><div class="dashboard-embed__layer is-active"><iframe src="/mockups/product-competitor.html" loading="lazy" title="Competitor Radar Dashboard"></iframe></div></div>
       </div>
-      <div class="sol-quote">
-        <p>"88% vs 47% conversion effect via review responses."</p>
-        <cite class="team-market-cite">BrightLocal 2024</cite>
-      </div>
-      <div class="sol-extra">
-        <div class="sol-extra-title">More Signals</div>
-        <ul>
-          <li><span class="sol-extra-label">Competitor delta</span><span class="sol-extra-val">-0.23★</span></li>
-          <li><span class="sol-extra-label">Paid ad CAC</span><span class="sol-extra-val">CHF 22</span></li>
-          <li><span class="sol-extra-label">Influencer revenue share</span><span class="sol-extra-val">14%</span></li>
-          <li><span class="sol-extra-label">Review gap Google/TA</span><span class="sol-extra-val">2.0★</span></li>
-        </ul>
+    </article>
+
+  </div>
+
+  <div class="sol-stage">
+    <div class="sol-dashboard dashboard-embed">
+      <div class="dashboard-embed__chrome"><span class="dashboard-embed__dot"></span><span class="dashboard-embed__dot"></span><span class="dashboard-embed__dot"></span></div>
+      <div class="dashboard-embed__content">
+        <div class="dashboard-embed__layer is-active" data-sol-target="guest"><iframe src="/mockups/product-reviews.html" loading="lazy" title="Guest — Reviews"></iframe></div>
+        <div class="dashboard-embed__layer" data-sol-target="quality"><iframe src="/mockups/product-shift.html" loading="lazy" title="Quality — Shift Briefing"></iframe></div>
+        <div class="dashboard-embed__layer" data-sol-target="revenue"><iframe src="/mockups/product-report.html" loading="lazy" title="Revenue — Monthly Impact"></iframe></div>
+        <div class="dashboard-embed__layer" data-sol-target="market"><iframe src="/mockups/product-competitor.html" loading="lazy" title="Market — Competitor Radar"></iframe></div>
       </div>
     </div>
   </div>
+
 </div>
 
 </div></section>
@@ -1040,24 +946,37 @@ function pulseTarget(id){const el=document.getElementById(id);if(!el)return;el.c
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',()=>{const id=a.getAttribute('href').slice(1);if(id)setTimeout(()=>pulseTarget(id),450)})});
 if(location.hash)setTimeout(()=>pulseTarget(location.hash.slice(1)),600);
 
-// Solutions tab switcher
+// Solutions — sticky-chapter scroll (Phase 1 signature)
 (function(){
-  const tabs=document.querySelectorAll('.sol-tab');
-  const panels=document.querySelectorAll('.sol-panel');
-  const wrap=document.querySelector('.sol-tabs-wrap'),tabsEl=wrap?wrap.querySelector('.sol-tabs'):null;
-  if(wrap&&tabsEl){
-    function checkEnd(){const atEnd=tabsEl.scrollLeft+tabsEl.clientWidth>=tabsEl.scrollWidth-4;wrap.classList.toggle('at-end',atEnd)}
-    tabsEl.addEventListener('scroll',checkEnd,{passive:true});
-    window.addEventListener('resize',checkEnd);
-    setTimeout(checkEnd,100);
+  const chapters=document.querySelectorAll('.sol-chapter[data-sol-layer]');
+  const layers=document.querySelectorAll('.dashboard-embed__layer[data-sol-target]');
+  if(chapters.length && 'IntersectionObserver' in window){
+    function activate(team){
+      chapters.forEach(c=>c.classList.toggle('is-active',c.dataset.solLayer===team));
+      layers.forEach(l=>l.classList.toggle('is-active',l.dataset.solTarget===team));
+    }
+    const io=new IntersectionObserver(entries=>{
+      const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+      if(visible){activate(visible.target.dataset.solLayer)}
+    },{rootMargin:'-40% 0px -40% 0px', threshold:[0,0.25,0.5,0.75,1]});
+    chapters.forEach(c=>io.observe(c));
   }
-  tabs.forEach(t=>{
-    t.addEventListener('click',()=>{
-      const k=t.getAttribute('data-sol');
-      tabs.forEach(x=>{x.classList.toggle('active',x===t);x.setAttribute('aria-selected',x===t?'true':'false')});
-      panels.forEach(p=>p.classList.toggle('active',p.getAttribute('data-sol-panel')===k));
-    });
-  });
+  const heroDash=document.getElementById('hero-dashboard');
+  if(heroDash){
+    requestAnimationFrame(()=>heroDash.classList.add('is-revealed'));
+    if(window.matchMedia('(min-width:1024px)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      let ticking=false;
+      function onScroll(){
+        if(ticking)return;ticking=true;
+        requestAnimationFrame(()=>{
+          const y=Math.min(window.scrollY,500);
+          heroDash.style.setProperty('--parallax-y',(-y*0.04)+'px');
+          ticking=false;
+        });
+      }
+      window.addEventListener('scroll',onScroll,{passive:true});
+    }
+  }
 })();
 </script>
 </body>
