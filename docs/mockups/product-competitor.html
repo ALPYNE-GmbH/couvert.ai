@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Competitor Radar · Couvert Cockpit</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1A3C34;--bg2:#162F29;--bg3:#12261F;--bg4:#0E1F1A;--copper:#C4673A;--copper-soft:rgba(196,103,58,0.14);--gold:#E8B931;--cream:#F5F0EB;--text:#E0DCD6;--dim:#9B958C;--border:#243D37;--border-soft:#1F3531;--green:#6B9C7F;--red:#B8564A}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);font-size:13.5px;line-height:1.5;-webkit-font-smoothing:antialiased}
+
+.app{display:grid;grid-template-columns:220px 1fr;grid-template-rows:52px 1fr;min-height:100vh;background:var(--bg3)}
+.topbar{grid-column:1 / 3;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:24px;position:sticky;top:0;z-index:10}
+.brand{font-family:'DM Serif Display',serif;font-size:20px;color:var(--cream);letter-spacing:-0.5px;display:flex;align-items:center;gap:8px;width:200px}
+.brand .dot{color:var(--copper)}
+.brand-env{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--dim);padding:2px 6px;border:1px solid var(--border);border-radius:3px;margin-left:auto}
+.topnav{display:flex;gap:2px;flex:1}
+.topnav a{font-size:13px;color:var(--dim);padding:8px 14px;border-radius:4px;text-decoration:none;transition:all 0.15s}
+.topnav a:hover{color:var(--text);background:var(--bg2)}
+.topnav a.active{color:var(--cream);background:var(--bg2)}
+.search{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:6px 10px 6px 28px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);width:240px;position:relative}
+.search::before{content:'⌕';position:absolute;left:10px;top:6px;color:var(--dim)}
+.search kbd{float:right;font-family:inherit;font-size:10px;color:var(--dim);background:var(--bg3);padding:0 5px;border-radius:2px;border:1px solid var(--border)}
+.userpill{display:flex;align-items:center;gap:10px;padding:5px 10px 5px 5px;border:1px solid var(--border);border-radius:20px;background:var(--bg2);cursor:pointer}
+.userpill .av{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--copper),#8E4825);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:13px;color:var(--cream)}
+.userpill .nm{font-size:12px;color:var(--text);line-height:1}
+.userpill .nm small{display:block;color:var(--dim);font-size:10px;margin-top:3px;font-family:'JetBrains Mono',monospace}
+
+.sidebar{background:var(--bg3);border-right:1px solid var(--border);padding:18px 12px;display:flex;flex-direction:column;gap:4px}
+.side-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--dim);padding:10px 10px 6px;text-transform:uppercase}
+.side-item{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:4px;color:var(--text);text-decoration:none;font-size:13px;position:relative}
+.side-item:hover{background:var(--bg2)}
+.side-item.active{background:var(--bg2);color:var(--cream)}
+.side-item.active::before{content:'';position:absolute;left:-12px;top:8px;bottom:8px;width:2px;background:var(--copper);border-radius:0 2px 2px 0}
+.side-item .ic{width:14px;height:14px;color:var(--dim);flex-shrink:0}
+.side-item.active .ic{color:var(--copper)}
+.side-item .count{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim);background:var(--bg2);padding:1px 6px;border-radius:8px}
+.side-item.active .count{background:var(--copper);color:var(--cream)}
+.side-item .alert-dot{margin-left:auto;width:6px;height:6px;border-radius:50%;background:var(--copper);box-shadow:0 0 0 3px rgba(196,103,58,0.2)}
+.side-sep{height:1px;background:var(--border-soft);margin:10px 6px}
+
+.main{background:var(--bg4);overflow-y:auto}
+.main-head{padding:22px 28px 18px;border-bottom:1px solid var(--border-soft);background:var(--bg3)}
+.crumbs{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--dim);margin-bottom:6px}
+.crumbs .sep{opacity:0.4;margin:0 6px}
+.page-title{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.page-title h1{font-family:'DM Serif Display',serif;font-size:24px;color:var(--cream);letter-spacing:-0.3px;font-weight:normal}
+.sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);margin-top:4px;letter-spacing:0.5px}
+.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:6px;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.btn{font-family:inherit;font-size:13px;padding:7px 12px;border-radius:4px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer}
+.btn:hover{border-color:var(--copper);color:var(--cream)}
+.btn.primary{background:var(--copper);border-color:var(--copper);color:var(--cream)}
+.mini-btn{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.5px;padding:4px 8px;border:1px solid var(--border);border-radius:3px;background:transparent;color:var(--text);cursor:pointer}
+.mini-btn:hover{border-color:var(--copper);color:var(--cream)}
+.mini-btn.primary{background:var(--copper);border-color:var(--copper);color:var(--cream)}
+
+.content{padding:24px 28px 48px;max-width:1280px}
+
+/* Alert strip */
+.alert{background:rgba(196,103,58,0.08);border:1px solid rgba(196,103,58,0.3);border-left-width:3px;border-radius:4px;padding:14px 16px;margin-bottom:18px;font-size:13px;color:var(--text);display:flex;gap:12px;align-items:flex-start}
+.alert .ico{width:18px;height:18px;color:var(--copper);flex-shrink:0;margin-top:2px}
+.alert b{color:var(--copper)}
+.alert a{color:var(--gold);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.5px;margin-left:auto;white-space:nowrap}
+
+/* Competitor grid */
+.comp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+.comp-card{background:var(--bg3);border:1px solid var(--border-soft);border-radius:6px;padding:18px;position:relative}
+.comp-card.you{border-color:var(--copper);background:linear-gradient(135deg,var(--bg3),rgba(196,103,58,0.06))}
+.comp-card.alert{border-color:rgba(196,103,58,0.4)}
+.comp-card.alert::after{content:'';position:absolute;top:10px;right:10px;width:8px;height:8px;border-radius:50%;background:var(--copper);box-shadow:0 0 0 4px rgba(196,103,58,0.2)}
+.comp-name{font-family:'DM Serif Display',serif;font-size:16px;color:var(--cream);letter-spacing:-0.2px;margin-bottom:2px}
+.comp-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;margin-bottom:14px}
+.comp-you-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--copper);background:var(--copper-soft);padding:1px 6px;border-radius:3px;margin-left:6px;vertical-align:middle}
+.rating-row{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}
+.rating-big{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:600;color:var(--cream);line-height:1}
+.rating-big.gold{color:var(--gold)}
+.rating-delta{font-family:'JetBrains Mono',monospace;font-size:11px}
+.rating-delta.up{color:var(--green)}
+.rating-delta.down{color:var(--red)}
+.rating-delta.flat{color:var(--dim)}
+.comp-stars{letter-spacing:2px;font-size:11px;color:var(--gold);margin-bottom:12px}
+.comp-stars .off{color:var(--border)}
+.comp-metrics{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-top:12px;border-top:1px solid var(--border-soft);font-size:11.5px}
+.comp-metrics .m-label{color:var(--dim);font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:2px}
+.comp-metrics .m-val{color:var(--cream);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500}
+.comp-metrics .m-val.up{color:var(--green)}
+.comp-metrics .m-val.down{color:var(--red)}
+
+/* Events feed */
+.section{background:var(--bg3);border:1px solid var(--border-soft);border-radius:6px;margin-bottom:16px;overflow:hidden}
+.section-head{padding:14px 20px;border-bottom:1px solid var(--border-soft);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.section-head h2{font-family:'DM Serif Display',serif;font-size:17px;color:var(--cream);letter-spacing:-0.2px;font-weight:normal}
+.section-body{padding:0}
+.agent-pill{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--copper);background:var(--copper-soft);border:1px solid rgba(196,103,58,0.3);padding:3px 7px;border-radius:3px}
+.agent-pill::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--copper)}
+
+.event{display:grid;grid-template-columns:90px 1fr auto;gap:16px;padding:16px 20px;border-bottom:1px solid var(--border-soft);align-items:flex-start}
+.event:last-child{border-bottom:none}
+.event:hover{background:var(--bg2)}
+.e-time{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--dim);line-height:1.5}
+.e-time b{color:var(--cream);font-weight:500;display:block;font-size:11px}
+.e-title{color:var(--cream);font-size:14px;margin-bottom:4px;font-weight:500}
+.e-title .tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1px;padding:2px 7px;border-radius:3px;vertical-align:middle;margin-left:8px;text-transform:uppercase;font-weight:500}
+.tag.up{background:var(--copper-soft);color:var(--copper);border:1px solid rgba(196,103,58,0.3)}
+.tag.down{background:rgba(184,86,74,0.08);color:var(--red);border:1px solid rgba(184,86,74,0.3)}
+.tag.neutral{background:var(--bg4);color:var(--dim);border:1px solid var(--border)}
+.e-desc{font-size:13px;color:var(--text);line-height:1.55}
+.e-quote{margin-top:8px;padding:8px 10px;background:var(--bg4);border-left:2px solid var(--copper);border-radius:0 3px 3px 0;font-size:12px;color:var(--dim);font-style:italic}
+.e-action{font-size:12px;color:var(--cream);margin-top:10px;padding:8px 12px;background:rgba(232,185,49,0.08);border:1px solid rgba(232,185,49,0.2);border-radius:3px}
+.e-action b{color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.5px;display:block;margin-bottom:2px;text-transform:uppercase}
+.e-actions{display:flex;flex-direction:column;gap:6px}
+
+/* Rating chart */
+.chart-wrap{padding:22px 22px 16px;background:var(--bg2);border-radius:4px;margin:0 20px 20px}
+.chart-wrap svg{width:100%;height:180px;display:block}
+.legend{display:flex;gap:16px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim);margin-top:10px;justify-content:center;flex-wrap:wrap}
+.legend .li{display:flex;align-items:center;gap:6px}
+.legend .sw{width:10px;height:2px;display:inline-block}
+
+@media(max-width:1200px){.comp-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1100px){.app{grid-template-columns:64px 1fr}.side-item span:not(.count),.side-label{display:none}.side-item{justify-content:center}.brand{width:auto}.event{grid-template-columns:1fr}.e-actions{flex-direction:row}}
+@media(max-width:800px){.topnav,.search{display:none}.comp-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div class="brand">c<span class="dot">o</span>uvert<span class="brand-env">COCKPIT</span></div>
+    <nav class="topnav">
+      <a href="product-shift.html">Dashboard</a>
+      <a href="product-reviews.html">Reviews</a>
+      <a href="product-competitor.html" class="active">Competitor</a>
+      <a href="product-report.html">Reports</a>
+      <a href="#">Agents</a>
+    </nav>
+    <div class="search">Suchen in Reviews, Agents, Reports… <kbd>⌘K</kbd></div>
+    <div class="userpill">
+      <div class="av">L</div>
+      <div class="nm">Luca Moretti<small>60 SECONDS · OWNER</small></div>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="side-label">Competitor Radar</div>
+    <a class="side-item active" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="3"/><path d="M8 2v2M8 12v2M2 8h2M12 8h2"/></svg><span>Übersicht</span></a>
+    <a class="side-item" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14l4-4 3 3 5-7"/></svg><span>Rating-Trends</span></a>
+    <a class="side-item" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12M2 4h12M2 12h12"/></svg><span>Menü-Vergleich</span></a>
+    <a class="side-item" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M2 6h12"/></svg><span>Events</span><span class="alert-dot"></span></a>
+    <div class="side-sep"></div>
+    <div class="side-label">Beobachtete Wettbewerber</div>
+    <a class="side-item" href="#"><span style="width:8px;height:8px;border-radius:50%;background:var(--copper)"></span><span>Margheri</span><span class="alert-dot"></span></a>
+    <a class="side-item" href="#"><span style="width:8px;height:8px;border-radius:50%;background:var(--gold)"></span><span>San Gennaro</span></a>
+    <a class="side-item" href="#"><span style="width:8px;height:8px;border-radius:50%;background:var(--green)"></span><span>Da Nino</span></a>
+    <a class="side-item" href="#" style="color:var(--dim)"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3v10M3 8h10"/></svg><span>Hinzufügen</span></a>
+    <div class="side-sep"></div>
+    <div class="side-label">Briefings</div>
+    <a class="side-item" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12v10H2zM2 4l6 4 6-4"/></svg><span>Wöchentlich</span></a>
+  </aside>
+
+  <main class="main">
+    <div class="main-head">
+      <div class="crumbs">Competitor Radar<span class="sep">/</span><span style="color:var(--cream)">Übersicht</span> <span class="sep">/</span> KW 17, 2026</div>
+      <div class="page-title">
+        <div>
+          <h1>Competitor Radar · Zürich Kreis 4</h1>
+          <div class="sub"><span class="live-dot"></span>LIVE · letztes Update vor 8 Minuten · 3 beobachtete Wettbewerber · Competitor Radar Agent aktiv</div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="btn">Zeitraum: KW 17</button>
+          <button class="btn primary">Wöchentliches Briefing</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <div class="alert">
+        <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2l6 11H2L8 2zM8 7v3M8 12v0.5"/></svg>
+        <div style="flex:1">
+          <b>Bewegung bei Margheri.</b> 12 neue 5-Sterne-Reviews diese Woche, +300% vs. Durchschnitt. Erwähnen alle ein neues Lunch-Menü. Marketing Engine hat einen Gegenvorschlag vorbereitet.
+        </div>
+        <a href="#">Vorschlag ansehen →</a>
+      </div>
+
+      <div class="comp-grid">
+        <div class="comp-card you">
+          <div class="comp-name">60 Seconds<span class="comp-you-tag">SIE</span></div>
+          <div class="comp-label">ZÜRICH · KREIS 4</div>
+          <div class="rating-row">
+            <div class="rating-big gold">4.48</div>
+            <div class="rating-delta up">↑ 0.08</div>
+          </div>
+          <div class="comp-stars">★★★★<span class="off">★</span></div>
+          <div class="comp-metrics">
+            <div><div class="m-label">Reviews/Woche</div><div class="m-val">18</div></div>
+            <div><div class="m-label">Antwortquote</div><div class="m-val up">94%</div></div>
+            <div><div class="m-label">Ø Preis Pizza</div><div class="m-val">CHF 22</div></div>
+            <div><div class="m-label">Offen bis</div><div class="m-val">23:00</div></div>
+          </div>
+        </div>
+
+        <div class="comp-card alert">
+          <div class="comp-name">Margheri</div>
+          <div class="comp-label">400m ENTFERNT</div>
+          <div class="rating-row">
+            <div class="rating-big">4.70</div>
+            <div class="rating-delta up">↑ 0.12</div>
+          </div>
+          <div class="comp-stars">★★★★<span style="color:#E8B931;opacity:0.7">★</span></div>
+          <div class="comp-metrics">
+            <div><div class="m-label">Reviews/Woche</div><div class="m-val up">32 (+300%)</div></div>
+            <div><div class="m-label">Antwortquote</div><div class="m-val">12%</div></div>
+            <div><div class="m-label">Ø Preis Pizza</div><div class="m-val down">CHF 20</div></div>
+            <div><div class="m-label">Neu: Lunch</div><div class="m-val">CHF 18.90</div></div>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-name">San Gennaro</div>
+          <div class="comp-label">650m ENTFERNT</div>
+          <div class="rating-row">
+            <div class="rating-big">4.32</div>
+            <div class="rating-delta down">↓ 0.08</div>
+          </div>
+          <div class="comp-stars">★★★★<span class="off">★</span></div>
+          <div class="comp-metrics">
+            <div><div class="m-label">Reviews/Woche</div><div class="m-val">14</div></div>
+            <div><div class="m-label">1★-Reviews</div><div class="m-val down">4 (Service)</div></div>
+            <div><div class="m-label">Ø Preis Pizza</div><div class="m-val">CHF 24</div></div>
+            <div><div class="m-label">Offen bis</div><div class="m-val">22:30</div></div>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-name">Da Nino</div>
+          <div class="comp-label">1.1km ENTFERNT</div>
+          <div class="rating-row">
+            <div class="rating-big">4.41</div>
+            <div class="rating-delta flat">— 0.00</div>
+          </div>
+          <div class="comp-stars">★★★★<span class="off">★</span></div>
+          <div class="comp-metrics">
+            <div><div class="m-label">Reviews/Woche</div><div class="m-val">9</div></div>
+            <div><div class="m-label">Antwortquote</div><div class="m-val">45%</div></div>
+            <div><div class="m-label">Ø Preis Pizza</div><div class="m-val">CHF 23</div></div>
+            <div><div class="m-label">Offen bis</div><div class="m-val">23:30</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">
+          <h2>Rating-Entwicklung · letzte 8 Wochen</h2>
+          <span class="agent-pill">COMPETITOR RADAR</span>
+        </div>
+        <div class="chart-wrap">
+          <svg viewBox="0 0 600 180" preserveAspectRatio="none">
+            <g stroke="#243D37" stroke-width="1" stroke-dasharray="2 4" opacity="0.6">
+              <line x1="40" y1="40" x2="590" y2="40"/>
+              <line x1="40" y1="90" x2="590" y2="90"/>
+              <line x1="40" y1="140" x2="590" y2="140"/>
+            </g>
+            <g font-family="JetBrains Mono" font-size="9" fill="#9B958C">
+              <text x="34" y="44" text-anchor="end">4.70</text>
+              <text x="34" y="94" text-anchor="end">4.50</text>
+              <text x="34" y="144" text-anchor="end">4.30</text>
+            </g>
+            <!-- Margheri (copper) -->
+            <polyline points="60,62 130,58 200,52 270,48 340,44 410,40 480,36 550,30" fill="none" stroke="#C4673A" stroke-width="2.2"/>
+            <!-- 60 Seconds (gold) -->
+            <polyline points="60,112 130,118 200,122 270,128 340,130 410,120 480,108 550,94" fill="none" stroke="#E8B931" stroke-width="2.5"/>
+            <circle cx="550" cy="94" r="5" fill="#E8B931"/><circle cx="550" cy="94" r="10" fill="none" stroke="#E8B931" opacity="0.3"/>
+            <!-- San Gennaro (red) -->
+            <polyline points="60,100 130,104 200,106 270,110 340,116 410,122 480,132 550,140" fill="none" stroke="#B8564A" stroke-width="1.8" opacity="0.75"/>
+            <!-- Da Nino (green) -->
+            <polyline points="60,104 130,106 200,104 270,108 340,106 410,108 480,106 550,104" fill="none" stroke="#6B9C7F" stroke-width="1.5" opacity="0.7" stroke-dasharray="4 3"/>
+            <g font-family="JetBrains Mono" font-size="9" fill="#9B958C" text-anchor="middle">
+              <text x="60" y="172">W10</text><text x="130" y="172">W11</text><text x="200" y="172">W12</text><text x="270" y="172">W13</text><text x="340" y="172">W14</text><text x="410" y="172">W15</text><text x="480" y="172">W16</text><text x="550" y="172" fill="#E8B931">W17</text>
+            </g>
+          </svg>
+          <div class="legend">
+            <span class="li"><span class="sw" style="background:#E8B931"></span>60 Seconds (Sie)</span>
+            <span class="li"><span class="sw" style="background:#C4673A"></span>Margheri</span>
+            <span class="li"><span class="sw" style="background:#B8564A"></span>San Gennaro</span>
+            <span class="li"><span class="sw" style="background:#6B9C7F;border-top:1px dashed"></span>Da Nino</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">
+          <h2>Events dieser Woche</h2>
+          <div style="display:flex;gap:6px"><button class="mini-btn">Alle</button><button class="mini-btn">Nur Alerts</button></div>
+        </div>
+        <div class="section-body">
+
+          <div class="event">
+            <div class="e-time">Mo 21. Apr<b>09:14</b></div>
+            <div>
+              <div class="e-title">Margheri launcht neues Lunch-Menü <span class="tag up">+300% REVIEWS</span></div>
+              <div class="e-desc">12 neue 5-Sterne-Reviews innerhalb 4 Tagen. Menü wird in fast allen Reviews genannt, Preispunkt CHF 18.90 für 2 Gänge. Angebot Mo–Fr 11:30–14:00.</div>
+              <div class="e-quote">"Endlich ein Lunch in Kreis 4 wo man in 30 Min satt wird, ohne dass es nach Fastfood schmeckt."</div>
+              <div class="e-action"><b>Vorschlag · Marketing Engine</b>Eigenes Lunch-Special testen. Preispunkt CHF 18.90 würde Marge halten. Kampagne in 48h vorbereitbar.</div>
+            </div>
+            <div class="e-actions">
+              <button class="mini-btn primary">Vorschlag prüfen</button>
+              <button class="mini-btn">Ignorieren</button>
+            </div>
+          </div>
+
+          <div class="event">
+            <div class="e-time">So 20. Apr<b>22:10</b></div>
+            <div>
+              <div class="e-title">San Gennaro verliert an Boden <span class="tag down">−0.08 ★</span></div>
+              <div class="e-desc">Rating auf 4.32 gefallen (von 4.40). 4 kritische 1-Sterne-Reviews diese Woche, alle erwähnen langsamen Service am Freitagabend.</div>
+              <div class="e-action" style="background:rgba(107,156,127,0.08);border-color:rgba(107,156,127,0.2)"><b style="color:var(--green)">Keine Aktion nötig</b>Wir beobachten ob sich das konsolidiert. Chance für Ihr Team, mit schnellem Service zu differenzieren.</div>
+            </div>
+            <div class="e-actions">
+              <button class="mini-btn">Details</button>
+            </div>
+          </div>
+
+          <div class="event">
+            <div class="e-time">Sa 19. Apr<b>16:02</b></div>
+            <div>
+              <div class="e-title">Margheri senkt Preise Classic-Pizzen <span class="tag neutral">PREIS −CHF 2</span></div>
+              <div class="e-desc">Margherita von CHF 22 auf CHF 20. Quattro Formaggi von CHF 24 auf CHF 22. Revenue Analyst hat Auswirkung auf Ihre Deckungsbeiträge simuliert.</div>
+            </div>
+            <div class="e-actions">
+              <button class="mini-btn">Simulation</button>
+            </div>
+          </div>
+
+          <div class="event">
+            <div class="e-time">Fr 18. Apr<b>11:48</b></div>
+            <div>
+              <div class="e-title">Da Nino · stabil, keine Bewegung <span class="tag neutral">OK</span></div>
+              <div class="e-desc">Rating unverändert 4.41. Menü, Öffnungszeiten, Preise stabil. Keine aktiven Massnahmen.</div>
+            </div>
+            <div class="e-actions">
+              <button class="mini-btn">Details</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+</body>
+</html>
