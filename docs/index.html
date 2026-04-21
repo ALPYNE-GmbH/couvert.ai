@@ -406,10 +406,18 @@
 .sol-dashboard{aspect-ratio:16/10}
 
 /* Mobile: each chapter's dashboard renders inline */
-.sol-inline-dash{display:none;margin-top:var(--sp-5);aspect-ratio:16/10}
+.sol-inline-dash{display:none;margin-top:var(--sp-5)}
+.sol-inline-link{position:relative;display:none;overflow:hidden;border-radius:var(--radius-lg);border:1px solid var(--hairline);background:var(--canvas-raised);text-decoration:none;color:inherit;box-shadow:var(--shadow-sm);transition:transform var(--dur-fast) var(--ease-out-quint),box-shadow var(--dur-fast)}
+.sol-inline-link img{display:block;width:100%;height:auto;object-fit:contain;background:var(--canvas-sunken)}
+.sol-inline-link:active{transform:scale(0.985)}
+.sol-inline-link .sol-inline-tap{position:absolute;bottom:10px;right:10px;background:rgba(18,34,30,0.92);color:#FAF8F3;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 10px;border-radius:var(--radius-pill);pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity 400ms var(--ease-out-quint),transform 400ms var(--ease-out-quint)}
+.sol-inline-link.is-hint .sol-inline-tap{opacity:1;transform:translateY(0)}
+@keyframes sol-pan-demo{0%{transform:translateY(0)}50%{transform:translateY(-14%)}100%{transform:translateY(0)}}
+.sol-inline-link.is-demo img{animation:sol-pan-demo 2400ms var(--ease-out-quint) 1}
 @media(max-width:1023px){
   .sol-stage{display:none}
   .sol-inline-dash{display:block}
+  a.sol-inline-dash.sol-inline-link{display:block}
 }
 
 @media(max-width:1023px){
@@ -482,29 +490,29 @@
 <!-- VALUE PROP GRID (Amakori-style: what does this actually improve?) -->
 <section class="value-section reveal"><div class="container">
 <div class="value-head">
-<div class="section-label">Was wir konkret verbessern</div>
-<h2>Vier Hebel, messbar bewegt.</h2>
+<div class="section-label">Was uns unterscheidet</div>
+<h2>Kein weiteres Review-Tool. Ein Operations-System.</h2>
 </div>
 <div class="value-grid reveal-stagger">
 <div class="value-card">
-<div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg></div>
-<h3>Mehr Umsatz</h3>
-<p>Hebel identifiziert, die 5–9% auf den Jahresumsatz ausmachen — beziffert in CHF, priorisiert nach Aufwand.</p>
+<div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+<h3>Vier Teams, zwölf Agents, ein System</h3>
+<p>Bewertungen, Schichten, Menü, Wettbewerb, Auslastung — in einer Plattform mit geteilten Daten. Legacy-Tools bleiben Silos.</p>
 </div>
 <div class="value-card">
-<div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 9 17 14 19 21 12 17 5 21 7 14 2 9 9 9"/></svg></div>
-<h3>Besseres Rating</h3>
-<p>Von 4.5★ Richtung 4.7★: Jede Bewertung in Echtzeit beantwortet, mehrsprachig, in Ihrer Tonalität.</p>
+<div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M7 7h10M5 12h14M7 17h10"/></svg></div>
+<h3>CHF-beziffert, nicht bunt</h3>
+<p>Jede Schwachstelle in Franken. Priorisiert nach Aufwand × Hebel. Keine Charts zum Selber-Interpretieren, keine Vanity-Metrics.</p>
 </div>
 <div class="value-card">
-<div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7l3-3"/><polyline points="21 3 21 9 15 9"/><path d="M21 12a9 9 0 0 1-15 6.7l-3 3"/><polyline points="3 21 3 15 9 15"/></svg></div>
-<h3>Weniger Abwanderung</h3>
-<p>Unzufriedene Gäste werden erkannt, kontaktiert und zurückgeholt — statt stumm zu verschwinden.</p>
+<div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></div>
+<h3>Agents handeln, nicht nur melden</h3>
+<p>Review-Antworten, Schicht-Briefings, Recovery-Einladungen, Buffer-Anpassungen — mit Ihrer Freigabe direkt ausgeführt. Kein Workflow-Rezept zum Nachbauen.</p>
 </div>
 <div class="value-card">
-<div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg></div>
-<h3>Ohne Overhead</h3>
-<p>Kein neues Tool-Chaos, keine IT-Projekte. Läuft im Hintergrund, monatlich kündbar.</p>
+<div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+<h3>Schweizer Daten, Schweizer Betrieb</h3>
+<p>nDSG-konform, Hosting in der Schweiz, Pricing in CHF, Support auf Deutsch. Keine US-SaaS, die wir DACH-konform biegen müssen.</p>
 </div>
 </div>
 </div></section>
@@ -569,10 +577,10 @@
       <div class="sol-outcome">CHF 80'000+</div>
       <div class="sol-outcome-cap">Jährlich rückgewonnener Umsatz</div>
       <a href="mockups/product-reviews.html" class="sol-cta">Mehr sehen</a>
-      <div class="sol-inline-dash dashboard-embed">
-        <div class="dashboard-embed__chrome"><span class="dashboard-embed__dot"></span><span class="dashboard-embed__dot"></span><span class="dashboard-embed__dot"></span></div>
-        <div class="dashboard-embed__content"><div class="dashboard-embed__layer is-active"><iframe src="mockups/product-reviews.html" loading="lazy" title="Reviews Dashboard"></iframe></div></div>
-      </div>
+      <a class="sol-inline-dash sol-inline-link" href="mockups/product-reviews.html" target="_blank" rel="noopener">
+        <img src="mockups/_png/product-reviews.png" alt="Reviews Dashboard" loading="lazy">
+        <span class="sol-inline-tap">Tippen zum Öffnen →</span>
+      </a>
     </article>
 
     <article class="sol-chapter" data-team="quality" data-sol-layer="quality">
@@ -583,10 +591,10 @@
       <div class="sol-outcome">+200%</div>
       <div class="sol-outcome-cap">Beschwerde-Trend erkannt, bevor das Rating reagiert</div>
       <a href="mockups/product-shift.html" class="sol-cta">Mehr sehen</a>
-      <div class="sol-inline-dash dashboard-embed">
-        <div class="dashboard-embed__chrome"><span class="dashboard-embed__dot"></span><span class="dashboard-embed__dot"></span><span class="dashboard-embed__dot"></span></div>
-        <div class="dashboard-embed__content"><div class="dashboard-embed__layer is-active"><iframe src="mockups/product-shift.html" loading="lazy" title="Shift Briefing Dashboard"></iframe></div></div>
-      </div>
+      <a class="sol-inline-dash sol-inline-link" href="mockups/product-shift.html" target="_blank" rel="noopener">
+        <img src="mockups/_png/product-shift.png" alt="Shift Briefing Dashboard" loading="lazy">
+        <span class="sol-inline-tap">Tippen zum Öffnen →</span>
+      </a>
     </article>
 
     <article class="sol-chapter" data-team="revenue" data-sol-layer="revenue">
@@ -597,10 +605,10 @@
       <div class="sol-outcome">CHF 280K+</div>
       <div class="sol-outcome-cap">Verbesserungspotenzial pro Jahr</div>
       <a href="mockups/product-report.html" class="sol-cta">Mehr sehen</a>
-      <div class="sol-inline-dash dashboard-embed">
-        <div class="dashboard-embed__chrome"><span class="dashboard-embed__dot"></span><span class="dashboard-embed__dot"></span><span class="dashboard-embed__dot"></span></div>
-        <div class="dashboard-embed__content"><div class="dashboard-embed__layer is-active"><iframe src="mockups/product-report.html" loading="lazy" title="Monthly Impact Dashboard"></iframe></div></div>
-      </div>
+      <a class="sol-inline-dash sol-inline-link" href="mockups/product-report.html" target="_blank" rel="noopener">
+        <img src="mockups/_png/product-report.png" alt="Monthly Impact Dashboard" loading="lazy">
+        <span class="sol-inline-tap">Tippen zum Öffnen →</span>
+      </a>
     </article>
 
     <article class="sol-chapter" data-team="market" data-sol-layer="market">
@@ -611,10 +619,10 @@
       <div class="sol-outcome">CHF 22 vs 100</div>
       <div class="sol-outcome-cap">CAC: Paid Ads vs Influencer</div>
       <a href="mockups/product-competitor.html" class="sol-cta">Mehr sehen</a>
-      <div class="sol-inline-dash dashboard-embed">
-        <div class="dashboard-embed__chrome"><span class="dashboard-embed__dot"></span><span class="dashboard-embed__dot"></span><span class="dashboard-embed__dot"></span></div>
-        <div class="dashboard-embed__content"><div class="dashboard-embed__layer is-active"><iframe src="mockups/product-competitor.html" loading="lazy" title="Competitor Radar Dashboard"></iframe></div></div>
-      </div>
+      <a class="sol-inline-dash sol-inline-link" href="mockups/product-competitor.html" target="_blank" rel="noopener">
+        <img src="mockups/_png/product-competitor.png" alt="Competitor Radar Dashboard" loading="lazy">
+        <span class="sol-inline-tap">Tippen zum Öffnen →</span>
+      </a>
     </article>
 
   </div>
@@ -965,36 +973,59 @@ if(location.hash)setTimeout(()=>pulseTarget(location.hash.slice(1)),600);
   },{rootMargin:'-40% 0px -40% 0px', threshold:[0,0.25,0.5,0.75,1]});
   chapters.forEach(c=>io.observe(c));
 
-  // One-time auto-scroll demo on FIRST chapter's dashboard iframe.
-  // Shows user: "hey, this inner preview is scrollable" — only on desktop, only once per session.
+  // First-view demo. Shows user the dashboard is interactive.
   (function(){
-    if(window.matchMedia('(max-width:1023px)').matches)return;
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-    if(sessionStorage.getItem('sol-demo-played'))return;
-    const stage=document.querySelector('.sol-stage');
-    const activeLayer=document.querySelector('.dashboard-embed__layer[data-sol-target="guest"]');
-    if(!stage||!activeLayer)return;
-    const iframe=activeLayer.querySelector('iframe');
-    if(!iframe)return;
-    function playDemo(){
-      sessionStorage.setItem('sol-demo-played','1');
-      try{
-        const win=iframe.contentWindow;
-        if(!win)return;
-        // Wait brief moment for content settle, then smooth scroll down + back up
-        setTimeout(()=>{win.scrollTo({top:180,behavior:'smooth'})},600);
-        setTimeout(()=>{win.scrollTo({top:0,behavior:'smooth'})},2000);
-      }catch(e){/* cross-origin — skip */}
-    }
-    // Trigger when Solutions sticky-stage hits comfortable viewport position
-    const demoObs=new IntersectionObserver(entries=>{
-      if(entries[0].isIntersecting && entries[0].intersectionRatio>0.35){
-        demoObs.disconnect();
-        if(iframe.contentDocument && iframe.contentDocument.readyState==='complete'){playDemo()}
-        else{iframe.addEventListener('load',playDemo,{once:true})}
+    const isMobile=window.matchMedia('(max-width:1023px)').matches;
+
+    if(!isMobile){
+      // Desktop: auto-scroll the first iframe's CONTENT down+up
+      if(sessionStorage.getItem('sol-demo-played-desktop'))return;
+      const stage=document.querySelector('.sol-stage');
+      const activeLayer=document.querySelector('.dashboard-embed__layer[data-sol-target="guest"]');
+      if(!stage||!activeLayer)return;
+      const iframe=activeLayer.querySelector('iframe');
+      if(!iframe)return;
+      function playDesktop(){
+        sessionStorage.setItem('sol-demo-played-desktop','1');
+        try{const win=iframe.contentWindow;if(!win)return;
+          setTimeout(()=>win.scrollTo({top:180,behavior:'smooth'}),600);
+          setTimeout(()=>win.scrollTo({top:0,behavior:'smooth'}),2000);
+        }catch(e){}
       }
-    },{threshold:[0,0.35,0.6]});
-    demoObs.observe(stage);
+      const obs=new IntersectionObserver(es=>{
+        if(es[0].isIntersecting && es[0].intersectionRatio>0.35){
+          obs.disconnect();
+          if(iframe.contentDocument && iframe.contentDocument.readyState==='complete')playDesktop();
+          else iframe.addEventListener('load',playDesktop,{once:true});
+        }
+      },{threshold:[0,0.35,0.6]});
+      obs.observe(stage);
+    } else {
+      // Mobile: first visible PNG card pans + reveals tap-hint
+      const firstCard=document.querySelector('.sol-chapter[data-sol-layer="guest"] .sol-inline-link');
+      if(!firstCard)return;
+      // Always show tap-hint on all 4 cards after they enter viewport
+      document.querySelectorAll('.sol-inline-link').forEach(card=>{
+        const cardObs=new IntersectionObserver(es=>{
+          if(es[0].isIntersecting){
+            card.classList.add('is-hint');
+            cardObs.disconnect();
+          }
+        },{threshold:0.3});
+        cardObs.observe(card);
+      });
+      // One-time pan-demo on first card only
+      if(sessionStorage.getItem('sol-demo-played-mobile'))return;
+      const panObs=new IntersectionObserver(es=>{
+        if(es[0].isIntersecting && es[0].intersectionRatio>0.35){
+          sessionStorage.setItem('sol-demo-played-mobile','1');
+          firstCard.classList.add('is-demo');
+          panObs.disconnect();
+        }
+      },{threshold:[0,0.35,0.6]});
+      panObs.observe(firstCard);
+    }
   })();
 
   // Hero dashboard reveal-on-load + parallax
