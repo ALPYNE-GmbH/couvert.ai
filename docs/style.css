@@ -16,6 +16,14 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;backdrop-f
 .nav a:hover{color:var(--cream)}
 .nav-cta{background:var(--copper);color:var(--cream)!important;padding:8px 20px;border-radius:4px;font-weight:500;transition:background 0.3s!important}
 .nav-cta:hover{background:var(--copper-soft)!important}
+.lang-switch{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-right:4px}
+.lang-switch a{font-size:12px;color:var(--text-dim);text-decoration:none;padding:2px 4px;transition:color 0.2s;letter-spacing:1.5px}
+.lang-switch a:hover{color:var(--copper)}
+.lang-switch a.active{color:var(--copper);font-weight:600}
+.lang-switch .lang-sep{color:var(--border-hover);user-select:none}
+.mobile-menu .lang-switch{margin-right:0;margin-bottom:8px}
+.mobile-menu .lang-switch a{font-family:'JetBrains Mono',monospace;font-size:16px;color:var(--text-dim)}
+.mobile-menu .lang-switch a.active{color:var(--copper);font-weight:600}
 
 /* BURGER */
 .burger{display:none;background:none;border:none;cursor:pointer;padding:4px}
