@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alpyne Animal Health — E-Mail-Signatur</title>
+<style>
+  :root{
+    --ink:#111111;
+    --ink-soft:#2a2a2a;
+    --swiss:#D52B1E;
+    --swiss-deep:#B02016;
+    --cream:#F4EFE6;
+    --paper:#FAF6EE;
+    --border:#E3DCD0;
+    --muted:#7A7670;
+    --muted-soft:#A09C94;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:'Inter','Helvetica Neue',Arial,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    padding:48px 24px;
+    line-height:1.6;
+  }
+  .wrap{max-width:880px;margin:0 auto}
+  h1{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-weight:700;
+    font-size:30px;
+    color:var(--ink);
+    margin-bottom:6px;
+    letter-spacing:-0.01em;
+  }
+  h1 .dot{
+    display:inline-block;
+    width:14px;
+    height:14px;
+    background:var(--swiss);
+    border-radius:2px;
+    position:relative;
+    margin-left:6px;
+    vertical-align:2px;
+  }
+  h1 .dot::before,
+  h1 .dot::after{
+    content:"";
+    position:absolute;
+    background:#fff;
+  }
+  h1 .dot::before{top:3px;bottom:3px;left:50%;width:2px;transform:translateX(-50%);}
+  h1 .dot::after{left:3px;right:3px;top:50%;height:2px;transform:translateY(-50%);}
+  .subtitle{
+    font-size:14px;
+    color:#4a4a4a;
+    margin-bottom:40px;
+    max-width:620px;
+  }
+  h2{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:20px;
+    color:var(--ink);
+    margin:48px 0 12px;
+    font-weight:700;
+    letter-spacing:-0.005em;
+  }
+  h3{
+    font-weight:600;
+    font-size:11px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--ink);
+    margin:18px 0 10px;
+  }
+  .meta{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:#7a7a7a;
+    margin-bottom:14px;
+  }
+
+  /* Copy Card */
+  .copy-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:6px;
+    margin-bottom:14px;
+    overflow:hidden;
+  }
+  .copy-bar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    padding:14px 20px;
+    background:var(--ink);
+    color:var(--cream);
+  }
+  .copy-bar-label{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-weight:700;
+    font-size:14px;
+    letter-spacing:0.02em;
+  }
+  .copy-bar-sub{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    color:#B8B3A9;
+  }
+  .copy-btn{
+    background:var(--swiss);
+    color:#fff;
+    border:0;
+    padding:10px 18px;
+    border-radius:4px;
+    font-family:'Inter','Helvetica Neue',Arial,sans-serif;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.2px;
+    cursor:pointer;
+    transition:background .15s;
+    white-space:nowrap;
+  }
+  .copy-btn:hover{background:var(--swiss-deep)}
+  .copy-btn.ok{background:#3D7958}
+  .copy-btn.ok::before{content:"✓ "}
+
+  .sig-preview{
+    padding:32px 28px;
+    background:#ffffff;
+    border-top:1px solid #EFEBE5;
+  }
+  .sig-preview-inner{
+    display:inline-block;
+  }
+
+  .plain-box{
+    background:#fff;
+    border:1px solid var(--border);
+    padding:20px 22px;
+    border-radius:4px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:#2a2a2a;
+    line-height:1.7;
+    white-space:pre-wrap;
+    overflow-x:auto;
+  }
+
+  .guide-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:24px 28px;
+    margin-bottom:16px;
+  }
+  .guide-card h3{margin-top:0;margin-bottom:12px}
+  .guide-card ol{padding-left:20px;font-size:14px;line-height:1.7;color:#1a1a1a}
+  .guide-card ol li{margin-bottom:4px}
+  .kbd{
+    background:var(--cream);
+    padding:2px 7px;
+    border-radius:3px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    border:1px solid #E5DFD6;
+  }
+  .guide-card .note{
+    margin-top:12px;
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+  }
+
+  .callout{
+    background:var(--ink);
+    color:var(--cream);
+    border-radius:6px;
+    padding:22px 26px;
+    margin-bottom:24px;
+  }
+  .callout h3{color:var(--cream);margin-top:0}
+  .callout p{font-size:13.5px;line-height:1.65;color:#D8D3C9}
+
+  .design-notes{
+    background:var(--paper);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:22px 26px;
+    margin:20px 0 36px;
+    font-size:13.5px;
+    line-height:1.65;
+    color:#3a3a3a;
+  }
+  .design-notes strong{color:var(--ink)}
+  .design-notes em{color:var(--swiss);font-style:normal;font-weight:600;letter-spacing:0.02em}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="wrap">
+
+  <h1>ALPYNE<span class="dot"></span> E-Mail-Signatur</h1>
+  <p class="subtitle">Zwei Varianten. Klicke den roten Button, damit die Signatur exakt und ohne Einzug auf deiner Zwischenablage landet. Dann in Gmail → Einstellungen → Signatur mit <span class="kbd">Cmd + V</span> einfügen, speichern, fertig.</p>
+
+  <div class="design-notes">
+    <strong>Design-Brief, kurz:</strong> Wortmarke als Inline-Text (Helvetica, bold, weit gespacet) plus Schweizerkreuz-Punkt als <em>inline SVG</em> — kein externes Bild, nichts was beim Empfänger nachgeladen werden muss. Tagline <em>"Fürsorge verdient Substanz."</em> in Georgia Italic — der einzige serifische Moment, trägt das Gewicht des Satzes. Hintergrund hart auf Weiss, damit die Signatur im Gmail-Body nahtlos sitzt, ohne Creme-Kasten.
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- VARIANTE A                                                      -->
+  <!-- ============================================================== -->
+  <h2>Variante A · Full (empfohlen)</h2>
+  <p class="meta">Kontaktblock links, Brand-Mark + Tagline rechts. Breite ca. 470 px.</p>
+
+  <div class="copy-card">
+    <div class="copy-bar">
+      <div>
+        <div class="copy-bar-label">Variante A</div>
+        <div class="copy-bar-sub">Klick zum Kopieren · bereit für Gmail</div>
+      </div>
+      <button class="copy-btn" data-target="sig-a">Kopieren</button>
+    </div>
+    <div class="sig-preview">
+      <div class="sig-preview-inner">
+        <!-- SIGNATUR A · das hier wird kopiert -->
+        <table id="sig-a" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;background:#ffffff;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#111111;font-size:13px;line-height:1.5">
+          <tr>
+            <td valign="top" style="padding:2px 24px 0 0;">
+              <div style="font-size:14px;font-weight:600;color:#111111;margin-bottom:1px;letter-spacing:0.1px;">Max Veit</div>
+              <div style="font-size:12px;color:#7A7670;margin-bottom:12px;letter-spacing:0.2px;">Founder</div>
+              <div style="font-size:12.5px;color:#111111;margin-bottom:2px;">
+                <a href="tel:+41782688662" style="color:#111111;text-decoration:none;">+41 78 268 86 62</a>
+              </div>
+              <div style="font-size:12.5px;color:#111111;margin-bottom:2px;">
+                <a href="mailto:hello@alpynelab.com" style="color:#111111;text-decoration:none;">hello@alpynelab.com</a>
+              </div>
+              <div style="font-size:12.5px;margin-bottom:2px;">
+                <a href="https://alpynelab.com" style="color:#D52B1E;text-decoration:none;border-bottom:1px solid rgba(213,43,30,0.35);">alpynelab.com</a>
+              </div>
+              <div style="font-size:12px;color:#7A7670;margin-bottom:14px;">
+                <a href="https://instagram.com/alpynelab" style="color:#7A7670;text-decoration:none;">@alpynelab</a>
+              </div>
+              <div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10.5px;color:#A09C94;letter-spacing:0.2px;line-height:1.5;">Alpyne Animal Health GmbH<br>Churerstrasse 105 · 8808 Pfäffikon SZ</div>
+            </td>
+            <td valign="top" style="padding:2px 0 0 24px;border-left:1px solid #E3DCD0;">
+              <div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:700;font-size:26px;letter-spacing:0.28em;color:#111111;line-height:1;white-space:nowrap;">ALPYNE<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:-1px;margin-left:2px;"><rect x="0" y="0" width="14" height="14" rx="1.5" fill="#D52B1E"/><rect x="6" y="3" width="2" height="8" fill="#ffffff"/><rect x="3" y="6" width="8" height="2" fill="#ffffff"/></svg></div>
+              <div style="font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:400;font-size:14px;color:#2a2a2a;margin-top:12px;letter-spacing:0.1px;line-height:1.3;">Fürsorge verdient Substanz.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- VARIANTE B                                                      -->
+  <!-- ============================================================== -->
+  <h2>Variante B · Stacked</h2>
+  <p class="meta">Name zuerst, Brand-Mark mit Tagline daneben, Legal-Zeile darunter. Kompakter, für schnelle Korrespondenz.</p>
+
+  <div class="copy-card">
+    <div class="copy-bar">
+      <div>
+        <div class="copy-bar-label">Variante B</div>
+        <div class="copy-bar-sub">Klick zum Kopieren</div>
+      </div>
+      <button class="copy-btn" data-target="sig-b">Kopieren</button>
+    </div>
+    <div class="sig-preview">
+      <div class="sig-preview-inner">
+        <table id="sig-b" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;background:#ffffff;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#111111;font-size:12.5px;line-height:1.55">
+          <tr>
+            <td valign="top">
+              <div style="font-size:14px;font-weight:600;color:#111111;letter-spacing:0.1px;">Max Veit</div>
+              <div style="font-size:12px;color:#7A7670;margin-bottom:10px;">Founder</div>
+              <div style="font-size:12.5px;color:#111111;margin-bottom:14px;">
+                <a href="tel:+41782688662" style="color:#111111;text-decoration:none;">+41 78 268 86 62</a>
+                &nbsp;·&nbsp;
+                <a href="mailto:hello@alpynelab.com" style="color:#111111;text-decoration:none;">hello@alpynelab.com</a>
+              </div>
+              <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-bottom:12px;">
+                <tr>
+                  <td valign="middle" style="padding:0 14px 0 0;">
+                    <div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:0.26em;color:#111111;line-height:1;white-space:nowrap;">ALPYNE<svg width="11" height="11" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:-1px;margin-left:2px;"><rect x="0" y="0" width="14" height="14" rx="1.5" fill="#D52B1E"/><rect x="6" y="3" width="2" height="8" fill="#ffffff"/><rect x="3" y="6" width="8" height="2" fill="#ffffff"/></svg></div>
+                  </td>
+                  <td valign="middle" style="padding:0 0 0 14px;border-left:1px solid #E3DCD0;">
+                    <div style="font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:13px;color:#2a2a2a;line-height:1.35;">Fürsorge verdient Substanz.</div>
+                  </td>
+                </tr>
+              </table>
+              <div style="font-size:10.5px;color:#A09C94;letter-spacing:0.2px;">Alpyne Animal Health GmbH · Churerstrasse 105, 8808 Pfäffikon SZ · <a href="https://alpynelab.com" style="color:#D52B1E;text-decoration:none;">alpynelab.com</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- GMAIL ANLEITUNG                                                 -->
+  <!-- ============================================================== -->
+  <h2>Gmail — Schritt für Schritt</h2>
+
+  <div class="guide-card">
+    <h3>1. Signatur kopieren</h3>
+    <ol>
+      <li>Oben bei Variante A (oder B) den roten Button <strong>Kopieren</strong> klicken.</li>
+      <li>Der Button wird kurz grün <strong>✓ Kopiert</strong>. Die Signatur liegt jetzt exakt und ohne Einzug auf deiner Zwischenablage.</li>
+    </ol>
+  </div>
+
+  <div class="guide-card">
+    <h3>2. Alte Signatur in Gmail löschen</h3>
+    <ol>
+      <li>Gmail öffnen. Oben rechts Zahnrad → <em>Alle Einstellungen ansehen</em>.</li>
+      <li>Tab <em>Allgemein</em> → runter scrollen zu <em>Signatur</em>.</li>
+      <li>Falls noch eine alte Signatur drin steht: ins Signatur-Textfeld klicken, <span class="kbd">Cmd + A</span> drücken (alles markieren), <span class="kbd">Entf</span> (alles löschen). Das Feld muss komplett leer sein.</li>
+      <li>Falls du mehrere Adressen in Gmail hast (hello@alpynelab.com separat): oben bei <em>Signatur</em> auf <strong>+ Neu erstellen</strong> klicken, Namen z. B. "Alpyne", dann das Feld leer lassen.</li>
+    </ol>
+    <p class="note">Dieser Schritt ist wichtig: Reste alter Einfügeversuche (versteckte `&lt;div&gt;`-Wrapper) verursachen den Einzug, den du bei der Couvert-Signatur gesehen hast.</p>
+  </div>
+
+  <div class="guide-card">
+    <h3>3. Neue Signatur einfügen</h3>
+    <ol>
+      <li>Cursor ins leere Signatur-Feld setzen.</li>
+      <li><span class="kbd">Cmd + V</span> (Mac) oder <span class="kbd">Ctrl + V</span> (Windows).</li>
+      <li>Die Signatur erscheint direkt gerendert — Wortmarke, Schweizer Kreuz, Tagline, Datenblock.</li>
+      <li>Unten bei <em>Standardwerte für Signatur</em> die neue auswählen für <em>Neue E-Mails</em> und <em>Antworten/Weiterleitungen</em>.</li>
+      <li>Falls du Absender-spezifische Signaturen nutzt: stelle sicher, dass die Alpyne-Signatur mit <strong>hello@alpynelab.com</strong> verknüpft ist, nicht mit max@couvert.ai.</li>
+      <li>Ganz unten <em>Änderungen speichern</em>.</li>
+    </ol>
+  </div>
+
+  <div class="guide-card">
+    <h3>4. Test</h3>
+    <ol>
+      <li>Neue E-Mail öffnen, oben Absender auf <em>hello@alpynelab.com</em> umstellen.</li>
+      <li>Die Alpyne-Signatur sollte erscheinen, am linken Rand bündig mit deinem Fliesstext.</li>
+      <li>Probemail an dich selbst schicken — so siehst du, wie die Empfänger die Signatur bekommen.</li>
+    </ol>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- WARUM HTML-CODE EINFÜGEN NICHT FUNKTIONIERT                     -->
+  <!-- ============================================================== -->
+  <div class="callout">
+    <h3>Warum der HTML-Code allein nicht reicht</h3>
+    <p>Gmail hat keinen HTML-Quellcode-Modus für die Signatur. Wenn du den Code <code>&lt;table&gt;...&lt;/table&gt;</code> direkt ins Signatur-Feld kopierst, bleibt er als Text stehen, weil das Feld ein WYSIWYG-Editor ist, kein Code-Editor. Der Kopieren-Button oben löst das: er legt die Signatur als <em>rendered HTML</em> auf die Zwischenablage (nicht als Text), und Gmail übernimmt beim Einfügen Layout plus Schweizer Kreuz direkt.</p>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- APPLE MAIL + OUTLOOK                                            -->
+  <!-- ============================================================== -->
+  <h2>Apple Mail</h2>
+  <div class="guide-card">
+    <ol>
+      <li>Mail → Einstellungen → Tab <em>Signaturen</em>.</li>
+      <li>Links deinen Alpyne-Account auswählen, <strong>+</strong> für neue Signatur. Namen vergeben (z. B. "Alpyne").</li>
+      <li>Rechts im Textfeld den Standard-Text markieren und löschen.</li>
+      <li>Kopieren-Button oben klicken, dann zurück in Apple Mail, ins leere Feld klicken und <span class="kbd">Cmd + V</span>.</li>
+      <li>Falls das Häkchen <em>"Immer meinen Standardschriftschnitt verwenden"</em> aktiviert ist — wegklicken. Sonst überschreibt Apple Mail die Formatierung der Signatur.</li>
+      <li>Einstellungsfenster schliessen. Neue Mail öffnen, Signatur sollte automatisch erscheinen.</li>
+    </ol>
+  </div>
+
+  <h2>Outlook (Web oder Desktop)</h2>
+  <div class="guide-card">
+    <ol>
+      <li>Outlook Web: Zahnrad → <em>Alle Outlook-Einstellungen anzeigen</em> → <em>E-Mail</em> → <em>Verfassen und Antworten</em>.</li>
+      <li>Bei <em>E-Mail-Signatur</em> einen Namen vergeben, ins Feld klicken, Kopieren-Button hier oben drücken, dann <span class="kbd">Cmd + V</span> / <span class="kbd">Ctrl + V</span>.</li>
+      <li>Speichern. Outlook Desktop: derselbe Weg über <em>Einstellungen → Signaturen</em>.</li>
+    </ol>
+    <p class="note">Hinweis: Outlook Desktop für Windows rendert inline-SVG manchmal nicht. Wenn das Schweizer Kreuz bei Empfängern als leerer Kasten ankommt, sag Bescheid — dann baue ich das Kreuz als reinen HTML-Block (Tabelle mit farbigen Zellen), das rendert jede Outlook-Version korrekt.</p>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- PLAIN TEXT                                                      -->
+  <!-- ============================================================== -->
+  <h2>Plain-Text-Fallback</h2>
+  <p class="meta">Für Text-only-Clients oder interne Tools (CRM, Ticketing).</p>
+  <div class="plain-box">—
+Max Veit · Founder
+ALPYNE — Fürsorge verdient Substanz.
+
++41 78 268 86 62
+hello@alpynelab.com
+alpynelab.com · @alpynelab
+
+Alpyne Animal Health GmbH · Churerstrasse 105, 8808 Pfäffikon SZ</div>
+
+</div>
+
+<!-- ============================================================== -->
+<!-- COPY SCRIPT                                                     -->
+<!-- ============================================================== -->
+<script>
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const id = btn.getAttribute('data-target');
+    const el = document.getElementById(id);
+    if(!el){return}
+
+    const html = el.outerHTML;
+    const plain = el.innerText.replace(/\n{3,}/g,'\n\n');
+
+    try{
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          'text/html': new Blob([html], {type:'text/html'}),
+          'text/plain': new Blob([plain], {type:'text/plain'})
+        })
+      ]);
+      const orig = btn.textContent;
+      btn.textContent = 'Kopiert';
+      btn.classList.add('ok');
+      setTimeout(() => {
+        btn.textContent = orig;
+        btn.classList.remove('ok');
+      }, 1800);
+    }catch(e){
+      try{
+        const range = document.createRange();
+        range.selectNode(el);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        document.execCommand('copy');
+        sel.removeAllRanges();
+        btn.textContent = 'Kopiert (Fallback)';
+        btn.classList.add('ok');
+        setTimeout(() => {
+          btn.textContent = 'Kopieren';
+          btn.classList.remove('ok');
+        }, 1800);
+      }catch(err){
+        alert('Kopieren fehlgeschlagen. Bitte manuell markieren und Cmd+C drücken.');
+      }
+    }
+  });
+});
+</script>
+
+</body>
+</html>
