@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reports · Monthly Impact · Couvert Cockpit</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1A3C34;--bg2:#162F29;--bg3:#12261F;--bg4:#0E1F1A;--copper:#C4673A;--copper-soft:rgba(196,103,58,0.14);--gold:#E8B931;--cream:#F5F0EB;--text:#E0DCD6;--dim:#9B958C;--border:#243D37;--border-soft:#1F3531;--green:#6B9C7F;--red:#B8564A}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);font-size:13.5px;line-height:1.5;-webkit-font-smoothing:antialiased}
+
+.app{display:grid;grid-template-columns:220px 1fr;grid-template-rows:52px 1fr;min-height:100vh;background:var(--bg3)}
+.topbar{grid-column:1 / 3;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:24px;position:sticky;top:0;z-index:10}
+.brand{font-family:'DM Serif Display',serif;font-size:20px;color:var(--cream);letter-spacing:-0.5px;display:flex;align-items:center;gap:8px;width:200px}
+.brand .dot{color:var(--copper)}
+.brand-env{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--dim);padding:2px 6px;border:1px solid var(--border);border-radius:3px;margin-left:auto}
+.topnav{display:flex;gap:2px;flex:1}
+.topnav a{font-size:13px;color:var(--dim);padding:8px 14px;border-radius:4px;text-decoration:none;transition:all 0.15s}
+.topnav a:hover{color:var(--text);background:var(--bg2)}
+.topnav a.active{color:var(--cream);background:var(--bg2)}
+.search{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:6px 10px 6px 28px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);width:240px;position:relative}
+.search::before{content:'⌕';position:absolute;left:10px;top:6px;color:var(--dim)}
+.search kbd{float:right;font-family:inherit;font-size:10px;color:var(--dim);background:var(--bg3);padding:0 5px;border-radius:2px;border:1px solid var(--border)}
+.userpill{display:flex;align-items:center;gap:10px;padding:5px 10px 5px 5px;border:1px solid var(--border);border-radius:20px;background:var(--bg2);cursor:pointer}
+.userpill .av{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--copper),#8E4825);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:13px;color:var(--cream)}
+.userpill .nm{font-size:12px;color:var(--text);line-height:1}
+.userpill .nm small{display:block;color:var(--dim);font-size:10px;margin-top:3px;font-family:'JetBrains Mono',monospace}
+
+.sidebar{background:var(--bg3);border-right:1px solid var(--border);padding:18px 12px;display:flex;flex-direction:column;gap:4px}
+.side-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--dim);padding:10px 10px 6px;text-transform:uppercase}
+.side-item{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:4px;color:var(--text);text-decoration:none;font-size:13px;position:relative}
+.side-item:hover{background:var(--bg2)}
+.side-item.active{background:var(--bg2);color:var(--cream)}
+.side-item.active::before{content:'';position:absolute;left:-12px;top:8px;bottom:8px;width:2px;background:var(--copper);border-radius:0 2px 2px 0}
+.side-item .ic{width:14px;height:14px;color:var(--dim);flex-shrink:0}
+.side-item.active .ic{color:var(--copper)}
+.side-item .count{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim);background:var(--bg2);padding:1px 6px;border-radius:8px}
+.side-item.active .count{background:var(--copper);color:var(--cream)}
+.side-sep{height:1px;background:var(--border-soft);margin:10px 6px}
+
+.main{background:var(--bg4);overflow-y:auto}
+.main-head{padding:22px 28px 18px;border-bottom:1px solid var(--border-soft);background:var(--bg3)}
+.crumbs{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--dim);margin-bottom:6px}
+.crumbs .sep{opacity:0.4;margin:0 6px}
+.page-title{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.page-title h1{font-family:'DM Serif Display',serif;font-size:24px;color:var(--cream);letter-spacing:-0.3px;font-weight:normal}
+.sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);margin-top:4px;letter-spacing:0.5px}
+.btn{font-family:inherit;font-size:13px;padding:7px 12px;border-radius:4px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;transition:all 0.15s}
+.btn:hover{border-color:var(--copper);color:var(--cream)}
+.btn.primary{background:var(--copper);border-color:var(--copper);color:var(--cream)}
+.btn.primary:hover{background:#D4845A}
+.mini-btn{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.5px;padding:4px 8px;border:1px solid var(--border);border-radius:3px;background:transparent;color:var(--text);cursor:pointer}
+.mini-btn:hover{border-color:var(--copper);color:var(--cream)}
+
+.content{padding:24px 28px 48px;max-width:1200px}
+
+/* Period selector */
+.period-row{display:flex;align-items:center;gap:8px;margin-bottom:22px;flex-wrap:wrap}
+.period-tab{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.5px;padding:6px 12px;border:1px solid var(--border);border-radius:4px;color:var(--dim);cursor:pointer;background:transparent}
+.period-tab.active{background:var(--bg3);color:var(--cream);border-color:var(--border)}
+.period-tab:hover{border-color:var(--copper)}
+.period-row .spacer{flex:1}
+
+/* Hero KPIs */
+.hero-row{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;margin-bottom:22px}
+.kpi{background:var(--bg3);border:1px solid var(--border-soft);border-radius:6px;padding:20px 22px;position:relative;overflow:hidden}
+.kpi.hero{background:linear-gradient(135deg,var(--bg3),var(--bg2));border-color:var(--border)}
+.kpi.hero::before{content:'';position:absolute;right:-30px;top:-30px;width:200px;height:200px;background:radial-gradient(circle,var(--copper-soft),transparent 70%);pointer-events:none}
+.kpi-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;margin-bottom:10px}
+.kpi-num{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:600;color:var(--cream);line-height:1;margin-bottom:8px}
+.kpi.hero .kpi-num{font-size:40px;color:var(--gold)}
+.kpi-num.copper{color:var(--copper)}
+.kpi-sub{font-size:12px;color:var(--dim)}
+.kpi-sub b{color:var(--green);font-weight:500}
+.kpi-sub .badge-gain{display:inline-block;background:rgba(107,156,127,0.12);color:var(--green);padding:2px 7px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:10px;margin-left:6px}
+
+/* Sections */
+.section{background:var(--bg3);border:1px solid var(--border-soft);border-radius:6px;margin-bottom:16px;overflow:hidden}
+.section-head{padding:16px 22px;border-bottom:1px solid var(--border-soft);display:flex;align-items:center;justify-content:space-between;gap:14px}
+.section-head h2{font-family:'DM Serif Display',serif;font-size:18px;color:var(--cream);letter-spacing:-0.2px;font-weight:normal}
+.section-body{padding:20px 22px}
+
+/* Impact table */
+.impact-table{width:100%;border-collapse:collapse;font-size:13.5px}
+.impact-table th{text-align:left;padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;font-weight:500;border-bottom:1px solid var(--border-soft)}
+.impact-table td{padding:14px 12px;border-bottom:1px solid var(--border-soft);vertical-align:middle}
+.impact-table tr:last-child td{border-bottom:none}
+.impact-table tr:hover{background:var(--bg2)}
+.measure{color:var(--cream)}
+.agent-pill{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1px;color:var(--copper);background:var(--copper-soft);border:1px solid rgba(196,103,58,0.3);padding:2px 7px;border-radius:3px;text-transform:uppercase}
+.agent-pill.gold{color:var(--gold);background:rgba(232,185,49,0.1);border-color:rgba(232,185,49,0.3)}
+.agent-pill.green{color:var(--green);background:rgba(107,156,127,0.1);border-color:rgba(107,156,127,0.3)}
+.agent-pill.purple{color:#B09BD8;background:rgba(142,123,191,0.1);border-color:rgba(142,123,191,0.3)}
+.eff{font-family:'JetBrains Mono',monospace;color:var(--green);font-weight:600;text-align:right}
+.eff.potential{color:var(--gold)}
+.progress{width:100%;height:4px;background:var(--bg4);border-radius:2px;overflow:hidden;margin-top:6px}
+.progress-bar{height:100%;background:var(--green);border-radius:2px}
+
+/* Chart card */
+.chart-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
+.chart{padding:24px 24px 18px;background:var(--bg2);border-radius:4px;margin-top:4px}
+.chart svg{width:100%;height:200px;display:block}
+.chart-caption{font-size:12px;color:var(--dim);font-style:italic;margin-top:12px;text-align:center}
+.legend{display:flex;gap:16px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim);margin-top:10px;justify-content:center}
+.legend .li{display:flex;align-items:center;gap:6px}
+.legend .sw{width:10px;height:2px;display:inline-block}
+
+/* Next-up list */
+.next-list{list-style:none;padding:0}
+.next-list li{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:1px solid var(--border-soft)}
+.next-list li:last-child{border-bottom:none;padding-bottom:0}
+.next-list li:first-child{padding-top:0}
+.arrow{color:var(--copper);font-family:'JetBrains Mono',monospace;font-size:14px;flex-shrink:0;margin-top:2px}
+.next-text{flex:1;font-size:13.5px;color:var(--text)}
+.next-text small{display:block;color:var(--dim);font-size:11px;margin-top:3px}
+.lever{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);font-weight:600;flex-shrink:0;white-space:nowrap}
+
+@media(max-width:1100px){.app{grid-template-columns:64px 1fr}.side-item span:not(.count),.side-label{display:none}.side-item{justify-content:center}.brand{width:auto}.hero-row{grid-template-columns:1fr 1fr}.chart-grid{grid-template-columns:1fr}}
+@media(max-width:800px){.topnav,.search{display:none}.hero-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div class="brand">c<span class="dot">o</span>uvert<span class="brand-env">COCKPIT</span></div>
+    <nav class="topnav">
+      <a href="product-shift.html">Dashboard</a>
+      <a href="product-reviews.html">Reviews</a>
+      <a href="product-competitor.html">Competitor</a>
+      <a href="product-report.html" class="active">Reports</a>
+      <a href="#">Agents</a>
+    </nav>
+    <div class="search">Suchen in Reviews, Agents, Reports… <kbd>⌘K</kbd></div>
+    <div class="userpill">
+      <div class="av">L</div>
+      <div class="nm">Luca Moretti<small>60 SECONDS · OWNER</small></div>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="side-label">Reports</div>
+    <a class="side-item active" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 2h7l3 3v9H3V2zM10 2v3h3"/></svg><span>Monthly Impact</span></a>
+    <a class="side-item" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13V6m5 7V3m5 10V8"/></svg><span>Revenue Analysis</span></a>
+    <a class="side-item" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l6 4 6-4M2 4v8h12V4M2 4h12"/></svg><span>Reputation</span></a>
+    <a class="side-item" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg><span>Menu Engineering</span></a>
+    <div class="side-sep"></div>
+    <div class="side-label">Zeitraum</div>
+    <a class="side-item" href="#"><span style="width:8px;height:8px;border-radius:50%;background:var(--gold)"></span><span>April 2026</span></a>
+    <a class="side-item" href="#"><span style="width:8px;height:8px;border-radius:50%;background:var(--dim)"></span><span>März 2026</span></a>
+    <a class="side-item" href="#"><span style="width:8px;height:8px;border-radius:50%;background:var(--dim)"></span><span>Februar 2026</span></a>
+    <a class="side-item" href="#"><span style="width:8px;height:8px;border-radius:50%;background:var(--dim)"></span><span>Q1 2026</span></a>
+    <div class="side-sep"></div>
+    <div class="side-label">Aktionen</div>
+    <a class="side-item" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M4 7l4 3 4-3M2 14h12"/></svg><span>Als PDF</span></a>
+    <a class="side-item" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2H4v12h8V2zM7 5h2M7 8h2M7 11h2"/></svg><span>Abonnieren</span></a>
+  </aside>
+
+  <main class="main">
+    <div class="main-head">
+      <div class="crumbs">Reports<span class="sep">/</span>Monthly Impact<span class="sep">/</span><span style="color:var(--cream)">April 2026</span></div>
+      <div class="page-title">
+        <div>
+          <h1>Monatlicher Wirkungsbericht</h1>
+          <div class="sub">60 Seconds to Napoli · April 2026 · Generiert am 1. Mai 2026 · Revenue Analyst</div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="btn">PDF</button>
+          <button class="btn">Per E-Mail</button>
+          <button class="btn primary">Teilen</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <div class="period-row">
+        <span class="period-tab">7 Tage</span>
+        <span class="period-tab">30 Tage</span>
+        <span class="period-tab active">April 2026</span>
+        <span class="period-tab">YTD</span>
+        <span class="period-tab">12 Monate</span>
+        <span class="spacer"></span>
+        <span class="sub" style="margin-top:0">Vergleich: März 2026</span>
+      </div>
+
+      <div class="hero-row">
+        <div class="kpi hero">
+          <div class="kpi-label">Realisierter Effekt · April</div>
+          <div class="kpi-num">CHF 24.300</div>
+          <div class="kpi-sub">basierend auf 3 aktiven Massnahmen <span class="badge-gain">+CHF 11.800 vs März</span></div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Identifiziertes Potenzial</div>
+          <div class="kpi-num copper">CHF 256.000</div>
+          <div class="kpi-sub">Rest-Verbesserung · 12 Monate</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Aktive Massnahmen</div>
+          <div class="kpi-num">4<span style="color:var(--dim);font-size:20px"> / 10</span></div>
+          <div class="kpi-sub">in Umsetzung · 6 priorisiert</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">
+          <h2>Was diesen Monat gewirkt hat</h2>
+          <div style="display:flex;gap:6px"><button class="mini-btn">Nach Agent</button><button class="mini-btn">Nach Hebel</button></div>
+        </div>
+        <div class="section-body" style="padding:0">
+          <table class="impact-table">
+            <thead>
+              <tr><th style="width:38%">Massnahme</th><th>Agent</th><th>Fortschritt</th><th style="text-align:right">Effekt</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="measure">Antwortquote Reviews 0% auf 94%<small style="display:block;color:var(--dim);font-size:11.5px;margin-top:4px">312 Reviews beantwortet · Ø 1.8s Generierung</small></td>
+                <td><span class="agent-pill">Reputation Manager</span></td>
+                <td><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green)">94% Abdeckung</div><div class="progress"><div class="progress-bar" style="width:94%"></div></div></td>
+                <td class="eff">+CHF 6.500</td>
+              </tr>
+              <tr>
+                <td class="measure">Teigqualität-Briefings Küchenchef<small style="display:block;color:var(--dim);font-size:11.5px;margin-top:4px">Beschwerden −68% · 4 Briefings versendet</small></td>
+                <td><span class="agent-pill gold">Quality Watchdog</span></td>
+                <td><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green)">68% Rückgang</div><div class="progress"><div class="progress-bar" style="width:68%;background:var(--gold)"></div></div></td>
+                <td class="eff">+CHF 24.000</td>
+              </tr>
+              <tr>
+                <td class="measure">Reservierungs-Buffer Samstagabend<small style="display:block;color:var(--dim);font-size:11.5px;margin-top:4px">15 Min Buffer · No-Show-Quote stabil</small></td>
+                <td><span class="agent-pill green">Operations Advisor</span></td>
+                <td><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green)">100% implementiert</div><div class="progress"><div class="progress-bar" style="width:100%"></div></div></td>
+                <td class="eff">+CHF 13.800</td>
+              </tr>
+              <tr>
+                <td class="measure">Menü-Preise harmonisiert (Antipasti)<small style="display:block;color:var(--dim);font-size:11.5px;margin-top:4px">3 Positionen · +CHF 2 Deckungsbeitrag</small></td>
+                <td><span class="agent-pill purple">Revenue Analyst</span></td>
+                <td><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold)">In Umsetzung</div><div class="progress"><div class="progress-bar" style="width:45%;background:var(--copper)"></div></div></td>
+                <td class="eff potential">+CHF 4.200 <small style="color:var(--dim);font-weight:normal"> erwartet</small></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="chart-grid">
+        <div class="section">
+          <div class="section-head">
+            <h2>Rating-Entwicklung · 6 Monate</h2>
+            <span class="agent-pill gold">QUALITY WATCHDOG</span>
+          </div>
+          <div class="section-body">
+            <div class="chart">
+              <svg viewBox="0 0 600 200" preserveAspectRatio="none">
+                <line x1="50" y1="50" x2="590" y2="50" stroke="#C4673A" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+                <text x="56" y="44" font-family="JetBrains Mono" font-size="10" fill="#C4673A">Benchmark Margheri 4.70</text>
+                <g stroke="#243D37" stroke-width="1">
+                  <line x1="50" y1="180" x2="590" y2="180"/>
+                  <line x1="50" y1="120" x2="590" y2="120" stroke-dasharray="2 4" opacity="0.5"/>
+                </g>
+                <polyline points="70,80 160,110 250,108 340,135 430,142 520,118" fill="none" stroke="#9B958C" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6"/>
+                <polyline points="70,80 160,110 250,108 340,135 430,142 520,118" fill="none" stroke="#E8B931" stroke-width="2.5"/>
+                <g fill="#E8B931">
+                  <circle cx="70" cy="80" r="4"/><circle cx="160" cy="110" r="4"/><circle cx="250" cy="108" r="4"/><circle cx="340" cy="135" r="4"/><circle cx="430" cy="142" r="4"/>
+                </g>
+                <circle cx="520" cy="118" r="6" fill="#6B9C7F"/><circle cx="520" cy="118" r="11" fill="none" stroke="#6B9C7F" opacity="0.3"/>
+                <g font-family="JetBrains Mono" font-size="10" fill="#9B958C" text-anchor="middle">
+                  <text x="70" y="196">Dez</text><text x="160" y="196">Jan</text><text x="250" y="196">Feb</text><text x="340" y="196">Mär</text><text x="430" y="196">Apr</text><text x="520" y="196" fill="#6B9C7F">Mai</text>
+                </g>
+                <g font-family="JetBrains Mono" font-size="10" fill="#F5F0EB">
+                  <text x="70" y="72" text-anchor="middle">4.65</text><text x="160" y="102" text-anchor="middle">4.53</text><text x="250" y="100" text-anchor="middle">4.54</text><text x="340" y="127" text-anchor="middle">4.43</text><text x="430" y="134" text-anchor="middle">4.40</text><text x="520" y="106" text-anchor="middle" fill="#6B9C7F" font-weight="600">4.48</text>
+                </g>
+              </svg>
+              <div class="legend">
+                <span class="li"><span class="sw" style="background:#E8B931"></span>Ihr Rating</span>
+                <span class="li"><span class="sw" style="background:#6B9C7F"></span>April (Trend positiv)</span>
+                <span class="li"><span class="sw" style="background:#C4673A"></span>Benchmark Wettbewerb</span>
+              </div>
+              <div class="chart-caption">Erster Aufwärtstrend seit Dezember. Wirkung der Teigqualität-Massnahme sichtbar ab Woche 3.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head">
+            <h2>Was als Nächstes dran ist</h2>
+            <span class="sub" style="margin-top:0">Priorisiert nach Hebel</span>
+          </div>
+          <div class="section-body">
+            <ul class="next-list">
+              <li>
+                <span class="arrow">→</span>
+                <div class="next-text">Überbuchungsproblem systemisch lösen<small>Operations Advisor · Vorschlag bereit</small></div>
+                <span class="lever">CHF 80K+</span>
+              </li>
+              <li>
+                <span class="arrow">→</span>
+                <div class="next-text">Personaldecke Spitzenzeiten<small>Fr/Sa 19–22 Uhr · Quality Watchdog</small></div>
+                <span class="lever">CHF 40K</span>
+              </li>
+              <li>
+                <span class="arrow">→</span>
+                <div class="next-text">Truffle Pasta Bowl überarbeiten<small>Revenue Analyst · 31% Rückläuferquote</small></div>
+                <span class="lever">CHF 25K</span>
+              </li>
+              <li>
+                <span class="arrow">→</span>
+                <div class="next-text">Antipasti-Menü erweitern<small>Marketing Engine · 3 Ideen bereit</small></div>
+                <span class="lever">CHF 18K</span>
+              </li>
+              <li>
+                <span class="arrow">→</span>
+                <div class="next-text">Wein-Pairing-Empfehlungen<small>Revenue Analyst</small></div>
+                <span class="lever">CHF 12K</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

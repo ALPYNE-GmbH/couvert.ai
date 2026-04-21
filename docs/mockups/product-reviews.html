@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reviews · Couvert Cockpit</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1A3C34;--bg2:#162F29;--bg3:#12261F;--bg4:#0E1F1A;--copper:#C4673A;--copper-soft:rgba(196,103,58,0.14);--gold:#E8B931;--cream:#F5F0EB;--text:#E0DCD6;--dim:#9B958C;--border:#243D37;--border-soft:#1F3531;--green:#6B9C7F;--red:#B8564A}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);font-size:13.5px;line-height:1.5;-webkit-font-smoothing:antialiased}
+
+/* ============ APP SHELL ============ */
+.app{display:grid;grid-template-columns:220px 1fr;grid-template-rows:52px 1fr;min-height:100vh;background:var(--bg3)}
+.topbar{grid-column:1 / 3;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:24px;position:sticky;top:0;z-index:10}
+.brand{font-family:'DM Serif Display',serif;font-size:20px;color:var(--cream);letter-spacing:-0.5px;display:flex;align-items:center;gap:8px;width:200px}
+.brand .dot{color:var(--copper)}
+.brand-env{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--dim);padding:2px 6px;border:1px solid var(--border);border-radius:3px;margin-left:auto}
+.topnav{display:flex;gap:2px;flex:1}
+.topnav a{font-size:13px;color:var(--dim);padding:8px 14px;border-radius:4px;text-decoration:none;transition:all 0.15s}
+.topnav a:hover{color:var(--text);background:var(--bg2)}
+.topnav a.active{color:var(--cream);background:var(--bg2)}
+.search{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:6px 10px 6px 28px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);width:240px;position:relative}
+.search::before{content:'⌕';position:absolute;left:10px;top:6px;color:var(--dim)}
+.search kbd{float:right;font-family:inherit;font-size:10px;color:var(--dim);background:var(--bg3);padding:0 5px;border-radius:2px;border:1px solid var(--border)}
+.userpill{display:flex;align-items:center;gap:10px;padding:5px 10px 5px 5px;border:1px solid var(--border);border-radius:20px;background:var(--bg2);cursor:pointer}
+.userpill .av{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--copper),#8E4825);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:13px;color:var(--cream)}
+.userpill .nm{font-size:12px;color:var(--text);line-height:1}
+.userpill .nm small{display:block;color:var(--dim);font-size:10px;margin-top:3px;font-family:'JetBrains Mono',monospace}
+
+/* Sidebar */
+.sidebar{background:var(--bg3);border-right:1px solid var(--border);padding:18px 12px;display:flex;flex-direction:column;gap:4px}
+.side-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--dim);padding:10px 10px 6px;text-transform:uppercase}
+.side-item{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:4px;color:var(--text);text-decoration:none;font-size:13px;position:relative}
+.side-item:hover{background:var(--bg2)}
+.side-item.active{background:var(--bg2);color:var(--cream)}
+.side-item.active::before{content:'';position:absolute;left:-12px;top:8px;bottom:8px;width:2px;background:var(--copper);border-radius:0 2px 2px 0}
+.side-item .ic{width:14px;height:14px;color:var(--dim);flex-shrink:0}
+.side-item.active .ic{color:var(--copper)}
+.side-item .count{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim);background:var(--bg2);padding:1px 6px;border-radius:8px}
+.side-item.active .count{background:var(--copper);color:var(--cream)}
+.side-sep{height:1px;background:var(--border-soft);margin:10px 6px}
+
+/* Main */
+.main{background:var(--bg4);overflow-y:auto;display:grid;grid-template-rows:auto 1fr}
+.main-head{padding:22px 28px 14px;border-bottom:1px solid var(--border-soft);background:var(--bg3)}
+.crumbs{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--dim);margin-bottom:6px}
+.crumbs .sep{opacity:0.4;margin:0 6px}
+.page-title{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:14px}
+.page-title h1{font-family:'DM Serif Display',serif;font-size:24px;color:var(--cream);letter-spacing:-0.3px;font-weight:normal}
+.page-title h1 .count{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--dim);margin-left:10px}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.5px;padding:5px 10px;border-radius:14px;border:1px solid var(--border);color:var(--dim);cursor:pointer;background:transparent}
+.chip.active{background:var(--copper-soft);border-color:var(--copper);color:var(--copper)}
+.chip:hover{border-color:var(--copper)}
+
+/* Reviews split */
+.split{display:grid;grid-template-columns:minmax(340px,420px) 1fr;min-height:calc(100vh - 52px - 120px)}
+.list{background:var(--bg3);border-right:1px solid var(--border-soft);overflow-y:auto}
+.list-item{display:grid;grid-template-columns:32px 1fr auto;gap:12px;padding:14px 20px;border-bottom:1px solid var(--border-soft);cursor:pointer;position:relative}
+.list-item:hover{background:var(--bg2)}
+.list-item.selected{background:var(--bg2)}
+.list-item.selected::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--copper)}
+.src{width:26px;height:26px;border-radius:4px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:13px;color:var(--dim);background:var(--bg4)}
+.src.g{color:#E8B931}
+.src.tr{color:#6B9C7F}
+.li-top{display:flex;align-items:center;gap:8px;margin-bottom:3px}
+.li-author{font-size:13px;color:var(--cream);font-weight:500}
+.li-stars{letter-spacing:1.5px;font-size:11px;color:var(--gold)}
+.li-stars .off{color:var(--border)}
+.li-preview{font-size:12.5px;color:var(--dim);line-height:1.45;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.li-tags{display:flex;gap:4px;margin-top:6px}
+.li-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.5px;color:var(--dim);border:1px solid var(--border);padding:1px 6px;border-radius:3px}
+.li-meta{text-align:right;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim);display:flex;flex-direction:column;gap:4px;align-items:flex-end}
+.dot-status{width:6px;height:6px;border-radius:50%}
+.dot-status.pending{background:var(--gold);box-shadow:0 0 0 3px rgba(232,185,49,0.15)}
+.dot-status.done{background:var(--green)}
+.dot-status.new{background:var(--copper);box-shadow:0 0 0 3px rgba(196,103,58,0.2)}
+
+/* Detail */
+.detail{overflow-y:auto;padding:0}
+.detail-inner{max-width:780px;padding:24px 32px 60px}
+.review-card{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:22px 24px;margin-bottom:20px}
+.rc-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}
+.rc-left{display:flex;align-items:center;gap:12px}
+.rc-src{width:36px;height:36px;border-radius:6px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:18px;color:var(--gold);background:var(--bg4)}
+.rc-author{font-family:'DM Serif Display',serif;font-size:18px;color:var(--cream)}
+.rc-meta{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--dim);margin-top:2px}
+.rc-stars{letter-spacing:2px;font-size:15px;color:var(--gold)}
+.rc-stars .off{color:var(--border)}
+.rc-body{font-size:14.5px;color:var(--text);line-height:1.7;padding:14px 16px;background:var(--bg4);border-left:2px solid var(--border);border-radius:0 4px 4px 0}
+.rc-tags{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+.rc-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.5px;color:var(--dim);border:1px solid var(--border);padding:3px 8px;border-radius:3px}
+
+/* Agent response card */
+.agent-card{background:var(--bg3);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.agent-head{padding:14px 22px;border-bottom:1px solid var(--border-soft);display:flex;align-items:center;justify-content:space-between;gap:14px;background:linear-gradient(180deg,rgba(196,103,58,0.06),transparent)}
+.agent-tag{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--copper);background:var(--copper-soft);border:1px solid rgba(196,103,58,0.3);padding:3px 8px;border-radius:3px}
+.agent-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--copper);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.agent-status{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim)}
+.agent-status b{color:var(--gold);font-weight:500}
+.agent-body{padding:20px 22px}
+.agent-text{font-size:14px;line-height:1.75;color:var(--text)}
+.agent-sig{margin-top:10px;font-family:'DM Serif Display',serif;font-style:italic;color:var(--cream)}
+.agent-meta{display:flex;gap:16px;margin-top:16px;padding-top:14px;border-top:1px solid var(--border-soft);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim)}
+.agent-meta .m{display:flex;align-items:center;gap:6px}
+.agent-meta .m b{color:var(--green);font-weight:500}
+.agent-meta .m.conf::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green)}
+.agent-actions{padding:14px 22px;border-top:1px solid var(--border-soft);background:var(--bg4);display:flex;gap:8px;align-items:center}
+.btn{font-family:inherit;font-size:13px;padding:8px 14px;border-radius:4px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;transition:all 0.15s}
+.btn:hover{border-color:var(--copper);color:var(--cream)}
+.btn.primary{background:var(--copper);border-color:var(--copper);color:var(--cream)}
+.btn.primary:hover{background:#D4845A;border-color:#D4845A}
+.btn.ghost{border-color:transparent;color:var(--dim)}
+.kbd{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim);background:var(--bg3);padding:1px 5px;border-radius:2px;border:1px solid var(--border);margin-left:6px}
+.timeline-strip{margin-top:22px;padding:14px 16px;background:var(--bg3);border:1px solid var(--border-soft);border-radius:4px;display:flex;gap:10px;align-items:center;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:10.5px}
+.ts{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.ts-time{color:var(--copper)}
+.ts-txt{color:var(--text)}
+.ts-sep{width:20px;height:1px;background:var(--copper);opacity:0.5}
+
+@media(max-width:1100px){.app{grid-template-columns:64px 1fr}.side-item span:not(.count),.side-label{display:none}.side-item{justify-content:center}.brand{width:auto}}
+@media(max-width:900px){.split{grid-template-columns:1fr}.list{display:none}.topnav{display:none}.search{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="brand">c<span class="dot">o</span>uvert<span class="brand-env">COCKPIT</span></div>
+    <nav class="topnav">
+      <a href="product-shift.html">Dashboard</a>
+      <a href="product-reviews.html" class="active">Reviews</a>
+      <a href="product-competitor.html">Competitor</a>
+      <a href="product-report.html">Reports</a>
+      <a href="#">Agents</a>
+    </nav>
+    <div class="search">Suchen in Reviews, Agents, Reports… <kbd>⌘K</kbd></div>
+    <div class="userpill">
+      <div class="av">L</div>
+      <div class="nm">Luca Moretti<small>60 SECONDS · OWNER</small></div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="side-label">Posteingang</div>
+    <a class="side-item active" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l6 4 6-4M2 4v8h12V4M2 4h12"/></svg><span>Offen</span><span class="count">14</span></a>
+    <a class="side-item" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l3 3 7-7"/></svg><span>Beantwortet</span><span class="count">312</span></a>
+    <a class="side-item" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v6l4 2M8 14A6 6 0 108 2a6 6 0 000 12z"/></svg><span>Geplant</span><span class="count">3</span></a>
+    <a class="side-item" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2l1.8 4 4.2.4-3.2 2.8 1 4.2L8 11.2 4.2 13.4l1-4.2L2 6.4l4.2-.4L8 2z"/></svg><span>Eskaliert</span><span class="count">1</span></a>
+    <div class="side-sep"></div>
+    <div class="side-label">Quellen</div>
+    <a class="side-item" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/></svg><span>Google</span><span class="count">8</span></a>
+    <a class="side-item" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/></svg><span>TripAdvisor</span><span class="count">4</span></a>
+    <a class="side-item" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/></svg><span>Yelp</span><span class="count">2</span></a>
+    <div class="side-sep"></div>
+    <div class="side-label">Agents</div>
+    <a class="side-item" href="#"><span style="width:14px;height:14px;border-radius:50%;background:var(--copper);flex-shrink:0"></span><span>Reputation Manager</span></a>
+    <a class="side-item" href="#"><span style="width:14px;height:14px;border-radius:50%;background:var(--gold);flex-shrink:0"></span><span>Quality Watchdog</span></a>
+    <a class="side-item" href="#"><span style="width:14px;height:14px;border-radius:50%;background:var(--green);flex-shrink:0"></span><span>Revenue Analyst</span></a>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="main-head">
+      <div class="crumbs">Reputation<span class="sep">/</span>Reviews<span class="sep">/</span><span style="color:var(--cream)">Offen</span></div>
+      <div class="page-title">
+        <h1>Offene Bewertungen<span class="count">14 unbeantwortet</span></h1>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="btn ghost">↻ Sync</button>
+          <button class="btn">Einstellungen</button>
+        </div>
+      </div>
+      <div class="filters">
+        <span class="chip active">Alle</span>
+        <span class="chip">1–3 ★</span>
+        <span class="chip">Deutsch</span>
+        <span class="chip">English</span>
+        <span class="chip">Italiano</span>
+        <span class="chip">Français</span>
+        <span class="chip">Wartezeit</span>
+        <span class="chip">Teigqualität</span>
+        <span class="chip">Service</span>
+      </div>
+    </div>
+
+    <div class="split">
+      <!-- LIST -->
+      <div class="list">
+        <div class="list-item selected">
+          <div class="src g">G</div>
+          <div>
+            <div class="li-top">
+              <div class="li-author">M. K.</div>
+              <div class="li-stars">★★<span class="off">★★★</span></div>
+            </div>
+            <div class="li-preview">Ich habe für Samstag um 19:00 Uhr einen Tisch für 4 Erwachsene und 3 Kinder reserviert. Wir sind pünktlich angekommen und mussten trotzdem 30 Minuten…</div>
+            <div class="li-tags"><span class="li-tag">Wartezeit</span><span class="li-tag">Gruppe</span></div>
+          </div>
+          <div class="li-meta"><span class="dot-status pending"></span>vor 4 Min<br><span style="color:var(--gold)">Antwort bereit</span></div>
+        </div>
+
+        <div class="list-item">
+          <div class="src tr">T</div>
+          <div>
+            <div class="li-top">
+              <div class="li-author">Julia B.</div>
+              <div class="li-stars">★<span class="off">★★★★</span></div>
+            </div>
+            <div class="li-preview">The dough was not cooked enough and the service was really slow. We waited 45 minutes for our main course…</div>
+            <div class="li-tags"><span class="li-tag">Teigqualität</span><span class="li-tag">Service</span></div>
+          </div>
+          <div class="li-meta"><span class="dot-status new"></span>vor 12 Min<br><span style="color:var(--copper)">generiert…</span></div>
+        </div>
+
+        <div class="list-item">
+          <div class="src g">G</div>
+          <div>
+            <div class="li-top">
+              <div class="li-author">Stefan H.</div>
+              <div class="li-stars">★★★<span class="off">★★</span></div>
+            </div>
+            <div class="li-preview">Essen war ok aber nicht aussergewöhnlich. Die Truffle Pasta Bowl war leider enttäuschend, wenig Geschmack…</div>
+            <div class="li-tags"><span class="li-tag">Menü</span><span class="li-tag">Truffle Pasta</span></div>
+          </div>
+          <div class="li-meta"><span class="dot-status pending"></span>vor 1 Std<br><span style="color:var(--gold)">Antwort bereit</span></div>
+        </div>
+
+        <div class="list-item">
+          <div class="src g">G</div>
+          <div>
+            <div class="li-top">
+              <div class="li-author">Anonymer Nutzer</div>
+              <div class="li-stars">★★★★<span class="off">★</span></div>
+            </div>
+            <div class="li-preview">Schöner Abend, Pizza war gut, aber der Teig war etwas zu weich. Personal sehr freundlich…</div>
+            <div class="li-tags"><span class="li-tag">Teigqualität</span></div>
+          </div>
+          <div class="li-meta"><span class="dot-status pending"></span>vor 2 Std<br><span style="color:var(--gold)">Antwort bereit</span></div>
+        </div>
+
+        <div class="list-item">
+          <div class="src tr">T</div>
+          <div>
+            <div class="li-top">
+              <div class="li-author">Marco P.</div>
+              <div class="li-stars">★★★★★</div>
+            </div>
+            <div class="li-preview">Best pizza in Zurich! The Margherita was authentic and the staff really made us feel welcome. Will come back for sure.</div>
+            <div class="li-tags"><span class="li-tag">Positiv</span><span class="li-tag">Service</span></div>
+          </div>
+          <div class="li-meta"><span class="dot-status pending"></span>vor 3 Std<br><span style="color:var(--gold)">Antwort bereit</span></div>
+        </div>
+
+        <div class="list-item">
+          <div class="src g">G</div>
+          <div>
+            <div class="li-top">
+              <div class="li-author">Laura D.</div>
+              <div class="li-stars">★★<span class="off">★★★</span></div>
+            </div>
+            <div class="li-preview">Eine Stunde gewartet obwohl reserviert. Das ist kein einmaliges Problem, war schon beim letzten Mal so…</div>
+            <div class="li-tags"><span class="li-tag">Wartezeit</span><span class="li-tag">Wiederholung</span></div>
+          </div>
+          <div class="li-meta"><span class="dot-status pending"></span>vor 5 Std<br><span style="color:var(--gold)">Antwort bereit</span></div>
+        </div>
+
+        <div class="list-item">
+          <div class="src g">G</div>
+          <div>
+            <div class="li-top">
+              <div class="li-author">Familie Weber</div>
+              <div class="li-stars">★★★★★</div>
+            </div>
+            <div class="li-preview">Wunderschöner Geburtstagsabend, Team hat uns überrascht mit einer kleinen Dessert-Überraschung. Danke!</div>
+            <div class="li-tags"><span class="li-tag">Positiv</span></div>
+          </div>
+          <div class="li-meta"><span class="dot-status done"></span>gestern<br><span style="color:var(--green)">gepostet</span></div>
+        </div>
+      </div>
+
+      <!-- DETAIL -->
+      <div class="detail">
+        <div class="detail-inner">
+          <div class="review-card">
+            <div class="rc-head">
+              <div class="rc-left">
+                <div class="rc-src">G</div>
+                <div>
+                  <div class="rc-author">M. K.</div>
+                  <div class="rc-meta">Google Reviews · Freitag, 17. April 2026, 22:14 · Deutsch</div>
+                </div>
+              </div>
+              <div class="rc-stars">★★<span class="off">★★★</span></div>
+            </div>
+            <div class="rc-body">Ich habe für Samstag um 19:00 Uhr einen Tisch für 4 Erwachsene und 3 Kinder reserviert. Wir sind pünktlich angekommen und mussten trotzdem 30 Minuten direkt bei der Eingangstür im Restaurant warten, zusammen mit einer grossen Menschenmenge. Das ist mit hungrigen Kindern schwierig und hat den Abend getrübt. Das Essen war dann sehr gut, aber wir kommen vorerst nicht mehr wieder.</div>
+            <div class="rc-tags">
+              <span class="rc-tag">Wartezeit trotz Reservation</span>
+              <span class="rc-tag">Gruppenbuchung</span>
+              <span class="rc-tag">Kinder</span>
+              <span class="rc-tag">Samstagabend</span>
+            </div>
+          </div>
+
+          <div class="agent-card">
+            <div class="agent-head">
+              <span class="agent-tag">REPUTATION MANAGER</span>
+              <span class="agent-status">Generiert 22:16 · <b>Freigabe erforderlich</b></span>
+            </div>
+            <div class="agent-body">
+              <div class="agent-text">Liebe Frau K., vielen Dank für Ihr ehrliches Feedback und dass Sie sich die Zeit genommen haben, Ihre Erfahrung zu teilen. Eine Wartezeit von 30 Minuten trotz Reservation entspricht nicht unserem Anspruch, und wir verstehen Ihre Enttäuschung, insbesondere mit einer Gruppe und Kindern. Wir haben unsere Reservierungskapazität für die Wochenenden bereits angepasst, damit dies nicht erneut vorkommt. Ich würde mich freuen, Sie bei einem weiteren Besuch persönlich zu begrüssen und Ihnen zu zeigen, dass wir Ihre Kritik ernst nehmen.
+                <div class="agent-sig">Luca Moretti, Geschäftsführung</div>
+              </div>
+              <div class="agent-meta">
+                <span class="m conf">Tonalität <b>97%</b> Ihr Betrieb</span>
+                <span class="m">Sprache DE</span>
+                <span class="m">216 Wörter</span>
+                <span class="m">Generiert in 1.8s</span>
+              </div>
+            </div>
+            <div class="agent-actions">
+              <button class="btn primary">Freigeben &amp; Posten<span class="kbd" style="background:rgba(0,0,0,0.2);border-color:rgba(0,0,0,0.2);color:rgba(255,255,255,0.7)">⏎</span></button>
+              <button class="btn">Bearbeiten</button>
+              <button class="btn">Neu generieren</button>
+              <button class="btn ghost" style="margin-left:auto">An Quality Watchdog eskalieren →</button>
+            </div>
+          </div>
+
+          <div class="timeline-strip">
+            <div class="ts"><span class="ts-time">22:14</span><span class="ts-txt">Review erkannt</span></div>
+            <span class="ts-sep"></span>
+            <div class="ts"><span class="ts-time">22:15</span><span class="ts-txt">Kategorisiert · Wartezeit, Gruppe</span></div>
+            <span class="ts-sep"></span>
+            <div class="ts"><span class="ts-time">22:16</span><span class="ts-txt">Antwort generiert</span></div>
+            <span class="ts-sep"></span>
+            <div class="ts"><span class="ts-time">22:18</span><span class="ts-txt" style="color:var(--gold)">Wartet auf Freigabe</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

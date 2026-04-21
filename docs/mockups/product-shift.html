@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard · Shift Briefing · Couvert Cockpit</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1A3C34;--bg2:#162F29;--bg3:#12261F;--bg4:#0E1F1A;--copper:#C4673A;--copper-soft:rgba(196,103,58,0.14);--gold:#E8B931;--cream:#F5F0EB;--text:#E0DCD6;--dim:#9B958C;--border:#243D37;--border-soft:#1F3531;--green:#6B9C7F;--red:#B8564A}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);font-size:13.5px;line-height:1.5;-webkit-font-smoothing:antialiased}
+
+.app{display:grid;grid-template-columns:220px 1fr;grid-template-rows:52px 1fr;min-height:100vh;background:var(--bg3)}
+.topbar{grid-column:1 / 3;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:24px;position:sticky;top:0;z-index:10}
+.brand{font-family:'DM Serif Display',serif;font-size:20px;color:var(--cream);letter-spacing:-0.5px;display:flex;align-items:center;gap:8px;width:200px}
+.brand .dot{color:var(--copper)}
+.brand-env{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--dim);padding:2px 6px;border:1px solid var(--border);border-radius:3px;margin-left:auto}
+.topnav{display:flex;gap:2px;flex:1}
+.topnav a{font-size:13px;color:var(--dim);padding:8px 14px;border-radius:4px;text-decoration:none;transition:all 0.15s}
+.topnav a:hover{color:var(--text);background:var(--bg2)}
+.topnav a.active{color:var(--cream);background:var(--bg2)}
+.search{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:6px 10px 6px 28px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);width:240px;position:relative}
+.search::before{content:'⌕';position:absolute;left:10px;top:6px;color:var(--dim)}
+.search kbd{float:right;font-family:inherit;font-size:10px;color:var(--dim);background:var(--bg3);padding:0 5px;border-radius:2px;border:1px solid var(--border)}
+.userpill{display:flex;align-items:center;gap:10px;padding:5px 10px 5px 5px;border:1px solid var(--border);border-radius:20px;background:var(--bg2);cursor:pointer}
+.userpill .av{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--copper),#8E4825);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:13px;color:var(--cream)}
+.userpill .nm{font-size:12px;color:var(--text);line-height:1}
+.userpill .nm small{display:block;color:var(--dim);font-size:10px;margin-top:3px;font-family:'JetBrains Mono',monospace}
+
+.sidebar{background:var(--bg3);border-right:1px solid var(--border);padding:18px 12px;display:flex;flex-direction:column;gap:4px}
+.side-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--dim);padding:10px 10px 6px;text-transform:uppercase}
+.side-item{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:4px;color:var(--text);text-decoration:none;font-size:13px;position:relative}
+.side-item:hover{background:var(--bg2)}
+.side-item.active{background:var(--bg2);color:var(--cream)}
+.side-item.active::before{content:'';position:absolute;left:-12px;top:8px;bottom:8px;width:2px;background:var(--copper);border-radius:0 2px 2px 0}
+.side-item .ic{width:14px;height:14px;color:var(--dim);flex-shrink:0}
+.side-item.active .ic{color:var(--copper)}
+.side-item .count{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim);background:var(--bg2);padding:1px 6px;border-radius:8px}
+.side-item.active .count{background:var(--copper);color:var(--cream)}
+.side-sep{height:1px;background:var(--border-soft);margin:10px 6px}
+
+.main{background:var(--bg4);overflow-y:auto}
+.main-head{padding:22px 28px 18px;border-bottom:1px solid var(--border-soft);background:var(--bg3)}
+.crumbs{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--dim);margin-bottom:6px}
+.crumbs .sep{opacity:0.4;margin:0 6px}
+.page-title{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.page-title h1{font-family:'DM Serif Display',serif;font-size:24px;color:var(--cream);letter-spacing:-0.3px;font-weight:normal}
+.page-title .sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);margin-top:4px;letter-spacing:0.5px}
+.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:6px;animation:pulse 2s ease-in-out infinite;box-shadow:0 0 0 3px rgba(107,156,127,0.2)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+.content{padding:24px 28px 48px;max-width:1280px}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+.kpi{background:var(--bg3);border:1px solid var(--border-soft);border-radius:6px;padding:16px 18px}
+.kpi-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;margin-bottom:8px}
+.kpi-num{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:var(--cream);line-height:1;margin-bottom:6px}
+.kpi-num.gold{color:var(--gold)}
+.kpi-num.copper{color:var(--copper)}
+.kpi-sub{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:6px}
+.kpi-sub .up{color:var(--green)}
+.kpi-sub .down{color:var(--red)}
+
+.grid{display:grid;grid-template-columns:1fr 340px;gap:16px}
+.card{background:var(--bg3);border:1px solid var(--border-soft);border-radius:6px;overflow:hidden}
+.card-head{padding:14px 18px;border-bottom:1px solid var(--border-soft);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.card-head h3{font-family:'DM Serif Display',serif;font-size:16px;color:var(--cream);letter-spacing:-0.2px;font-weight:normal}
+.agent-tag{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--copper);background:var(--copper-soft);border:1px solid rgba(196,103,58,0.3);padding:3px 7px;border-radius:3px}
+.agent-tag.gold{color:var(--gold);background:rgba(232,185,49,0.1);border-color:rgba(232,185,49,0.3)}
+.agent-tag.green{color:var(--green);background:rgba(107,156,127,0.1);border-color:rgba(107,156,127,0.3)}
+.card-body{padding:18px}
+
+/* Reservation table */
+.rez-table{width:100%;border-collapse:collapse;font-size:13px}
+.rez-table th{text-align:left;padding:8px 10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;font-weight:500;border-bottom:1px solid var(--border-soft)}
+.rez-table td{padding:12px 10px;border-bottom:1px solid var(--border-soft);vertical-align:top}
+.rez-table tr:last-child td{border-bottom:none}
+.rez-table tr:hover{background:var(--bg2)}
+.time{font-family:'JetBrains Mono',monospace;color:var(--cream);font-weight:500}
+.guest{color:var(--cream)}
+.guest small{display:block;color:var(--dim);font-size:11px;margin-top:2px}
+.pax{font-family:'JetBrains Mono',monospace;color:var(--text)}
+.badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;padding:2px 7px;border-radius:3px;text-transform:uppercase}
+.badge.vip{background:rgba(232,185,49,0.15);color:var(--gold);border:1px solid rgba(232,185,49,0.35)}
+.badge.rep{background:var(--copper-soft);color:var(--copper);border:1px solid rgba(196,103,58,0.3)}
+.badge.new{background:rgba(107,156,127,0.12);color:var(--green);border:1px solid rgba(107,156,127,0.3)}
+.note{color:var(--dim);font-size:12px;line-height:1.5}
+
+/* Briefing sidebar */
+.brief-item{padding:14px 0;border-bottom:1px solid var(--border-soft)}
+.brief-item:last-child{border-bottom:none;padding-bottom:0}
+.brief-item:first-child{padding-top:0}
+.brief-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.brief-head h4{font-size:13px;color:var(--cream);font-weight:500}
+.brief-txt{font-size:12.5px;color:var(--text);line-height:1.55}
+.brief-quote{margin-top:8px;padding:8px 10px;background:var(--bg4);border-left:2px solid var(--copper);border-radius:0 3px 3px 0;font-size:12px;color:var(--dim);font-style:italic}
+.brief-action{margin-top:10px;display:flex;gap:6px}
+.mini-btn{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.5px;padding:4px 8px;border:1px solid var(--border);border-radius:3px;background:transparent;color:var(--text);cursor:pointer}
+.mini-btn:hover{border-color:var(--copper);color:var(--cream)}
+.mini-btn.primary{background:var(--copper);border-color:var(--copper);color:var(--cream)}
+
+/* Weather/context strip */
+.context-strip{display:flex;gap:16px;padding:12px 18px;background:var(--bg3);border:1px solid var(--border-soft);border-radius:6px;margin-bottom:16px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);flex-wrap:wrap}
+.context-strip .ci{display:flex;align-items:center;gap:6px}
+.context-strip .ci b{color:var(--cream);font-weight:500}
+.context-strip .sep{opacity:0.3}
+
+.shift-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--cream);margin-bottom:4px}
+.alert{background:rgba(232,185,49,0.08);border:1px solid rgba(232,185,49,0.3);border-left-width:3px;border-radius:4px;padding:12px 14px;margin-bottom:16px;font-size:13px;color:var(--text);display:flex;gap:10px;align-items:flex-start}
+.alert .ico{width:16px;height:16px;color:var(--gold);flex-shrink:0;margin-top:2px}
+.alert b{color:var(--gold)}
+.alert a{color:var(--copper);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.5px}
+
+@media(max-width:1100px){.app{grid-template-columns:64px 1fr}.side-item span:not(.count),.side-label{display:none}.side-item{justify-content:center}.brand{width:auto}.kpi-row{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}}
+@media(max-width:900px){.topnav,.search{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div class="brand">c<span class="dot">o</span>uvert<span class="brand-env">COCKPIT</span></div>
+    <nav class="topnav">
+      <a href="product-shift.html" class="active">Dashboard</a>
+      <a href="product-reviews.html">Reviews</a>
+      <a href="product-competitor.html">Competitor</a>
+      <a href="product-report.html">Reports</a>
+      <a href="#">Agents</a>
+    </nav>
+    <div class="search">Suchen in Reviews, Agents, Reports… <kbd>⌘K</kbd></div>
+    <div class="userpill">
+      <div class="av">L</div>
+      <div class="nm">Luca Moretti<small>60 SECONDS · OWNER</small></div>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="side-label">Heute</div>
+    <a class="side-item active" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="12" height="10" rx="1"/><path d="M2 7h12M5 2v3M11 2v3"/></svg><span>Shift Briefing</span></a>
+    <a class="side-item" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h12v3H2zM2 7h12v7H2z"/></svg><span>Reservationen</span><span class="count">38</span></a>
+    <a class="side-item" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13V6m5 7V3m5 10V8"/></svg><span>Live-Metriken</span></a>
+    <div class="side-sep"></div>
+    <div class="side-label">Diese Woche</div>
+    <a class="side-item" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l6 4 6-4M2 4v8h12V4M2 4h12"/></svg><span>Reviews</span><span class="count">14</span></a>
+    <a class="side-item" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4-4 3 3 5-5"/></svg><span>Trends</span></a>
+    <a class="side-item" href="#"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg><span>Activity Feed</span></a>
+    <div class="side-sep"></div>
+    <div class="side-label">Agents</div>
+    <a class="side-item" href="#"><span style="width:10px;height:10px;border-radius:50%;background:var(--copper);flex-shrink:0"></span><span>Reputation Manager</span></a>
+    <a class="side-item" href="#"><span style="width:10px;height:10px;border-radius:50%;background:var(--gold);flex-shrink:0"></span><span>Quality Watchdog</span></a>
+    <a class="side-item" href="#"><span style="width:10px;height:10px;border-radius:50%;background:var(--green);flex-shrink:0"></span><span>Operations Advisor</span></a>
+    <a class="side-item" href="#"><span style="width:10px;height:10px;border-radius:50%;background:#8E7BBF;flex-shrink:0"></span><span>Revenue Analyst</span></a>
+  </aside>
+
+  <main class="main">
+    <div class="main-head">
+      <div class="crumbs">Dashboard<span class="sep">/</span><span style="color:var(--cream)">Shift Briefing</span></div>
+      <div class="page-title">
+        <div>
+          <h1>Abendschicht · Samstag, 19. April</h1>
+          <div class="sub"><span class="live-dot"></span>LIVE · aktualisiert vor 12 Sekunden · Generiert von Operations Advisor um 16:45</div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="mini-btn">Als PDF</button>
+          <button class="mini-btn">An Team senden</button>
+          <button class="mini-btn primary">Schicht starten</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="context-strip">
+        <div class="ci">Wetter <b>18°C, leicht bewölkt</b></div>
+        <span class="sep">·</span>
+        <div class="ci">Prognose Gäste <b>92</b></div>
+        <span class="sep">·</span>
+        <div class="ci">Personal <b>6 Service · 4 Küche</b></div>
+        <span class="sep">·</span>
+        <div class="ci">Events Zürich <b>FCZ-Heimspiel 20:45</b></div>
+        <span class="sep">·</span>
+        <div class="ci">Status <b style="color:var(--green)">Auslastung planbar</b></div>
+      </div>
+
+      <div class="alert">
+        <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2l6 11H2L8 2zM8 7v3M8 12v0.5"/></svg>
+        <div style="flex:1">
+          <b>Achtung Teigqualität.</b> Quality Watchdog hat diese Woche 8 Bewertungen mit "nasser Teig" erkannt (+200% vs. Vorwoche). Küchenchef bitte Ofentemperatur vor 18:00 prüfen.
+          <a href="#" style="margin-left:8px">Details →</a>
+        </div>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="kpi-label">Reservationen heute</div>
+          <div class="kpi-num">38</div>
+          <div class="kpi-sub">88 Gäste · <span class="up">+12% vs Vorwoche</span></div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Rating 7 Tage</div>
+          <div class="kpi-num gold">4.48</div>
+          <div class="kpi-sub"><span class="up">+0.08</span> · Trend steigend</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Unbeantwortete Reviews</div>
+          <div class="kpi-num copper">14</div>
+          <div class="kpi-sub">7 Antworten bereit zur Freigabe</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Offene Beschwerden</div>
+          <div class="kpi-num">2</div>
+          <div class="kpi-sub">Letzte 48h · beide Teigqualität</div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <!-- RESERVATIONS -->
+        <div class="card">
+          <div class="card-head">
+            <h3>Reservationen heute Abend</h3>
+            <span class="agent-tag">OPERATIONS ADVISOR</span>
+          </div>
+          <div class="card-body" style="padding:0">
+            <table class="rez-table">
+              <thead>
+                <tr><th>Zeit</th><th>Gast</th><th>Pax</th><th>Status / Notiz</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="time">18:30</td>
+                  <td class="guest">Familie Bianchi<small>Tisch 4 · Fenster</small></td>
+                  <td class="pax">5</td>
+                  <td><span class="badge vip">VIP</span> <div class="note" style="margin-top:6px">6. Besuch dieses Jahr · Kind hat Glutenintoleranz, bitte gf-Menü bereitstellen</div></td>
+                </tr>
+                <tr>
+                  <td class="time">19:00</td>
+                  <td class="guest">Anna Schmidt<small>Tisch 7</small></td>
+                  <td class="pax">2</td>
+                  <td><span class="badge new">Neu</span> <div class="note" style="margin-top:6px">Erstbesuch · via Google</div></td>
+                </tr>
+                <tr>
+                  <td class="time">19:15</td>
+                  <td class="guest">Thomas Keller<small>Tisch 12 · Terrasse</small></td>
+                  <td class="pax">4</td>
+                  <td><span class="badge rep">Rückkehrer</span> <div class="note" style="margin-top:6px">Letztes Mal Wartezeit 20 Min bemängelt — bitte pünktlich platzieren</div></td>
+                </tr>
+                <tr>
+                  <td class="time">19:30</td>
+                  <td class="guest">Familie Weber<small>Tisch 2 · Geburtstag</small></td>
+                  <td class="pax">6</td>
+                  <td><span class="badge vip">VIP</span> <div class="note" style="margin-top:6px">Geburtstagsfeier Sohn (8) · Dessert-Überraschung vorgemerkt</div></td>
+                </tr>
+                <tr>
+                  <td class="time">20:00</td>
+                  <td class="guest">Laura Donati<small>Tisch 9</small></td>
+                  <td class="pax">3</td>
+                  <td><div class="note">—</div></td>
+                </tr>
+                <tr>
+                  <td class="time">20:30</td>
+                  <td class="guest">Büro Meyer & Partner<small>Tisch 14 · Seitenraum</small></td>
+                  <td class="pax">8</td>
+                  <td><span class="badge rep">Rückkehrer</span> <div class="note" style="margin-top:6px">Firmenabend · Weinkarte vorbereiten · Rechnung separat</div></td>
+                </tr>
+                <tr>
+                  <td class="time">21:00</td>
+                  <td class="guest">Stefano M.<small>Tisch 11</small></td>
+                  <td class="pax">2</td>
+                  <td><div class="note">—</div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- BRIEFING SIDEBAR -->
+        <div class="card">
+          <div class="card-head">
+            <h3>Gestern im Service</h3>
+            <span class="agent-tag gold">QUALITY WATCHDOG</span>
+          </div>
+          <div class="card-body">
+            <div class="brief-item">
+              <div class="brief-head"><h4>3 Beschwerden Teigqualität</h4></div>
+              <div class="brief-txt">Schwerpunkt Freitag-Abendschicht zwischen 20:00 und 22:00. Ofentemperatur-Protokoll fehlt.</div>
+              <div class="brief-quote">"der Teig unten verbrannt, innen wie Kaugummi"</div>
+              <div class="brief-action">
+                <button class="mini-btn primary">Küchenchef briefen</button>
+                <button class="mini-btn">Details</button>
+              </div>
+            </div>
+
+            <div class="brief-item">
+              <div class="brief-head"><h4>1 Wartezeit-Beschwerde</h4></div>
+              <div class="brief-txt">Gruppe 7 Personen musste 30 Min trotz Reservation warten. Antwort vom Reputation Manager wartet auf Freigabe.</div>
+              <div class="brief-action">
+                <button class="mini-btn primary">Review freigeben</button>
+              </div>
+            </div>
+
+            <div class="brief-item">
+              <div class="brief-head"><h4>Truffle Pasta Bowl</h4></div>
+              <div class="brief-txt">2 von 4 Bestellungen zurückgegeben. Revenue Analyst schlägt Rezept-Review vor.</div>
+              <div class="brief-action">
+                <button class="mini-btn">Zum Menü</button>
+              </div>
+            </div>
+
+            <div class="brief-item">
+              <div class="brief-head"><h4 style="color:var(--green)">Positiv</h4></div>
+              <div class="brief-txt">5-Sterne-Review Familie Weber (Geburtstag) · "Team hat uns überrascht". Bereits gepostet.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>
