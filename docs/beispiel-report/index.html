@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gastro Intelligence Report · Beispiel · Couvert</title>
+<meta name="description" content="Gastro Report Beispiel: 22 Seiten Restaurant CX Analyse und Gastronomie Intelligence aus einem echten Zürcher Betrieb. Anonymisiert. 2.825 Bewertungen, CHF 390'000+ Umsatzverlust, 11 Massnahmen.">
+<meta name="keywords" content="Gastro Report Beispiel, Restaurant CX Analyse, Gastronomie Intelligence, Reputation Analyse, Couvert">
+<link rel="canonical" href="https://couvert.ai/beispiel-report/">
+<link rel="alternate" hreflang="de" href="https://couvert.ai/beispiel-report/">
+<link rel="alternate" hreflang="en" href="https://couvert.ai/en/example-report/">
+<link rel="alternate" hreflang="x-default" href="https://couvert.ai/beispiel-report/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Couvert.ai">
+<meta property="og:title" content="Gastro Intelligence Report · Beispiel · Couvert">
+<meta property="og:description" content="22 Seiten CX- und Revenue-Impact-Analyse aus einem echten Zürcher Gastronomiebetrieb. Lesen Sie die ersten 4 Seiten, laden Sie den vollen Report nach kurzer Verifikation.">
+<meta property="og:url" content="https://couvert.ai/beispiel-report/">
+<meta property="og:locale" content="de_CH">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gastro Intelligence Report · Beispiel · Couvert">
+<meta name="twitter:description" content="22 Seiten Gastro-Intelligence. Anonymisiert, aber ungeschönt.">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+<style>
+/* ---------- HERO (Beispiel-Report) ---------- */
+.hero-section{padding-top:140px;padding-bottom:48px;position:relative}
+.hero-section::before{content:'';position:absolute;top:80px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(196,103,58,0.06) 0%,transparent 65%);pointer-events:none}
+.hero-overline{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--copper);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.hero-overline::before{content:'';width:32px;height:1px;background:var(--copper)}
+.hero-section h1{font-family:'DM Sans',sans-serif;font-weight:600;font-size:clamp(32px,5.2vw,64px);line-height:1.06;color:var(--cream-bright);letter-spacing:-1.5px;margin-bottom:24px}
+.hero-section h1 em{font-family:'DM Serif Display',serif;font-weight:400;font-style:italic;color:var(--copper);letter-spacing:-1px}
+.hero-sub{font-size:17px;line-height:1.65;color:var(--text);font-weight:300;margin-bottom:28px;max-width:760px}
+.hero-bullets{display:flex;gap:20px;font-size:14px;color:var(--text-dim);flex-wrap:wrap;align-items:center;justify-content:flex-start}
+.hero-bullets span{display:inline-flex;align-items:center;gap:8px;line-height:1}
+.hero-bullets span svg{width:16px;height:16px;stroke:var(--copper);flex-shrink:0}
+html{scroll-behavior:smooth}
+
+/* ---------- Main two-col: preview + form ---------- */
+.report-section{padding:56px 0 80px;background:var(--bg)}
+.report-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:48px;align-items:start}
+.report-left h2.preview-head{font-family:'DM Serif Display',serif;font-size:clamp(22px,2.6vw,28px);color:var(--cream-bright);margin-bottom:16px;letter-spacing:-0.3px}
+.preview-frame-wrap{position:relative;background:var(--bg2);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.preview-frame-wrap iframe{display:block;width:100%;height:600px;border:0;background:#fff}
+.preview-frame-wrap .preview-fallback{display:none;width:100%;height:600px;background:var(--bg3);align-items:center;justify-content:center;text-align:center;padding:32px;color:var(--text-dim);font-size:14px;line-height:1.6}
+.preview-frame-wrap.is-fallback iframe{display:none}
+.preview-frame-wrap.is-fallback .preview-fallback{display:flex;flex-direction:column;gap:12px}
+.preview-fallback img{max-width:100%;height:auto;border:1px solid var(--border)}
+.paywall-gradient{position:absolute;left:0;right:0;bottom:0;height:140px;background:linear-gradient(180deg,rgba(18,40,35,0) 0%,rgba(18,40,35,0.75) 55%,rgba(18,40,35,0.96) 100%);pointer-events:none;display:flex;align-items:flex-end;justify-content:center;padding:0 20px 18px}
+.paywall-gradient span{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--copper);text-align:center}
+.preview-note{margin-top:12px;font-size:13px;color:var(--text-dim);font-style:italic;line-height:1.5}
+
+/* ---------- Form card ---------- */
+.form-card{background:#0f2a25;border:1px solid var(--border);border-radius:14px;padding:32px;position:sticky;top:100px;box-shadow:0 20px 60px rgba(0,0,0,0.25)}
+.form-card .overline{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--copper);margin-bottom:12px;font-variant:small-caps}
+.form-card h2{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(24px,2.6vw,30px);color:var(--cream-bright);letter-spacing:-0.3px;margin-bottom:10px;line-height:1.2}
+.form-card .form-sub{font-size:14px;color:var(--text-dim);line-height:1.55;margin-bottom:22px;font-weight:300}
+.form-row{margin-bottom:16px}
+.form-row label{display:block;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+.form-row input,.form-row select{width:100%;box-sizing:border-box;background:var(--bg);border:1px solid var(--border);color:var(--cream);padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:15px;border-radius:6px;transition:border-color 0.2s,box-shadow 0.2s}
+.form-row input:focus,.form-row select:focus{outline:none;border-color:var(--copper);box-shadow:0 0 0 3px rgba(196,103,58,0.12)}
+.form-row input::placeholder{color:var(--text-dim);opacity:0.7}
+.form-row.has-error input,.form-row.has-error select{border-color:#c94545}
+.form-err{display:none;color:#e68787;font-size:12px;margin-top:6px;font-family:'DM Sans',sans-serif}
+.form-row.has-error .form-err{display:block}
+.form-consent{display:flex;align-items:flex-start;gap:10px;margin:18px 0 8px;font-size:13px;color:var(--text-dim);line-height:1.5}
+.form-consent input{margin-top:3px;accent-color:var(--copper);flex-shrink:0}
+.form-consent.has-error{color:#e68787}
+.submit-btn{width:100%;background:var(--copper);color:#fff;border:0;padding:16px 20px;border-radius:999px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:15px;letter-spacing:0.3px;cursor:pointer;transition:background 0.2s,transform 0.15s;margin-top:14px}
+.submit-btn:hover{background:#b85a30;transform:translateY(-1px)}
+.submit-btn:active{transform:translateY(0)}
+.submit-btn[disabled]{opacity:0.7;cursor:wait}
+.legal-fine{font-size:11.5px;color:var(--text-dim);line-height:1.55;margin-top:14px;text-align:center}
+.legal-fine a{color:var(--copper);text-decoration:none;border-bottom:1px solid transparent;transition:border-color 0.2s}
+.legal-fine a:hover{border-color:var(--copper)}
+
+/* success state */
+.form-success{display:none;text-align:center;padding:12px 0 4px}
+.form-success .tick{width:56px;height:56px;border-radius:50%;background:rgba(80,170,120,0.15);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:#6ec088;font-size:28px}
+.form-success h3{font-family:'DM Serif Display',serif;font-size:22px;color:var(--cream-bright);margin-bottom:8px}
+.form-success p{font-size:14px;color:var(--text-dim);line-height:1.55}
+.form-success a.redownload{display:inline-block;margin-top:16px;font-size:13px;color:var(--copper);text-decoration:none;border-bottom:1px solid transparent;transition:border-color 0.2s}
+.form-success a.redownload:hover{border-color:var(--copper)}
+.form-card.is-submitted .form-main{display:none}
+.form-card.is-submitted .form-success{display:block}
+
+/* ---------- Chapter chips ---------- */
+.chapters-section{background:var(--bg2);padding:72px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.chapters-head{max-width:640px;margin-bottom:32px}
+.chapters-head .section-label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--copper);margin-bottom:14px}
+.chapters-head h2{font-family:'DM Sans',sans-serif;font-weight:600;font-size:clamp(26px,3.4vw,36px);color:var(--cream-bright);letter-spacing:-1px;line-height:1.15}
+.chapters-head h2 em{font-family:'DM Serif Display',serif;font-style:italic;font-weight:400;color:var(--copper)}
+.chapters-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.chapter-chip{background:var(--bg);border:1px solid var(--border);padding:18px 20px;border-radius:10px;display:flex;flex-direction:column;gap:6px;transition:border-color 0.2s,transform 0.2s}
+.chapter-chip:hover{border-color:var(--copper);transform:translateY(-1px)}
+.chapter-chip .cc-num{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--copper)}
+.chapter-chip .cc-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--cream-bright);line-height:1.25}
+.chapter-chip .cc-sub{font-size:13px;color:var(--text-dim);line-height:1.5;font-weight:300}
+
+/* ---------- Bottom CTA ---------- */
+.bottom-cta{padding:72px 0;text-align:center;background:var(--bg)}
+.bottom-cta h2{font-family:'DM Serif Display',serif;font-size:clamp(24px,3.4vw,36px);color:var(--cream-bright);letter-spacing:-0.5px;margin-bottom:14px;line-height:1.2}
+.bottom-cta h2 em{font-style:italic;color:var(--copper)}
+.bottom-cta p{font-size:15px;color:var(--text-dim);max-width:560px;margin:0 auto 28px;line-height:1.6;font-weight:300}
+.bottom-cta .btn-primary{display:inline-block}
+
+/* ---------- Responsive ---------- */
+@media(max-width:960px){
+  .report-grid{grid-template-columns:1fr;gap:28px}
+  .form-card{position:static;order:-1}     /* form first on mobile */
+  .report-left{order:2}
+  .preview-frame-wrap iframe,.preview-frame-wrap .preview-fallback{height:400px}
+  .chapters-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .hero-section{padding-top:108px;padding-bottom:32px}
+  .hero-section .container{padding:0 20px}
+  .form-card{padding:24px;border-radius:10px}
+  .chapters-grid{grid-template-columns:1fr}
+  .preview-frame-wrap iframe,.preview-frame-wrap .preview-fallback{height:360px}
+}
+</style>
+</head>
+<body>
+
+<header><div class="container header-inner">
+<a href="../index.html" class="logo"><div class="logo-name">c<span>o</span>uvert</div></a>
+<nav class="nav"><span class="lang-switch"><a href="/" >DE</a><span class="lang-sep">|</span><a href="/en/">EN</a></span><a href="../index.html#ai-team">AI-Team</a><a href="../fallbeispiel.html">Fallbeispiel</a><a href="../ablauf.html">Ablauf</a><a href="../ablauf.html#faq">FAQ</a><a href="https://calendly.com/hello-couvert/30min" target="_blank">Gespräch buchen</a></nav>
+<div class="header-right">
+<a href="../index.html#scan" class="header-cta">Scan starten</a>
+<button class="burger" onclick="document.getElementById('mm').classList.add('open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+</div>
+</div></header>
+
+<div class="mobile-menu" id="mm">
+<button class="mm-close" onclick="document.getElementById('mm').classList.remove('open')" aria-label="Schliessen"><svg viewBox="0 0 24 24" fill="none"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+<span class="lang-switch"><a href="/" >DE</a><span class="lang-sep">|</span><a href="/en/">EN</a></span>
+<a href="../index.html" onclick="document.getElementById('mm').classList.remove('open')">Start</a>
+<a href="../index.html#ai-team" onclick="document.getElementById('mm').classList.remove('open')">AI-Team</a>
+<a href="../fallbeispiel.html">Fallbeispiel</a>
+<a href="../ablauf.html">Ablauf & FAQ</a>
+<a href="https://calendly.com/hello-couvert/30min" target="_blank" style="color:var(--copper)">Gespräch buchen</a>
+</div>
+
+<!-- HERO -->
+<section class="hero-section reveal" id="top"><div class="container">
+<div class="hero-overline animate d1">Intelligence Dossier · Beispiel</div>
+<h1 class="animate d2">Ein echter Gastro-Report.<br><em>Anonymisiert, aber ungeschönt.</em></h1>
+<p class="hero-sub animate d3">22 Seiten CX- und Revenue-Impact-Analyse aus einem echten Zürcher Gastronomiebetrieb. 2.825 Bewertungen, CHF 390'000+ identifizierter Umsatzverlust, 11 priorisierte Massnahmen. Lesen Sie die ersten 4 Seiten hier, laden Sie den vollen Report nach kurzer Verifikation herunter.</p>
+<div class="hero-bullets animate d4">
+<span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Auf Basis echter 2.825 Google-Bewertungen</span>
+<span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>Methodik nach Harvard Business School (Luca 2016)</span>
+<span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>Anonymisierung in Absprache mit Betriebsinhaber</span>
+<span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11"/></svg>Keine Verpflichtung</span>
+</div>
+</div></section>
+
+<!-- MAIN: PREVIEW + FORM -->
+<section class="report-section reveal"><div class="container">
+<div class="report-grid">
+
+<!-- LEFT: PDF preview -->
+<div class="report-left">
+  <h2 class="preview-head">Die ersten 4 Seiten des Reports</h2>
+  <div class="preview-frame-wrap" id="preview-wrap">
+    <iframe id="preview-iframe"
+            src="/reports/Couvert_Report_Pizzeria_X_anonymized.pdf#toolbar=0&navpanes=0&scrollbar=1&view=FitH"
+            title="Beispiel-Report Seiten 1–4"
+            loading="lazy"></iframe>
+    <!-- iOS / mobile Safari fallback: Safari sometimes refuses inline PDFs. -->
+    <!-- TODO: replace placeholder with real 4-page stitched thumbnail image (e.g. reports/preview/pizzeria-x-pages-1-4.jpg). -->
+    <div class="preview-fallback">
+      <img src="../mockups/report-preview-placeholder.png"
+           alt="Vorschau: Seiten 1–4 des Beispiel-Reports"
+           onerror="this.style.display='none'">
+      <div>Ihr Browser zeigt keine eingebetteten PDFs. Tippen Sie auf <a href="/reports/Couvert_Report_Pizzeria_X_anonymized.pdf" target="_blank" style="color:var(--copper);text-decoration:underline">Report öffnen</a>, um die ersten 4 Seiten zu lesen.</div>
+    </div>
+    <div class="paywall-gradient"><span>Seite 5–22: nach Verifikation freigegeben</span></div>
+  </div>
+  <p class="preview-note">Der vollständige Report (22 Seiten, PDF, ca. 4 MB) wird nach Eingabe Ihrer Angaben sofort freigeschaltet.</p>
+</div>
+
+<!-- RIGHT: Form -->
+<aside class="form-card reveal" id="form-card">
+  <div class="form-main">
+    <div class="overline">Vollen Report freischalten</div>
+    <h2>Kostenfrei. Kein Spam.</h2>
+    <p class="form-sub">Nach Eingabe erhalten Sie sofort den Download-Link — wir validieren nur, dass Sie ein echter Gastronomie-Betrieb sind.</p>
+
+    <form id="report-form" novalidate>
+      <div class="form-row" data-field="name">
+        <label for="f-name">Name</label>
+        <input type="text" id="f-name" name="name" autocomplete="name" placeholder="Max Muster" required>
+        <div class="form-err" data-err="name">Bitte gültigen Namen eingeben</div>
+      </div>
+
+      <div class="form-row" data-field="email">
+        <label for="f-email">E-Mail</label>
+        <input type="email" id="f-email" name="email" autocomplete="email" placeholder="max@ihr-betrieb.ch" required>
+        <div class="form-err" data-err="email">Bitte gültige E-Mail</div>
+      </div>
+
+      <div class="form-row" data-field="restaurant">
+        <label for="f-restaurant">Restaurant / Betrieb</label>
+        <input type="text" id="f-restaurant" name="restaurant" autocomplete="organization" placeholder="z.B. Ristorante Bellavista, Zürich" required>
+        <div class="form-err" data-err="restaurant">Bitte Betriebsname eingeben</div>
+      </div>
+
+      <div class="form-row" data-field="role">
+        <label for="f-role">Rolle <span style="text-transform:none;letter-spacing:0;color:var(--text-dim);font-family:'DM Sans',sans-serif;font-size:11px">(optional)</span></label>
+        <select id="f-role" name="role">
+          <option value="">Bitte wählen …</option>
+          <option>Inhaber</option>
+          <option>Geschäftsführer</option>
+          <option>CFO</option>
+          <option>COO</option>
+          <option>GM</option>
+          <option>Marketing</option>
+          <option>Andere</option>
+        </select>
+      </div>
+
+      <label class="form-consent" id="consent-row">
+        <input type="checkbox" id="f-consent" name="consent" required>
+        <span>Ich bin einverstanden, von Couvert gelegentlich produktbezogene Updates zu erhalten. Jederzeit kündbar.</span>
+      </label>
+
+      <button type="submit" class="submit-btn" id="submit-btn">Vollen Report freischalten →</button>
+      <p class="legal-fine">Mit Klick auf "Freischalten" akzeptieren Sie unsere <a href="../datenschutz.html">Datenschutzerklärung</a>.</p>
+    </form>
+  </div>
+
+  <div class="form-success" aria-live="polite">
+    <div class="tick">✓</div>
+    <h3>Verifiziert.</h3>
+    <p>Ihr Download startet automatisch.<br>Sie erhalten zusätzlich eine E-Mail-Bestätigung.</p>
+    <a class="redownload" href="/reports/Couvert_Report_Pizzeria_X_anonymized.pdf" download>Download manuell starten →</a>
+  </div>
+</aside>
+
+</div></div></section>
+
+<!-- CHAPTER CHIPS -->
+<section class="chapters-section reveal"><div class="container">
+<div class="chapters-head">
+  <div class="section-label">Was sehen Sie im vollen Report?</div>
+  <h2>Sechs Kapitel, <em>22 Seiten Substanz.</em></h2>
+</div>
+<div class="chapters-grid reveal-stagger">
+  <div class="chapter-chip"><span class="cc-num">Kap. 01</span><span class="cc-title">Executive Summary</span><span class="cc-sub">Kernbefunde, priorisierte Hebel, Umsatzimpact auf einer Seite.</span></div>
+  <div class="chapter-chip"><span class="cc-num">Kap. 02</span><span class="cc-title">Reputation-Analyse</span><span class="cc-sub">Rating-Entwicklung, Response-Rate, Sentiment-Cluster über 2.825 Bewertungen.</span></div>
+  <div class="chapter-chip"><span class="cc-num">Kap. 03</span><span class="cc-title">Qualität & Muster</span><span class="cc-sub">Wiederkehrende Beschwerden, Shift-Patterns, Abweichungen vs. Wochentag.</span></div>
+  <div class="chapter-chip"><span class="cc-num">Kap. 04</span><span class="cc-title">Umsatz-Wirkung</span><span class="cc-sub">Churn-Modell, LTV-Herleitung, bezifferter Umsatzverlust nach Ursache.</span></div>
+  <div class="chapter-chip"><span class="cc-num">Kap. 05</span><span class="cc-title">Massnahmenkatalog</span><span class="cc-sub">11 priorisierte Massnahmen mit Aufwand, Impact und Zeithorizont.</span></div>
+  <div class="chapter-chip"><span class="cc-num">Kap. 06</span><span class="cc-title">Wettbewerbs-Benchmarking</span><span class="cc-sub">Top-5 lokale Wettbewerber — Rating, Preisniveau, Service-Signale im Direktvergleich.</span></div>
+</div>
+</div></section>
+
+<!-- BOTTOM CTA -->
+<section class="bottom-cta reveal"><div class="container">
+<h2>Den eigenen Report für <em>Ihren Betrieb?</em></h2>
+<p>Wir liefern dieselbe Analysetiefe — angewandt auf Ihren Standort, Ihre Bewertungen, Ihre Betriebswirtschaft.</p>
+<a href="../index.html#scan" class="btn-primary">Kostenlosen Scan starten →</a>
+</div></section>
+
+<footer><div class="container">
+<div class="footer-inner"><div class="footer-left">© 2026 COUVERT.AI - ZÜRICH</div><div class="footer-right">Jedes Gedeck zählt.</div></div>
+<div class="footer-links"><a href="../methodik.html">Methodik</a><a href="../geschichte.html">Geschichte</a><a href="../impressum.html">Impressum</a><a href="../datenschutz.html">Datenschutz</a><a href="mailto:hello@couvert.ai">hello@couvert.ai</a><div class="footer-trust"><span>Daten in der Schweiz</span><span>Monatlich kündbar</span><span>Gegründet in Zürich</span></div></div>
+</div></footer>
+
+<script>
+/* ---------- Scroll-reveal (matches main site pattern) ---------- */
+(function(){
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reveals=document.querySelectorAll('.reveal, .reveal-stagger');
+  if(reduce){reveals.forEach(r=>r.classList.add('is-visible'))}
+  else if('IntersectionObserver' in window){
+    const io=new IntersectionObserver((entries,obs)=>{
+      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');obs.unobserve(e.target)}});
+    },{threshold:0.08,rootMargin:'0px 0px -10% 0px'});
+    reveals.forEach(r=>io.observe(r));
+  }else{reveals.forEach(r=>r.classList.add('is-visible'))}
+})();
+
+/* Smooth-scroll for on-page hashes */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const h=a.getAttribute('href');if(h.length<=1)return;const t=document.querySelector(h);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
+
+/* ---------- iOS Safari PDF fallback ---------- */
+(function(){
+  const ua=navigator.userAgent||'';
+  const isIOS=/iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+  // iPadOS 13+ reports as Mac; detect touch-capable Safari on macOS as a safety net
+  const isIPadOS=/Macintosh/.test(ua) && 'ontouchend' in document;
+  if(isIOS || isIPadOS){
+    document.getElementById('preview-wrap').classList.add('is-fallback');
+  }
+})();
+
+/* ---------- Form validation + submit ---------- */
+(function(){
+  const form=document.getElementById('report-form');
+  const card=document.getElementById('form-card');
+  if(!form) return;
+
+  const BLOCKLIST=['test','asdf','qwerty','asdfgh','xxx','aaa','zzz','bbb','.','xx'];
+  const DISPOSABLE=[
+    'mailinator.com','tempmail.com','guerrillamail.com','10minutemail.com','throwaway.email',
+    'yopmail.com','trashmail.com','getnada.com','maildrop.cc','sharklasers.com','grr.la',
+    'emlhub.com','fakeinbox.com','tempinbox.com','mytemp.email','mohmal.com','temp-mail.org',
+    'tempr.email','burnermail.io','spamgourmet.com','mintemail.com','dispostable.com','mailcatch.com'
+  ];
+  const EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  function setError(field,msg){
+    const row=form.querySelector('[data-field="'+field+'"]');
+    if(!row) return;
+    row.classList.add('has-error');
+    const err=row.querySelector('.form-err');
+    if(err && msg) err.textContent=msg;
+  }
+  function clearErrors(){
+    form.querySelectorAll('.form-row.has-error').forEach(r=>r.classList.remove('has-error'));
+    document.getElementById('consent-row').classList.remove('has-error');
+  }
+
+  function validate(data){
+    const errors=[];
+    // Name
+    const name=(data.name||'').trim();
+    if(name.length<2 || /^\d+$/.test(name) || BLOCKLIST.includes(name.toLowerCase())){
+      errors.push(['name','Bitte Name eingeben']);
+    }
+    // E-Mail
+    const email=(data.email||'').trim().toLowerCase();
+    if(!EMAIL_RE.test(email)){
+      errors.push(['email','Bitte gültige E-Mail']);
+    } else {
+      const domain=email.split('@')[1];
+      if(DISPOSABLE.includes(domain)){
+        errors.push(['email','Wegwerf-Adressen werden nicht akzeptiert — bitte berufliche E-Mail nutzen']);
+      }
+    }
+    // Restaurant
+    const rest=(data.restaurant||'').trim();
+    if(rest.length<3 || /^\d+$/.test(rest) || BLOCKLIST.includes(rest.toLowerCase())){
+      errors.push(['restaurant','Bitte Betriebsname eingeben']);
+    }
+    // Consent
+    if(!data.consent){
+      errors.push(['consent','Bitte bestätigen Sie Ihr Einverständnis']);
+    }
+    return errors;
+  }
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    clearErrors();
+
+    const data={
+      name:  document.getElementById('f-name').value,
+      email: document.getElementById('f-email').value,
+      restaurant: document.getElementById('f-restaurant').value,
+      role:  document.getElementById('f-role').value,
+      consent: document.getElementById('f-consent').checked
+    };
+
+    const errors=validate(data);
+    if(errors.length){
+      errors.forEach(function(pair){
+        const f=pair[0],msg=pair[1];
+        if(f==='consent'){document.getElementById('consent-row').classList.add('has-error');return}
+        setError(f,msg);
+      });
+      // focus the first offending field
+      const first=form.querySelector('.form-row.has-error input, .form-row.has-error select');
+      if(first) first.focus();
+      return;
+    }
+
+    // ----- Validation passed -----
+    /* TODO: replace with POST to /api/report-request when Airtable backend ready */
+    /* TODO: server-side Google Places / DataForSEO lookup on restaurant name to verify existence */
+    /* TODO: Resend email delivery with 24h magic-link instead of immediate client-side download */
+    console.log('[couvert] report-request submission (stub):', data);
+
+    // Swap UI → success state
+    card.classList.add('is-submitted');
+
+    // Trigger PDF download
+    const PDF_URL='/reports/Couvert_Report_Pizzeria_X_anonymized.pdf';
+    const a=document.createElement('a');
+    a.href=PDF_URL;
+    a.download='Couvert_Beispiel_Report.pdf';
+    a.rel='noopener';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  });
+
+  // Clear field error on user input
+  form.querySelectorAll('input,select').forEach(el=>{
+    el.addEventListener('input',()=>{
+      const row=el.closest('.form-row');
+      if(row) row.classList.remove('has-error');
+    });
+  });
+  document.getElementById('f-consent').addEventListener('change',()=>{
+    document.getElementById('consent-row').classList.remove('has-error');
+  });
+})();
+</script>
+</body>
+</html>
