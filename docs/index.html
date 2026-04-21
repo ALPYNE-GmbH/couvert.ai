@@ -104,7 +104,9 @@ html{scroll-behavior:smooth}
 .calc-value span{font-family:'JetBrains Mono',monospace;font-size:16px;color:var(--cream)}
 .calc-right{position:sticky;top:100px}
 .calc-results-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
-.calc-result{background:var(--bg2);border:1px solid var(--border);padding:20px}
+.calc-result{background:var(--bg2);border:1px solid var(--border);padding:20px;transition:transform 0.25s ease,box-shadow 0.25s ease,border-color 0.25s ease;box-shadow:0 1px 2px rgba(0,0,0,0.04)}
+.calc-result:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,0.12);border-color:var(--border-hover)}
+@media(max-width:800px){.calc-result:hover{transform:none;box-shadow:0 2px 8px rgba(0,0,0,0.06)}}
 .calc-result-loss{border-top:3px solid var(--red-down)}
 .calc-result-recovery{border-top:3px solid var(--green-up)}
 .cr-label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px}
@@ -425,8 +427,11 @@ html{scroll-behavior:smooth}
 
 <header><div class="container header-inner">
 <a href="index.html" class="logo"><div class="logo-name">c<span>o</span>uvert</div></a>
-<nav class="nav"><span class="lang-switch"><a href="/" class="active" aria-current="true">DE</a><span class="lang-sep">|</span><a href="/en/">EN</a></span><a href="#ai-team">AI-Team</a><a href="fallbeispiel.html">Fallbeispiel</a><a href="ablauf.html">Ablauf</a><a href="ablauf.html#faq">FAQ</a><a href="https://calendly.com/hello-couvert/30min" target="_blank" class="nav-cta">Gespräch buchen</a></nav>
+<nav class="nav"><span class="lang-switch"><a href="/" class="active" aria-current="true">DE</a><span class="lang-sep">|</span><a href="/en/">EN</a></span><a href="#ai-team">AI-Team</a><a href="fallbeispiel.html">Fallbeispiel</a><a href="ablauf.html">Ablauf</a><a href="ablauf.html#faq">FAQ</a><a href="https://calendly.com/hello-couvert/30min" target="_blank">Gespräch buchen</a></nav>
+<div class="header-right">
+<a href="#scan" class="header-cta">Scan starten</a>
 <button class="burger" onclick="document.getElementById('mm').classList.add('open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+</div>
 </div></header>
 
 <div class="mobile-menu" id="mm">
@@ -441,15 +446,14 @@ html{scroll-behavior:smooth}
 
 <!-- HERO -->
 <section class="hero-section reveal" id="top"><div class="container">
-<div class="hero-overline animate d1">Couvert</div>
-<h1 class="animate d2">Agentic Service OS<br><em>für Gastronomie.</em></h1>
-<p class="hero-sub animate d3">Von Scan über Intelligence bis Operations: Wir erkennen, priorisieren und steuern die Hebel, die Ihren Betrieb messbar besser machen.</p>
-<div class="hero-cta animate d4"><a href="#scan" class="btn-primary">Kostenlosen Scan starten</a><a href="#intelligence" class="btn-ghost">Intelligence Playbook ansehen</a></div>
-<a href="#calculator" class="hero-teaser animate d5" data-scroll-target="calculator">
+<h1 class="animate d1">Agentic Service OS<br><em>für Gastronomie.</em></h1>
+<p class="hero-sub animate d2">Von Scan über Intelligence bis Operations: Wir finden und steuern die Hebel, die Ihren Betrieb messbar besser machen.</p>
+<a href="#calculator" class="hero-teaser animate d3" data-scroll-target="calculator">
   <div class="hero-teaser-number" id="hero-counter"><span class="count-up" data-target="390000" data-prefix="CHF " data-suffix="+" data-format="de">CHF 390'000+</span></div>
   <div class="hero-teaser-sub">So viel Umsatz verliert ein Gastro-Betrieb mit CHF 5 Mio.+ Jahresumsatz im Schnitt pro Jahr</div>
   <div class="hero-teaser-cta">Was kostet Sie das pro Jahr? <span class="hero-teaser-arrow">→</span></div>
 </a>
+<div class="hero-cta animate d4"><a href="#intelligence" class="btn-ghost">Intelligence Dossier ansehen</a></div>
 <div class="hero-bullets animate d5"><span>Schweizer Hosting</span><span>nDSG-konform</span><span>Anthropic Claude</span><span>Monatlich kündbar</span></div>
 </div></section>
 
@@ -1001,6 +1005,8 @@ html{scroll-behavior:smooth}
 <script>
 const revenueSlider=document.getElementById('revenue'),bonSlider=document.getElementById('avgbon'),reviewsSlider=document.getElementById('reviews'),ratingSlider=document.getElementById('rating'),responseSlider=document.getElementById('response');
 function formatCHF(n){if(n>=1e6)return'CHF '+(n/1e6).toFixed(1).replace('.',',')+' Mio.';if(n>=1e3)return'CHF '+Math.round(n/1e3)+'K';return'CHF '+Math.round(n)}
+const _tweenState={};
+function tweenResult(id,newVal,formatter,prefix){prefix=prefix||'';const el=document.getElementById(id);if(!el)return;const prev=(_tweenState[id]!==undefined)?_tweenState[id]:newVal;_tweenState[id]=newVal;if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||prev===newVal){el.textContent=prefix+formatter(newVal);return}const start=performance.now(),dur=450;function tick(now){const p=Math.min((now-start)/dur,1);const eased=1-Math.pow(1-p,3);const cur=prev+(newVal-prev)*eased;el.textContent=prefix+formatter(cur);if(p<1)requestAnimationFrame(tick)}requestAnimationFrame(tick)}
 function formatNum(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.')}
 function calculate(){
 const rev=+revenueSlider.value,bon=+bonSlider.value,reviews=+reviewsSlider.value,rating=+ratingSlider.value/10,response=+responseSlider.value;
@@ -1018,14 +1024,14 @@ const recChurnLoss=recChurned*ltv,recSvc=Math.round(recChurnLoss*.45),recQty=Mat
 const recRatingLoss=Math.round(rev*Math.max(0,4.7-Math.min(rating+.2,5))*.065);
 const recTotalLoss=recSvc+recQty+recRatingLoss;
 const recoveryPotential=Math.max(0,totalLoss-recTotalLoss),ratingUplift=Math.round(rev*.02),totalRecovery=recoveryPotential+ratingUplift;
-document.getElementById('result-loss').textContent=formatCHF(totalLoss);document.getElementById('result-recovery').textContent='+'+formatCHF(totalRecovery);
+tweenResult('result-loss',totalLoss,formatCHF,'');tweenResult('result-recovery',totalRecovery,formatCHF,'+');
 const churnPct=Math.round(churnRate*100);document.getElementById('churn-display').textContent=churnPct+'%';document.getElementById('churn-fill').style.width=churnPct+'%';
 document.getElementById('churn-explain').textContent=churnPct+'% Ihrer unzufriedenen Gäste kommen nicht wieder'+(response===0?' – Sie antworten auf keine Bewertung':'');
 document.getElementById('churn-display').style.color=churnPct>40?'var(--red-down)':churnPct>25?'var(--copper-soft)':'var(--green-up)';
 document.getElementById('bd-neg-reviews').textContent='~'+formatNum(negReviews);document.getElementById('bd-unhappy').textContent='~'+formatNum(unhappyGuests)+' unzufriedene Gäste';document.getElementById('bd-churned').textContent='~'+formatNum(churnedGuests)+' verlorene Gäste';document.getElementById('bd-ltv').textContent='CHF '+ltv+' ('+bon+' × 3 Besuche)';
 document.getElementById('bd-service').textContent='-'+formatCHF(serviceLoss);document.getElementById('bd-quality').textContent='-'+formatCHF(qualityLoss);document.getElementById('bd-rating').textContent=ratingGap>0?'-'+formatCHF(ratingLoss):'CHF 0';
 document.getElementById('bd-response').textContent='+'+formatCHF(recoveryPotential);document.getElementById('bd-uplift').textContent='+'+formatCHF(ratingUplift);
-const ml=document.getElementById('msr-loss'),mr=document.getElementById('msr-recovery');if(ml)ml.textContent=formatCHF(totalLoss);if(mr)mr.textContent='+'+formatCHF(totalRecovery);
+if(document.getElementById('msr-loss'))tweenResult('msr-loss',totalLoss,formatCHF,'');if(document.getElementById('msr-recovery'))tweenResult('msr-recovery',totalRecovery,formatCHF,'+');
 }
 [revenueSlider,bonSlider,reviewsSlider,ratingSlider,responseSlider].forEach(s=>s.addEventListener('input',calculate));calculate();
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
