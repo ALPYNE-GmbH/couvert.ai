@@ -120,6 +120,22 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);fo
 .ts-time{color:var(--copper)}
 .ts-txt{color:var(--text)}
 .ts-sep{width:20px;height:1px;background:var(--copper);opacity:0.5}
+/* Typing indicator */
+.typing{display:inline-flex;align-items:center;gap:4px;margin-left:8px;vertical-align:middle}
+.typing span{width:5px;height:5px;border-radius:50%;background:var(--copper);animation:bounce 1.4s infinite ease-in-out both}
+.typing span:nth-child(1){animation-delay:-0.32s}
+.typing span:nth-child(2){animation-delay:-0.16s}
+@keyframes bounce{0%,80%,100%{transform:scale(0.6);opacity:0.4}40%{transform:scale(1);opacity:1}}
+/* Stats strip */
+.stats-strip{display:flex;gap:24px;padding:10px 20px;background:var(--bg3);border-bottom:1px solid var(--border-soft);font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--dim)}
+.stats-strip b{color:var(--cream);font-weight:500;margin-right:4px}
+.stats-strip .gold-n{color:var(--gold)}
+.stats-strip .green-n{color:var(--green)}
+/* Sentiment bar */
+.sentiment{display:flex;height:4px;border-radius:2px;overflow:hidden;margin-top:10px;background:var(--bg4)}
+.sentiment .s-pos{background:var(--green)}
+.sentiment .s-neu{background:var(--gold)}
+.sentiment .s-neg{background:var(--red)}
 
 @media(max-width:1100px){.app{grid-template-columns:64px 1fr}.side-item span:not(.count),.side-label{display:none}.side-item{justify-content:center}.brand{width:auto}}
 @media(max-width:900px){.split{grid-template-columns:1fr}.list{display:none}.topnav{display:none}.search{display:none}}
@@ -188,6 +204,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);fo
       </div>
     </div>
 
+    <div class="stats-strip">
+      <span><b>14</b> offen</span>
+      <span><b class="gold-n">7</b> Antwort bereit</span>
+      <span><b class="green-n">312</b> beantwortet diesen Monat</span>
+      <span><b>Ø 1.8s</b> Antwortzeit</span>
+      <span><b>97%</b> Tonalität Ihr Betrieb</span>
+      <span style="margin-left:auto"><b class="gold-n">4.48</b> Rating 7 Tage ↑ 0.08</span>
+    </div>
+
     <div class="split">
       <!-- LIST -->
       <div class="list">
@@ -214,7 +239,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);fo
             <div class="li-preview">The dough was not cooked enough and the service was really slow. We waited 45 minutes for our main course…</div>
             <div class="li-tags"><span class="li-tag">Teigqualität</span><span class="li-tag">Service</span></div>
           </div>
-          <div class="li-meta"><span class="dot-status new"></span>vor 12 Min<br><span style="color:var(--copper)">generiert…</span></div>
+          <div class="li-meta"><span class="dot-status new"></span>vor 12 Min<br><span style="color:var(--copper)">generiert<span class="typing"><span></span><span></span><span></span></span></span></div>
         </div>
 
         <div class="list-item">

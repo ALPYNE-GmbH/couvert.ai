@@ -111,6 +111,25 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);fo
 .alert b{color:var(--gold)}
 .alert a{color:var(--copper);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.5px}
 
+/* Service Timeline */
+.service-timeline{background:var(--bg3);border:1px solid var(--border-soft);border-radius:6px;padding:18px 22px;margin-bottom:16px;position:relative}
+.st-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.st-head h3{font-family:'DM Serif Display',serif;font-size:15px;color:var(--cream);font-weight:normal;letter-spacing:-0.2px}
+.st-legend{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim);display:flex;gap:14px}
+.st-legend span{display:inline-flex;align-items:center;gap:5px}
+.st-legend .dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+.st-track{position:relative;height:58px;background:linear-gradient(90deg,var(--bg4) 0%,var(--bg4) 20%,rgba(232,185,49,0.08) 20%,rgba(232,185,49,0.08) 75%,var(--bg4) 75%,var(--bg4) 100%);border-radius:3px;border:1px solid var(--border-soft);margin-bottom:8px}
+.st-hour-labels{display:flex;justify-content:space-between;padding:0 2px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim)}
+.st-now{position:absolute;top:-6px;bottom:-6px;width:2px;background:var(--green);box-shadow:0 0 0 4px rgba(107,156,127,0.18);border-radius:1px;z-index:2}
+.st-now::after{content:'JETZT 17:42';position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);letter-spacing:1px;white-space:nowrap;background:var(--bg3);padding:1px 5px;border-radius:3px;border:1px solid rgba(107,156,127,0.3)}
+.rez-dot{position:absolute;width:12px;height:12px;border-radius:50%;top:50%;transform:translate(-50%,-50%);border:2px solid var(--bg3);cursor:pointer}
+.rez-dot.vip{background:var(--gold);box-shadow:0 0 0 3px rgba(232,185,49,0.2)}
+.rez-dot.reg{background:var(--copper)}
+.rez-dot.new{background:var(--green)}
+.rez-dot.lg{width:16px;height:16px}
+.rez-peak{position:absolute;top:2px;bottom:2px;background:rgba(196,103,58,0.12);border:1px dashed rgba(196,103,58,0.35);border-radius:2px;pointer-events:none}
+.rez-peak-label{position:absolute;top:-16px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--copper);letter-spacing:1px;white-space:nowrap}
+
 @media(max-width:1100px){.app{grid-template-columns:64px 1fr}.side-item span:not(.count),.side-label{display:none}.side-item{justify-content:center}.brand{width:auto}.kpi-row{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}}
 @media(max-width:900px){.topnav,.search{display:none}}
 </style>
@@ -178,6 +197,34 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);fo
         <div class="ci">Events Zürich <b>FCZ-Heimspiel 20:45</b></div>
         <span class="sep">·</span>
         <div class="ci">Status <b style="color:var(--green)">Auslastung planbar</b></div>
+      </div>
+
+      <div class="service-timeline">
+        <div class="st-head">
+          <h3>Service-Timeline · heute</h3>
+          <div class="st-legend">
+            <span><span class="dot" style="background:var(--gold)"></span>VIP</span>
+            <span><span class="dot" style="background:var(--copper)"></span>Rückkehrer</span>
+            <span><span class="dot" style="background:var(--green)"></span>Neu</span>
+            <span style="color:var(--copper)"><span class="dot" style="background:rgba(196,103,58,0.3);border:1px dashed var(--copper)"></span>Peak-Fenster</span>
+          </div>
+        </div>
+        <div class="st-track">
+          <div class="rez-peak" style="left:42%;right:12%"><div class="rez-peak-label" style="left:2%">PEAK 19:00–21:00</div></div>
+          <div class="st-now" style="left:17%"></div>
+          <!-- 16:00 left 0%, 23:00 right 100% — 7h span, 1h = ~14.28% -->
+          <div class="rez-dot vip lg" style="left:36%" title="18:30 Familie Bianchi"></div>
+          <div class="rez-dot new" style="left:43%" title="19:00 Schmidt"></div>
+          <div class="rez-dot reg" style="left:46%" title="19:15 Keller"></div>
+          <div class="rez-dot vip lg" style="left:50%" title="19:30 Weber"></div>
+          <div class="rez-dot reg" style="left:57%" title="20:00 Donati"></div>
+          <div class="rez-dot reg lg" style="left:64%" title="20:30 Meyer & Partner"></div>
+          <div class="rez-dot new" style="left:71%" title="21:00 Stefano M."></div>
+          <div class="rez-dot reg" style="left:78%" title="21:30"></div>
+        </div>
+        <div class="st-hour-labels">
+          <span>16:00</span><span>17:00</span><span>18:00</span><span>19:00</span><span>20:00</span><span>21:00</span><span>22:00</span><span>23:00</span>
+        </div>
       </div>
 
       <div class="alert">

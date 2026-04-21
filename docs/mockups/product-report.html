@@ -68,6 +68,25 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);fo
 .kpi{background:var(--bg3);border:1px solid var(--border-soft);border-radius:6px;padding:20px 22px;position:relative;overflow:hidden}
 .kpi.hero{background:linear-gradient(135deg,var(--bg3),var(--bg2));border-color:var(--border)}
 .kpi.hero::before{content:'';position:absolute;right:-30px;top:-30px;width:200px;height:200px;background:radial-gradient(circle,var(--copper-soft),transparent 70%);pointer-events:none}
+.kpi.hero .spark{margin-top:14px;width:100%;height:56px;display:block}
+/* 6-metric mini grid */
+.mini-metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:22px}
+.mm{background:var(--bg3);border:1px solid var(--border-soft);border-radius:5px;padding:12px 13px}
+.mm-label{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1.2px;color:var(--dim);text-transform:uppercase;margin-bottom:6px}
+.mm-val{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:600;color:var(--cream);line-height:1}
+.mm-val.green{color:var(--green)}
+.mm-val.gold{color:var(--gold)}
+.mm-val.copper{color:var(--copper)}
+.mm-val.red{color:var(--red)}
+.mm-trend{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim);margin-top:4px;display:flex;align-items:center;gap:4px}
+.mm-trend.up{color:var(--green)}
+.mm-trend.down{color:var(--red)}
+.mm-spark{height:18px;margin-top:6px;display:block;width:100%}
+/* Report masthead */
+.masthead{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;background:linear-gradient(90deg,var(--bg3),var(--bg2));border:1px solid var(--border);border-radius:6px;margin-bottom:18px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase}
+.masthead .m-left{display:flex;align-items:center;gap:20px}
+.masthead .m-left b{color:var(--cream);font-weight:500}
+.masthead .stamp{border:1px solid var(--copper);color:var(--copper);padding:3px 8px;border-radius:3px;letter-spacing:2px}
 .kpi-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;margin-bottom:10px}
 .kpi-num{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:600;color:var(--cream);line-height:1;margin-bottom:8px}
 .kpi.hero .kpi-num{font-size:40px;color:var(--gold)}
@@ -185,11 +204,27 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);fo
         <span class="sub" style="margin-top:0">Vergleich: März 2026</span>
       </div>
 
+      <div class="masthead">
+        <div class="m-left">
+          <span>REPORT-ID · <b>COUV-APR26-0421</b></span>
+          <span>ZEITRAUM · <b>01.–30. APRIL 2026</b></span>
+          <span>VERGLEICH · MÄRZ 2026</span>
+          <span>GENERIERT · 01.05.2026 04:02</span>
+        </div>
+        <span class="stamp">FREIGEGEBEN</span>
+      </div>
+
       <div class="hero-row">
         <div class="kpi hero">
           <div class="kpi-label">Realisierter Effekt · April</div>
           <div class="kpi-num">CHF 24.300</div>
           <div class="kpi-sub">basierend auf 3 aktiven Massnahmen <span class="badge-gain">+CHF 11.800 vs März</span></div>
+          <svg class="spark" viewBox="0 0 500 56" preserveAspectRatio="none">
+            <defs><linearGradient id="sparkgrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E8B931" stop-opacity="0.35"/><stop offset="100%" stop-color="#E8B931" stop-opacity="0"/></linearGradient></defs>
+            <path d="M0,46 L40,44 L80,40 L120,42 L160,36 L200,34 L240,30 L280,26 L320,22 L360,18 L400,14 L440,10 L480,8 L500,6 L500,56 L0,56 Z" fill="url(#sparkgrad)"/>
+            <polyline points="0,46 40,44 80,40 120,42 160,36 200,34 240,30 280,26 320,22 360,18 400,14 440,10 480,8 500,6" fill="none" stroke="#E8B931" stroke-width="2"/>
+            <circle cx="500" cy="6" r="3.5" fill="#E8B931"/>
+          </svg>
         </div>
         <div class="kpi">
           <div class="kpi-label">Identifiziertes Potenzial</div>
@@ -201,6 +236,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);fo
           <div class="kpi-num">4<span style="color:var(--dim);font-size:20px"> / 10</span></div>
           <div class="kpi-sub">in Umsetzung · 6 priorisiert</div>
         </div>
+      </div>
+
+      <div class="mini-metrics">
+        <div class="mm"><div class="mm-label">Rating</div><div class="mm-val gold">4.48</div><div class="mm-trend up">↑ 0.08</div></div>
+        <div class="mm"><div class="mm-label">Reviews</div><div class="mm-val">86</div><div class="mm-trend up">↑ 12%</div></div>
+        <div class="mm"><div class="mm-label">Antwortquote</div><div class="mm-val green">94%</div><div class="mm-trend up">↑ 94pt</div></div>
+        <div class="mm"><div class="mm-label">Beschwerden Teig</div><div class="mm-val green">−68%</div><div class="mm-trend up">vs. März</div></div>
+        <div class="mm"><div class="mm-label">No-Show</div><div class="mm-val">3.2%</div><div class="mm-trend">— flat</div></div>
+        <div class="mm"><div class="mm-label">Ø Check</div><div class="mm-val copper">CHF 58</div><div class="mm-trend up">↑ CHF 3</div></div>
       </div>
 
       <div class="section">

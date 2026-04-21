@@ -88,6 +88,21 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);fo
 .comp-metrics .m-val{color:var(--cream);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500}
 .comp-metrics .m-val.up{color:var(--green)}
 .comp-metrics .m-val.down{color:var(--red)}
+/* Threat gauge */
+.threat{margin-top:12px;padding-top:10px;border-top:1px dashed var(--border-soft)}
+.threat-head{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.2px;color:var(--dim);text-transform:uppercase;margin-bottom:6px}
+.threat-head b{font-weight:500}
+.threat-head b.high{color:var(--copper)}
+.threat-head b.med{color:var(--gold)}
+.threat-head b.low{color:var(--green)}
+.threat-head b.self{color:var(--cream)}
+.gauge{position:relative;height:6px;background:var(--bg4);border-radius:3px;overflow:hidden;border:1px solid var(--border-soft)}
+.gauge-fill{position:absolute;top:0;bottom:0;left:0;border-radius:3px}
+.gauge-fill.high{background:linear-gradient(90deg,var(--gold),var(--copper))}
+.gauge-fill.med{background:linear-gradient(90deg,var(--green),var(--gold))}
+.gauge-fill.low{background:var(--green)}
+.gauge-fill.self{background:linear-gradient(90deg,var(--copper),var(--gold))}
+.gauge-scale{position:absolute;top:0;bottom:0;width:1px;background:var(--border)}
 
 /* Events feed */
 .section{background:var(--bg3);border:1px solid var(--border-soft);border-radius:6px;margin-bottom:16px;overflow:hidden}
@@ -200,6 +215,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);fo
             <div><div class="m-label">Ø Preis Pizza</div><div class="m-val">CHF 22</div></div>
             <div><div class="m-label">Offen bis</div><div class="m-val">23:00</div></div>
           </div>
+          <div class="threat">
+            <div class="threat-head"><span>Position</span><b class="self">STARK · AUFWÄRTS</b></div>
+            <div class="gauge"><div class="gauge-fill self" style="width:72%"></div><div class="gauge-scale" style="left:33%"></div><div class="gauge-scale" style="left:66%"></div></div>
+          </div>
         </div>
 
         <div class="comp-card alert">
@@ -215,6 +234,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);fo
             <div><div class="m-label">Antwortquote</div><div class="m-val">12%</div></div>
             <div><div class="m-label">Ø Preis Pizza</div><div class="m-val down">CHF 20</div></div>
             <div><div class="m-label">Neu: Lunch</div><div class="m-val">CHF 18.90</div></div>
+          </div>
+          <div class="threat">
+            <div class="threat-head"><span>Threat-Level</span><b class="high">HOCH · ANGREIFER</b></div>
+            <div class="gauge"><div class="gauge-fill high" style="width:88%"></div><div class="gauge-scale" style="left:33%"></div><div class="gauge-scale" style="left:66%"></div></div>
           </div>
         </div>
 
@@ -232,6 +255,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);fo
             <div><div class="m-label">Ø Preis Pizza</div><div class="m-val">CHF 24</div></div>
             <div><div class="m-label">Offen bis</div><div class="m-val">22:30</div></div>
           </div>
+          <div class="threat">
+            <div class="threat-head"><span>Threat-Level</span><b class="low">NIEDRIG · SCHWÄCHT</b></div>
+            <div class="gauge"><div class="gauge-fill low" style="width:28%"></div><div class="gauge-scale" style="left:33%"></div><div class="gauge-scale" style="left:66%"></div></div>
+          </div>
         </div>
 
         <div class="comp-card">
@@ -247,6 +274,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);fo
             <div><div class="m-label">Antwortquote</div><div class="m-val">45%</div></div>
             <div><div class="m-label">Ø Preis Pizza</div><div class="m-val">CHF 23</div></div>
             <div><div class="m-label">Offen bis</div><div class="m-val">23:30</div></div>
+          </div>
+          <div class="threat">
+            <div class="threat-head"><span>Threat-Level</span><b class="med">MITTEL · STABIL</b></div>
+            <div class="gauge"><div class="gauge-fill med" style="width:52%"></div><div class="gauge-scale" style="left:33%"></div><div class="gauge-scale" style="left:66%"></div></div>
           </div>
         </div>
       </div>
