@@ -64,11 +64,11 @@
 .hero-section h1 em{font-family:'DM Serif Display',serif;font-weight:400;font-style:italic;color:var(--copper);letter-spacing:-0.02em}
 .hero-sub{font-size:var(--fs-body-lg);line-height:var(--lh-body);color:var(--ink-2);font-weight:400;margin-bottom:var(--sp-6);max-width:540px}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:var(--sp-5)}
-.hero-bullets{display:flex;gap:12px 24px;font-size:13px;color:var(--ink-3);flex-wrap:wrap;align-items:center;justify-content:flex-start}
-.hero-bullets span{display:inline-flex;align-items:center;gap:8px;line-height:1.2;font-weight:400}
+.hero-bullets{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;font-size:13px;color:var(--ink-3);align-items:center;max-width:540px}
+.hero-bullets span{display:inline-flex;align-items:center;gap:8px;line-height:1.2;font-weight:400;justify-content:flex-start}
 .hero-bullets span svg{width:14px;height:14px;stroke:var(--copper);fill:none;flex-shrink:0;display:block}
 @media(max-width:640px){
-  .hero-bullets{display:grid;grid-template-columns:repeat(2,auto);column-gap:20px;row-gap:10px;justify-content:start}
+  .hero-bullets{grid-template-columns:repeat(2,1fr);column-gap:20px;row-gap:10px}
   .hero-bullets span{white-space:nowrap}
 }
 /* De-emphasized teaser — below bullets, smaller */
@@ -383,6 +383,11 @@
 .sol-chapter h3{font-family:'DM Sans',sans-serif;font-weight:600;font-size:var(--fs-h2);color:var(--ink);line-height:var(--lh-heading);letter-spacing:-0.03em;margin-bottom:var(--sp-4);max-width:520px}
 .sol-chapter .sol-body{font-size:var(--fs-body);color:var(--ink-2);line-height:var(--lh-body);margin-bottom:var(--sp-4);max-width:520px}
 .sol-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:var(--sp-4)}
+.sol-chips--grid-2x2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-width:420px}
+.sol-chips--grid-2x2 span{justify-content:flex-start}
+@media(max-width:520px){
+  .sol-chips--grid-2x2{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 .sol-chips span{
   display:inline-flex;align-items:center;gap:6px;
   font-family:'JetBrains Mono',monospace;font-weight:500;
@@ -580,7 +585,7 @@
       <div class="sol-chapter__overline">Team 02 · Quality &amp; Operations</div>
       <h3>Spot patterns before they escalate.</h3>
       <p class="sol-body">Quality Watchdog, Operations Advisor, Predictive Staffing and Staff Communication see trend shifts, shift bottlenecks and communication gaps. Before the guest escalates.</p>
-      <div class="sol-chips"><span>Quality Watchdog</span><span>Operations Advisor</span><span>Predictive Staffing</span><span>Staff Communication</span></div>
+      <div class="sol-chips sol-chips--grid-2x2"><span>Quality Watchdog</span><span>Operations Advisor</span><span>Predictive Staffing</span><span>Staff Communication</span></div>
       <div class="sol-outcome">+200%</div>
       <div class="sol-outcome-cap">Complaint trend detected before rating reacts</div>
       <a href="/mockups/product-shift.html" class="sol-cta">See more</a>
