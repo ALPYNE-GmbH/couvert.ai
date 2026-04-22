@@ -620,3 +620,77 @@ body.nav-locked{overflow:hidden}
 .cockpit-backlink:hover{background:var(--copper,#C4673A);color:#fff;transform:translateY(-1px)}
 .cockpit-backlink:focus-visible{outline:2px solid var(--copper,#C4673A);outline-offset:2px}
 @media(max-width:640px){.cockpit-backlink{padding:8px 12px;font-size:12px}}
+
+/* ============================================================
+   Block 4 — Hero mockup overlay (live-badge, pills, ticker)
+   ============================================================ */
+#hero-dashboard{position:relative}
+#hero-dashboard:focus-visible{outline:2px solid var(--copper);outline-offset:4px;border-radius:var(--radius-xl)}
+
+.hero-live-badge{
+  position:absolute;top:14px;right:14px;z-index:5;
+  font-family:'JetBrains Mono',monospace;font-weight:500;
+  font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+  padding:6px 10px;border-radius:var(--radius-pill);
+  background:var(--copper);color:#FAF8F3;
+  opacity:0;transform:translateY(-4px);
+  transition:opacity 250ms var(--ease-out-quint),transform 250ms var(--ease-out-quint);
+  pointer-events:none;
+  box-shadow:0 2px 8px rgba(196,103,58,0.35);
+}
+#hero-dashboard:hover .hero-live-badge,
+#hero-dashboard:focus-visible .hero-live-badge,
+.hero-live-badge.is-static{opacity:1;transform:translateY(0)}
+
+.hero-pills-overlay{
+  position:absolute;top:44px;left:14px;z-index:4;
+  display:flex;gap:6px;flex-wrap:wrap;max-width:calc(100% - 28px);
+  pointer-events:none;
+}
+.hero-pill{
+  font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px;
+  letter-spacing:0.1em;text-transform:uppercase;
+  padding:4px 8px;border-radius:var(--radius-pill);
+  background:rgba(255,255,255,0.85);border:1px solid var(--hairline);
+  color:var(--ink-3);
+  transition:background 250ms var(--ease-out-quint),color 250ms var(--ease-out-quint),border-color 250ms var(--ease-out-quint);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+}
+.hero-pill.is-active{
+  background:var(--copper);color:#FAF8F3;border-color:var(--copper);
+  box-shadow:0 1px 4px rgba(196,103,58,0.25);
+}
+
+.hero-ticker{
+  position:absolute;bottom:14px;right:14px;z-index:4;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 12px;border-radius:var(--radius-pill);
+  background:rgba(255,255,255,0.88);border:1px solid var(--hairline);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  pointer-events:none;
+}
+.hero-ticker .ht-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--success);
+  box-shadow:0 0 0 0 rgba(62,141,104,0.5);
+  animation:hero-ticker-pulse 2s infinite var(--ease-out-quint);
+}
+@keyframes hero-ticker-pulse{
+  0%{box-shadow:0 0 0 0 rgba(62,141,104,0.45)}
+  70%{box-shadow:0 0 0 6px rgba(62,141,104,0)}
+  100%{box-shadow:0 0 0 0 rgba(62,141,104,0)}
+}
+.hero-ticker .ht-num{
+  font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11px;
+  color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:0;
+}
+
+@media(max-width:640px){
+  .hero-live-badge{opacity:1;transform:translateY(0);font-size:10px;padding:5px 8px}
+  .hero-pill{font-size:9px;padding:3px 7px}
+  .hero-ticker{bottom:8px;right:8px;padding:5px 10px}
+  .hero-pills-overlay{top:36px;left:8px;gap:4px}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-pill,.hero-live-badge{transition:none}
+  .hero-ticker .ht-dot{animation:none}
+}
