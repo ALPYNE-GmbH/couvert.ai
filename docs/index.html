@@ -557,12 +557,67 @@
 </div>
 </div></section>
 
-<!-- PROOF BAR -->
+<!-- PROOF BAR (Mini-Trust-Stripe — Block 5.1) -->
 <section class="proof-bar light-section reveal"><div class="proof-context">Beispiel: Gastro-Betrieb Zürich</div><div class="container reveal-stagger">
 <div class="proof-item"><div class="proof-num">2.825</div><div class="proof-label">Bewertungen analysiert</div></div>
 <div class="proof-item"><div class="proof-num">0%</div><div class="proof-label">Antwortquote</div></div>
 <div class="proof-item"><div class="proof-num">10</div><div class="proof-label">Schwachstellen identifiziert</div></div>
 <div class="proof-item"><div class="proof-num"><span class="count-up" data-target="390000" data-prefix="CHF " data-suffix="+" data-format="k">CHF 390K+</span></div><div class="proof-label">Geschätzter Umsatzverlust / Jahr</div></div>
+</div></section>
+
+<!-- PROBLEM / AGITATION (Block 5.4) -->
+<section class="problem-section reveal"><div class="container">
+  <div class="problem-overline">Das Problem</div>
+  <h2 class="problem-h">Durchschnittlich <em>CHF 390'000 pro Jahr</em> an Umsatzverlust — in jedem CHF-5-Mio-Betrieb, den wir gescannt haben.</h2>
+  <div class="problem-grid">
+    <div class="problem-card">
+      <div class="problem-card-num">01</div>
+      <h3>Wartezeit trotz Reservation</h3>
+      <p>Gäste kommen pünktlich, warten 20–30 Minuten. Die meisten erwähnen es nie — sie kommen einfach nicht wieder.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-card-num">02</div>
+      <h3>Teigqualität-Drift in der Mitte der Woche</h3>
+      <p>Donnerstag–Samstag 20:00–22:00 sinkt die Qualität messbar. Nicht im Rating sichtbar, aber in der Churn-Rate.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-card-num">03</div>
+      <h3>0 % Antwortquote auf Google-Reviews</h3>
+      <p>Jede ungelöste Bewertung erhöht Rating-Erosion und senkt Neugast-Conversion messbar. In fast jedem Betrieb identisch.</p>
+    </div>
+  </div>
+  <p class="problem-outro">Die wenigsten Betriebe sehen diese Muster, bis es 12 Monate zu spät ist. <a href="#calculator">Rechnen Sie Ihren Betrag →</a></p>
+</div></section>
+
+<!-- DOSSIER-EXZERPT (Block 5.2 — Proof-before-Pitch) -->
+<section class="dossier-section reveal"><div class="container">
+  <div class="dossier-layout">
+    <div class="dossier-copy">
+      <div class="dossier-overline">Proof · Ein echtes Muster-Dossier</div>
+      <h2>So sieht der Output aus, bevor Sie einen Agent aktivieren.</h2>
+      <p>4–5 Seiten aus einem realen Couvert Intelligence Dossier eines CHF-5-Mio-Betriebs: Rating-Erosion quantifiziert, Teigqualität-Drift belegt, 10 priorisierte Hebel mit CHF-Effekt. Keine Charts zum Selber-Interpretieren — fertige Argumentation in Franken.</p>
+      <div class="dossier-cta">
+        <a href="beispiel-report/" class="btn-primary">Vollständiges Dossier öffnen →</a>
+        <a href="fallbeispiel.html" class="btn-ghost">Fallbeispiel-Seite ansehen</a>
+      </div>
+    </div>
+    <a class="dossier-preview" href="beispiel-report/">
+      <div class="dossier-pages">
+        <div class="dossier-page" style="--o:0">
+          <div class="dp-head">Performance-Profil · April 2026</div>
+          <div class="dp-body">
+            <div class="dp-row"><span>Rating heute</span><b>4.40 ★</b></div>
+            <div class="dp-row"><span>Benchmark</span><b>4.70 ★</b></div>
+            <div class="dp-row dp-row-loss"><span>Umsatzverlust / Jahr</span><b>CHF 390K</b></div>
+            <div class="dp-row dp-row-win"><span>Recovery-Hebel</span><b>+CHF 285K</b></div>
+          </div>
+        </div>
+        <div class="dossier-page" style="--o:1"></div>
+        <div class="dossier-page" style="--o:2"></div>
+      </div>
+      <span class="dossier-badge">PDF · 24 Seiten</span>
+    </a>
+  </div>
 </div></section>
 
 <!-- PRODUKTSTUFEN: SCAN / INTELLIGENCE / OPERATIONS -->
@@ -607,6 +662,14 @@
 </div>
 
 <div class="sol-sticky">
+  <!-- Block 5.3 progress indicator (desktop) -->
+  <div class="sol-progress" aria-hidden="true">
+    <span class="sol-progress-dot is-active" data-progress="guest"></span>
+    <span class="sol-progress-dot" data-progress="quality"></span>
+    <span class="sol-progress-dot" data-progress="revenue"></span>
+    <span class="sol-progress-dot" data-progress="market"></span>
+    <span class="sol-progress-count"><span id="solProgressNum">1</span>/4</span>
+  </div>
   <div class="sol-chapters">
 
     <article class="sol-chapter is-active" data-team="guest" data-sol-layer="guest">
@@ -885,6 +948,39 @@
 })();
 </script>
 
+<!-- FULL TRUST PANEL (Block 5.5) -->
+<section class="trust-panel reveal"><div class="container">
+  <div class="trust-head">
+    <div class="section-label">Vertrauen · Sicherheit · Transparenz</div>
+    <h2>Keine versteckten Haken. Keine Lock-in-Schweigepflicht.</h2>
+  </div>
+  <div class="trust-grid">
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg></div>
+      <h3>Hosting in der Schweiz</h3>
+      <p>Alle Kundendaten auf Schweizer Servern. Keine Übertragung in Drittländer ohne ausdrückliche Freigabe.</p>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg></div>
+      <h3>nDSG-konform</h3>
+      <p>Schweizer Datenschutz-Standard. Verarbeitungsverzeichnis, AV-Vertrag und Löschkonzept Teil des Onboardings.</p>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+      <h3>Anthropic Claude</h3>
+      <p>Kein Eigenbau-LLM. State-of-the-art Modelle über Anthropic's Enterprise-API, ohne Training auf Ihren Daten.</p>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></div>
+      <h3>Monatlich kündbar</h3>
+      <p>Kein 24-Monats-Vertrag. Wenn Couvert nicht liefert, sind Sie nach 30 Tagen draußen. Ohne Exit-Gebühr.</p>
+    </div>
+  </div>
+  <div class="trust-prelaunch">
+    <strong>Pre-Launch-Transparenz:</strong> Couvert ist noch nicht breit im Markt. Statt gefälschter Logo-Leiste zeigen wir Ihnen ein <a href="beispiel-report/">vollständiges anonymisiertes Muster-Dossier</a>. Die ersten 5 Pilot-Gastronomien arbeiten aktuell mit uns unter NDA. Referenzen werden transparent, sobald sie freigegeben sind.
+  </div>
+</div></section>
+
 <!-- CTA -->
 <section class="cta-final reveal" id="contact"><div class="container">
 <div class="underlay cta-underlay">
@@ -1005,9 +1101,14 @@ if(location.hash)setTimeout(()=>pulseTarget(location.hash.slice(1)),600);
   const chapters=document.querySelectorAll('.sol-chapter[data-sol-layer]');
   const layers=document.querySelectorAll('.dashboard-embed__layer[data-sol-target]');
   if(!chapters.length||!('IntersectionObserver' in window))return;
+  const progressDots=document.querySelectorAll('.sol-progress-dot');
+  const progressNum=document.getElementById('solProgressNum');
+  const order=['guest','quality','revenue','market'];
   function activate(team){
     chapters.forEach(c=>c.classList.toggle('is-active',c.dataset.solLayer===team));
     layers.forEach(l=>l.classList.toggle('is-active',l.dataset.solTarget===team));
+    if(progressDots.length){progressDots.forEach(d=>d.classList.toggle('is-active',d.dataset.progress===team))}
+    if(progressNum){const i=order.indexOf(team);if(i>=0)progressNum.textContent=(i+1).toString()}
   }
   const io=new IntersectionObserver(entries=>{
     // pick the entry with highest intersection ratio among currently intersecting
