@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /cockpit/
+Disallow: /archive/
+Disallow: /mockups/
+Disallow: /design/
 
 Sitemap: https://couvert.ai/sitemap.xml
