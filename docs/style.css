@@ -538,3 +538,85 @@ footer{padding:var(--sp-6) 0;border-top:1px solid var(--hairline);background:var
 .light-section .scan-teaser-left small{color:var(--ink-3)}
 .light-section .scan-count{color:var(--copper)}
 .light-section .scan-count-label{color:var(--ink-3)}
+
+/* ============================================================
+   Block 2 — Desktop dropdown + enhanced mobile drawer + cockpit back-button
+   ============================================================ */
+
+/* Desktop: collapse the inline nav, show a single Menu button */
+.nav-menu-btn{
+  display:none;
+  background:transparent;border:1px solid var(--hairline-strong);
+  padding:8px 14px;border-radius:var(--radius-md);
+  font-family:'DM Sans',sans-serif;font-weight:500;font-size:14px;
+  color:var(--ink);cursor:pointer;line-height:1;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:border-color var(--dur-fast),color var(--dur-fast),background var(--dur-fast);
+}
+.nav-menu-btn:hover{border-color:var(--copper);color:var(--copper)}
+.nav-menu-btn .caret{display:inline-block;transition:transform var(--dur-fast)}
+.nav-menu-btn[aria-expanded="true"] .caret{transform:rotate(180deg)}
+
+.desktop-menu{
+  position:fixed;top:64px;right:clamp(16px,4vw,48px);
+  min-width:260px;background:var(--canvas-raised);
+  border:1px solid var(--hairline);border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-lg);
+  padding:12px;z-index:150;
+  opacity:0;transform:translateY(-6px);pointer-events:none;
+  transition:opacity var(--dur-fast) var(--ease-out-quint),transform var(--dur-fast) var(--ease-out-quint);
+}
+.desktop-menu.open{opacity:1;transform:translateY(0);pointer-events:auto}
+.desktop-menu a{
+  display:block;padding:10px 14px;border-radius:var(--radius-md);
+  color:var(--ink-2);text-decoration:none;font-size:14px;
+  transition:background var(--dur-fast),color var(--dur-fast);
+}
+.desktop-menu a:hover{background:var(--copper-tint);color:var(--copper)}
+.desktop-menu .dm-sep{height:1px;background:var(--hairline);margin:8px 0}
+.desktop-menu .dm-lang{display:flex;justify-content:center;gap:6px;padding:6px 0 10px}
+.desktop-menu .dm-lang a{padding:6px 12px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;color:var(--ink-3)}
+.desktop-menu .dm-lang a.active{color:var(--copper);font-weight:600}
+
+/* On wide viewports (≥768px): hide the inline nav + scan CTA + burger, show Menu button */
+@media(min-width:769px){
+  .nav{display:none !important}
+  .header-cta{display:none !important}
+  .nav-menu-btn{display:inline-flex}
+}
+
+/* Mobile: Menu button hidden, burger shown */
+@media(max-width:768px){
+  .nav-menu-btn{display:none}
+  .desktop-menu{display:none}
+  .burger{display:inline-flex;align-items:center;justify-content:center}
+  .nav{display:none}
+}
+
+/* Enhanced mobile-menu: slide-in from right, not full fade */
+.mobile-menu{
+  transform:translateX(100%);
+  transition:transform 200ms var(--ease-out-quint);
+  will-change:transform;
+  display:flex !important;
+  pointer-events:none;
+  opacity:1;
+}
+.mobile-menu.open{transform:translateX(0);pointer-events:auto}
+body.nav-locked{overflow:hidden}
+
+/* Cockpit back-button (homepage CSS — only applies when element present) */
+.cockpit-backlink{
+  position:fixed;top:14px;left:14px;z-index:999;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 14px;min-height:44px;
+  background:var(--canvas,#FAF8F3);color:var(--copper,#C4673A);
+  border:1px solid var(--copper,#C4673A);border-radius:8px;
+  font-family:'DM Sans',sans-serif;font-weight:600;font-size:13px;
+  text-decoration:none;line-height:1;
+  box-shadow:0 2px 8px rgba(18,34,30,0.10);
+  transition:background 200ms,color 200ms,transform 120ms;
+}
+.cockpit-backlink:hover{background:var(--copper,#C4673A);color:#fff;transform:translateY(-1px)}
+.cockpit-backlink:focus-visible{outline:2px solid var(--copper,#C4673A);outline-offset:2px}
+@media(max-width:640px){.cockpit-backlink{padding:8px 12px;font-size:12px}}

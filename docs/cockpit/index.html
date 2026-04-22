@@ -318,6 +318,39 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);fo
 <script src="/cookie-consent.js" defer></script>
 </head>
 <body>
+
+<!-- Sticky back-to-homepage button (Block 2.4) -->
+<a href="/" id="cockpitBackBtn" class="cockpit-backlink" aria-label="Zurück zur Homepage">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+  <span id="cockpitBackLabel">Zurück zur Homepage</span>
+</a>
+<style>
+.cockpit-backlink{
+  position:fixed;top:64px;left:14px;z-index:9999;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 14px;min-height:44px;box-sizing:border-box;
+  background:#FAF8F3;color:#C4673A;
+  border:1px solid #C4673A;border-radius:8px;
+  font-family:'DM Sans',sans-serif;font-weight:600;font-size:13px;
+  text-decoration:none;line-height:1;letter-spacing:0;
+  box-shadow:0 2px 8px rgba(0,0,0,0.22);
+  transition:background 200ms,color 200ms,transform 120ms;
+}
+.cockpit-backlink:hover{background:#C4673A;color:#FAF8F3;transform:translateY(-1px)}
+.cockpit-backlink:focus-visible{outline:2px solid #C4673A;outline-offset:2px}
+@media(max-width:640px){.cockpit-backlink{padding:8px 12px;font-size:12px;top:58px}}
+</style>
+<script>
+(function(){
+  var btn=document.getElementById('cockpitBackBtn'),lbl=document.getElementById('cockpitBackLabel');
+  try{
+    var isEn=(document.referrer&&/\/en\//.test(document.referrer))||/[?&]lang=en/.test(location.search);
+    if(isEn){btn.href='/en/';if(lbl)lbl.textContent='Back to homepage';btn.setAttribute('aria-label','Back to homepage')}
+  }catch(e){}
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){window.location.href=btn.href}});
+})();
+</script>
+
 <div class="app">
 
   <!-- TOP BAR -->

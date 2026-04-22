@@ -431,22 +431,55 @@
 
 <header><div class="container header-inner">
 <a href="/en/" class="logo"><div class="logo-name">c<span>o</span>uvert</div></a>
-<nav class="nav"><span class="lang-switch"><a href="/">DE</a><span class="lang-sep">|</span><a href="/en/" class="active" aria-current="true">EN</a></span><a href="#couvert-agents">Agents</a><a href="/fallbeispiel.html">Case study</a><a href="/ablauf.html">How it works</a><a href="/ablauf.html#faq">FAQ</a><a href="https://calendly.com/hello-couvert/30min" target="_blank">Book a call</a></nav>
+<nav class="nav" aria-hidden="true"></nav>
 <div class="header-right">
-<a href="#scan" class="header-cta">Start Scan</a>
-<button class="burger" onclick="document.getElementById('mm').classList.add('open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<span class="lang-switch"><a href="/">DE</a><span class="lang-sep">|</span><a href="/en/" class="active" aria-current="true">EN</a></span>
+<button class="nav-menu-btn" id="navMenuBtn" aria-expanded="false" aria-controls="desktopMenu" aria-haspopup="true">Menu <span class="caret">▾</span></button>
+<button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false" aria-controls="mm"><svg viewBox="0 0 24 24" fill="none"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
 </div>
 </div></header>
 
-<div class="mobile-menu" id="mm">
-<button class="mm-close" onclick="document.getElementById('mm').classList.remove('open')" aria-label="Close"><svg viewBox="0 0 24 24" fill="none"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
-<span class="lang-switch"><a href="/">DE</a><span class="lang-sep">|</span><a href="/en/" class="active" aria-current="true">EN</a></span>
-<a href="/en/" onclick="document.getElementById('mm').classList.remove('open')">Home</a>
-<a href="#couvert-agents" onclick="document.getElementById('mm').classList.remove('open')">Agents</a>
-<a href="/fallbeispiel.html">Case study</a>
-<a href="/ablauf.html">How it works & FAQ</a>
-<a href="https://calendly.com/hello-couvert/30min" target="_blank" style="color:var(--copper)">Book a call</a>
+<div class="desktop-menu" id="desktopMenu" role="menu" aria-labelledby="navMenuBtn">
+<div class="dm-lang"><a href="/">DE</a><a href="/en/" class="active">EN</a></div>
+<div class="dm-sep"></div>
+<a href="#couvert-agents" role="menuitem">Agents</a>
+<a href="/fallbeispiel.html" role="menuitem">Case study</a>
+<a href="/ablauf.html" role="menuitem">How it works</a>
+<a href="/methodik.html" role="menuitem">Methodology</a>
+<a href="/ablauf.html#faq" role="menuitem">FAQ</a>
+<div class="dm-sep"></div>
+<a href="https://calendly.com/hello-couvert/30min" target="_blank" rel="noopener" role="menuitem" style="color:var(--copper);font-weight:600">Book a call →</a>
 </div>
+
+<div class="mobile-menu" id="mm" role="dialog" aria-modal="true" aria-label="Menu">
+<button class="mm-close" id="mmClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+<span class="lang-switch"><a href="/">DE</a><span class="lang-sep">|</span><a href="/en/" class="active" aria-current="true">EN</a></span>
+<a href="/en/">Home</a>
+<a href="#couvert-agents">Agents</a>
+<a href="/fallbeispiel.html">Case study</a>
+<a href="/ablauf.html">How it works</a>
+<a href="/methodik.html">Methodology</a>
+<a href="/ablauf.html#faq">FAQ</a>
+<a href="https://calendly.com/hello-couvert/30min" target="_blank" rel="noopener" style="color:var(--copper)">Book a call</a>
+</div>
+
+<script>
+(function(){
+  var burger=document.getElementById('burgerBtn'),mm=document.getElementById('mm'),mmClose=document.getElementById('mmClose');
+  var menuBtn=document.getElementById('navMenuBtn'),dm=document.getElementById('desktopMenu');
+  function openMm(){mm.classList.add('open');document.body.classList.add('nav-locked');burger.setAttribute('aria-expanded','true')}
+  function closeMm(){mm.classList.remove('open');document.body.classList.remove('nav-locked');burger.setAttribute('aria-expanded','false')}
+  if(burger)burger.addEventListener('click',openMm);
+  if(mmClose)mmClose.addEventListener('click',closeMm);
+  if(mm)mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMm)});
+  function openDm(){dm.classList.add('open');menuBtn.setAttribute('aria-expanded','true')}
+  function closeDm(){dm.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')}
+  if(menuBtn)menuBtn.addEventListener('click',function(e){e.stopPropagation();dm.classList.contains('open')?closeDm():openDm()});
+  document.addEventListener('click',function(e){if(dm&&dm.classList.contains('open')&&!dm.contains(e.target)&&e.target!==menuBtn)closeDm()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDm();closeMm()}});
+  if(dm)dm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeDm)});
+})();
+</script>
 
 <!-- HERO -->
 <section class="hero-section reveal" id="top"><div class="container">
