@@ -263,6 +263,51 @@ header{
 }
 .btn-ghost:hover{border-color:var(--ink)}
 
+/* Disabled primary — optically dominant, non-clickable, tooltip on hover */
+.btn-primary.btn-disabled{
+  opacity:0.55;cursor:default;pointer-events:auto;
+  box-shadow:none;transform:none;
+  position:relative;
+}
+.btn-primary.btn-disabled:hover,
+.btn-primary.btn-disabled:active{
+  background:var(--copper);transform:none;box-shadow:none;
+}
+.btn-primary.btn-disabled::after{
+  content:attr(data-tooltip);
+  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:var(--ink);color:#fff;
+  font-family:'DM Sans',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.01em;
+  padding:6px 10px;border-radius:var(--radius-sm,6px);
+  white-space:nowrap;pointer-events:none;
+  opacity:0;transition:opacity var(--dur-fast) var(--ease-out-quint);
+}
+.btn-primary.btn-disabled:hover::after{opacity:1}
+
+/* Secondary button — copper-outlined / text with arrow */
+.btn-secondary{
+  display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-2);
+  background:transparent;color:var(--copper-ink-on-canvas,var(--copper));
+  padding:14px 24px;border-radius:var(--radius-md);
+  font-family:'DM Sans',sans-serif;font-weight:600;font-size:15px;
+  letter-spacing:0.01em;text-decoration:none;
+  min-height:44px;border:1px solid var(--copper);cursor:pointer;
+  transition:background var(--dur-fast),color var(--dur-fast),border-color var(--dur-fast);
+}
+.btn-secondary:hover{background:var(--copper);color:#fff}
+
+/* Tertiary button — subtle text-link with arrow */
+.btn-tertiary{
+  display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-2);
+  background:transparent;color:var(--ink-2,var(--ink));
+  padding:14px 8px;border-radius:var(--radius-md);
+  font-family:'DM Sans',sans-serif;font-weight:500;font-size:15px;
+  letter-spacing:0.01em;text-decoration:none;
+  min-height:44px;border:1px solid transparent;cursor:pointer;
+  transition:color var(--dur-fast);
+}
+.btn-tertiary:hover{color:var(--copper)}
+
 /* Ghost button on green-deep underlay */
 .underlay .btn-ghost,.green-underlay .btn-ghost{color:var(--green-ink);border-color:rgba(245,240,235,.3)}
 .underlay .btn-ghost:hover,.green-underlay .btn-ghost:hover{border-color:var(--green-ink)}
