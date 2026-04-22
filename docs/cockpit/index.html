@@ -10,11 +10,22 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#1A3C34;--bg2:#162F29;--bg3:#12261F;--bg4:#0E1F1A;
-  --copper:#C4673A;--copper-soft:rgba(196,103,58,0.14);
-  --gold:#E8B931;--cream:#F5F0EB;--text:#E0DCD6;--dim:#9B958C;
-  --border:#243D37;--border-soft:#1F3531;--green:#6B9C7F;--red:#B8564A;
-  --purple:#8E7BBF;
+  /* Block 3 — Off-White canvas, copper accents, green reduced to structure-only */
+  --bg:#FAF8F3;        /* primary canvas (was dark green) */
+  --bg2:#FFFFFF;       /* raised cards (was bg2 dark) */
+  --bg3:#F2EFE7;       /* sunken / sidebar rail */
+  --bg4:#FAF8F3;       /* body canvas */
+  --copper:#C4673A;--copper-soft:rgba(196,103,58,0.12);
+  --gold:#8A6A12;      /* gold-ink for AA-contrast on light */
+  --cream:#12221E;     /* "cream" now = dark body text */
+  --text:#384844;      /* body text */
+  --dim:#6C726E;       /* dim/secondary text */
+  --border:rgba(18,34,30,0.10);
+  --border-soft:rgba(18,34,30,0.06);
+  --green:#3E8D68;     /* success green-accent */
+  --green-deep:#1A3C34;/* structural accent only (sidebar rail, active marker) */
+  --red:#C14438;
+  --purple:#7A4A5A;
   --ease-out-quint:cubic-bezier(.22,1,.36,1);
   --ease-out-expo:cubic-bezier(.19,1,.22,1);
   --dur-fast:120ms;--dur-base:200ms;--dur-slow:400ms;
@@ -315,6 +326,75 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);fo
   *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important}
 }
 </style>
+<style>
+/* Block 3 — Readability overrides after canvas migration.
+   --cream is now dark ink. Whenever we need LIGHT text on colored bg, force it. */
+.btn.primary,
+.btn.primary:hover,
+.mini-btn.primary,
+.btn.sent,
+.side-item.active .count{color:#FAF8F3 !important}
+.userpill .av{color:#FAF8F3}
+
+/* Copper gets precedence for active states — keep copper on copper-soft */
+.chip.active{background:var(--copper-soft);border-color:var(--copper);color:var(--copper)}
+
+/* Sidebar: thin green rail retained; sidebar body now on sunken canvas */
+.sidebar{background:var(--bg3);border-right:1px solid var(--border)}
+.side-item.active::before{background:var(--copper)}
+
+/* Topbar: off-white with hairline bottom. Text dark. */
+.topbar{background:var(--bg2)}
+.topnav a.active{color:var(--cream);background:var(--bg3)}
+.topnav a:hover{background:var(--bg3)}
+
+/* Main body = off-white canvas */
+body{background:var(--bg);color:var(--text)}
+.app{background:var(--bg3)}
+.main{background:var(--bg)}
+.main-head{background:var(--bg2)}
+
+/* Review detail + inputs */
+.rc-body{background:var(--bg3);border-left-color:var(--border)}
+.review-card,.reply-card,.card,.cp-chart,.cp-events,.cp-reco,.drawer-inner,.sh-briefing{background:var(--bg2);border-color:var(--border)}
+.li-preview,.rc-meta,.li-meta,.crumbs,.rez-row td,.brief-item .txt{color:var(--dim)}
+
+/* Chart primary = copper, secondary = structural green (used sparingly), tertiary = neutral */
+.progress-bar,.cp-final{--chart-primary:var(--copper)}
+.cp-final{background:var(--bg2) !important;border:1px solid var(--copper)}
+.cp-final h2{color:var(--cream) !important}
+
+/* Agent-pills — keep semantic colors, just tuned for light canvas */
+.agent-pill{background:var(--copper-soft);border:1px solid rgba(196,103,58,0.25);color:var(--copper)}
+.agent-pill.gold{background:rgba(138,106,18,0.08);border-color:rgba(138,106,18,0.22);color:var(--gold)}
+.agent-pill.green{background:rgba(62,141,104,0.08);border-color:rgba(62,141,104,0.22);color:var(--green)}
+.agent-pill.purple{background:rgba(122,74,90,0.08);border-color:rgba(122,74,90,0.22);color:var(--purple)}
+
+/* Review list inside card */
+.rv-list{background:var(--bg3)}
+.rv-item:hover,.rv-item.selected{background:var(--bg2)}
+.src{background:var(--bg2);color:var(--gold)}
+.rc-src{background:var(--bg2);color:var(--gold)}
+
+/* Toast */
+.toast{background:var(--bg2);color:var(--text);border:1px solid var(--border);box-shadow:0 12px 28px -10px rgba(0,0,0,0.14)}
+.toast b{color:var(--cream)}
+
+/* Drawer overlay */
+.drawer-overlay{background:rgba(18,34,30,0.35)}
+
+/* Stars stay gold-ink for AA */
+.li-stars,.rc-stars{color:var(--gold)}
+.li-stars .off,.rc-stars .off{color:var(--border)}
+
+/* Status chips */
+.status-chip.open{background:rgba(138,106,18,0.08);color:var(--gold);border-color:rgba(138,106,18,0.22)}
+.status-chip.solved{background:rgba(62,141,104,0.08);color:var(--green);border-color:rgba(62,141,104,0.22)}
+.status-chip.escalated{background:rgba(193,68,56,0.08);color:var(--red);border-color:rgba(193,68,56,0.22)}
+
+/* Sidebar left-rail — tiny green-deep structure line */
+.sidebar{border-left:2px solid var(--green-deep)}
+</style>
 <script src="/cookie-consent.js" defer></script>
 </head>
 <body>
@@ -556,15 +636,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);fo
             <svg viewBox="0 0 600 200" preserveAspectRatio="none">
               <line x1="50" y1="50" x2="590" y2="50" stroke="#C4673A" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
               <text x="56" y="44" font-family="JetBrains Mono" font-size="10" fill="#C4673A">Benchmark Wettbewerber A · 4.70</text>
-              <g stroke="#243D37" stroke-width="1" opacity="0.6"><line x1="50" y1="180" x2="590" y2="180"/><line x1="50" y1="120" x2="590" y2="120" stroke-dasharray="2 4"/></g>
+              <g stroke="rgba(18,34,30,0.14)" stroke-width="1" opacity="0.6"><line x1="50" y1="180" x2="590" y2="180"/><line x1="50" y1="120" x2="590" y2="120" stroke-dasharray="2 4"/></g>
               <polyline points="70,80 180,110 290,108 400,130 510,145" fill="none" stroke="#E8B931" stroke-width="2.5"/>
               <g fill="#E8B931"><circle cx="70" cy="80" r="4"/><circle cx="180" cy="110" r="4"/><circle cx="290" cy="108" r="4"/><circle cx="400" cy="130" r="4"/></g>
               <circle cx="510" cy="145" r="6" fill="#6B9C7F"/><circle cx="510" cy="145" r="11" fill="none" stroke="#6B9C7F" opacity="0.3"/>
               <g font-family="JetBrains Mono" font-size="10" fill="#9B958C" text-anchor="middle">
                 <text x="70" y="196">Dez</text><text x="180" y="196">Jan</text><text x="290" y="196">Feb</text><text x="400" y="196">Mär</text><text x="510" y="196" fill="#6B9C7F">Apr</text>
               </g>
-              <g font-family="JetBrains Mono" font-size="10" fill="#F5F0EB">
-                <text x="70" y="72" text-anchor="middle">4.65</text><text x="180" y="102" text-anchor="middle">4.53</text><text x="290" y="100" text-anchor="middle">4.54</text><text x="400" y="122" text-anchor="middle">4.43</text><text x="510" y="133" text-anchor="middle" fill="#6B9C7F" font-weight="600">4.40</text>
+              <g font-family="JetBrains Mono" font-size="10" fill="#384844">
+                <text x="70" y="72" text-anchor="middle">4.65</text><text x="180" y="102" text-anchor="middle">4.53</text><text x="290" y="100" text-anchor="middle">4.54</text><text x="400" y="122" text-anchor="middle">4.43</text><text x="510" y="133" text-anchor="middle" fill="#3E8D68" font-weight="600">4.40</text>
               </g>
             </svg>
             <div class="legend">
@@ -607,7 +687,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);fo
       <div class="cp-chart">
         <h3>Rating-Entwicklung · letzte 8 Wochen</h3>
         <svg viewBox="0 0 600 180" preserveAspectRatio="none">
-          <g stroke="#243D37" stroke-width="1" stroke-dasharray="2 4" opacity="0.6">
+          <g stroke="rgba(18,34,30,0.14)" stroke-width="1" stroke-dasharray="2 4" opacity="0.6">
             <line x1="40" y1="40" x2="590" y2="40"/><line x1="40" y1="90" x2="590" y2="90"/><line x1="40" y1="140" x2="590" y2="140"/>
           </g>
           <g font-family="JetBrains Mono" font-size="9" fill="#9B958C">
