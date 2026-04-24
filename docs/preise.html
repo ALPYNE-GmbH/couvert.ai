@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preise - Couvert.ai</title>
+<meta name="description" content="Transparente Preise für Couvert: Scan kostenfrei, Intelligence-Report ab CHF 4'500, Custom Audit CHF 9'500, Aufbauphase ab CHF 5'000, Managed Service ab CHF 2'500 pro Standort/Monat.">
+<link rel="canonical" href="https://couvert.ai/preise.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Couvert.ai">
+<meta property="og:title" content="Preise - Couvert.ai">
+<meta property="og:description" content="Transparente Preise für Couvert: Scan, Intelligence-Report, Custom Audit, Aufbauphase, Managed Service. Alle Preise exkl. MWST.">
+<meta property="og:url" content="https://couvert.ai/preise.html">
+<meta property="og:locale" content="de_CH">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Preise - Couvert.ai">
+<meta name="twitter:description" content="Transparente Preise für Couvert: Scan, Intelligence-Report, Custom Audit, Aufbauphase, Managed Service. Alle Preise exkl. MWST.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.price-intro{max-width:720px;margin:0 auto var(--sp-7) auto;text-align:center}
+.price-card{background:var(--canvas-raised);border:1px solid var(--hairline);border-radius:var(--radius-lg);padding:var(--sp-6) var(--sp-6);margin-bottom:var(--sp-4);position:relative;overflow:hidden;box-shadow:var(--shadow-sm)}
+.price-card[data-tier="intelligence-1"]{border-left:3px solid var(--copper)}
+.price-card[data-tier="intelligence-2"]{border-left:3px solid var(--green-accent)}
+.price-card[data-tier="aufbau"]{border-left:3px solid var(--gold-ink)}
+.price-card[data-tier="managed"]{border-left:3px solid var(--copper);background:linear-gradient(180deg,var(--canvas-raised) 0%,var(--canvas-raised) 92%,rgba(196,103,58,.04) 100%)}
+.pc-header{display:flex;justify-content:space-between;align-items:baseline;gap:var(--sp-4);margin-bottom:var(--sp-3);flex-wrap:wrap}
+.pc-stage-label{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--copper)}
+.pc-title{font-family:'DM Sans',sans-serif;font-weight:600;font-size:22px;color:var(--ink);letter-spacing:-0.01em;margin-top:2px}
+.pc-price-block{text-align:right;flex-shrink:0}
+.pc-price{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:22px;color:var(--ink);letter-spacing:0}
+.pc-price-unit{font-family:'DM Sans',sans-serif;font-weight:400;font-size:12px;color:var(--ink-3);letter-spacing:0}
+.pc-body{font-size:15px;line-height:var(--lh-body);color:var(--ink-2);margin:var(--sp-3) 0}
+.pc-features{list-style:none;padding:0;margin:var(--sp-3) 0 0 0;display:grid;gap:8px}
+.pc-features li{font-size:14px;line-height:1.5;color:var(--ink-2);padding-left:22px;position:relative}
+.pc-features li::before{content:'';position:absolute;left:0;top:8px;width:14px;height:1.5px;background:var(--copper)}
+.pc-cta-row{margin-top:var(--sp-4);display:flex;gap:12px;flex-wrap:wrap}
+.pc-scale-note{margin-top:var(--sp-3);font-size:13px;color:var(--ink-3);line-height:1.5;padding:10px 14px;background:var(--canvas-sunken);border-radius:var(--radius-md);border-left:2px solid var(--copper)}
+.price-summary-table{margin-top:var(--sp-6);margin-bottom:var(--sp-5);width:100%;border-collapse:collapse;font-size:14px}
+.price-summary-table th{text-align:left;padding:12px 8px;border-bottom:1px solid var(--hairline-strong);font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-3)}
+.price-summary-table td{padding:12px 8px;border-bottom:1px solid var(--hairline);vertical-align:top}
+.price-summary-table tr:last-child td{border-bottom:none}
+.price-summary-table td:last-child{text-align:right;font-family:'JetBrains Mono',monospace;font-weight:500;color:var(--ink)}
+.mwst-note{padding:var(--sp-4) var(--sp-5);background:var(--canvas-sunken);border-radius:var(--radius-md);margin-top:var(--sp-5);font-size:14px;color:var(--ink-2);line-height:1.6}
+.mwst-note strong{color:var(--ink);font-weight:600}
+.faq-section{margin-top:var(--sp-8)}
+.faq-list{max-width:760px;margin:var(--sp-5) auto 0 auto}
+.faq-item{border-bottom:1px solid var(--hairline);padding:0}
+.faq-item summary{padding:var(--sp-4) 0;font-size:16px;font-weight:600;color:var(--ink);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:color var(--dur-fast) var(--ease-out-quint)}
+.faq-item summary:hover{color:var(--copper)}
+.faq-item summary::after{content:'+';font-family:'JetBrains Mono',monospace;font-size:20px;color:var(--copper);flex-shrink:0;transition:transform var(--dur-fast)}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item-body{padding:0 0 var(--sp-4) 0;font-size:15px;line-height:var(--lh-body);color:var(--ink-2)}
+.subpage-hero{padding-top:120px;padding-bottom:var(--sp-7);background:var(--canvas)}
+.subpage-hero .section-label{margin-bottom:var(--sp-3)}
+.subpage-hero .section-title{font-family:'DM Sans',sans-serif;font-weight:600;font-size:var(--fs-h1);color:var(--ink);line-height:var(--lh-heading);letter-spacing:-0.03em;margin-bottom:var(--sp-3)}
+.subpage-hero .section-sub{font-size:var(--fs-body-lg);color:var(--ink-2);line-height:var(--lh-body);max-width:680px}
+.back-link{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-3);text-decoration:none;display:inline-block;margin-bottom:var(--sp-3);transition:color var(--dur-fast)}
+.back-link:hover{color:var(--copper)}
+@media(max-width:640px){
+  .pc-header{flex-direction:column;align-items:flex-start}
+  .pc-price-block{text-align:left}
+}
+</style>
+</head>
+<body>
+
+<header><div class="container header-inner">
+<a href="index.html" class="logo"><div class="logo-name">c<span>o</span>uvert</div></a>
+<nav class="nav"><a href="index.html#couvert-agents">Agents</a><a href="fallbeispiel.html">Fallbeispiel</a><a href="ablauf.html">Ablauf</a><a href="preise.html" style="color:var(--ink);font-weight:600">Preise</a><a href="https://calendly.com/hello-couvert/30min" target="_blank" class="nav-cta">Gespräch buchen</a></nav>
+<button class="burger" onclick="document.getElementById('mm').classList.add('open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+</div></header>
+
+<div class="mobile-menu" id="mm">
+<button class="mm-close" onclick="document.getElementById('mm').classList.remove('open')" aria-label="Schliessen"><svg viewBox="0 0 24 24" fill="none"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+<a href="index.html">Start</a><a href="index.html#couvert-agents">Agents</a><a href="fallbeispiel.html">Fallbeispiel</a><a href="ablauf.html">Ablauf</a><a href="preise.html">Preise</a><a href="https://calendly.com/hello-couvert/30min" target="_blank" style="color:var(--copper)">Gespräch buchen</a>
+</div>
+
+<!-- HERO -->
+<section class="subpage-hero"><div class="container">
+<a href="index.html" class="back-link">← Startseite</a>
+<div class="section-label">Preise</div>
+<div class="section-title">Transparente Preise. Drei Stufen. Volle Kontrolle.</div>
+<div class="section-sub">Vom kostenfreien Scan über den einmaligen Report bis zum laufenden Managed Service. Alle Preise exkl. MWST, separat ausgewiesen.</div>
+</div></section>
+
+<!-- PRICE-CARDS -->
+<section style="padding-top:0"><div class="container" style="max-width:860px">
+
+<!-- Stage 1 -->
+<div class="price-card" data-tier="scan">
+<div class="pc-header">
+<div>
+<div class="pc-stage-label">Stufe 1 · Erst-Kontakt</div>
+<div class="pc-title">Couvert Scan</div>
+</div>
+<div class="pc-price-block">
+<div class="pc-price">Kostenfrei</div>
+<div class="pc-price-unit">keine Verpflichtung</div>
+</div>
+</div>
+<p class="pc-body">Automatisierter Erst-Scan Ihres Betriebs in 3-5 Minuten. Sie sehen, wo Bewertungen, Menü und Auslastung heute Umsatz liegen lassen, bevor Sie entscheiden ob ein tieferer Report Sinn macht.</p>
+<ul class="pc-features">
+<li>Ca. 30 Reviews automatisch analysiert</li>
+<li>Rating-Trend + Beschwerdemuster-Vorschau</li>
+<li>Grobe CHF-Verlust-Schätzung (public-data-basiert)</li>
+<li>2-Seiten-PDF per E-Mail, keine Terminpflicht</li>
+</ul>
+<div class="pc-cta-row">
+<a href="https://calendly.com/hello-couvert/30min" target="_blank" class="btn-primary">Scan starten →</a>
+</div>
+</div>
+
+<!-- Stage 2 Tier 1 -->
+<div class="price-card" data-tier="intelligence-1">
+<div class="pc-header">
+<div>
+<div class="pc-stage-label">Stufe 2 · Tier 1 Audit</div>
+<div class="pc-title">Couvert Intelligence · Tier 1</div>
+</div>
+<div class="pc-price-block">
+<div class="pc-price">CHF 4'500</div>
+<div class="pc-price-unit">einmalig · exkl. MWST</div>
+</div>
+</div>
+<p class="pc-body">Der automatisierte 15-Seiter-Report: vollständige Review-Analyse, Financial-Impact-Modelling, Speisekarten-Cross-Reference, Wettbewerbs-Benchmarking. Stripe-Checkout, Lieferung in 5 Werktagen.</p>
+<ul class="pc-features">
+<li>Bis zu 5'000 Google- und TripAdvisor-Reviews ausgewertet</li>
+<li>12 Agents generieren strukturierte Befunde in CHF</li>
+<li>Priorisierter Massnahmen-Katalog mit ROI pro Hebel</li>
+<li>Portfolio-Hochrechnung bei Multi-Site-Gruppen</li>
+<li>Anwendbar ohne weitere Couvert-Leistung</li>
+</ul>
+<div class="pc-cta-row">
+<a href="fallbeispiel.html" class="btn-secondary">Beispielbericht ansehen →</a>
+<a href="https://calendly.com/hello-couvert/30min" target="_blank" class="btn-ghost">Fragen dazu? Gespräch buchen</a>
+</div>
+</div>
+
+<!-- Stage 2 Tier 2 -->
+<div class="price-card" data-tier="intelligence-2">
+<div class="pc-header">
+<div>
+<div class="pc-stage-label">Stufe 2 · Tier 2 Custom</div>
+<div class="pc-title">Couvert Intelligence · Custom Audit</div>
+</div>
+<div class="pc-price-block">
+<div class="pc-price">CHF 9'500</div>
+<div class="pc-price-unit">einmalig · exkl. MWST</div>
+</div>
+</div>
+<p class="pc-body">Der tiefe Report mit Erstgespräch und Zugang zu internen Daten (POS, Reservierungen, Finanzen). Couvert-Team kalibriert die Analyse auf Ihre spezifischen Kennzahlen und Strategie-Ziele. 2-3 Wochen Lieferzeit.</p>
+<ul class="pc-features">
+<li>Alles aus Tier 1 Audit, plus:</li>
+<li>POS-Datenabgleich (Wareneinsatz, Umsatzmix pro Gericht)</li>
+<li>Reservierungsdaten-Analyse (No-Show-Patterns, Auslastungsprofile)</li>
+<li>Personaldaten-Analyse (Schichtbesetzung vs. Ertrag)</li>
+<li>Custom-Themen je nach Fragestellung (z.B. Standort-Vergleich, Saisonanalyse)</li>
+<li>90-Min-Ergebnisgespräch mit Max Veit und den Daten im Raum</li>
+</ul>
+<div class="pc-cta-row">
+<a href="https://calendly.com/hello-couvert/30min" target="_blank" class="btn-primary">Custom Audit besprechen →</a>
+</div>
+</div>
+
+<!-- Stage 3 Aufbau -->
+<div class="price-card" data-tier="aufbau">
+<div class="pc-header">
+<div>
+<div class="pc-stage-label">Stufe 3 · Setup</div>
+<div class="pc-title">Aufbauphase</div>
+</div>
+<div class="pc-price-block">
+<div class="pc-price">ab CHF 5'000</div>
+<div class="pc-price-unit">einmalig · exkl. MWST</div>
+</div>
+</div>
+<p class="pc-body">Data-Onboarding, Agent-Aktivierung, Tonalitäts-Kalibrierung, Integration in Ihre Systeme. 2-4 Wochen, bevor das Managed-Service laufend wird. Notwendige Voraussetzung für Stufe 3 Managed Service.</p>
+<ul class="pc-features">
+<li>Source-Integration: POS, Reservierungssystem, Review-Quellen</li>
+<li>Tonalitäts-Training aller 12 Agents auf Ihren Brand-Voice</li>
+<li>Alert- und Eskalations-Policy definieren</li>
+<li>Telegram- oder Slack-Kanal für Agent-Kommunikation</li>
+<li>Staff-Briefing und Onboarding (2 Sessions)</li>
+</ul>
+<div class="pc-scale-note">
+<strong>Skalierung:</strong> Aufbauphase skaliert mit Anzahl Standorte und Integrations-Tiefe. Multi-Site-Gruppen (3+ Standorte) ab CHF 5'000 bis CHF 15'000, je nach System-Landschaft.
+</div>
+<div class="pc-cta-row">
+<a href="https://calendly.com/hello-couvert/30min" target="_blank" class="btn-primary">Aufbau-Scope besprechen →</a>
+</div>
+</div>
+
+<!-- Stage 3 Managed -->
+<div class="price-card" data-tier="managed">
+<div class="pc-header">
+<div>
+<div class="pc-stage-label">Stufe 3 · Laufend</div>
+<div class="pc-title">Couvert Operations · Managed Service</div>
+</div>
+<div class="pc-price-block">
+<div class="pc-price">ab CHF 2'500</div>
+<div class="pc-price-unit">pro Standort / Monat · exkl. MWST</div>
+</div>
+</div>
+<p class="pc-body">Ihr laufendes Agentic Service OS: 12 AI-Agents arbeiten 24/7 im Hintergrund, mit täglichen Signalen, wöchentlichen Alerts und monatlichen Wirkungsberichten in CHF. Monatlich kündbar nach 6 Monaten Mindestlaufzeit.</p>
+<ul class="pc-features">
+<li>Alle 12 Agents in 4 Bereichen (Gäste · Betrieb · Speisekarte · Marketing)</li>
+<li>Tägliche Signale · wöchentliche Briefings · monatlicher Impact-Report in CHF</li>
+<li>Eskalation kritischer Befunde an Sie oder Ihr Team (je nach Autonomie-Level)</li>
+<li>Quartalsweise Review-Calls mit Max Veit und Strategie-Update</li>
+<li>Daten bleiben in Schweizer Rechenzentren (nDSG-konform)</li>
+</ul>
+<div class="pc-scale-note">
+<strong>Enterprise-Skalierung:</strong> Für Gruppen mit 5+ Standorten skaliert der Monatspreis auf CHF 3'500-5'000 pro Standort, je nach Integrations-Tiefe und Autonomie-Level. Volume-Preis-Staffel individuell im Gespräch.
+</div>
+<div class="pc-cta-row">
+<a href="https://calendly.com/hello-couvert/30min" target="_blank" class="btn-primary">30-Min-Gespräch buchen →</a>
+</div>
+</div>
+
+<!-- Summary table -->
+<h2 style="margin-top:var(--sp-8);font-family:'DM Sans',sans-serif;font-weight:600;font-size:var(--fs-h2);color:var(--ink);letter-spacing:-0.02em">Übersicht</h2>
+<table class="price-summary-table">
+<thead>
+<tr><th>Stufe</th><th>Produkt</th><th>Lieferung</th><th>Preis exkl. MWST</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>Couvert Scan</td><td>2-Seiter · 3-5 Min</td><td>Kostenfrei</td></tr>
+<tr><td>2 · Tier 1</td><td>Intelligence Audit</td><td>15-Seiter · 5 Werktage</td><td>CHF 4'500</td></tr>
+<tr><td>2 · Tier 2</td><td>Intelligence Custom Audit</td><td>2-3 Wochen · inkl. Gespräch</td><td>CHF 9'500</td></tr>
+<tr><td>3 · Setup</td><td>Aufbauphase</td><td>2-4 Wochen · einmalig</td><td>ab CHF 5'000</td></tr>
+<tr><td>3 · Laufend</td><td>Managed Service</td><td>Monatlich · 6 Monate Mindestlaufzeit</td><td>ab CHF 2'500 / Standort / Monat</td></tr>
+</tbody>
+</table>
+
+<!-- MWST note -->
+<div class="mwst-note">
+<strong>MWST-Hinweis.</strong> Alle Preise verstehen sich exkl. Mehrwertsteuer. Je nach Sitz des Kunden-Betriebs: Schweiz <strong>+ 8.1 %</strong>, Deutschland <strong>+ 19 %</strong>, Österreich <strong>+ 20 %</strong>. MWST wird auf Rechnungen separat ausgewiesen.
+</div>
+
+</div></section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq"><div class="container" style="max-width:860px">
+<div class="section-label">Häufige Fragen</div>
+<h2 style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:var(--fs-h2);color:var(--ink);letter-spacing:-0.02em;margin-top:var(--sp-3)">FAQ zu Preisen und Bedingungen</h2>
+<div class="faq-list">
+
+<details class="faq-item">
+<summary>Warum ist der Scan kostenfrei?</summary>
+<div class="faq-item-body">Der Scan nutzt ausschliesslich public-Daten (Google-Reviews, öffentliche Menüs) und läuft vollautomatisch. Unser Ziel ist, dass Sie das Signal sehen bevor Sie eine Kaufentscheidung treffen. Kein Lock-In, kein Abo-Zwang.</div>
+</details>
+
+<details class="faq-item">
+<summary>Was ist der Unterschied zwischen Tier 1 und Tier 2 Audit?</summary>
+<div class="faq-item-body">Tier 1 ist vollautomatisiert und basiert nur auf public-Daten (Reviews, öffentliche Menüs, Wettbewerber-Daten). Tier 2 bindet Ihre internen Daten ein: POS, Reservierungen, Personaldaten, Finanzen. Das erlaubt präzisere CHF-Aussagen und individuelle Fragestellungen. Tier 2 ist empfohlen bei komplexen Multi-Site-Gruppen oder wenn Sie spezifische strategische Fragen beantwortet haben wollen.</div>
+</details>
+
+<details class="faq-item">
+<summary>Muss ich erst Stufe 2 kaufen, bevor ich Stufe 3 starten kann?</summary>
+<div class="faq-item-body">Ja. Der Intelligence-Report (Tier 1 oder Tier 2) ist die Grundlage für das Managed Service. Er definiert welche Hebel adressiert werden, welche Agents aktiv werden, und setzt Baseline-Metriken fest um Wirkung messen zu können. Ohne Baseline keine CHF-Wirkungsberichte.</div>
+</details>
+
+<details class="faq-item">
+<summary>Was passiert in den 2-4 Wochen Aufbauphase?</summary>
+<div class="faq-item-body">Source-Integration (POS, Reservierungssystem, Review-APIs), Tonalitäts-Kalibrierung aller 12 Agents auf Ihren Brand-Voice, Alert-Policy definieren, Telegram/Slack-Kanal einrichten, Staff-Briefings. Am Ende der Aufbauphase sind alle Agents produktiv und das Managed Service startet im nächsten Monatszyklus.</div>
+</details>
+
+<details class="faq-item">
+<summary>Wie funktioniert die Enterprise-Staffelung für Gruppen?</summary>
+<div class="faq-item-body">Der Managed-Service-Monatspreis skaliert nicht linear mit Standortzahl, sondern nach Integrations-Tiefe. Für eine 3-Standort-Gruppe mit einheitlichem POS liegt der Preis bei CHF 2'500-3'000 pro Standort. Für eine 10-Standort-Gruppe mit mehreren POS-Systemen, Franchise-Struktur oder hohem Autonomie-Level sind CHF 3'500-5'000 pro Standort üblich. Volume-Discount ab 5 Standorten, individuell verhandelt.</div>
+</details>
+
+<details class="faq-item">
+<summary>Kann ich monatlich kündigen?</summary>
+<div class="faq-item-body">Ja, nach einer Mindestlaufzeit von 6 Monaten ab Start des Managed Service. Kündigung jeweils zum Monatsende mit 30 Tagen Frist. Die 6 Monate sind notwendig, damit die Agents genug Trainingsdaten für Ihren Betrieb sammeln und der erste Impact-Report in Monat 6 belastbar wird. Tier 1 und Tier 2 Audits sind Einmalprodukte, nicht kündbar (werden sofort geliefert).</div>
+</details>
+
+<details class="faq-item">
+<summary>Welche Zahlungsweisen sind möglich?</summary>
+<div class="faq-item-body">Tier 1 Audit: Stripe-Checkout (Kreditkarte, Apple Pay, Google Pay) oder Rechnung auf Anfrage. Tier 2, Aufbau und Managed Service: Rechnung mit 14 Tagen Zahlungsziel, SEPA oder IBAN-Überweisung. Für Managed Service ist Monatsrechnung Standard; quartalsweise oder jährliche Rechnung mit 5 % Rabatt möglich.</div>
+</details>
+
+<details class="faq-item">
+<summary>Was ist, wenn ich unzufrieden bin?</summary>
+<div class="faq-item-body">Tier 1 Audit: 7-Tage-Geld-zurück-Garantie ab Lieferung, wenn der Report aus Ihrer Sicht keinen aktionablen Inhalt hat. Managed Service: bei unzureichender Wirkung in Monat 6 (keine mess­baren CHF-Effekte dokumentiert) kann das Service ohne weitere Bindung beendet werden, nicht-gelaufene Monate werden rückerstattet.</div>
+</details>
+
+<details class="faq-item">
+<summary>Bleiben meine Daten in der Schweiz?</summary>
+<div class="faq-item-body">Ja. Alle Kundendaten werden in Schweizer Rechenzentren (Infomaniak, Switch) verarbeitet und gespeichert. Datenschutz gemäss Schweizer nDSG, für EU-Kunden zusätzlich DSGVO-konform. Details unter <a href="datenschutz.html">Datenschutz</a>.</div>
+</details>
+
+<details class="faq-item">
+<summary>Kann ich nur einzelne Agents buchen?</summary>
+<div class="faq-item-body">Nein. Die 12 Agents arbeiten als Team und teilen Datenflüsse miteinander (z.B. der Revenue Analyst braucht Output vom Quality Watchdog, um Verlustzahlen zu berechnen). Einzelbuchung würde die Wirkung des Systems verwässern. Das Managed Service ist als komplettes Team gepreist.</div>
+</details>
+
+</div>
+</div></section>
+
+<!-- CTA -->
+<section class="cta-section"><div class="container">
+<div class="section-label" style="text-align:center">Nächster Schritt</div>
+<h2>Noch Fragen zur Preisstruktur?</h2>
+<p>Wir erklären Ihnen im 30-minütigen Gespräch, welche Stufe für Ihren Betrieb den meisten Sinn macht, und kalkulieren gemeinsam den konkreten Scope.</p>
+<div class="cta-buttons"><a href="https://calendly.com/hello-couvert/30min" target="_blank" class="btn-primary">Erstgespräch vereinbaren</a><a href="fallbeispiel.html" class="btn-ghost">Beispielanalyse ansehen</a></div>
+</div></section>
+
+<footer><div class="container">
+<div class="footer-inner"><div class="footer-left">© 2026 COUVERT.AI · ZÜRICH</div><div class="footer-right">Jedes Gedeck zählt.</div></div>
+<div class="footer-links"><a href="preise.html">Preise</a><a href="methodik.html">Methodik</a><a href="ablauf.html">Ablauf</a><a href="geschichte.html">Geschichte</a><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="mailto:hello@couvert.ai">hello@couvert.ai</a><div class="footer-trust"><span>Daten in der Schweiz</span><span>Monatlich kündbar</span><span>Gegründet in Pfäffikon SZ</span></div></div>
+</div></footer>
+
+</body>
+</html>

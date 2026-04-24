@@ -272,6 +272,15 @@
 .stage-body{font-size:15px;line-height:var(--lh-body);color:var(--ink-2);font-weight:400;flex:1;position:relative;z-index:1}
 .stage-cta{font-size:14px;color:var(--stage-accent,var(--copper));text-decoration:none;font-weight:600;letter-spacing:0;border-bottom:1px solid transparent;transition:border-color var(--dur-fast) var(--ease-out-quint);align-self:flex-start;position:relative;z-index:1}
 .stage-cta:hover{border-color:currentColor}
+.stage-price{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:13px;letter-spacing:0.04em;color:var(--ink);background:var(--canvas-sunken);border:1px solid var(--hairline);border-radius:var(--radius-pill);padding:4px 10px;display:inline-flex;align-self:flex-start;margin-top:-2px;position:relative;z-index:1}
+.stage-tiers{display:flex;flex-direction:column;gap:10px;padding:12px 14px;background:var(--canvas-sunken);border:1px solid var(--hairline);border-radius:var(--radius-md);margin-top:4px;position:relative;z-index:1}
+.stage-tier-item{display:grid;grid-template-columns:1fr auto;gap:8px 12px;align-items:baseline}
+.stage-tier-name{font-family:'DM Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink);letter-spacing:-0.01em}
+.stage-tier-price{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:13px;color:var(--stage-accent,var(--copper));letter-spacing:0.02em;white-space:nowrap}
+.stage-tier-sub{grid-column:1/-1;font-size:12px;color:var(--ink-3);line-height:1.4;margin-top:-2px}
+.stages-footnote{margin-top:var(--sp-4);font-size:12px;color:var(--ink-3);text-align:center;line-height:1.5}
+.stages-footnote a{color:var(--copper);text-decoration:none;font-weight:500;border-bottom:1px solid transparent;transition:border-color var(--dur-fast) var(--ease-out-quint)}
+.stages-footnote a:hover{border-bottom-color:currentColor}
 .stage-card[data-team="scan"] .stage-body{font-size:15px}
 .stage-card[data-team="intelligence"]{background:linear-gradient(180deg,var(--canvas-raised) 0%,var(--canvas-raised) 92%,rgba(47,94,82,.05) 100%)}
 @media(max-width:800px){.stages-grid{grid-template-columns:1fr}.stage-card::before{font-size:44px;top:14px;right:18px}}
@@ -422,7 +431,8 @@
 <a href="fallbeispiel.html" role="menuitem">Fallbeispiel</a>
 <a href="ablauf.html" role="menuitem">Ablauf</a>
 <a href="methodik.html" role="menuitem">Methodik</a>
-<a href="ablauf.html#faq" role="menuitem">FAQ</a>
+<a href="preise.html" role="menuitem">Preise</a>
+<a href="preise.html#faq" role="menuitem">FAQ</a>
 <div class="dm-sep"></div>
 <a href="https://calendly.com/hello-couvert/30min" target="_blank" rel="noopener" role="menuitem" style="color:var(--copper);font-weight:600">Gespräch buchen →</a>
 </div>
@@ -435,7 +445,8 @@
 <a href="fallbeispiel.html">Fallbeispiel</a>
 <a href="ablauf.html">Ablauf</a>
 <a href="methodik.html">Methodik</a>
-<a href="ablauf.html#faq">FAQ</a>
+<a href="preise.html">Preise</a>
+<a href="preise.html#faq">FAQ</a>
 <a href="https://calendly.com/hello-couvert/30min" target="_blank" rel="noopener" style="color:var(--copper)">Gespräch buchen</a>
 </div>
 
@@ -701,37 +712,37 @@
 <!-- COUVERT AGENTS -->
 <section class="ai-team-section light-section reveal" id="couvert-agents"><div class="container">
 <div class="section-label">Ihre Couvert Agents</div>
-<div class="section-title">Vier spezialisierte Teams. Zwölf Agents.</div>
-<div class="section-sub">Jedes Team löst ein konkretes Problem. Die Agents teilen sich Daten und Entscheidungen - damit deckt das Team den gesamten operativen Kreislauf ab, von der einzelnen Bewertung bis zur strategischen Standort-Optimierung.</div>
+<div class="section-title">Vier Bereiche. Zwölf Agents.</div>
+<div class="section-sub">Jeder Bereich löst ein konkretes Problem. Die Agents teilen sich Daten und Entscheidungen, damit das Team den gesamten operativen Kreislauf abdeckt: von der einzelnen Bewertung bis zur Standort-Optimierung.</div>
 <div class="ai-teams-grid">
 
-<div class="ai-team-card">
-<div class="atc-label">Team 1</div>
-<h3>Guest Experience</h3>
+<div class="ai-team-card" data-team="guest">
+<div class="atc-label">01 · Gäste</div>
+<h3>Gäste</h3>
 <p class="atc-intro">Bewertungen. Rückgewinnung. Auslastung.</p>
 <ul class="atc-agents">
-<li><strong>Reputation Manager</strong>Beantwortet jede Bewertung mehrsprachig in Ihrer Tonalität - kritische Fälle innerhalb 2 Stunden.</li>
+<li><strong>Reputation Manager</strong>Beantwortet jede Bewertung mehrsprachig in Ihrer Tonalität, kritische Fälle innerhalb 2 Stunden.</li>
 <li><strong>Guest Recovery</strong>Identifiziert unzufriedene Gäste aus Bewertungen und Reservierungsdaten und holt sie persönlich zurück.</li>
 <li><strong>Booking Optimizer</strong>Erkennt Auslastungslücken, füllt schwache Slots durch Recovery-Einladungen und entlastet Spitzenzeiten.</li>
 </ul>
 </div>
 
-<div class="ai-team-card">
-<div class="atc-label">Team 2</div>
-<h3>Quality & Operations</h3>
-<p class="atc-intro">Qualität. Kapazität. Personal. Kommunikation.</p>
+<div class="ai-team-card" data-team="quality">
+<div class="atc-label">02 · Betrieb</div>
+<h3>Betrieb</h3>
+<p class="atc-intro">Qualität. Schichten. Personal. Kommunikation.</p>
 <ul class="atc-agents">
 <li><strong>Quality Watchdog</strong>Erkennt Beschwerde-Muster bevor sie im Rating sichtbar werden und briefed zuständige Mitarbeiter vor Schichtbeginn.</li>
 <li><strong>Operations Advisor</strong>Korreliert Reservierungsdaten mit Gäste-Sentiment und passt Reservierungs-Buffer vor Spitzentagen an.</li>
-<li><strong>Predictive Staffing</strong>Stafft nach Risiko, nicht nur nach Reservierungen - kombiniert Wetter, Events und historische Auslastung.</li>
+<li><strong>Predictive Staffing</strong>Stafft nach Risiko, nicht nur nach Reservierungen. Kombiniert Wetter, Events und historische Auslastung.</li>
 <li><strong>Staff Communication</strong>Strukturierte Schichtübergaben statt informelle Chats. Personalisierte Briefings pro Rolle.</li>
 </ul>
 </div>
 
-<div class="ai-team-card">
-<div class="atc-label">Team 3</div>
-<h3>Revenue & Menu</h3>
-<p class="atc-intro">Umsatz. Speisekarte. Einkauf.</p>
+<div class="ai-team-card" data-team="revenue">
+<div class="atc-label">03 · Speisekarte</div>
+<h3>Speisekarte</h3>
+<p class="atc-intro">Menü. Kalkulation. Wareneinsatz.</p>
 <ul class="atc-agents">
 <li><strong>Revenue Analyst</strong>Beziffert jede Schwachstelle in Franken mit monatlichem Wirkungsbericht und ROI-Berechnung.</li>
 <li><strong>Menu Intelligence</strong>Gericht-spezifisches Sentiment-Tracking nach jedem Kartenwechsel, Preis-Leistungs-Anomalien identifizieren.</li>
@@ -739,12 +750,12 @@
 </ul>
 </div>
 
-<div class="ai-team-card">
-<div class="atc-label">Team 4</div>
-<h3>Market & Growth</h3>
-<p class="atc-intro">Marketing. Wettbewerb.</p>
+<div class="ai-team-card" data-team="market">
+<div class="atc-label">04 · Marketing</div>
+<h3>Marketing</h3>
+<p class="atc-intro">Kampagnen. Wettbewerb. Wachstum.</p>
 <ul class="atc-agents">
-<li><strong>Marketing Engine</strong>ROI-Tracking pro Kampagne, Budget an Auslastung koppeln - Paid Ads nur wenn Auslastung unter 60% fällt.</li>
+<li><strong>Marketing Engine</strong>ROI-Tracking pro Kampagne, Budget an Auslastung koppeln. Paid Ads nur wenn Auslastung unter 60% fällt.</li>
 <li><strong>Competitor Radar</strong>Wöchentliches Monitoring der Top-Wettbewerber: Rating, Reviews, Preise, Strategiewechsel.</li>
 </ul>
 </div>
@@ -800,28 +811,56 @@
 </div>
 <div class="stages-grid">
 
-<div class="stage-card" id="scan">
+<div class="stage-card" id="scan" data-team="scan" data-stage-num="01">
 <div class="stage-label">Stufe 1 · Couvert Scan</div>
+<div class="stage-price">Kostenfrei</div>
 <div class="stage-title">Couvert Scan</div>
-<p class="stage-body">Kostenfreier Erst-Scan mit dem Couvert Agentic Service OS: In 3–5 Minuten sehen Sie, wo Bewertungen, Menü und Auslastung heute Geld liegen lassen.</p>
+<p class="stage-body">Kostenfreier Erst-Scan mit dem Couvert Agentic Service OS: In 3-5 Minuten sehen Sie, wo Bewertungen, Menü und Auslastung heute Geld liegen lassen.</p>
 <a href="https://calendly.com/hello-couvert/30min" target="_blank" class="stage-cta">Scan starten →</a>
 </div>
 
-<div class="stage-card" id="intelligence">
+<div class="stage-card" id="intelligence" data-team="intelligence" data-stage-num="02">
 <div class="stage-label">Stufe 2 · Couvert Intelligence</div>
+<div class="stage-price">ab CHF 4'500 · einmalig</div>
 <div class="stage-title">Couvert Intelligence</div>
 <p class="stage-body">Das Couvert Intelligence Playbook - Performance-Profil und priorisierter Massnahmenplan für Marketing und Betrieb, der auf Ihren Daten basiert. Grundlage, bevor das Agentic Service OS dauerhaft aktiviert wird.</p>
+<div class="stage-tiers">
+  <div class="stage-tier-item">
+    <div class="stage-tier-name">Tier 1 Audit</div>
+    <div class="stage-tier-price">CHF 4'500</div>
+    <div class="stage-tier-sub">15-Seiter, automatisch · 5 Werktage Lieferung</div>
+  </div>
+  <div class="stage-tier-item">
+    <div class="stage-tier-name">Tier 2 Custom Audit</div>
+    <div class="stage-tier-price">CHF 9'500</div>
+    <div class="stage-tier-sub">Mit Erstgespräch + internen Daten · 2-3 Wochen</div>
+  </div>
+</div>
 <a href="fallbeispiel.html" class="stage-cta">Beispielbericht ansehen →</a>
 </div>
 
-<div class="stage-card" id="operations">
+<div class="stage-card" id="operations" data-team="operations" data-stage-num="03">
 <div class="stage-label">Stufe 3 · Couvert Operations</div>
+<div class="stage-price">ab CHF 2'500 / Standort / Monat</div>
 <div class="stage-title">Couvert Operations</div>
 <p class="stage-body">Ihr laufendes Agentic Service OS im Hintergrund. Tägliche Signale, wöchentliche Alerts, monatliche Wirkungsberichte und - je nach gewünschter Autonomie - operative Empfehlungen oder direkt ausgeführte Aktionen für Umsatz, Guest Experience, Staffing und Menü.</p>
+<div class="stage-tiers">
+  <div class="stage-tier-item">
+    <div class="stage-tier-name">Aufbau-Setup</div>
+    <div class="stage-tier-price">ab CHF 5'000</div>
+    <div class="stage-tier-sub">Einmalig · 2-4 Wochen · Data-Onboarding + Agent-Aktivierung</div>
+  </div>
+  <div class="stage-tier-item">
+    <div class="stage-tier-name">Managed Service</div>
+    <div class="stage-tier-price">ab CHF 2'500</div>
+    <div class="stage-tier-sub">Pro Standort/Monat · skaliert bis CHF 3'500-5'000 für 5+ Standort-Gruppen, abhängig von Integrations-Tiefe</div>
+  </div>
+</div>
 <a href="#couvert-agents" class="stage-cta">Die Couvert Agents →</a>
 </div>
 
 </div>
+<p class="stages-footnote">Alle Preise exkl. MWST (8.1 % Schweiz · 19 % Deutschland · 20 % Österreich). Details und FAQ auf der <a href="preise.html">Preise-Seite</a>.</p>
 </div></section>
 
 <!-- CTA -->
@@ -837,7 +876,7 @@
 
 <footer><div class="container">
 <div class="footer-inner"><div class="footer-left">© 2026 COUVERT.AI - ZÜRICH</div><div class="footer-right">Jedes Gedeck zählt.</div></div>
-<div class="footer-links"><a href="methodik.html">Methodik</a><a href="geschichte.html">Geschichte</a><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="mailto:hello@couvert.ai">hello@couvert.ai</a><div class="footer-trust"><span>Daten in der Schweiz</span><span>Monatlich kündbar</span><span>Gegründet in Zürich</span></div></div>
+<div class="footer-links"><a href="preise.html">Preise</a><a href="methodik.html">Methodik</a><a href="ablauf.html">Ablauf</a><a href="geschichte.html">Geschichte</a><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="mailto:hello@couvert.ai">hello@couvert.ai</a><div class="footer-trust"><span>Daten in der Schweiz</span><span>Monatlich kündbar</span><span>Gegründet in Pfäffikon SZ</span></div></div>
 </div></footer>
 
 <div class="mobile-sticky-results" id="mobile-sticky">
