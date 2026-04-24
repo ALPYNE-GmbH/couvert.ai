@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cockpit · Couvert Click-Dummy</title>
-<meta name="description" content="Interaktiver Klick-Dummy des Couvert Cockpits — spielen Sie Reviews, Shift-Briefing, Monthly Impact Report und Competitor Radar durch.">
+<meta name="description" content="Interaktiver Klick-Dummy des Couvert Cockpits - spielen Sie Reviews, Shift-Briefing, Monthly Impact Report und Competitor Radar durch.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* Block 3 — Off-White canvas, copper accents, green reduced to structure-only */
+  /* Block 3 - Off-White canvas, copper accents, green reduced to structure-only */
   --bg:#FAF8F3;        /* primary canvas (was dark green) */
   --bg2:#FFFFFF;       /* raised cards (was bg2 dark) */
   --bg3:#F2EFE7;       /* sunken / sidebar rail */
@@ -327,7 +327,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);fo
 }
 </style>
 <style>
-/* Block 3 — Readability overrides after canvas migration.
+/* Block 3 - Readability overrides after canvas migration.
    --cream is now dark ink. Whenever we need LIGHT text on colored bg, force it. */
 .btn.primary,
 .btn.primary:hover,
@@ -336,7 +336,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg4);color:var(--text);fo
 .side-item.active .count{color:#FAF8F3 !important}
 .userpill .av{color:#FAF8F3}
 
-/* Copper gets precedence for active states — keep copper on copper-soft */
+/* Copper gets precedence for active states - keep copper on copper-soft */
 .chip.active{background:var(--copper-soft);border-color:var(--copper);color:var(--copper)}
 
 /* Sidebar: thin green rail retained; sidebar body now on sunken canvas */
@@ -364,7 +364,7 @@ body{background:var(--bg);color:var(--text)}
 .cp-final{background:var(--bg2) !important;border:1px solid var(--copper)}
 .cp-final h2{color:var(--cream) !important}
 
-/* Agent-pills — keep semantic colors, just tuned for light canvas */
+/* Agent-pills - keep semantic colors, just tuned for light canvas */
 .agent-pill{background:var(--copper-soft);border:1px solid rgba(196,103,58,0.25);color:var(--copper)}
 .agent-pill.gold{background:rgba(138,106,18,0.08);border-color:rgba(138,106,18,0.22);color:var(--gold)}
 .agent-pill.green{background:rgba(62,141,104,0.08);border-color:rgba(62,141,104,0.22);color:var(--green)}
@@ -392,7 +392,7 @@ body{background:var(--bg);color:var(--text)}
 .status-chip.solved{background:rgba(62,141,104,0.08);color:var(--green);border-color:rgba(62,141,104,0.22)}
 .status-chip.escalated{background:rgba(193,68,56,0.08);color:var(--red);border-color:rgba(193,68,56,0.22)}
 
-/* Sidebar left-rail — tiny green-deep structure line */
+/* Sidebar left-rail - tiny green-deep structure line */
 .sidebar{border-left:2px solid var(--green-deep)}
 </style>
 <script src="/cookie-consent.js" defer></script>
@@ -717,8 +717,8 @@ body{background:var(--bg);color:var(--text)}
 
       <div class="cp-reco">
         <h3>Gegenvorschläge <span class="agent-pill">MARKETING ENGINE</span></h3>
-        <div class="cp-reco-item"><b>Lunch-Special CHF 18.90 testen</b>Wettbewerber A gewinnt mit neuem Lunch-Menü +300% Reviews/Woche. Gegenvorschlag: eigenes Mittagsangebot Mo–Fr 11:30–14:00, Preispunkt identisch — Marge hält durch reduzierten Signature-Trüffel-Anteil.</div>
-        <div class="cp-reco-item"><b>Antwortquote aufholen</b>Wettbewerber A beantwortet 78%, Sie 0%. Reputation Manager kann 2.900 Backlog-Reviews in 14 Tagen abarbeiten — +0.1 Rating binnen 8 Wochen realistisch.</div>
+        <div class="cp-reco-item"><b>Lunch-Special CHF 18.90 testen</b>Wettbewerber A gewinnt mit neuem Lunch-Menü +300% Reviews/Woche. Gegenvorschlag: eigenes Mittagsangebot Mo–Fr 11:30–14:00, Preispunkt identisch - Marge hält durch reduzierten Signature-Trüffel-Anteil.</div>
+        <div class="cp-reco-item"><b>Antwortquote aufholen</b>Wettbewerber A beantwortet 78%, Sie 0%. Reputation Manager kann 2.900 Backlog-Reviews in 14 Tagen abarbeiten - +0.1 Rating binnen 8 Wochen realistisch.</div>
       </div>
 
       <div class="cp-final">
@@ -757,27 +757,27 @@ const reviewsData=[
    preview:'Ich habe für Samstag um 19:00 Uhr einen Tisch für 4 Erwachsene und 3 Kinder reserviert. Wir sind pünktlich angekommen und mussten trotzdem 30 Minuten…',
    body:'Ich habe für Samstag um 19:00 Uhr einen Tisch für 4 Erwachsene und 3 Kinder reserviert. Wir sind pünktlich angekommen und mussten trotzdem 30 Minuten direkt bei der Eingangstür im Restaurant warten, zusammen mit einer grossen Menschenmenge. Das ist mit hungrigen Kindern schwierig und hat den Abend getrübt. Das Essen war dann sehr gut, aber wir kommen vorerst nicht mehr wieder.',
    tags:['Wartezeit','Gruppe','Kinder'],status:'open',
-   reply:'Liebe Frau K., vielen Dank für Ihr ehrliches Feedback und dass Sie sich die Zeit genommen haben, Ihre Erfahrung zu teilen. Eine Wartezeit von 30 Minuten trotz Reservation entspricht nicht unserem Anspruch, und wir verstehen Ihre Enttäuschung — insbesondere mit einer Gruppe und hungrigen Kindern. Wir haben die Reservierungskapazität für die Wochenenden bereits angepasst und werden zusätzlich einen Empfangsmoderator für den Samstagabend einsetzen, damit dies nicht erneut vorkommt. Ich würde mich sehr freuen, Sie bei einem weiteren Besuch persönlich zu begrüssen.'},
+   reply:'Liebe Frau K., vielen Dank für Ihr ehrliches Feedback und dass Sie sich die Zeit genommen haben, Ihre Erfahrung zu teilen. Eine Wartezeit von 30 Minuten trotz Reservation entspricht nicht unserem Anspruch, und wir verstehen Ihre Enttäuschung - insbesondere mit einer Gruppe und hungrigen Kindern. Wir haben die Reservierungskapazität für die Wochenenden bereits angepasst und werden zusätzlich einen Empfangsmoderator für den Samstagabend einsetzen, damit dies nicht erneut vorkommt. Ich würde mich sehr freuen, Sie bei einem weiteren Besuch persönlich zu begrüssen.'},
   {id:2,author:'Julia B.',src:'T',stars:2,date:'Donnerstag, 16. April 2026',lang:'English',
    preview:'Ordered the carbonara pizza thing! It was no pizza dough. The texture was like cardboard, really disappointing.',
-   body:"Ordered the carbonara pizza thing! It was no pizza dough. The texture was like cardboard, really disappointing for the price point. Service was slow — we waited 40 minutes for the main. Won't return.",
+   body:"Ordered the carbonara pizza thing! It was no pizza dough. The texture was like cardboard, really disappointing for the price point. Service was slow - we waited 40 minutes for the main. Won't return.",
    tags:['Teigqualität','Service'],status:'open',
    reply:'Dear Julia, thank you for taking the time to share your feedback. The dough quality you describe is not up to the standard we set for ourselves, and we take that seriously. Our kitchen team has a dedicated dough-quality briefing scheduled this week, and service times during peak hours are under active review with our Operations team. I would personally like to invite you back so we can show you what our pizza is meant to taste like.'},
   {id:3,author:'Stefan H.',src:'G',stars:2,date:'Sonntag, 12. April 2026',lang:'Deutsch',
    preview:'Paid 43 CHF for 1 pizza and a bottle of sparkling water. Dough not cooked, ingredients cheap and tasteless.',
-   body:'Paid 43 CHF for 1 pizza and a bottle of sparkling water. Dough not cooked, ingredients cheap and tasteless. Service pushed us to order the Signature Trüffel — felt like a trap at that price point.',
+   body:'Paid 43 CHF for 1 pizza and a bottle of sparkling water. Dough not cooked, ingredients cheap and tasteless. Service pushed us to order the Signature Trüffel - felt like a trap at that price point.',
    tags:['Preis','Teigqualität','Upselling'],status:'escalated',
-   reply:'Sehr geehrter Herr H., Ihr Feedback zum Preis-Leistungs-Verhältnis nehmen wir ernst. Die Teigqualität ist aktuell ein Arbeitsfokus unseres Küchenchefs, und das Servicepersonal erhält noch diese Woche ein neues Briefing zur Beratungs-Disziplin — Upselling-Vorschläge nur auf Nachfrage. Ich würde mich freuen, Sie bei einem weiteren Besuch persönlich zu begrüssen, damit wir Ihnen zeigen können, dass unser Anspruch ein anderer ist.'},
+   reply:'Sehr geehrter Herr H., Ihr Feedback zum Preis-Leistungs-Verhältnis nehmen wir ernst. Die Teigqualität ist aktuell ein Arbeitsfokus unseres Küchenchefs, und das Servicepersonal erhält noch diese Woche ein neues Briefing zur Beratungs-Disziplin - Upselling-Vorschläge nur auf Nachfrage. Ich würde mich freuen, Sie bei einem weiteren Besuch persönlich zu begrüssen, damit wir Ihnen zeigen können, dass unser Anspruch ein anderer ist.'},
   {id:4,author:'Laura D.',src:'G',stars:3,date:'Samstag, 10. April 2026',lang:'Deutsch',
    preview:'Eine Stunde gewartet obwohl reserviert. Essen war ok, aber die Erwartungen wurden nicht erfüllt.',
-   body:'Eine Stunde gewartet obwohl reserviert — das ist kein einmaliges Problem, war schon beim letzten Mal so. Essen war dann ok, aber bei den Preisen erwartet man mehr. Die Teigqualität schwankt stark je nach Abend.',
+   body:'Eine Stunde gewartet obwohl reserviert - das ist kein einmaliges Problem, war schon beim letzten Mal so. Essen war dann ok, aber bei den Preisen erwartet man mehr. Die Teigqualität schwankt stark je nach Abend.',
    tags:['Wartezeit','Wiederholung'],status:'open',
-   reply:'Liebe Frau D., vielen Dank für Ihr ehrliches und wiederkehrendes Feedback — dass Sie trotz zweimaliger Enttäuschung noch einmal geschrieben haben, zeigt, dass Sie uns eine Chance geben möchten. Wir haben die Reservierungs-Kapazität Samstagabend reduziert und arbeiten an der Teigqualität mit einem neuen Ofentemperatur-Protokoll. Dürfte ich Sie persönlich zu einem Besuch einladen, wenn die Massnahmen greifen?'},
+   reply:'Liebe Frau D., vielen Dank für Ihr ehrliches und wiederkehrendes Feedback - dass Sie trotz zweimaliger Enttäuschung noch einmal geschrieben haben, zeigt, dass Sie uns eine Chance geben möchten. Wir haben die Reservierungs-Kapazität Samstagabend reduziert und arbeiten an der Teigqualität mit einem neuen Ofentemperatur-Protokoll. Dürfte ich Sie persönlich zu einem Besuch einladen, wenn die Massnahmen greifen?'},
   {id:5,author:'Thomas K.',src:'G',stars:4,date:'Donnerstag, 8. April 2026',lang:'Deutsch',
    preview:'Schöner Abend, Essen sehr gut, aber Service war langsam. 20 Min auf den ersten Drink gewartet.',
-   body:'Schöner Abend, Essen sehr gut, aber Service war langsam — 20 Min auf den ersten Drink gewartet. Personal freundlich, wirkte aber überlastet. Der Teig könnte etwas krosser sein, ansonsten sehr gute Pizza.',
+   body:'Schöner Abend, Essen sehr gut, aber Service war langsam - 20 Min auf den ersten Drink gewartet. Personal freundlich, wirkte aber überlastet. Der Teig könnte etwas krosser sein, ansonsten sehr gute Pizza.',
    tags:['Service','Personaldecke'],status:'open',
-   reply:'Lieber Herr K., vielen Dank für das differenzierte Feedback — genau solche Rückmeldungen helfen uns weiter. Die Personaldecke in den Spitzenzeiten ist aktuell ein Thema, das unser Operations Advisor analysiert. Beim Teig arbeiten wir diese Woche an einem neuen Temperatur-Protokoll. Freut uns, dass der Abend insgesamt schön war!'},
+   reply:'Lieber Herr K., vielen Dank für das differenzierte Feedback - genau solche Rückmeldungen helfen uns weiter. Die Personaldecke in den Spitzenzeiten ist aktuell ein Thema, das unser Operations Advisor analysiert. Beim Teig arbeiten wir diese Woche an einem neuen Temperatur-Protokoll. Freut uns, dass der Abend insgesamt schön war!'},
   {id:6,author:'Familie Huber',src:'G',stars:5,date:'Sonntag, 6. April 2026',lang:'Deutsch',
    preview:'Wunderschöner Geburtstagsabend, Team hat uns überrascht mit einer kleinen Dessert-Überraschung. Danke!',
    body:'Wunderschöner Geburtstagsabend, Team hat uns überrascht mit einer kleinen Dessert-Überraschung für unseren Sohn. Essen wie immer sehr gut, Service aufmerksam ohne aufdringlich zu sein. Kommen gerne wieder!',
@@ -788,10 +788,10 @@ const reviewsData=[
 const reservations=[
   {time:'18:30',name:'Familie Bianchi',note:'Tisch 4 · Fenster',pax:5,badge:'vip',tip:{label:'6. Besuch dieses Jahr',pref:'Kind hat Glutenintoleranz · bitte gf-Menü bereitstellen',rating:'Letzte Bewertung: 5★ (Dezember)'}},
   {time:'19:00',name:'Anna Schmidt',note:'Tisch 7 · via Google',pax:2,badge:'new',tip:null},
-  {time:'19:15',name:'Thomas Keller',note:'Tisch 12 · Terrasse',pax:4,badge:'rep',tip:{label:'Rückkehrer · 4. Besuch',pref:'Letztes Mal Wartezeit 20 Min bemängelt — bitte pünktlich platzieren',rating:'Letzte Bewertung: 4★ (Februar)'}},
+  {time:'19:15',name:'Thomas Keller',note:'Tisch 12 · Terrasse',pax:4,badge:'rep',tip:{label:'Rückkehrer · 4. Besuch',pref:'Letztes Mal Wartezeit 20 Min bemängelt - bitte pünktlich platzieren',rating:'Letzte Bewertung: 4★ (Februar)'}},
   {time:'19:30',name:'Familie Huber',note:'Tisch 2 · Geburtstag Vater',pax:4,badge:'vip',tip:{label:'VIP · Stammgast · 12 Besuche',pref:'Geburtstag Vater · Dessert-Überraschung vorgemerkt · bevorzugt Trüffel-Pasta',rating:'Letzte Bewertung: 5★ "Team hat uns überrascht"'}},
   {time:'19:45',name:'Laura Donati',note:'Tisch 9',pax:3,badge:null,tip:null},
-  {time:'20:00',name:'Büro Meyer & Partner',note:'Tisch 14 · Seitenraum',pax:8,badge:'rep',tip:{label:'Firmenabend · 3. Mal',pref:'Rechnung separat · Weinkarte vorbereiten',rating:'—'}},
+  {time:'20:00',name:'Büro Meyer & Partner',note:'Tisch 14 · Seitenraum',pax:8,badge:'rep',tip:{label:'Firmenabend · 3. Mal',pref:'Rechnung separat · Weinkarte vorbereiten',rating:'-'}},
   {time:'20:15',name:'Chiara Romano',note:'Tisch 5',pax:2,badge:null,tip:null},
   {time:'20:30',name:'Familie Schneider',note:'Tisch 8 · 1 Kind',pax:3,badge:'new',tip:null},
   {time:'20:45',name:'Stefano M.',note:'Tisch 11',pax:2,badge:null,tip:null},
@@ -802,11 +802,11 @@ const reservations=[
 
 const impactRows=[
   {id:1,title:'Antwortquote Reviews 0% auf 94%',sub:'312 Reviews beantwortet · Ø 1.8s Generierung',agent:'Reputation Manager',agentCls:'',progress:94,progressTxt:'94% Abdeckung',effect:'+CHF 6.500',
-   drawer:{hebel:'Keine einzige der ~2.900 historischen Bewertungen wurde je beantwortet. Seit Aktivierung des Reputation Manager werden alle neuen Reviews binnen 2 Stunden beantwortet. Nach ReviewTrackers-Studie reduziert dies die Abwanderungsrate um bis zu 37%.',reviews:['"Endlich eine Antwort — das zeigt, dass man zuhört."','"Die Entschuldigung war ehrlich und spezifisch, das rechne ich hoch an."']}},
+   drawer:{hebel:'Keine einzige der ~2.900 historischen Bewertungen wurde je beantwortet. Seit Aktivierung des Reputation Manager werden alle neuen Reviews binnen 2 Stunden beantwortet. Nach ReviewTrackers-Studie reduziert dies die Abwanderungsrate um bis zu 37%.',reviews:['"Endlich eine Antwort - das zeigt, dass man zuhört."','"Die Entschuldigung war ehrlich und spezifisch, das rechne ich hoch an."']}},
   {id:2,title:'Teigqualität-Briefings Küchenchef',sub:'Beschwerden −68% · 4 Briefings versendet',agent:'Quality Watchdog',agentCls:'gold',progress:68,progressTxt:'68% Rückgang',effect:'+CHF 14.200',progressColor:'var(--gold)',
-   drawer:{hebel:'Quality Watchdog erkannte 8 "nasser Teig"-Reviews pro Woche. Nach Ofentemperatur-Protokoll und gezielten Küchen-Briefings sind die Beschwerden um 68% zurückgegangen.',reviews:['"Deutlich besserer Teig als letzten Monat"','"Crispy outside, soft inside — endlich wie es sein soll"']}},
+   drawer:{hebel:'Quality Watchdog erkannte 8 "nasser Teig"-Reviews pro Woche. Nach Ofentemperatur-Protokoll und gezielten Küchen-Briefings sind die Beschwerden um 68% zurückgegangen.',reviews:['"Deutlich besserer Teig als letzten Monat"','"Crispy outside, soft inside - endlich wie es sein soll"']}},
   {id:3,title:'Reservierungs-Buffer Samstagabend',sub:'15 Min Buffer · Wartezeit-Beschwerden −55%',agent:'Operations Advisor',agentCls:'green',progress:100,progressTxt:'100% implementiert',effect:'+CHF 3.600',
-   drawer:{hebel:'44% der negativen Bewertungen stammten von Sa/So. Neue Reservierungs-Puffer-Logik (15 Min zwischen Bookings) plus aktiver Empfangs-Moderator haben die Wartezeit-Beschwerden mehr als halbiert.',reviews:['"Diesmal kein Warten trotz Samstag 19 Uhr — Kompliment"','"Herzlicher Empfang, Tisch sofort bereit"']}},
+   drawer:{hebel:'44% der negativen Bewertungen stammten von Sa/So. Neue Reservierungs-Puffer-Logik (15 Min zwischen Bookings) plus aktiver Empfangs-Moderator haben die Wartezeit-Beschwerden mehr als halbiert.',reviews:['"Diesmal kein Warten trotz Samstag 19 Uhr - Kompliment"','"Herzlicher Empfang, Tisch sofort bereit"']}},
   {id:4,title:'Signature Trüffel-Pasta überarbeiten',sub:'Rezept-Review · 31% Rückläuferquote',agent:'Revenue Analyst',agentCls:'purple',progress:45,progressTxt:'In Umsetzung',effect:'+CHF 4.200',progressColor:'var(--copper)',potential:true,
    drawer:{hebel:'Die Signature Trüffel-Pasta (CHF 32.90) hatte 31% Rückläuferquote. Rezept-Review mit weniger intensivem Trüffelöl, dafür mehr frischer Trüffel in der Saison. Test-Phase aktiv auf 2 Abenden/Woche.',reviews:['"Die neue Trüffel-Pasta ist viel ausgewogener"','"Weniger fettig, der Trüffel kommt endlich durch"']}},
   {id:5,title:'Marketing-Budget umschichten',sub:'Influencer CHF 100K → Paid Ads CHF 50K',agent:'Marketing Engine',agentCls:'',progress:30,progressTxt:'In Planung',effect:'+CHF 2.800',progressColor:'var(--copper)',potential:true,
@@ -817,7 +817,7 @@ const competitors=[
   {id:'you',name:'Pizzeria X',label:'Sie',rating:'4.40',delta:'− 0.05',deltaCls:'down',reviewsPw:42,answerRate:'0%',answerCls:'down',pizzaPrice:'CHF 25.50',you:true},
   {id:'a',name:'Wettbewerber A',label:'400m entfernt',rating:'4.70',delta:'↑ 0.12',deltaCls:'up',reviewsPw:61,answerRate:'78%',answerCls:'up',pizzaPrice:'CHF 23.80'},
   {id:'b',name:'Wettbewerber B',label:'650m entfernt',rating:'4.35',delta:'↓ 0.08',deltaCls:'down',reviewsPw:18,answerRate:'22%',answerCls:null,pizzaPrice:'CHF 22.50'},
-  {id:'c',name:'Wettbewerber C',label:'1.1km entfernt',rating:'4.41',delta:'— 0.00',deltaCls:'flat',reviewsPw:14,answerRate:'45%',answerCls:null,pizzaPrice:'CHF 21.90'}
+  {id:'c',name:'Wettbewerber C',label:'1.1km entfernt',rating:'4.41',delta:'- 0.00',deltaCls:'flat',reviewsPw:14,answerRate:'45%',answerCls:null,pizzaPrice:'CHF 21.90'}
 ];
 
 const competitorEvents={
@@ -1023,7 +1023,7 @@ function finishTyping(){
 function renderReservations(){
   const t=document.getElementById('rez-tbody');
   t.innerHTML=reservations.map(r=>{
-    const badge=r.badge?`<span class="badge ${r.badge}">${r.badge==='vip'?'VIP':r.badge==='rep'?'Rückkehrer':'Neu'}</span>`:'<span style="color:var(--dim)">—</span>';
+    const badge=r.badge?`<span class="badge ${r.badge}">${r.badge==='vip'?'VIP':r.badge==='rep'?'Rückkehrer':'Neu'}</span>`:'<span style="color:var(--dim)">-</span>';
     const tip=r.tip?`<div class="vip-tip"><b>${r.tip.label}</b><div class="row">${r.tip.pref}</div><div class="row">${r.tip.rating}</div></div>`:'';
     return `<tr class="rez-row">
       <td class="time">${r.time}</td>
