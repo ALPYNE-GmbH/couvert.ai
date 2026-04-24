@@ -5,3 +5,8 @@ __pycache__/
 .env.*
 node_modules/
 VPS/
+
+# Security — never commit secret JSONs
+client_secret_*.json
+*.pem
+*.key
