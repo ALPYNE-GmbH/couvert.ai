@@ -286,29 +286,100 @@ body.is-mobile .cta-row > * { width: 100%; }
   opacity: 0.5;
 }
 .dashboard-content {
-  padding: 24px;
-  min-height: 320px;
+  padding: 0;
+  min-height: 360px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
 }
+.dash-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--canvas);
+  padding: 0 16px;
+}
+.dash-tab {
+  background: transparent;
+  border: 0;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--ink-3);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s ease;
+  margin-bottom: -1px;
+}
+.dash-tab:hover { color: var(--ink); }
+.dash-tab.active {
+  color: var(--copper);
+  border-bottom-color: var(--copper);
+  font-weight: 500;
+}
+.dash-panel {
+  padding: 20px;
+  display: none;
+  flex-direction: column;
+  gap: 14px;
+}
+.dash-panel.active { display: flex; }
 .dash-row { display: flex; gap: 12px; }
 .dash-card {
   flex: 1;
-  padding: 16px;
+  padding: 14px 16px;
   background: var(--canvas);
   border-radius: 8px;
   border: 1px solid var(--border);
 }
-.dash-card-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-3); margin-bottom: 6px; }
-.dash-card-value { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--ink); }
-.dash-card-delta { font-size: 12px; color: var(--copper); margin-top: 2px; }
+.dash-card-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--ink-3); margin-bottom: 5px; }
+.dash-card-value { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--ink); line-height: 1.1; }
+.dash-card-delta { font-size: 11px; color: var(--copper); margin-top: 3px; }
 .dash-bar {
-  height: 8px; background: var(--canvas-sunken); border-radius: 4px; margin-top: 12px;
+  height: 6px; background: var(--canvas-sunken); border-radius: 3px; margin-top: 10px;
   overflow: hidden;
 }
-.dash-bar > div { height: 100%; background: var(--copper); width: 65%; }
+.dash-bar > div { height: 100%; background: var(--copper); }
 .dash-text-row { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+.dash-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.dash-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 12px;
+  background: var(--canvas);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+}
+.dash-list-name { color: var(--ink); }
+.dash-list-meta { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-3); }
+.dash-list-meta.warn { color: var(--copper); }
+.dash-quote {
+  padding: 12px 14px;
+  background: var(--copper-tint);
+  border-left: 3px solid var(--copper);
+  border-radius: 4px;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--ink-2);
+  line-height: 1.45;
+}
+.dash-trend {
+  height: 80px;
+  position: relative;
+  background: var(--canvas);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+.dash-trend svg { width: 100%; height: 100%; display: block; }
+.dash-cta-hint {
+  text-align: center;
+  font-size: 11px;
+  color: var(--ink-4);
+  padding: 8px;
+  letter-spacing: 0.5px;
+}
 
 /* ─── Form widget (used in A, B, scan-page) ────────────────── */
 .scan-form {
@@ -517,7 +588,7 @@ body.is-mobile .scan-page-preview { margin: 16px 22px; }
 <div class="viewport">
 
   <!-- ═════════ OPTION A — Form ersetzt aktuellen Hero ═════════ -->
-  <div data-option="A" class="active">
+  <div data-option="A">
     <nav class="top-nav">
       <a href="#" class="logo-name">c<span>o</span>uvert</a>
       <div class="nav-links"><a href="#">Produkt</a><a href="#">Methodik</a><a href="#">Über uns</a></div>
@@ -534,27 +605,15 @@ body.is-mobile .scan-page-preview { margin: 16px 22px; }
             <button class="scan-submit">Couvert Scan starten →</button>
             <div class="scan-meta">5 Minuten · Kein Login · Per E-Mail</div>
           </div>
-          <div class="trust-bullets" style="margin-top: 24px;">
+          <div style="margin-top: 14px; font-size: 13px;"><a href="#" style="color: var(--ink-3); text-decoration: underline; text-underline-offset: 3px;">Echtes Dossier ansehen →</a></div>
+          <div class="trust-bullets" style="margin-top: 22px;">
             <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>Schweizer Hosting</span>
             <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>nDSG-konform</span>
             <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Anthropic Claude</span>
           </div>
         </div>
-        <div class="dashboard-mock">
-          <div class="dashboard-chrome"><span class="dashboard-dot"></span><span class="dashboard-dot"></span><span class="dashboard-dot"></span></div>
-          <div class="dashboard-content">
-            <div class="dash-text-row" style="font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--ink);">Dashboard-Vorschau</div>
-            <div class="dash-row">
-              <div class="dash-card"><div class="dash-card-label">CHF Loss-Range</div><div class="dash-card-value">277'801</div><div class="dash-card-delta">P75 · validiert</div></div>
-              <div class="dash-card"><div class="dash-card-label">Antwortquote</div><div class="dash-card-value">1 %</div><div class="dash-card-delta">−9 % vs Peer-Ring</div></div>
-            </div>
-            <div class="dash-card">
-              <div class="dash-card-label">Service-Negativ-Anteil</div>
-              <div class="dash-card-value">63 %</div>
-              <div class="dash-bar"><div></div></div>
-            </div>
-          </div>
-        </div>
+        <!-- Interaktiver Demo-Embed (gleicher Markup wie Option C) -->
+        <div class="dashboard-mock" data-demo-instance="A"></div>
       </div>
     </section>
   </div>
@@ -572,26 +631,16 @@ body.is-mobile .scan-page-preview { margin: 16px 22px; }
           <h1 class="hero-h1">Gastronomie.<br><em>Ohne Blindflug.</em></h1>
           <p class="hero-sub">Zwölf Assistenten werten laufend Bewertungen, Menü, Reservierungen und Schichten aus, und übersetzen jedes Muster in konkrete Massnahmen mit CHF-Effekt.</p>
           <div class="cta-row">
-            <a href="#" class="btn-primary">30-Min-Gespräch buchen →</a>
-            <a href="#" class="btn-secondary">Intelligence Dossier ansehen →</a>
+            <a href="#" class="btn-primary">Couvert Scan starten →</a>
+            <a href="#" class="btn-secondary">Echtes Dossier ansehen →</a>
           </div>
-          <a href="#" class="tertiary-link">Cockpit live durchklicken →</a>
-          <div class="trust-bullets">
+          <div class="trust-bullets" style="margin-top: 18px;">
             <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>Schweizer Hosting</span>
             <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>nDSG-konform</span>
             <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Anthropic Claude</span>
           </div>
         </div>
-        <div class="dashboard-mock">
-          <div class="dashboard-chrome"><span class="dashboard-dot"></span><span class="dashboard-dot"></span><span class="dashboard-dot"></span></div>
-          <div class="dashboard-content">
-            <div class="dash-text-row" style="font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--ink);">Dashboard-Vorschau</div>
-            <div class="dash-row">
-              <div class="dash-card"><div class="dash-card-label">CHF Loss-Range</div><div class="dash-card-value">277'801</div><div class="dash-card-delta">P75 · validiert</div></div>
-              <div class="dash-card"><div class="dash-card-label">Antwortquote</div><div class="dash-card-value">1 %</div></div>
-            </div>
-          </div>
-        </div>
+        <div class="dashboard-mock" data-demo-instance="B"></div>
       </div>
     </section>
     <!-- Section B: Scan-Form direkt unter Hero -->
@@ -612,8 +661,8 @@ body.is-mobile .scan-page-preview { margin: 16px 22px; }
     </section>
   </div>
 
-  <!-- ═════════ OPTION C — Hero CTAs neu sortiert (mein Favorit) ═════════ -->
-  <div data-option="C">
+  <!-- ═════════ OPTION C — Hero CTAs neu sortiert + interaktive Demo ═════════ -->
+  <div data-option="C" class="active">
     <nav class="top-nav">
       <a href="#" class="logo-name">c<span>o</span>uvert</a>
       <div class="nav-links"><a href="#">Produkt</a><a href="#">Methodik</a><a href="#">Über uns</a></div>
@@ -626,25 +675,18 @@ body.is-mobile .scan-page-preview { margin: 16px 22px; }
           <p class="hero-sub">Zwölf Assistenten werten laufend Bewertungen, Menü, Reservierungen und Schichten aus, und übersetzen jedes Muster in konkrete Massnahmen mit CHF-Effekt.</p>
           <div class="cta-row">
             <a href="#scan-preview" class="btn-primary">Couvert Scan starten →</a>
-            <a href="#" class="btn-secondary">30-Min-Gespräch buchen →</a>
+            <a href="#" class="btn-secondary">Echtes Dossier ansehen →</a>
           </div>
-          <a href="#" class="tertiary-link">Cockpit live durchklicken · Intelligence Dossier ansehen →</a>
-          <div class="trust-bullets">
+          <div style="margin-top: 14px; font-size: 13px; color: var(--ink-3);">
+            ↓ Oder direkt rechts in der Live-Demo durchklicken
+          </div>
+          <div class="trust-bullets" style="margin-top: 22px;">
             <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>Schweizer Hosting</span>
             <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>nDSG-konform</span>
             <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Anthropic Claude</span>
           </div>
         </div>
-        <div class="dashboard-mock">
-          <div class="dashboard-chrome"><span class="dashboard-dot"></span><span class="dashboard-dot"></span><span class="dashboard-dot"></span></div>
-          <div class="dashboard-content">
-            <div class="dash-text-row" style="font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--ink);">Dashboard-Vorschau</div>
-            <div class="dash-row">
-              <div class="dash-card"><div class="dash-card-label">CHF Loss-Range</div><div class="dash-card-value">277'801</div><div class="dash-card-delta">P75 · validiert</div></div>
-              <div class="dash-card"><div class="dash-card-label">Antwortquote</div><div class="dash-card-value">1 %</div></div>
-            </div>
-          </div>
-        </div>
+        <div class="dashboard-mock" data-demo-instance="C"></div>
       </div>
     </section>
     <!-- Inset preview: was passiert nach Klick auf primary-CTA -->
@@ -681,26 +723,16 @@ body.is-mobile .scan-page-preview { margin: 16px 22px; }
           <h1 class="hero-h1">Gastronomie.<br><em>Ohne Blindflug.</em></h1>
           <p class="hero-sub">Zwölf Assistenten werten laufend Bewertungen, Menü, Reservierungen und Schichten aus, und übersetzen jedes Muster in konkrete Massnahmen mit CHF-Effekt.</p>
           <div class="cta-row">
-            <a href="#" class="btn-primary">30-Min-Gespräch buchen →</a>
-            <a href="#" class="btn-secondary">Intelligence Dossier ansehen →</a>
+            <a href="#" class="btn-primary">Couvert Scan starten →</a>
+            <a href="#" class="btn-secondary">Echtes Dossier ansehen →</a>
           </div>
-          <a href="#" class="tertiary-link">Cockpit live durchklicken →</a>
-          <div class="trust-bullets">
+          <div class="trust-bullets" style="margin-top: 18px;">
             <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>Schweizer Hosting</span>
             <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>nDSG-konform</span>
             <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Anthropic Claude</span>
           </div>
         </div>
-        <div class="dashboard-mock">
-          <div class="dashboard-chrome"><span class="dashboard-dot"></span><span class="dashboard-dot"></span><span class="dashboard-dot"></span></div>
-          <div class="dashboard-content">
-            <div class="dash-text-row" style="font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--ink);">Dashboard-Vorschau</div>
-            <div class="dash-row">
-              <div class="dash-card"><div class="dash-card-label">CHF Loss-Range</div><div class="dash-card-value">277'801</div></div>
-              <div class="dash-card"><div class="dash-card-label">Antwortquote</div><div class="dash-card-value">1 %</div></div>
-            </div>
-          </div>
-        </div>
+        <div class="dashboard-mock" data-demo-instance="D"></div>
       </div>
     </section>
   </div>
@@ -743,8 +775,100 @@ viewportGroup.addEventListener('click', e => {
   if (btn) setViewport(btn.dataset.viewport);
 });
 
-// Initial
-setOption('A');
+// ─── Live-Demo-Embed: Tabs + Content je Tab ─────────────────
+// Wird in alle .dashboard-mock[data-demo-instance] gemountet. User
+// klickt Tab → Content wechselt rechts, OHNE Page-Wechsel. Genau wie
+// Amakori's Live-Demo im Hero.
+const DEMO_TABS = [
+  { id: 'overview', label: 'Übersicht' },
+  { id: 'reviews',  label: 'Reviews' },
+  { id: 'menu',     label: 'Karte' },
+  { id: 'levers',   label: 'Hebel' },
+];
+
+const DEMO_PANELS = {
+  overview: `
+    <div class="dash-row">
+      <div class="dash-card"><div class="dash-card-label">CHF Loss-Range</div><div class="dash-card-value">277'801</div><div class="dash-card-delta">P75 · validiert</div></div>
+      <div class="dash-card"><div class="dash-card-label">Antwortquote</div><div class="dash-card-value">1 %</div><div class="dash-card-delta">−9 % vs Peer-Ring</div></div>
+    </div>
+    <div class="dash-card">
+      <div class="dash-card-label">Service-Negativ-Anteil</div>
+      <div class="dash-card-value">63 %</div>
+      <div class="dash-bar"><div style="width:63%"></div></div>
+    </div>
+    <div class="dash-cta-hint">Tabs oben anklicken — kein Page-Wechsel</div>
+  `,
+  reviews: `
+    <div class="dash-row">
+      <div class="dash-card"><div class="dash-card-label">Reviews gesamt</div><div class="dash-card-value">14'068</div></div>
+      <div class="dash-card"><div class="dash-card-label">Negativ (≤ ★3)</div><div class="dash-card-value">174</div><div class="dash-card-delta">63 % Service</div></div>
+    </div>
+    <div class="dash-quote">„Schockierend unfreundlich. Servicekraft hat unsere Reservierung komplett vergessen, dann Bierdeckel zugeworfen statt höflich überreicht." <span style="color:var(--ink-3); font-style: normal;">— ★1, 19.04.2026</span></div>
+    <ul class="dash-list">
+      <li class="dash-list-item"><span class="dash-list-name">Service & Personal</span><span class="dash-list-meta warn">63 %</span></li>
+      <li class="dash-list-item"><span class="dash-list-name">Essen & Qualität</span><span class="dash-list-meta">21 %</span></li>
+      <li class="dash-list-item"><span class="dash-list-name">Reservierung & Wartezeit</span><span class="dash-list-meta">16 %</span></li>
+    </ul>
+  `,
+  menu: `
+    <div class="dash-row">
+      <div class="dash-card"><div class="dash-card-label">Positionen</div><div class="dash-card-value">138</div><div class="dash-card-delta">in 20 Kategorien</div></div>
+      <div class="dash-card"><div class="dash-card-label">Salat-Median</div><div class="dash-card-value">CHF 9</div><div class="dash-card-delta" style="color:var(--copper);">−40 % vs CH-Ref</div></div>
+    </div>
+    <ul class="dash-list">
+      <li class="dash-list-item"><span class="dash-list-name">Hausspezialitäten</span><span class="dash-list-meta">CHF 36 · −5 %</span></li>
+      <li class="dash-list-item"><span class="dash-list-name">Pasta-Hauptgang</span><span class="dash-list-meta">CHF 28 · +8 %</span></li>
+      <li class="dash-list-item"><span class="dash-list-name">Offene Weine</span><span class="dash-list-meta">CHF 6.90</span></li>
+      <li class="dash-list-item"><span class="dash-list-name">Salate</span><span class="dash-list-meta warn">CHF 9 · −40 %</span></li>
+    </ul>
+  `,
+  levers: `
+    <ul class="dash-list">
+      <li class="dash-list-item"><span class="dash-list-name"><strong>1.</strong> Antwortquote sofort erhöhen</span><span class="dash-list-meta warn">+ CHF 138'900</span></li>
+      <li class="dash-list-item"><span class="dash-list-name"><strong>2.</strong> Service-Beschwerden strukturiert erfassen</span><span class="dash-list-meta warn">+ CHF 97'000</span></li>
+      <li class="dash-list-item"><span class="dash-list-name"><strong>3.</strong> Preis-Erwartungs-Lücke adressieren</span><span class="dash-list-meta warn">+ CHF 41'901</span></li>
+    </ul>
+    <div class="dash-card" style="background: var(--copper-tint); border-color: rgba(196,103,58,0.25);">
+      <div class="dash-card-label">Gesamt adressierbar (P75, 12 Monate)</div>
+      <div class="dash-card-value" style="color: var(--copper);">CHF 277'801</div>
+    </div>
+  `,
+};
+
+function mountDemo(container) {
+  const id = container.dataset.demoInstance;
+  const tabsHtml = DEMO_TABS.map((t, i) =>
+    `<button class="dash-tab${i === 0 ? ' active' : ''}" data-tab="${t.id}">${t.label}</button>`
+  ).join('');
+  const panelsHtml = DEMO_TABS.map((t, i) =>
+    `<div class="dash-panel${i === 0 ? ' active' : ''}" data-panel="${t.id}">${DEMO_PANELS[t.id]}</div>`
+  ).join('');
+
+  container.innerHTML = `
+    <div class="dashboard-chrome">
+      <span class="dashboard-dot"></span><span class="dashboard-dot"></span><span class="dashboard-dot"></span>
+    </div>
+    <div class="dash-tabs">${tabsHtml}</div>
+    <div class="dashboard-content">${panelsHtml}</div>
+  `;
+
+  // Tab-Click-Handler — local zu dieser Instanz, sonst feuern alle 4
+  // Demo-Embeds wenn man auf Option A's Tab klickt.
+  container.querySelectorAll('.dash-tab').forEach((tabBtn) => {
+    tabBtn.addEventListener('click', () => {
+      const target = tabBtn.dataset.tab;
+      container.querySelectorAll('.dash-tab').forEach((b) => b.classList.toggle('active', b.dataset.tab === target));
+      container.querySelectorAll('.dash-panel').forEach((p) => p.classList.toggle('active', p.dataset.panel === target));
+    });
+  });
+}
+
+// Mount in alle Demo-Container (alle Optionen haben einen)
+document.querySelectorAll('.dashboard-mock[data-demo-instance]').forEach(mountDemo);
+
+// Initial: Option C ist die Empfehlung
+setOption('C');
 setViewport('desktop');
 </script>
 
