@@ -710,11 +710,13 @@ body.is-mobile .scan-page-preview { margin: 16px 22px; }
 </div>
 
 <script>
+// Template-Literals (backticks) statt JS-Strings damit deutsche Quotes
+// und ASCII-Quotes nicht den String-Delimiter killen.
 const NOTES = {
-  A: "<strong>Option A — Hero ersetzt.</strong> Form ist erste Sache, die der User sieht (wie Amakori). Maximaler Lead-Funnel, aber Brand-Storytelling (Dashboard-Mockup, „Ohne Blindflug")-Inszenierung) verschwindet von der ersten Sicht. Aggressive Conversion-Logik.",
-  B: "<strong>Option B — Section direkt unter Hero.</strong> Hero bleibt 1:1 wie heute, neue Section drunter mit Form. Behält Brand-Story-Arc, aber „above the fold" sieht der User vom Form noch nichts. Eine zusätzliche Section auf einer schon langen Homepage.",
-  C: "<strong>Option C — CTAs umgestellt (Empfehlung).</strong> Primärer CTA wird „Couvert Scan starten" (Lead-Magnet), sekundärer „30-Min-Gespräch" (warmer Lead). Klick führt zu app.couvert.ai/scan mit der Hero-Form-Page. Klare Hierarchie, eine Klick-Schicht mehr aber sauberer Funnel.",
-  D: "<strong>Option D — Sticky-Bar oben.</strong> Persistenter dunkler Bar über die ganze Homepage. Ständig erreichbar, aber wirkt schnell „salesy" — passt nicht ganz zur Couvert-Tonalität. Mobile-Vorteil: erspart das Scrollen bei langen Pages."
+  A: `<strong>Option A — Hero ersetzt.</strong> Form ist erste Sache, die der User sieht (wie Amakori). Maximaler Lead-Funnel, aber das Brand-Storytelling — Dashboard-Mockup, „Ohne Blindflug"-Inszenierung — verschwindet von der ersten Sicht. Aggressive Conversion-Logik, passt eher zu Tech-Tools.`,
+  B: `<strong>Option B — Section direkt unter Hero.</strong> Hero bleibt 1:1 wie heute, neue Section drunter mit Form. Behält den Brand-Story-Arc, aber „above the fold" sieht der User vom Form noch nichts. Eine zusätzliche Section auf einer schon langen Homepage.`,
+  C: `<strong>Option C — CTAs umgestellt (Empfehlung).</strong> Primärer CTA wird „Couvert Scan starten" (Lead-Magnet), sekundärer „30-Min-Gespräch" (warmer Lead). Klick führt zu app.couvert.ai/scan mit der Hero-Form-Page. Klare Hierarchie, eine Klick-Schicht mehr, dafür sauberer Funnel.`,
+  D: `<strong>Option D — Sticky-Bar oben.</strong> Persistenter dunkler Bar über die ganze Homepage. Ständig erreichbar, aber wirkt schnell „salesy" — passt nicht ganz zur Couvert-Tonalität. Mobile-Vorteil: erspart das Scrollen bei langen Pages.`
 };
 
 const optionGroup = document.getElementById('optionGroup');
