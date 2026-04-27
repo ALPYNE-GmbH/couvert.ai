@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Couvert · Scan-Einstieg · 4 Platzierungs-Optionen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --canvas: #FAF8F3;
+  --canvas-raised: #FFFFFF;
+  --canvas-sunken: #F2EFE7;
+  --ink: #12221E;
+  --ink-2: #384844;
+  --ink-3: #6C726E;
+  --ink-4: #9BA19D;
+  --copper: #C4673A;
+  --copper-hover: #B05930;
+  --copper-tint: rgba(196, 103, 58, 0.06);
+  --green: #1A3C34;
+  --border: rgba(18, 34, 30, 0.08);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--canvas-sunken); color: var(--ink); font-family: 'DM Sans', sans-serif; }
+
+/* ─── Top toolbar ──────────────────────────────────────────── */
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--ink);
+  color: #fff;
+  padding: 14px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+.toolbar-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px;
+  letter-spacing: 0.3px;
+}
+.toolbar-title .o { color: var(--copper); }
+.toolbar-spacer { flex: 1 1 0; }
+.option-group, .viewport-group {
+  display: flex;
+  gap: 4px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 4px;
+}
+.option-group .btn, .viewport-group .btn {
+  background: transparent;
+  border: 0;
+  color: rgba(255,255,255,0.7);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  padding: 8px 14px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-weight: 500;
+}
+.option-group .btn:hover, .viewport-group .btn:hover {
+  color: #fff;
+}
+.option-group .btn.active, .viewport-group .btn.active {
+  background: var(--copper);
+  color: #fff;
+}
+.option-group .btn .label-tiny {
+  font-size: 11px;
+  opacity: 0.7;
+  margin-left: 6px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.option-group .btn.active .label-tiny { opacity: 0.9; }
+
+/* ─── Viewport frame ───────────────────────────────────────── */
+.viewport-wrap {
+  padding: 32px 24px 80px;
+  display: flex;
+  justify-content: center;
+}
+.viewport {
+  background: var(--canvas);
+  width: 100%;
+  max-width: 1280px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  overflow: hidden;
+  transition: max-width 0.3s ease;
+}
+body.is-mobile .viewport {
+  max-width: 390px;
+}
+
+/* ─── Note panel (caption per option) ──────────────────────── */
+.note {
+  max-width: 1280px;
+  margin: 0 auto 24px;
+  padding: 14px 18px;
+  background: var(--canvas-raised);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--copper);
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.note strong { color: var(--copper); font-weight: 600; }
+body.is-mobile .note { max-width: 390px; }
+
+/* ─── Hero base styles (matching homepage) ─────────────────── */
+.hero {
+  padding: 72px 56px 56px;
+  background: var(--canvas);
+}
+body.is-mobile .hero { padding: 36px 22px 32px; }
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 56px;
+  align-items: center;
+}
+body.is-mobile .hero-grid {
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.overline {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  color: var(--ink-3);
+  margin-bottom: 16px;
+}
+
+h1.hero-h1 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: clamp(40px, 4.6vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin: 0 0 20px;
+}
+body.is-mobile h1.hero-h1 { font-size: 36px; }
+h1.hero-h1 em {
+  font-family: 'DM Serif Display', serif;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--copper);
+  letter-spacing: -0.02em;
+}
+
+.hero-sub {
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin: 0 0 28px;
+  max-width: 520px;
+}
+body.is-mobile .hero-sub { font-size: 15px; }
+
+/* CTAs */
+.cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+body.is-mobile .cta-row { flex-direction: column; }
+body.is-mobile .cta-row > * { width: 100%; }
+
+.btn-primary {
+  background: var(--copper);
+  color: #fff;
+  border: 0;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.btn-primary:hover { background: var(--copper-hover); transform: translateY(-1px); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  padding: 12.5px 22px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.btn-secondary:hover { background: var(--ink); color: #fff; }
+
+.tertiary-link {
+  display: inline-block;
+  font-size: 13px;
+  color: var(--ink-3);
+  text-decoration: underline;
+  text-decoration-color: var(--ink-4);
+  text-underline-offset: 3px;
+  margin-bottom: 24px;
+}
+
+/* Trust bullets */
+.trust-bullets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  font-size: 13px;
+  color: var(--ink-3);
+  margin-top: 8px;
+}
+.trust-bullets > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.trust-bullets svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--ink-3);
+}
+
+/* Hero teaser counter */
+.hero-teaser {
+  margin-top: 28px;
+  padding: 18px 22px;
+  background: var(--canvas-raised);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+.hero-teaser-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 26px;
+  color: var(--copper);
+  flex-shrink: 0;
+}
+.hero-teaser-sub { font-size: 13px; color: var(--ink-3); }
+
+/* Dashboard mock */
+.dashboard-mock {
+  background: var(--canvas-raised);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(18, 34, 30, 0.08);
+}
+.dashboard-chrome {
+  background: var(--canvas-sunken);
+  padding: 12px 16px;
+  display: flex;
+  gap: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.dashboard-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--ink-4);
+  opacity: 0.5;
+}
+.dashboard-content {
+  padding: 24px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.dash-row { display: flex; gap: 12px; }
+.dash-card {
+  flex: 1;
+  padding: 16px;
+  background: var(--canvas);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.dash-card-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-3); margin-bottom: 6px; }
+.dash-card-value { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--ink); }
+.dash-card-delta { font-size: 12px; color: var(--copper); margin-top: 2px; }
+.dash-bar {
+  height: 8px; background: var(--canvas-sunken); border-radius: 4px; margin-top: 12px;
+  overflow: hidden;
+}
+.dash-bar > div { height: 100%; background: var(--copper); width: 65%; }
+.dash-text-row { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+
+/* ─── Form widget (used in A, B, scan-page) ────────────────── */
+.scan-form {
+  background: var(--canvas-raised);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 24px rgba(18, 34, 30, 0.05);
+}
+.scan-form .form-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  margin: 0 0 4px;
+  color: var(--ink);
+}
+.scan-form .form-sub {
+  font-size: 13px;
+  color: var(--ink-3);
+  margin: 0 0 16px;
+}
+.scan-input {
+  display: block;
+  width: 100%;
+  padding: 13px 16px;
+  font-size: 15px;
+  background: var(--canvas);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-family: inherit;
+  color: var(--ink);
+}
+.scan-input::placeholder { color: var(--ink-4); }
+.scan-input:focus { outline: 2px solid var(--copper); outline-offset: 2px; border-color: var(--copper); }
+.scan-submit {
+  width: 100%;
+  background: var(--copper);
+  color: #fff;
+  border: 0;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: inherit;
+  margin-top: 4px;
+}
+.scan-submit:hover { background: var(--copper-hover); }
+.scan-meta {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--ink-4);
+  text-align: center;
+}
+
+/* ─── Section under hero (Option B) ────────────────────────── */
+.section-b {
+  background: var(--canvas-sunken);
+  padding: 56px;
+  border-top: 1px solid var(--border);
+}
+body.is-mobile .section-b { padding: 36px 22px; }
+.section-b-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+body.is-mobile .section-b-grid {
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+.section-b h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 32px;
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+.section-b p {
+  font-size: 15px;
+  color: var(--ink-2);
+  line-height: 1.55;
+  margin: 0 0 8px;
+}
+
+/* ─── Sticky bar (Option D) ────────────────────────────────── */
+.sticky-bar {
+  background: var(--ink);
+  color: #fff;
+  padding: 10px 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+body.is-mobile .sticky-bar { padding: 10px 22px; font-size: 13px; }
+.sticky-bar-text strong { color: var(--copper); }
+.sticky-bar a {
+  color: #fff;
+  background: var(--copper);
+  padding: 8px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+}
+body.is-mobile .sticky-bar { gap: 12px; }
+body.is-mobile .sticky-bar-text { font-size: 12px; }
+
+/* Top header / nav (light replica of homepage) */
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 56px;
+  border-bottom: 1px solid var(--border);
+  background: var(--canvas);
+}
+body.is-mobile .top-nav { padding: 14px 22px; }
+.logo-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  color: var(--ink);
+}
+.logo-name span { color: var(--copper); }
+.nav-links { display: flex; gap: 24px; font-size: 14px; color: var(--ink-2); }
+.nav-links a { color: inherit; text-decoration: none; }
+body.is-mobile .nav-links { display: none; }
+
+/* ─── /scan page mock (shown in Option C as inset preview) ── */
+.scan-page-preview {
+  margin: 24px 56px 56px;
+  padding: 16px;
+  background: var(--canvas-sunken);
+  border-radius: 12px;
+}
+body.is-mobile .scan-page-preview { margin: 16px 22px; }
+.scan-page-preview-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--ink-3);
+  margin-bottom: 10px;
+}
+.scan-page-mock {
+  background: var(--canvas);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 48px 32px;
+  text-align: center;
+}
+.scan-page-mock .logo-name { display: block; margin-bottom: 36px; font-size: 20px; }
+.scan-page-mock h2 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 0 0 12px;
+}
+.scan-page-mock h2 em {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--copper);
+}
+.scan-page-mock .lead {
+  font-size: 15px;
+  color: var(--ink-3);
+  margin: 0 auto 24px;
+  max-width: 420px;
+  line-height: 1.5;
+}
+.scan-page-mock .scan-form { max-width: 460px; margin: 0 auto; text-align: left; }
+
+/* Hide all options, show only the active one */
+[data-option] { display: none; }
+[data-option].active { display: block; }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="toolbar-title">c<span class="o">o</span>uvert · Scan-Einstieg Mockup</div>
+  <div class="toolbar-spacer"></div>
+  <div class="option-group" id="optionGroup">
+    <button class="btn active" data-pick="A">A<span class="label-tiny">Hero ersetzt</span></button>
+    <button class="btn" data-pick="B">B<span class="label-tiny">Section unter Hero</span></button>
+    <button class="btn" data-pick="C">C<span class="label-tiny">CTAs umgestellt</span></button>
+    <button class="btn" data-pick="D">D<span class="label-tiny">Sticky-Bar</span></button>
+  </div>
+  <div class="viewport-group" id="viewportGroup">
+    <button class="btn active" data-viewport="desktop">Desktop</button>
+    <button class="btn" data-viewport="mobile">Mobile</button>
+  </div>
+</div>
+
+<div class="viewport-wrap">
+<div style="width: 100%; max-width: 1280px;">
+
+<!-- Note panel — caption per option -->
+<div class="note" id="noteText"></div>
+
+<div class="viewport">
+
+  <!-- ═════════ OPTION A — Form ersetzt aktuellen Hero ═════════ -->
+  <div data-option="A" class="active">
+    <nav class="top-nav">
+      <a href="#" class="logo-name">c<span>o</span>uvert</a>
+      <div class="nav-links"><a href="#">Produkt</a><a href="#">Methodik</a><a href="#">Über uns</a></div>
+    </nav>
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="overline">Digitale Betriebsleitung für Gastronomie</div>
+          <h1 class="hero-h1">Gastronomie.<br><em>Ohne Blindflug.</em></h1>
+          <p class="hero-sub">Couvert prüft Ihren Betrieb in fünf Minuten und schickt Ihnen einen zweiseitigen Scan mit drei priorisierten Hebeln.</p>
+          <div class="scan-form" style="max-width: 480px;">
+            <input type="text" class="scan-input" placeholder="Restaurant Zeughauskeller, Zürich">
+            <input type="email" class="scan-input" placeholder="ihre@email.ch">
+            <button class="scan-submit">Couvert Scan starten →</button>
+            <div class="scan-meta">5 Minuten · Kein Login · Per E-Mail</div>
+          </div>
+          <div class="trust-bullets" style="margin-top: 24px;">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>Schweizer Hosting</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>nDSG-konform</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Anthropic Claude</span>
+          </div>
+        </div>
+        <div class="dashboard-mock">
+          <div class="dashboard-chrome"><span class="dashboard-dot"></span><span class="dashboard-dot"></span><span class="dashboard-dot"></span></div>
+          <div class="dashboard-content">
+            <div class="dash-text-row" style="font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--ink);">Dashboard-Vorschau</div>
+            <div class="dash-row">
+              <div class="dash-card"><div class="dash-card-label">CHF Loss-Range</div><div class="dash-card-value">277'801</div><div class="dash-card-delta">P75 · validiert</div></div>
+              <div class="dash-card"><div class="dash-card-label">Antwortquote</div><div class="dash-card-value">1 %</div><div class="dash-card-delta">−9 % vs Peer-Ring</div></div>
+            </div>
+            <div class="dash-card">
+              <div class="dash-card-label">Service-Negativ-Anteil</div>
+              <div class="dash-card-value">63 %</div>
+              <div class="dash-bar"><div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═════════ OPTION B — Section direkt unter Hero ═════════ -->
+  <div data-option="B">
+    <nav class="top-nav">
+      <a href="#" class="logo-name">c<span>o</span>uvert</a>
+      <div class="nav-links"><a href="#">Produkt</a><a href="#">Methodik</a><a href="#">Über uns</a></div>
+    </nav>
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="overline">Digitale Betriebsleitung für Gastronomie</div>
+          <h1 class="hero-h1">Gastronomie.<br><em>Ohne Blindflug.</em></h1>
+          <p class="hero-sub">Zwölf Assistenten werten laufend Bewertungen, Menü, Reservierungen und Schichten aus, und übersetzen jedes Muster in konkrete Massnahmen mit CHF-Effekt.</p>
+          <div class="cta-row">
+            <a href="#" class="btn-primary">30-Min-Gespräch buchen →</a>
+            <a href="#" class="btn-secondary">Intelligence Dossier ansehen →</a>
+          </div>
+          <a href="#" class="tertiary-link">Cockpit live durchklicken →</a>
+          <div class="trust-bullets">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>Schweizer Hosting</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>nDSG-konform</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Anthropic Claude</span>
+          </div>
+        </div>
+        <div class="dashboard-mock">
+          <div class="dashboard-chrome"><span class="dashboard-dot"></span><span class="dashboard-dot"></span><span class="dashboard-dot"></span></div>
+          <div class="dashboard-content">
+            <div class="dash-text-row" style="font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--ink);">Dashboard-Vorschau</div>
+            <div class="dash-row">
+              <div class="dash-card"><div class="dash-card-label">CHF Loss-Range</div><div class="dash-card-value">277'801</div><div class="dash-card-delta">P75 · validiert</div></div>
+              <div class="dash-card"><div class="dash-card-label">Antwortquote</div><div class="dash-card-value">1 %</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Section B: Scan-Form direkt unter Hero -->
+    <section class="section-b">
+      <div class="section-b-grid">
+        <div>
+          <h2>Selbst ausprobieren?</h2>
+          <p>Couvert prüft Ihren Betrieb in fünf Minuten — ohne Login, ohne Verpflichtung.</p>
+          <p>Sie erhalten den Couvert Scan per E-Mail, mit drei priorisierten Hebeln und CHF-Wirkung.</p>
+        </div>
+        <div class="scan-form">
+          <input type="text" class="scan-input" placeholder="Restaurant Zeughauskeller, Zürich">
+          <input type="email" class="scan-input" placeholder="ihre@email.ch">
+          <button class="scan-submit">Couvert Scan starten →</button>
+          <div class="scan-meta">5 Minuten · Kein Login · Per E-Mail</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═════════ OPTION C — Hero CTAs neu sortiert (mein Favorit) ═════════ -->
+  <div data-option="C">
+    <nav class="top-nav">
+      <a href="#" class="logo-name">c<span>o</span>uvert</a>
+      <div class="nav-links"><a href="#">Produkt</a><a href="#">Methodik</a><a href="#">Über uns</a></div>
+    </nav>
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="overline">Digitale Betriebsleitung für Gastronomie</div>
+          <h1 class="hero-h1">Gastronomie.<br><em>Ohne Blindflug.</em></h1>
+          <p class="hero-sub">Zwölf Assistenten werten laufend Bewertungen, Menü, Reservierungen und Schichten aus, und übersetzen jedes Muster in konkrete Massnahmen mit CHF-Effekt.</p>
+          <div class="cta-row">
+            <a href="#scan-preview" class="btn-primary">Couvert Scan starten →</a>
+            <a href="#" class="btn-secondary">30-Min-Gespräch buchen →</a>
+          </div>
+          <a href="#" class="tertiary-link">Cockpit live durchklicken · Intelligence Dossier ansehen →</a>
+          <div class="trust-bullets">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>Schweizer Hosting</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>nDSG-konform</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Anthropic Claude</span>
+          </div>
+        </div>
+        <div class="dashboard-mock">
+          <div class="dashboard-chrome"><span class="dashboard-dot"></span><span class="dashboard-dot"></span><span class="dashboard-dot"></span></div>
+          <div class="dashboard-content">
+            <div class="dash-text-row" style="font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--ink);">Dashboard-Vorschau</div>
+            <div class="dash-row">
+              <div class="dash-card"><div class="dash-card-label">CHF Loss-Range</div><div class="dash-card-value">277'801</div><div class="dash-card-delta">P75 · validiert</div></div>
+              <div class="dash-card"><div class="dash-card-label">Antwortquote</div><div class="dash-card-value">1 %</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Inset preview: was passiert nach Klick auf primary-CTA -->
+    <div class="scan-page-preview" id="scan-preview">
+      <div class="scan-page-preview-label">↓ Klick auf „Couvert Scan starten" → app.couvert.ai/scan</div>
+      <div class="scan-page-mock">
+        <a class="logo-name">c<span>o</span>uvert</a>
+        <h2>Wir prüfen Ihren Betrieb<br><em>in fünf Minuten.</em></h2>
+        <div class="lead">Couvert analysiert öffentliche Daten Ihres Betriebs — Reviews, Karte, Wettbewerbsumfeld — und sendet Ihnen den Scan per E-Mail.</div>
+        <div class="scan-form">
+          <input type="text" class="scan-input" placeholder="Restaurant Zeughauskeller, Zürich">
+          <input type="email" class="scan-input" placeholder="ihre@email.ch">
+          <button class="scan-submit">Couvert Scan starten →</button>
+          <div class="scan-meta">5 Minuten · Kein Login · Per E-Mail</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════ OPTION D — Sticky-Bar oben über Homepage ═════════ -->
+  <div data-option="D">
+    <div class="sticky-bar">
+      <span class="sticky-bar-text"><strong>Couvert Scan:</strong> Ihren Betrieb in fünf Minuten prüfen lassen.</span>
+      <a href="#">Scan starten →</a>
+    </div>
+    <nav class="top-nav">
+      <a href="#" class="logo-name">c<span>o</span>uvert</a>
+      <div class="nav-links"><a href="#">Produkt</a><a href="#">Methodik</a><a href="#">Über uns</a></div>
+    </nav>
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="overline">Digitale Betriebsleitung für Gastronomie</div>
+          <h1 class="hero-h1">Gastronomie.<br><em>Ohne Blindflug.</em></h1>
+          <p class="hero-sub">Zwölf Assistenten werten laufend Bewertungen, Menü, Reservierungen und Schichten aus, und übersetzen jedes Muster in konkrete Massnahmen mit CHF-Effekt.</p>
+          <div class="cta-row">
+            <a href="#" class="btn-primary">30-Min-Gespräch buchen →</a>
+            <a href="#" class="btn-secondary">Intelligence Dossier ansehen →</a>
+          </div>
+          <a href="#" class="tertiary-link">Cockpit live durchklicken →</a>
+          <div class="trust-bullets">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>Schweizer Hosting</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>nDSG-konform</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Anthropic Claude</span>
+          </div>
+        </div>
+        <div class="dashboard-mock">
+          <div class="dashboard-chrome"><span class="dashboard-dot"></span><span class="dashboard-dot"></span><span class="dashboard-dot"></span></div>
+          <div class="dashboard-content">
+            <div class="dash-text-row" style="font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--ink);">Dashboard-Vorschau</div>
+            <div class="dash-row">
+              <div class="dash-card"><div class="dash-card-label">CHF Loss-Range</div><div class="dash-card-value">277'801</div></div>
+              <div class="dash-card"><div class="dash-card-label">Antwortquote</div><div class="dash-card-value">1 %</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</div>
+</div>
+</div>
+
+<script>
+const NOTES = {
+  A: "<strong>Option A — Hero ersetzt.</strong> Form ist erste Sache, die der User sieht (wie Amakori). Maximaler Lead-Funnel, aber Brand-Storytelling (Dashboard-Mockup, „Ohne Blindflug")-Inszenierung) verschwindet von der ersten Sicht. Aggressive Conversion-Logik.",
+  B: "<strong>Option B — Section direkt unter Hero.</strong> Hero bleibt 1:1 wie heute, neue Section drunter mit Form. Behält Brand-Story-Arc, aber „above the fold" sieht der User vom Form noch nichts. Eine zusätzliche Section auf einer schon langen Homepage.",
+  C: "<strong>Option C — CTAs umgestellt (Empfehlung).</strong> Primärer CTA wird „Couvert Scan starten" (Lead-Magnet), sekundärer „30-Min-Gespräch" (warmer Lead). Klick führt zu app.couvert.ai/scan mit der Hero-Form-Page. Klare Hierarchie, eine Klick-Schicht mehr aber sauberer Funnel.",
+  D: "<strong>Option D — Sticky-Bar oben.</strong> Persistenter dunkler Bar über die ganze Homepage. Ständig erreichbar, aber wirkt schnell „salesy" — passt nicht ganz zur Couvert-Tonalität. Mobile-Vorteil: erspart das Scrollen bei langen Pages."
+};
+
+const optionGroup = document.getElementById('optionGroup');
+const viewportGroup = document.getElementById('viewportGroup');
+const noteEl = document.getElementById('noteText');
+
+function setOption(pick) {
+  document.querySelectorAll('[data-option]').forEach(el => el.classList.toggle('active', el.dataset.option === pick));
+  optionGroup.querySelectorAll('.btn').forEach(btn => btn.classList.toggle('active', btn.dataset.pick === pick));
+  noteEl.innerHTML = NOTES[pick] ?? '';
+}
+
+function setViewport(viewport) {
+  document.body.classList.toggle('is-mobile', viewport === 'mobile');
+  viewportGroup.querySelectorAll('.btn').forEach(btn => btn.classList.toggle('active', btn.dataset.viewport === viewport));
+}
+
+optionGroup.addEventListener('click', e => {
+  const btn = e.target.closest('[data-pick]');
+  if (btn) setOption(btn.dataset.pick);
+});
+viewportGroup.addEventListener('click', e => {
+  const btn = e.target.closest('[data-viewport]');
+  if (btn) setViewport(btn.dataset.viewport);
+});
+
+// Initial
+setOption('A');
+setViewport('desktop');
+</script>
+
+</body>
+</html>
