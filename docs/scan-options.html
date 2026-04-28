@@ -73,6 +73,245 @@ html, body { margin: 0; padding: 0; background: var(--canvas-sunken); color: var
   background: var(--copper);
   color: #fff;
 }
+/* Step-Toggle (nur sichtbar wenn Option C v2 aktiv) */
+.step-group {
+  display: flex;
+  gap: 4px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 4px;
+}
+.step-group[hidden] { display: none; }
+.step-group .btn {
+  background: transparent;
+  border: 0;
+  color: rgba(255,255,255,0.7);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.step-group .btn:hover { color: #fff; }
+.step-group .btn.active { background: rgba(255,255,255,0.16); color: #fff; }
+
+/* Sub-states innerhalb von Option C */
+[data-state] { display: none; }
+[data-state].active { display: block; }
+
+/* ─── Mini-Dossier-Preview (rechts im Hero, statt Live-Demo) ─── */
+.dossier-preview {
+  background: var(--canvas-raised);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(18, 34, 30, 0.08);
+}
+.dossier-head {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  background: var(--canvas-sunken);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dossier-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.dossier-place {
+  font-family: 'DM Serif Display', serif;
+  font-size: 13px;
+  color: var(--ink);
+}
+.dossier-body { padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+.dossier-pain-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-3);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.dossier-pain {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.dossier-pain strong { font-style: normal; color: var(--copper); font-weight: 600; }
+.dossier-chf-block {
+  text-align: center;
+  padding: 14px 0 8px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.dossier-chf {
+  font-family: 'DM Serif Display', serif;
+  font-size: 32px;
+  color: var(--copper);
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+.dossier-chf-sub {
+  font-size: 11px;
+  color: var(--ink-3);
+  margin-top: 6px;
+  letter-spacing: 0.3px;
+}
+.dossier-hebel-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.dossier-hebel { display: flex; flex-direction: column; gap: 6px; }
+.dossier-hebel-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 12px;
+}
+.dossier-hebel-name { color: var(--ink-2); }
+.dossier-hebel-name strong { color: var(--ink); font-weight: 600; }
+.dossier-hebel-chf {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--copper);
+  font-weight: 600;
+}
+.dossier-foot {
+  padding: 10px 18px;
+  background: var(--canvas-sunken);
+  border-top: 1px solid var(--border);
+  font-size: 10.5px;
+  color: var(--ink-3);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.4px;
+  text-align: center;
+}
+
+/* ─── /scan Two-Step Pages ─────────────────────────────────── */
+.scan-page {
+  background: var(--canvas);
+  padding: 60px 24px 80px;
+}
+body.is-mobile .scan-page { padding: 40px 22px 60px; }
+.scan-page-inner {
+  max-width: 540px;
+  margin: 0 auto;
+  text-align: center;
+}
+.scan-page-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 56px;
+  text-decoration: none;
+}
+.scan-page-logo span { color: var(--copper); }
+.scan-page h2 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 36px;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+body.is-mobile .scan-page h2 { font-size: 28px; }
+.scan-page h2 em {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--copper);
+}
+.scan-page-lead {
+  font-size: 15px;
+  color: var(--ink-3);
+  margin: 0 auto 32px;
+  max-width: 460px;
+  line-height: 1.55;
+}
+.scan-page-form {
+  background: var(--canvas-raised);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 24px;
+  text-align: left;
+  box-shadow: 0 4px 16px rgba(18,34,30,0.04);
+}
+.scan-trust-line {
+  margin-top: 24px;
+  font-size: 12px;
+  color: var(--ink-4);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.5px;
+}
+
+/* Match-Card (Step 2) */
+.match-card {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 16px;
+  background: var(--canvas-raised);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--copper);
+  border-radius: 10px;
+  margin-bottom: 28px;
+  text-align: left;
+}
+.match-card-thumb {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  background: var(--canvas-sunken);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.match-card-thumb svg { width: 24px; height: 24px; color: var(--ink-3); }
+.match-card-body { flex: 1; min-width: 0; }
+.match-card-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 17px;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+.match-card-meta {
+  font-size: 12px;
+  color: var(--ink-3);
+  line-height: 1.4;
+}
+.match-card-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.4px;
+  color: var(--copper);
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.match-card-tag svg { width: 12px; height: 12px; }
+.scan-back-link {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--ink-3);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .option-group .btn .label-tiny {
   font-size: 11px;
   opacity: 0.7;
@@ -568,9 +807,14 @@ body.is-mobile .scan-page-preview { margin: 16px 22px; }
   <div class="toolbar-title">c<span class="o">o</span>uvert · Scan-Einstieg Mockup</div>
   <div class="toolbar-spacer"></div>
   <div class="option-group" id="optionGroup">
-    <button class="btn active" data-pick="A">A<span class="label-tiny">Hero ersetzt</span></button>
+    <button class="btn" data-pick="A">A<span class="label-tiny">Hero ersetzt</span></button>
     <button class="btn" data-pick="B">B<span class="label-tiny">Section unter Hero</span></button>
-    <button class="btn" data-pick="C">C<span class="label-tiny">CTAs umgestellt</span></button>
+    <button class="btn active" data-pick="C">C v2<span class="label-tiny">Empfehlung post-Audit</span></button>
+  </div>
+  <div class="step-group" id="stepGroup">
+    <button class="btn active" data-step="hero">Homepage</button>
+    <button class="btn" data-step="step1">/scan · Step 1</button>
+    <button class="btn" data-step="step2">/scan · Step 2</button>
   </div>
   <div class="viewport-group" id="viewportGroup">
     <button class="btn active" data-viewport="desktop">Desktop</button>
@@ -660,81 +904,125 @@ body.is-mobile .scan-page-preview { margin: 16px 22px; }
     </section>
   </div>
 
-  <!-- ═════════ OPTION C — Hero CTAs neu sortiert + interaktive Demo ═════════ -->
+  <!-- ═════════ OPTION C v2 — Empfehlung post-Audit ═════════ -->
+  <!-- Architektur basiert auf Konsens von 4 UX-Audits (ChatGPT,
+       Claude Chat, Perplexity Assistant, Perplexity Pro).
+       Drei Sub-States: Homepage-Hero, /scan Step 1, /scan Step 2 -->
   <div data-option="C" class="active">
-    <nav class="top-nav">
-      <a href="#" class="logo-name">c<span>o</span>uvert</a>
-      <div class="nav-links"><a href="#">Produkt</a><a href="#">Methodik</a><a href="#">Über uns</a></div>
-    </nav>
-    <section class="hero">
-      <div class="hero-grid">
-        <div>
-          <div class="overline">Digitale Betriebsleitung für Gastronomie</div>
-          <h1 class="hero-h1">Gastronomie.<br><em>Ohne Blindflug.</em></h1>
-          <p class="hero-sub">Zwölf Assistenten werten laufend Bewertungen, Menü, Reservierungen und Schichten aus, und übersetzen jedes Muster in konkrete Massnahmen mit CHF-Effekt.</p>
-          <div class="cta-row">
-            <a href="#scan-preview" class="btn-primary">Couvert Scan starten →</a>
-            <a href="#" class="btn-secondary">Echtes Dossier ansehen →</a>
+
+    <!-- ─── State: Homepage-Hero ──────────────────────────── -->
+    <div data-state="hero" class="active">
+      <nav class="top-nav">
+        <a href="#" class="logo-name">c<span>o</span>uvert</a>
+        <div class="nav-links"><a href="#">Produkt</a><a href="#">Methodik</a><a href="#">Über uns</a></div>
+      </nav>
+      <section class="hero">
+        <div class="hero-grid">
+          <div>
+            <div class="overline">Digitale Betriebsleitung für Gastronomie</div>
+            <h1 class="hero-h1">Gastronomie.<br><em>Ohne Blindflug.</em></h1>
+            <p class="hero-sub">Zwölf Assistenten werten laufend Bewertungen, Menü, Reservierungen und Schichten aus, und übersetzen jedes Muster in konkrete Massnahmen mit CHF-Effekt.</p>
+            <div class="cta-row">
+              <a href="#" class="btn-primary" data-jump="step1">Couvert Scan starten →</a>
+              <a href="#" class="btn-secondary">Echtes Dossier ansehen →</a>
+            </div>
+            <div class="trust-bullets" style="margin-top: 22px;">
+              <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>Schweizer Hosting</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>nDSG-konform</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Anthropic Claude</span>
+            </div>
           </div>
-          <div style="margin-top: 14px; font-size: 13px; color: var(--ink-3);">
-            ↓ Oder direkt rechts in der Live-Demo durchklicken
-          </div>
-          <div class="trust-bullets" style="margin-top: 22px;">
-            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>Schweizer Hosting</span>
-            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>nDSG-konform</span>
-            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Anthropic Claude</span>
+
+          <!-- Mini-Dossier-Preview statt Live-Demo (Claude-Chat-Punkt:
+               Reward-Anker mit echten Zahlen, Editorial-Style, kein
+               Toy-UI/Sandbox) -->
+          <div class="dossier-preview">
+            <div class="dossier-head">
+              <span class="dossier-label">Beispiel-Scan</span>
+              <span class="dossier-place">Restaurant Zeughauskeller, Zürich</span>
+            </div>
+            <div class="dossier-body">
+              <div>
+                <div class="dossier-pain-label">Pain-Cluster</div>
+                <div class="dossier-pain"><strong>63 %</strong> der 174 negativen Reviews benennen Service & Personal, während 99 von 100 Gästen ohne Antwort bleiben.</div>
+              </div>
+              <div class="dossier-chf-block">
+                <div class="dossier-chf">CHF 277'801</div>
+                <div class="dossier-chf-sub">Geschätzter stiller Umsatzverlust pro Jahr (P75)</div>
+              </div>
+              <div>
+                <div class="dossier-hebel-label" style="margin-bottom: 8px;">Drei priorisierte Hebel</div>
+                <div class="dossier-hebel">
+                  <div class="dossier-hebel-row"><span class="dossier-hebel-name"><strong>1.</strong> Antwortquote sofort erhöhen</span><span class="dossier-hebel-chf">+ CHF 138'900</span></div>
+                  <div class="dossier-hebel-row"><span class="dossier-hebel-name"><strong>2.</strong> Service-Beschwerden erfassen</span><span class="dossier-hebel-chf">+ CHF 97'000</span></div>
+                  <div class="dossier-hebel-row"><span class="dossier-hebel-name"><strong>3.</strong> Preis-Erwartungs-Lücke</span><span class="dossier-hebel-chf">+ CHF 41'901</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="dossier-foot">Auf Basis von 14'068 Reviews · Karte · Wettbewerbsumfeld</div>
           </div>
         </div>
-        <div class="dashboard-mock" data-demo-instance="C"></div>
-      </div>
-    </section>
-    <!-- Inset preview: was passiert nach Klick auf primary-CTA -->
-    <div class="scan-page-preview" id="scan-preview">
-      <div class="scan-page-preview-label">↓ Klick auf „Couvert Scan starten" → app.couvert.ai/scan</div>
-      <div class="scan-page-mock">
-        <a class="logo-name">c<span>o</span>uvert</a>
-        <h2>Wir prüfen Ihren Betrieb<br><em>in fünf Minuten.</em></h2>
-        <div class="lead">Couvert analysiert öffentliche Daten Ihres Betriebs — Reviews, Karte, Wettbewerbsumfeld — und sendet Ihnen den Scan per E-Mail.</div>
-        <div class="scan-form">
-          <input type="text" class="scan-input" placeholder="Restaurant Zeughauskeller, Zürich">
-          <input type="email" class="scan-input" placeholder="ihre@email.ch">
-          <button class="scan-submit">Couvert Scan starten →</button>
-          <div class="scan-meta">5 Minuten · Kein Login · Per E-Mail</div>
-        </div>
-      </div>
+      </section>
     </div>
+
+    <!-- ─── State: /scan Step 1 (Restaurant identifizieren) ──── -->
+    <div data-state="step1">
+      <section class="scan-page">
+        <div class="scan-page-inner">
+          <a class="scan-page-logo">c<span>o</span>uvert</a>
+          <h2>Restaurant <em>prüfen</em>.</h2>
+          <div class="scan-page-lead">Wir prüfen öffentlich verfügbare Signale Ihres Betriebs: Bewertungen, Speisekarte, Wettbewerbsumfeld, Umsatzhebel.</div>
+          <div class="scan-page-form">
+            <input type="text" class="scan-input" placeholder="Restaurantname (z.B. Restaurant Krone)">
+            <input type="text" class="scan-input" placeholder="Stadt (z.B. Zürich)">
+            <button class="scan-submit" data-jump="step2">Betrieb identifizieren →</button>
+            <div class="scan-meta">Voraussichtliche Laufzeit: ca. 5 Minuten</div>
+          </div>
+          <div class="scan-trust-line">Datenquellen: Google Reviews · TripAdvisor · Speisekarte · Wettbewerb</div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ─── State: /scan Step 2 (Match + E-Mail) ──────────── -->
+    <div data-state="step2">
+      <section class="scan-page">
+        <div class="scan-page-inner">
+          <a class="scan-page-logo">c<span>o</span>uvert</a>
+
+          <!-- Match-Confirmation-Card mit Foto-Placeholder -->
+          <div class="match-card">
+            <div class="match-card-thumb">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div class="match-card-body">
+              <div class="match-card-name">Restaurant Zeughauskeller</div>
+              <div class="match-card-meta">Bahnhofstrasse 28A, 8001 Zürich · 14'068 Reviews · 4.4 ★</div>
+              <div class="match-card-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-11"/></svg>
+                Eindeutig erkannt
+              </div>
+            </div>
+          </div>
+
+          <h2>Wohin sollen wir den Scan <em>senden</em>?</h2>
+          <div class="scan-page-lead">Wir senden den fertigen Couvert Scan als HTML-Email an Ihre Geschäftsadresse, sobald die Analyse abgeschlossen ist. Sie müssen dieses Fenster nicht offen lassen.</div>
+
+          <div class="scan-page-form">
+            <input type="email" class="scan-input" placeholder="Geschäfts-E-Mail (z.B. inhaber@krone.ch)">
+            <button class="scan-submit">Couvert Scan starten →</button>
+            <div class="scan-meta">Voraussichtliche Laufzeit: ca. 5 Minuten · Per E-Mail</div>
+          </div>
+
+          <a href="#" class="scan-back-link" data-jump="step1">← anderes Restaurant prüfen</a>
+        </div>
+      </section>
+    </div>
+
   </div>
 
-  <!-- ═════════ OPTION D — Sticky-Bar oben über Homepage ═════════ -->
-  <div data-option="D">
-    <div class="sticky-bar">
-      <span class="sticky-bar-text"><strong>Couvert Scan:</strong> Ihren Betrieb in fünf Minuten prüfen lassen.</span>
-      <a href="#">Scan starten →</a>
-    </div>
-    <nav class="top-nav">
-      <a href="#" class="logo-name">c<span>o</span>uvert</a>
-      <div class="nav-links"><a href="#">Produkt</a><a href="#">Methodik</a><a href="#">Über uns</a></div>
-    </nav>
-    <section class="hero">
-      <div class="hero-grid">
-        <div>
-          <div class="overline">Digitale Betriebsleitung für Gastronomie</div>
-          <h1 class="hero-h1">Gastronomie.<br><em>Ohne Blindflug.</em></h1>
-          <p class="hero-sub">Zwölf Assistenten werten laufend Bewertungen, Menü, Reservierungen und Schichten aus, und übersetzen jedes Muster in konkrete Massnahmen mit CHF-Effekt.</p>
-          <div class="cta-row">
-            <a href="#" class="btn-primary">Couvert Scan starten →</a>
-            <a href="#" class="btn-secondary">Echtes Dossier ansehen →</a>
-          </div>
-          <div class="trust-bullets" style="margin-top: 18px;">
-            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>Schweizer Hosting</span>
-            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>nDSG-konform</span>
-            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Anthropic Claude</span>
-          </div>
-        </div>
-        <div class="dashboard-mock" data-demo-instance="D"></div>
-      </div>
-    </section>
-  </div>
 
 </div>
 </div>
@@ -744,13 +1032,13 @@ body.is-mobile .scan-page-preview { margin: 16px 22px; }
 // Template-Literals (backticks) statt JS-Strings damit deutsche Quotes
 // und ASCII-Quotes nicht den String-Delimiter killen.
 const NOTES = {
-  A: `<strong>Option A — Hero ersetzt.</strong> Form ist erste Sache, die der User sieht (wie Amakori). Maximaler Lead-Funnel, aber das Brand-Storytelling — Dashboard-Mockup, „Ohne Blindflug"-Inszenierung — verschwindet von der ersten Sicht. Aggressive Conversion-Logik, passt eher zu Tech-Tools.`,
-  B: `<strong>Option B — Section direkt unter Hero.</strong> Hero bleibt 1:1 wie heute, neue Section drunter mit Form. Behält den Brand-Story-Arc, aber „above the fold" sieht der User vom Form noch nichts. Eine zusätzliche Section auf einer schon langen Homepage.`,
-  C: `<strong>Option C — CTAs umgestellt (Empfehlung).</strong> Primärer CTA wird „Couvert Scan starten" (Lead-Magnet), sekundärer „30-Min-Gespräch" (warmer Lead). Klick führt zu app.couvert.ai/scan mit der Hero-Form-Page. Klare Hierarchie, eine Klick-Schicht mehr, dafür sauberer Funnel.`,
-  D: `<strong>Option D — Sticky-Bar oben.</strong> Persistenter dunkler Bar über die ganze Homepage. Ständig erreichbar, aber wirkt schnell „salesy" — passt nicht ganz zur Couvert-Tonalität. Mobile-Vorteil: erspart das Scrollen bei langen Pages.`
+  A: `<strong>Option A — Hero ersetzt.</strong> Form ist erste Sache, die der User sieht (wie Amakori). 4-fach-Audit-Konsens (ChatGPT/Claude/Perplexity ×2): zu aggressiv für Couvert's Brand-Tonalität. Performance-Marketing-Look, kein Beratungs-Look. Brand-Fit 2/5. <em>Verworfen.</em>`,
+  B: `<strong>Option B — Section direkt unter Hero.</strong> Hero bleibt 1:1, Form als eigene Section drunter. Audit-Konsens: zu defensiv, Scan wird zur Beilage statt Kern, drei konkurrierende CTAs auf der Homepage erzeugen Entscheidungsnebel. Brand-Fit 4/5, Conversion schwach. <em>Verworfen.</em>`,
+  C: `<strong>Option C v2 — Empfehlung post-Audit.</strong> Konsens aus 4 unabhängigen UX-Audits. Hero behält die Brand-Story, CTAs umgestellt auf „Couvert Scan starten" (primary) + „Echtes Dossier ansehen" (secondary). Rechts statt Live-Demo ein <strong>Mini-Dossier-Preview</strong> mit echten Zahlen (CHF 277'801, 63 % Service-Anteil) — Reward-Anker, kein Toy-UI. Klick auf primary führt auf <strong>/scan als Two-Step</strong>: Step 1 nur Restaurant + Stadt (kein E-Mail, blockt Newsletter-Reflex), Step 2 Match-Confirmation + E-Mail mit Service-Framing („Wohin sollen wir den Scan senden?"). Toggle oben rechts wechselt zwischen den drei States.`,
 };
 
 const optionGroup = document.getElementById('optionGroup');
+const stepGroup = document.getElementById('stepGroup');
 const viewportGroup = document.getElementById('viewportGroup');
 const noteEl = document.getElementById('noteText');
 
@@ -758,6 +1046,18 @@ function setOption(pick) {
   document.querySelectorAll('[data-option]').forEach(el => el.classList.toggle('active', el.dataset.option === pick));
   optionGroup.querySelectorAll('.btn').forEach(btn => btn.classList.toggle('active', btn.dataset.pick === pick));
   noteEl.innerHTML = NOTES[pick] ?? '';
+  // Step-Toggle nur für Option C v2 (die hat die 3 Sub-States)
+  stepGroup.hidden = pick !== 'C';
+  // Bei Option-Wechsel zurück auf Hero-State
+  if (pick === 'C') setStep('hero');
+}
+
+function setStep(step) {
+  // Sub-States existieren aktuell nur in Option C
+  const optionC = document.querySelector('[data-option="C"]');
+  if (!optionC) return;
+  optionC.querySelectorAll('[data-state]').forEach(el => el.classList.toggle('active', el.dataset.state === step));
+  stepGroup.querySelectorAll('.btn').forEach(btn => btn.classList.toggle('active', btn.dataset.step === step));
 }
 
 function setViewport(viewport) {
@@ -769,9 +1069,23 @@ optionGroup.addEventListener('click', e => {
   const btn = e.target.closest('[data-pick]');
   if (btn) setOption(btn.dataset.pick);
 });
+stepGroup.addEventListener('click', e => {
+  const btn = e.target.closest('[data-step]');
+  if (btn) setStep(btn.dataset.step);
+});
 viewportGroup.addEventListener('click', e => {
   const btn = e.target.closest('[data-viewport]');
   if (btn) setViewport(btn.dataset.viewport);
+});
+
+// Jump-Links innerhalb des C-v2-Mockups (CTA-Klick simuliert Page-Wechsel)
+document.addEventListener('click', e => {
+  const jumpEl = e.target.closest('[data-jump]');
+  if (jumpEl) {
+    e.preventDefault();
+    setStep(jumpEl.dataset.jump);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 });
 
 // ─── Live-Demo-Embed: Tabs + Content je Tab ─────────────────
