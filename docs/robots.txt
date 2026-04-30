@@ -1,8 +1,15 @@
+# Pages that ARE publicly linked from the site stay crawlable, but each page
+# carries its own <meta name="robots" content="noindex,nofollow"> so Google
+# can read the noindex signal directly. Blocking them via robots.txt would
+# cause "Indexed though blocked by robots.txt" warnings in Search Console
+# (link is discoverable from index.html, target page can't be crawled).
+#
+# Pages that are NOT publicly linked from anywhere (archive, design specs,
+# internal scan-options) are blocked here as a defense-in-depth measure.
+
 User-agent: *
 Allow: /
-Disallow: /cockpit/
 Disallow: /archive/
-Disallow: /mockups/
 Disallow: /design/
 Disallow: /scan-options.html
 
