@@ -7,14 +7,14 @@ Reduziert Wiederholung, sichert Konsistenz, hält strategische Entscheidungen fe
 
 ## 1. Wer ich bin, was Couvert ist
 
-**Ich:** Maximilian Veit (MV). Gründer der **Couvert GmbH i.G.** (in Gründung),
+**Ich:** Maximilian Veit (MV). Gründer der **Couvert Operations GmbH** (in Gründung),
 Sitz Pfäffikon SZ. Deutsch-sprachig, Schweizer Kontext, technische Affinität.
 
 **Wichtig für Branding/SEO:** Couvert ist eine eigenständige Gesellschaft
-(Couvert GmbH i.G.), nicht Teil von ALPYNE GmbH. ALPYNE wird nach aussen
+(Couvert Operations GmbH), nicht Teil von ALPYNE GmbH. ALPYNE wird nach aussen
 **nicht** mit Couvert verknüpft. Alles was der Kunde sieht — Website,
 Impressum, JSON-LD, Google Business Profile, Rechnungen — trägt
-"Couvert GmbH i.G.".
+"Couvert Operations GmbH".
 
 **Couvert.ai:** AI Operations für Schweizer Gastronomie.
 Zielgruppe: inhabergeführte Restaurants und kleine Ketten mit CHF 5 Mio.+

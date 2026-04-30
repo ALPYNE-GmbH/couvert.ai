@@ -551,7 +551,7 @@ haben), wechseln wir zum Zwei-Stufen-Flow:
 
 ### 12.7 Dokumentation (revDSG-Pflicht)
 
-Couvert GmbH führt ein **Verzeichnis der Bearbeitungstätigkeiten**, in dem
+Couvert Operations GmbH führt ein **Verzeichnis der Bearbeitungstätigkeiten**, in dem
 eingetragen ist:
 
 - **Bearbeitungszweck:** Betriebswirtschaftliche Analyse für Gastronomiebetriebe

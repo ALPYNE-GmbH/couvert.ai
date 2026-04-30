@@ -48,17 +48,17 @@ strategic suggestions. Code stays `MODELS.OPUS`-configurable per call.
 **Timing:** vor Phase-2-DE-Launch abschliessen (Q3 2027). Je früher, desto kleiner das Risiko einer Namens-Kollision die nachträgliches Rebranding erzwingt.
 
 ### T-012 · Off-site SEO — Google-Recognition herstellen
-**Status:** On-site-Signale sind live (JSON-LD Organization, Meta-Tags, sitemap.xml, robots.txt auf allen 8 Seiten, Couvert GmbH i.G. als legalName). Google AI Overview verwechselt couvert.ai aktuell mit Coupert-Browser-Extension. Off-site-Hebel muss MV selbst bedienen:
+**Status:** On-site-Signale sind live (JSON-LD Organization, Meta-Tags, sitemap.xml, robots.txt auf allen 8 Seiten, Couvert Operations GmbH als legalName). Google AI Overview verwechselt couvert.ai aktuell mit Coupert-Browser-Extension. Off-site-Hebel muss MV selbst bedienen:
 - [ ] **Google Search Console** — Property `https://couvert.ai` hinzufügen, via DNS oder HTML-File verifizieren, Sitemap `https://couvert.ai/sitemap.xml` einreichen, pro Seite "Request Indexing" klicken
-- [ ] **Google Business Profile** — anlegen als "Couvert GmbH i.G." · Pfäffikon SZ · Kategorie Softwareunternehmen/Unternehmensberatung · Website couvert.ai · Verifizieren
-- [ ] **AI Overview Feedback** absenden (Text wurde 2026-04-18 in Chat-Verlauf erstellt) — vor Submit "ALPYNE GmbH, Zürich" durch "Couvert GmbH i.G., Pfäffikon SZ" ersetzen
-- [ ] **LinkedIn Company Page** — "Couvert.ai (Couvert GmbH i.G.)" · Schweiz · Software für Gastronomie · Link auf couvert.ai
-- [ ] **Crunchbase-Profil** — Couvert.ai unter Couvert GmbH i.G. registrieren
+- [ ] **Google Business Profile** — anlegen als "Couvert Operations GmbH" · Pfäffikon SZ · Kategorie Softwareunternehmen/Unternehmensberatung · Website couvert.ai · Verifizieren
+- [ ] **AI Overview Feedback** absenden (Text wurde 2026-04-18 in Chat-Verlauf erstellt) — vor Submit "ALPYNE GmbH, Zürich" durch "Couvert Operations GmbH, Pfäffikon SZ" ersetzen
+- [ ] **LinkedIn Company Page** — "Couvert.ai (Couvert Operations GmbH)" · Schweiz · Software für Gastronomie · Link auf couvert.ai
+- [ ] **Crunchbase-Profil** — Couvert.ai unter Couvert Operations GmbH registrieren
 - [ ] **Rich-Result-Test** auf search.google.com/test/rich-results — couvert.ai prüfen, Organization-Schema-Erkennung verifizieren
 **Erwarteter Effekt:** 3–14 Tage bis Google Couvert als eigenständige Entity erkennt und Coupert-Verwechslung verschwindet.
 
 ### T-013 · Google Workspace für couvert.ai separat aufsetzen
-**Status:** Derzeit läuft E-Mail über ALPYNE-Workspace. Widerspricht der Legal-Entity-Trennung (Couvert GmbH i.G. ≠ ALPYNE). DKIM-Signing zeigt aktuell ALPYNE als Infrastruktur-Betreiber, sichtbar in Mail-Headern beim Empfänger.
+**Status:** Derzeit läuft E-Mail über ALPYNE-Workspace. Widerspricht der Legal-Entity-Trennung (Couvert Operations GmbH ≠ ALPYNE). DKIM-Signing zeigt aktuell ALPYNE als Infrastruktur-Betreiber, sichtbar in Mail-Headern beim Empfänger.
 **Plan:** Google Workspace Business Starter · ~CHF 6.50/User/Monat · initial nur MV.
 **Setup-Schritte (ca. 30 Min, einmalig):**
 1. Workspace anlegen auf workspace.google.com — Primary-Domain couvert.ai
