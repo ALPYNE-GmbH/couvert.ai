@@ -4,5 +4,6 @@ Disallow: /cockpit/
 Disallow: /archive/
 Disallow: /mockups/
 Disallow: /design/
+Disallow: /scan-options.html
 
 Sitemap: https://couvert.ai/sitemap.xml
