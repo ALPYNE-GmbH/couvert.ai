@@ -1,0 +1,58 @@
+<svg viewBox="0 0 1080 608" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="canvasGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAF8F3"/>
+      <stop offset="100%" stop-color="#F2EFE7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background canvas with subtle gradient -->
+  <rect width="1080" height="608" fill="url(#canvasGrad)"/>
+
+  <!-- Editorial grid hairlines -->
+  <g opacity="0.05" stroke="#12221E" stroke-width="1">
+    <line x1="60" y1="0" x2="60" y2="608"/>
+    <line x1="0" y1="80" x2="1080" y2="80"/>
+    <line x1="0" y1="528" x2="1080" y2="528"/>
+  </g>
+
+  <!-- Top eyebrow label -->
+  <text x="60" y="60" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="13" letter-spacing="4" fill="#6C726E">AI · OPERATIONS · GASTRONOMIE</text>
+
+  <!-- Main wordmark -->
+  <text x="60" y="290" font-family="'DM Serif Display', 'Georgia', serif" font-size="200" font-style="italic" fill="#12221E" letter-spacing="-4">couvert</text>
+
+  <!-- Copper accent rule -->
+  <line x1="60" y1="320" x2="180" y2="320" stroke="#C4673A" stroke-width="3"/>
+
+  <!-- Tagline -->
+  <text x="60" y="370" font-family="'DM Sans', 'Helvetica', sans-serif" font-size="34" fill="#384844" font-weight="400">Gastronomie ohne Blindflug.</text>
+  <text x="60" y="410" font-family="'DM Sans', 'Helvetica', sans-serif" font-size="22" fill="#6C726E" font-weight="300">Ein externes AI-Operations-Team für Restaurants in der Schweiz.</text>
+
+  <!-- Right side: stylized Gedeck (place setting) -->
+  <g transform="translate(770, 240)">
+    <!-- Plate (outer ring + inner ring) -->
+    <circle cx="120" cy="80" r="120" fill="none" stroke="#12221E" stroke-width="1.5" opacity="0.35"/>
+    <circle cx="120" cy="80" r="105" fill="none" stroke="#12221E" stroke-width="0.6" opacity="0.25"/>
+    <circle cx="120" cy="80" r="3" fill="#C4673A"/>
+
+    <!-- Fork (left of plate) -->
+    <g stroke="#12221E" stroke-width="1.6" opacity="0.55" fill="none">
+      <line x1="-30" y1="-50" x2="-30" y2="200"/>
+      <line x1="-38" y1="-50" x2="-38" y2="-15"/>
+      <line x1="-22" y1="-50" x2="-22" y2="-15"/>
+      <line x1="-30" y1="-50" x2="-30" y2="-15"/>
+    </g>
+
+    <!-- Knife (right of plate) -->
+    <g stroke="#12221E" stroke-width="1.6" opacity="0.55" fill="none">
+      <line x1="270" y1="-50" x2="270" y2="200"/>
+      <path d="M 263 -50 Q 270 -52 277 -50 L 277 0 L 263 0 Z" fill="#12221E" opacity="0.55"/>
+    </g>
+  </g>
+
+  <!-- Bottom strip -->
+  <line x1="60" y1="552" x2="1020" y2="552" stroke="#12221E" stroke-width="0.5" opacity="0.15"/>
+  <text x="60" y="585" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#6C726E">PFÄFFIKON SZ · DEUTSCHSCHWEIZ</text>
+  <text x="1020" y="585" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" fill="#C4673A" text-anchor="end">COUVERT.AI</text>
+</svg>
