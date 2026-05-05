@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Couvert - Agentic Service OS für Gastronomie</title>
-<meta name="description" content="Agentic Service OS für Gastronomie. Von Scan über Intelligence bis Operations: Wir erkennen, priorisieren und steuern die Hebel, die Ihren Betrieb messbar besser machen.">
+<title>Couvert · Digitale Betriebsleitung für Gastronomie</title>
+<meta name="description" content="Couvert liest öffentliche Gästesignale, erkennt operative Muster und verdichtet sie zu einem klaren Audit: Befund, Wirkung, Massnahmen, Evidenz. Für Schweizer Gastronomiebetriebe.">
 <link rel="canonical" href="https://couvert.ai/">
 <link rel="alternate" hreflang="de" href="https://couvert.ai/">
 <link rel="alternate" hreflang="en" href="https://couvert.ai/en/">
 <link rel="alternate" hreflang="x-default" href="https://couvert.ai/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Couvert.ai">
-<meta property="og:title" content="Couvert - Agentic Service OS für Gastronomie">
-<meta property="og:description" content="Von Scan über Intelligence bis Operations: Wir erkennen, priorisieren und steuern die Hebel, die Ihren Betrieb messbar besser machen.">
+<meta property="og:title" content="Couvert · Digitale Betriebsleitung für Gastronomie">
+<meta property="og:description" content="Couvert liest öffentliche Gästesignale, erkennt operative Muster und verdichtet sie zu einem klaren Audit: Befund, Wirkung, Massnahmen, Evidenz.">
 <meta property="og:url" content="https://couvert.ai/">
 <meta property="og:locale" content="de_CH">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Couvert - Agentic Service OS für Gastronomie">
-<meta name="twitter:description" content="Von Scan über Intelligence bis Operations: Wir erkennen, priorisieren und steuern die Hebel, die Ihren Betrieb messbar besser machen.">
+<meta name="twitter:title" content="Couvert · Digitale Betriebsleitung für Gastronomie">
+<meta name="twitter:description" content="Couvert liest öffentliche Gästesignale, erkennt operative Muster und verdichtet sie zu einem klaren Audit: Befund, Wirkung, Massnahmen, Evidenz.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <script type="application/ld+json">
 {
@@ -28,7 +28,7 @@
   "legalName": "Couvert Operations GmbH",
   "url": "https://couvert.ai",
   "logo": "https://couvert.ai/favicon.svg",
-  "description": "AI-Operations-Plattform für die Schweizer Gastronomie. Zwölf spezialisierte AI-Agents in vier Teams identifizieren und beziffern Umsatzlücken in Restaurant-Betrieben.",
+  "description": "Digitale Betriebsleitung für die Schweizer Gastronomie. Couvert liest öffentliche Gästesignale, erkennt operative Muster und verdichtet sie zu einem klaren Audit: Befund, Wirkung, Massnahmen, Evidenz.",
   "foundingDate": "2025",
   "foundingLocation": {"@type": "Place", "address": {"@type": "PostalAddress", "streetAddress": "Churerstrasse 105", "postalCode": "8808", "addressLocality": "Pfäffikon", "addressRegion": "SZ", "addressCountry": "CH"}},
   "address": {"@type": "PostalAddress", "streetAddress": "Churerstrasse 105", "postalCode": "8808", "addressLocality": "Pfäffikon", "addressRegion": "SZ", "addressCountry": "CH"},
@@ -429,6 +429,149 @@
 @media(max-width:640px){
   .solutions-section > .sol-container{padding:var(--sp-7) var(--container-pad)}
 }
+
+/* ===================================================================
+   HOMEPAGE REFRESH 2026-05-05
+   - Hero pricing line, ink-CTA, trust-bar
+   - Echter Beispielbefund (5-step structure)
+   - Pain-Slices 2x2
+   - Pricing-Strip 3-stages + Operations Layer
+   - Founder block
+   - Visual refinement: less copper, ink CTAs, hairlines, less shadow
+   =================================================================== */
+
+/* Visual refinement: ink-CTA for primary actions on cream surfaces */
+.btn-primary.btn-primary--ink{background:var(--green-ink,#1A3C34);color:#fff;border:1px solid var(--green-ink,#1A3C34);box-shadow:none}
+.btn-primary.btn-primary--ink:hover{background:#12261F;border-color:#12261F;color:#fff;transform:translateY(-1px)}
+
+/* Hero pricing line under CTA */
+.hero-pricing{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:var(--ink-3);margin-top:var(--sp-4);max-width:560px}
+.hero-pricing-sep{color:var(--hairline-strong,#c9c2b6)}
+@media(max-width:640px){.hero-pricing{font-size:11px;gap:6px 10px}.hero-pricing-sep{display:none}}
+
+/* Trust-Bar (replaces old proof-bar) */
+.trust-bar{background:var(--canvas-sunken);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);padding:18px 0}
+.trust-bar-list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 0;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-3)}
+.trust-bar-list li{padding:0 18px;border-right:1px solid var(--hairline);line-height:1.4}
+.trust-bar-list li:last-child{border-right:none}
+@media(max-width:800px){
+  .trust-bar-list{font-size:10px;letter-spacing:0.1em}
+  .trust-bar-list li{padding:4px 12px;border-right:none}
+  .trust-bar-list li:not(:last-child)::after{content:'·';color:var(--hairline-strong);margin-left:12px}
+}
+
+/* Echter Beispielbefund */
+.example-finding{background:var(--canvas);padding:var(--sp-9) 0}
+.example-finding .container{max-width:900px}
+.ef-overline{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--copper);margin-bottom:var(--sp-3);text-align:center}
+.example-finding h2.ef-h{font-family:'DM Sans',sans-serif;font-weight:600;font-size:var(--fs-h1);color:var(--ink);letter-spacing:-0.03em;line-height:var(--lh-heading);margin:0 0 var(--sp-3) 0;text-align:center}
+.example-finding h2.ef-h em{font-family:'DM Serif Display',serif;font-style:italic;font-weight:400;color:var(--ink-2);letter-spacing:-0.01em}
+.ef-intro{font-size:var(--fs-body);color:var(--ink-3);text-align:center;max-width:640px;margin:0 auto var(--sp-7);line-height:var(--lh-body);font-style:italic}
+.ef-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.ef-step{display:grid;grid-template-columns:80px 1fr;gap:var(--sp-5);padding:var(--sp-6) 0;border-top:1px solid var(--hairline)}
+.ef-step:last-child{border-bottom:1px solid var(--hairline)}
+.ef-step-num{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:14px;letter-spacing:0.14em;color:var(--copper);padding-top:6px}
+.ef-step-body h3{font-family:'DM Sans',sans-serif;font-weight:600;font-size:var(--fs-h3);color:var(--ink);margin:0 0 var(--sp-3) 0;letter-spacing:-0.01em;line-height:var(--lh-snug)}
+.ef-step-body p{font-size:var(--fs-body);color:var(--ink-2);line-height:var(--lh-body);margin:0 0 var(--sp-3) 0}
+.ef-step-body p.ef-step-chf{font-family:'DM Serif Display',serif;font-size:32px;color:var(--ink);line-height:1.15;letter-spacing:-0.01em;margin-bottom:var(--sp-2)}
+.ef-step-body p.ef-step-foot{font-size:13px;color:var(--ink-3);font-style:italic;margin:0}
+.ef-actions{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--sp-3)}
+.ef-actions li{font-size:var(--fs-body);color:var(--ink-2);line-height:var(--lh-body);padding-left:18px;position:relative}
+.ef-actions li::before{content:'';position:absolute;left:0;top:11px;width:8px;height:1px;background:var(--copper)}
+.ef-actions li strong{color:var(--ink);font-weight:600}
+.ef-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:var(--sp-4)}
+@media(max-width:800px){
+  .ef-step{grid-template-columns:1fr;gap:var(--sp-2)}
+  .ef-step-num{padding-top:0}
+  .example-finding h2.ef-h{font-size:clamp(26px,4.4vw,34px)}
+  .ef-step-body p.ef-step-chf{font-size:26px}
+}
+
+/* Pain-Slices 2x2 */
+.pain-slices{background:var(--canvas-sunken);padding:var(--sp-9) 0;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+.pain-head{max-width:720px;margin:0 auto var(--sp-7);text-align:center}
+.pain-overline{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--copper);margin-bottom:var(--sp-3)}
+.pain-slices h2{font-family:'DM Sans',sans-serif;font-weight:600;font-size:var(--fs-h1);color:var(--ink);letter-spacing:-0.03em;line-height:var(--lh-heading);margin:0 0 var(--sp-3) 0}
+.pain-head p{font-size:var(--fs-body-lg);color:var(--ink-2);line-height:var(--lh-body);font-weight:400;margin:0}
+.pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--hairline);background:var(--canvas-raised);max-width:1100px;margin:0 auto;border-radius:var(--radius-lg)}
+.pain-card{padding:var(--sp-6) var(--sp-6);border-right:1px solid var(--hairline);border-bottom:1px solid var(--hairline);display:flex;flex-direction:column;gap:var(--sp-3)}
+.pain-card:nth-child(2n){border-right:none}
+.pain-card:nth-last-child(-n+2){border-bottom:none}
+.pain-title{font-family:'DM Serif Display',serif;font-weight:400;font-style:italic;font-size:24px;color:var(--ink);margin:0;line-height:1.2;letter-spacing:-0.01em}
+.pain-body{font-size:var(--fs-body);color:var(--ink-2);line-height:var(--lh-body);margin:0;font-weight:400}
+.pain-detect{font-size:14px;color:var(--ink-3);line-height:1.55;margin:0}
+.pain-mechanic{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:var(--ink-3);margin-top:auto;padding-top:var(--sp-3);border-top:1px solid var(--hairline)}
+@media(max-width:800px){
+  .pain-grid{grid-template-columns:1fr}
+  .pain-card{border-right:none}
+  .pain-card:nth-last-child(-n+2){border-bottom:1px solid var(--hairline)}
+  .pain-card:last-child{border-bottom:none}
+  .pain-title{font-size:20px}
+}
+
+/* Pricing-Strip */
+.pricing-strip{background:var(--canvas);padding:var(--sp-9) 0}
+.pricing-head{max-width:720px;margin:0 auto var(--sp-7);text-align:center}
+.pricing-overline{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--copper);margin-bottom:var(--sp-3)}
+.pricing-strip h2{font-family:'DM Sans',sans-serif;font-weight:600;font-size:var(--fs-h1);color:var(--ink);letter-spacing:-0.03em;line-height:var(--lh-heading);margin:0 0 var(--sp-3) 0}
+.pricing-head p{font-size:var(--fs-body-lg);color:var(--ink-2);line-height:var(--lh-body);font-weight:400;margin:0}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;max-width:1080px;margin:0 auto;border:1px solid var(--hairline);background:var(--canvas-raised);border-radius:var(--radius-lg);overflow:hidden}
+.pricing-card{padding:var(--sp-6) var(--sp-6);border-right:1px solid var(--hairline);display:flex;flex-direction:column;gap:var(--sp-2);position:relative}
+.pricing-card:last-child{border-right:none}
+.pricing-card--feature{background:var(--canvas-sunken)}
+.pricing-step{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11px;letter-spacing:0.18em;color:var(--copper);margin-bottom:var(--sp-2)}
+.pricing-card h3{font-family:'DM Sans',sans-serif;font-weight:600;font-size:18px;color:var(--ink);margin:0;letter-spacing:-0.01em;line-height:1.3}
+.pricing-price{font-family:'DM Serif Display',serif;font-size:30px;color:var(--ink);line-height:1.1;letter-spacing:-0.01em;margin:var(--sp-2) 0}
+.pricing-desc{font-size:14px;color:var(--ink-2);line-height:1.55;margin:0;font-style:italic}
+.pricing-ops{max-width:1080px;margin:var(--sp-5) auto 0;padding:18px 22px;border:1px solid var(--hairline);border-radius:var(--radius-md);background:var(--canvas-raised);display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.pricing-ops-label{font-family:'DM Sans',sans-serif;font-weight:600;color:var(--ink);font-size:14px}
+.pricing-ops-price{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--copper);letter-spacing:0.02em}
+.pricing-ops-desc{font-size:14px;color:var(--ink-3);font-style:italic}
+.pricing-footnote{margin-top:var(--sp-4);font-size:12px;color:var(--ink-3);text-align:center;line-height:1.5}
+.pricing-footnote a{color:var(--copper);text-decoration:none;border-bottom:1px solid transparent;transition:border-color var(--dur-fast)}
+.pricing-footnote a:hover{border-color:var(--copper)}
+@media(max-width:800px){
+  .pricing-grid{grid-template-columns:1fr}
+  .pricing-card{border-right:none;border-bottom:1px solid var(--hairline)}
+  .pricing-card:last-child{border-bottom:none}
+  .pricing-price{font-size:26px}
+}
+
+/* Trust-panel slim */
+.trust-panel{background:var(--canvas-sunken);padding:var(--sp-8) 0;border-top:1px solid var(--hairline)}
+.trust-panel .trust-head{max-width:720px;margin:0 auto var(--sp-6);text-align:center}
+.trust-panel .trust-head .section-label{color:var(--copper);margin-bottom:var(--sp-2)}
+.trust-panel .trust-head h2{font-family:'DM Sans',sans-serif;font-weight:600;font-size:var(--fs-h2);color:var(--ink);letter-spacing:-0.02em;line-height:var(--lh-heading);margin:0}
+.trust-panel .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:1080px;margin:0 auto;border:1px solid var(--hairline);background:var(--canvas-raised);border-radius:var(--radius-lg);overflow:hidden}
+.trust-panel .trust-item{padding:var(--sp-5) var(--sp-5);border-right:1px solid var(--hairline)}
+.trust-panel .trust-item:last-child{border-right:none}
+.trust-panel .trust-item h3{font-family:'DM Sans',sans-serif;font-weight:600;font-size:15px;color:var(--ink);margin:0 0 8px 0;letter-spacing:-0.01em}
+.trust-panel .trust-item p{font-size:13.5px;color:var(--ink-2);line-height:1.55;margin:0}
+@media(max-width:1023px){.trust-panel .trust-grid{grid-template-columns:repeat(2,1fr)}.trust-panel .trust-item:nth-child(2){border-right:none}.trust-panel .trust-item:nth-child(-n+2){border-bottom:1px solid var(--hairline)}}
+@media(max-width:600px){.trust-panel .trust-grid{grid-template-columns:1fr}.trust-panel .trust-item{border-right:none;border-bottom:1px solid var(--hairline)}.trust-panel .trust-item:last-child{border-bottom:none}}
+
+/* Founder block */
+.founder-section{background:var(--canvas);padding:var(--sp-9) 0;border-top:1px solid var(--hairline)}
+.founder-layout{display:grid;grid-template-columns:200px 1fr;gap:var(--sp-7);align-items:center;max-width:880px;margin:0 auto}
+.founder-portrait{width:200px;height:200px;border-radius:50%;background:var(--canvas-sunken);border:1px solid var(--hairline);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.founder-portrait-placeholder{font-family:'DM Serif Display',serif;font-size:56px;color:var(--ink-3);letter-spacing:-0.02em;opacity:0.5}
+.founder-overline{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--copper);margin-bottom:var(--sp-3)}
+.founder-section h2{font-family:'DM Sans',sans-serif;font-weight:600;font-size:var(--fs-h2);color:var(--ink);letter-spacing:-0.02em;line-height:var(--lh-heading);margin:0 0 var(--sp-4) 0}
+.founder-section h2 em{font-family:'DM Serif Display',serif;font-style:italic;font-weight:400;color:var(--ink-2);letter-spacing:-0.01em}
+.founder-copy p{font-size:var(--fs-body);color:var(--ink-2);line-height:var(--lh-body);margin:0 0 var(--sp-3) 0}
+.founder-copy p a{color:var(--copper);text-decoration:none;border-bottom:1px solid transparent;transition:border-color var(--dur-fast)}
+.founder-copy p a:hover{border-color:var(--copper)}
+.founder-meta{display:flex;flex-wrap:wrap;gap:8px 12px;margin-top:var(--sp-4);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:var(--ink-3);align-items:baseline}
+.founder-meta .founder-name{color:var(--ink);font-weight:500}
+.founder-meta .founder-sep{color:var(--hairline-strong,#c9c2b6)}
+.founder-meta .founder-mail{color:var(--copper);text-decoration:none;border-bottom:1px solid transparent;transition:border-color var(--dur-fast)}
+.founder-meta .founder-mail:hover{border-color:var(--copper)}
+@media(max-width:800px){
+  .founder-layout{grid-template-columns:1fr;gap:var(--sp-5);text-align:center}
+  .founder-portrait{margin:0 auto;width:140px;height:140px}
+  .founder-portrait-placeholder{font-size:42px}
+  .founder-meta{justify-content:center}
+}
 </style>
 <script src="/cookie-consent.js" defer></script>
 </head>
@@ -488,221 +631,155 @@
 })();
 </script>
 
-<!-- HERO - 2-col dashboard-as-hero -->
+<!-- HERO - persona-zentriert: Befund vor Mechanik -->
 <section class="hero-section reveal" id="top"><div class="container">
 <div class="hero-copy">
 <div class="hero-overline animate d1">Digitale Betriebsleitung für Gastronomie</div>
-<h1 class="animate d1">Gastronomie.<br><em>Ohne Blindflug.</em></h1>
-<p class="hero-sub animate d2">Zwölf Assistenten werten laufend Bewertungen, Menü, Reservierungen und Schichten aus, und übersetzen jedes Muster in konkrete Massnahmen mit CHF-Effekt.</p>
+<h1 class="animate d1">Sehen Sie, wo Ihr Betrieb Geld verliert,<br><em>bevor es im Monatsabschluss sichtbar wird.</em></h1>
+<p class="hero-sub animate d2">Couvert liest öffentliche Gästesignale, erkennt operative Muster und verdichtet sie zu einem klaren Audit: Befund, Wirkung, Massnahmen, Evidenz.</p>
 <div class="hero-cta animate d3">
-  <a href="https://scan.couvert.ai/scan" class="btn-primary">Couvert Scan starten →</a>
-  <a href="beispiel-report/" class="btn-secondary">Echtes Dossier ansehen →</a>
+  <a href="https://calendly.com/hello-couvert/30min" target="_blank" rel="noopener" class="btn-primary btn-primary--ink">Audit-Potenzial prüfen →</a>
+  <a href="beispiel-report/" class="btn-secondary">Beispiel ansehen</a>
 </div>
-<div class="hero-tertiary animate d3"><a href="/cockpit/" class="hero-tertiary-link">Cockpit live durchklicken →</a> &nbsp;·&nbsp; <a href="https://calendly.com/hello-couvert/30min" target="_blank" rel="noopener" class="hero-tertiary-link">30-Min-Gespräch buchen →</a></div>
-<div class="hero-bullets animate d4">
-<span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>Schweizer Hosting</span>
-<span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg>nDSG-konform</span>
-<span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Anthropic Claude</span>
-<span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Monatlich kündbar</span>
+<div class="hero-pricing animate d3">
+  <span>Couvert Intelligence Audit ab CHF 4'500</span>
+  <span class="hero-pricing-sep">·</span>
+  <span>Operations Layer ab CHF 2'500 / Standort / Monat</span>
 </div>
-<a href="#calculator" class="hero-teaser animate d5" data-scroll-target="calculator">
-  <div class="hero-teaser-number" id="hero-counter"><span class="count-up" data-target="390000" data-prefix="CHF " data-suffix="+" data-format="de">CHF 390'000+</span></div>
-  <div class="hero-teaser-sub">Ø Jahresverlust eines CHF-5-Mio-Betriebs</div>
-  <div class="hero-teaser-cta">Rechner <span class="hero-teaser-arrow">→</span></div>
-</a>
 </div>
 <div class="hero-dashboard" id="hero-dashboard">
-  <!-- Mini-Dossier-Preview (post-Audit Empfehlung):
-       Statisches Editorial-Card mit echten Beispiel-Zahlen statt
-       Live-Demo. Reward-Anker direkt am Hero — User sieht was er kriegt
-       bevor er klickt. Keine playful Tabs. -->
-  <div class="dossier-preview" aria-label="Beispiel-Scan">
+  <!-- Beispielbefund-Card im Hero rechts: gelabelt als modellierte
+       Umsatzwirkung, nicht als zugestellter Audit-Output. -->
+  <div class="dossier-preview" aria-label="Beispielbefund">
     <div class="dossier-head">
-      <span class="dossier-head-label">Beispiel-Scan</span>
-      <span class="dossier-head-place">Restaurant Zeughauskeller, Zürich</span>
+      <span class="dossier-head-label">Beispielbefund · modellierte Umsatzwirkung</span>
+      <span class="dossier-head-place">Anonymisiertes Profil · Schweizer Gastronomiebetrieb</span>
     </div>
     <div class="dossier-body">
       <div>
-        <div class="dossier-section-label">Pain-Cluster</div>
-        <div class="dossier-pain"><strong>63 %</strong> der 174 negativen Reviews benennen Service &amp; Personal, während 99 von 100 Gästen ohne Antwort bleiben.</div>
+        <div class="dossier-section-label">Befund</div>
+        <div class="dossier-pain"><strong>63 %</strong> der negativen Reviews benennen Service und Wartezeit, während 99 von 100 Gästen ohne Antwort bleiben.</div>
       </div>
       <div class="dossier-chf-block">
         <div class="dossier-chf">CHF 277'801</div>
-        <div class="dossier-chf-sub">Geschätzter stiller Umsatzverlust pro Jahr (P75)</div>
+        <div class="dossier-chf-sub">Modellierte Umsatzwirkung pro Jahr · Beispielbefund, kein Versprechen</div>
       </div>
       <div>
         <div class="dossier-section-label">Drei priorisierte Hebel</div>
         <ul class="dossier-hebel">
-          <li><span class="dossier-hebel-name"><strong>1.</strong> Antwortquote sofort erhöhen</span><span class="dossier-hebel-chf">+ CHF 138'900</span></li>
-          <li><span class="dossier-hebel-name"><strong>2.</strong> Service-Beschwerden erfassen</span><span class="dossier-hebel-chf">+ CHF 97'000</span></li>
-          <li><span class="dossier-hebel-name"><strong>3.</strong> Preis-Erwartungs-Lücke</span><span class="dossier-hebel-chf">+ CHF 41'901</span></li>
+          <li><span class="dossier-hebel-name"><strong>1.</strong> Antwortquote auf Reviews erhöhen</span><span class="dossier-hebel-chf">+ CHF 138'900</span></li>
+          <li><span class="dossier-hebel-name"><strong>2.</strong> Service-Beschwerden strukturiert erfassen</span><span class="dossier-hebel-chf">+ CHF 97'000</span></li>
+          <li><span class="dossier-hebel-name"><strong>3.</strong> Preis-Erwartungs-Lücke schliessen</span><span class="dossier-hebel-chf">+ CHF 41'901</span></li>
         </ul>
       </div>
     </div>
-    <div class="dossier-foot">Auf Basis von 14'068 Reviews · Karte · Wettbewerbsumfeld</div>
+    <div class="dossier-foot">Auf Basis öffentlicher Daten · Reviews, Karte, Wettbewerbsumfeld</div>
   </div>
 </div>
 </div></section>
 
-<!-- PROOF BAR (Mini-Trust-Stripe - Block 5.1) -->
-<section class="proof-bar light-section reveal"><div class="proof-context">Beispiel: Gastro-Betrieb Zürich</div><div class="container reveal-stagger">
-<div class="proof-item"><div class="proof-num">2.825</div><div class="proof-label">Bewertungen analysiert</div></div>
-<div class="proof-item"><div class="proof-num">0%</div><div class="proof-label">Antwortquote</div></div>
-<div class="proof-item"><div class="proof-num">10</div><div class="proof-label">Schwachstellen identifiziert</div></div>
-<div class="proof-item"><div class="proof-num"><span class="count-up" data-target="390000" data-prefix="CHF " data-suffix="+" data-format="k">CHF 390K+</span></div><div class="proof-label">Geschätzter Umsatzverlust / Jahr</div></div>
+<!-- TRUST-BAR direkt unter Hero - ruhige Linie, keine Compliance-Wand -->
+<section class="trust-bar reveal"><div class="container">
+  <ul class="trust-bar-list">
+    <li>Schweizer Betrieb</li>
+    <li>nDSG-orientiert</li>
+    <li>Öffentliche Daten zuerst</li>
+    <li>Keine automatische Kundenkommunikation</li>
+    <li>Betreiber-Review vor Auslieferung</li>
+  </ul>
 </div></section>
 
-<!-- PROBLEM / AGITATION (Block 5.4) -->
-<section class="problem-section reveal"><div class="container">
-  <div class="problem-overline">Das Problem</div>
-  <h2 class="problem-h">Durchschnittlich <em>CHF 390'000 pro Jahr</em> an Umsatzverlust - in jedem CHF-5-Mio-Betrieb, den wir gescannt haben.</h2>
-  <div class="problem-grid">
-    <div class="problem-card">
-      <div class="problem-card-num">01</div>
-      <h3>Wartezeit trotz Reservation</h3>
-      <p>Gäste kommen pünktlich, warten 20–30 Minuten. Die meisten erwähnen es nie - sie kommen einfach nicht wieder.</p>
-    </div>
-    <div class="problem-card">
-      <div class="problem-card-num">02</div>
-      <h3>Teigqualität-Drift in der Mitte der Woche</h3>
-      <p>Donnerstag–Samstag 20:00–22:00 sinkt die Qualität messbar. Nicht im Rating sichtbar, aber in der Churn-Rate.</p>
-    </div>
-    <div class="problem-card">
-      <div class="problem-card-num">03</div>
-      <h3>0 % Antwortquote auf Google-Reviews</h3>
-      <p>Jede ungelöste Bewertung erhöht Rating-Erosion und senkt Neugast-Conversion messbar. In fast jedem Betrieb identisch.</p>
-    </div>
-  </div>
-  <p class="problem-outro">Die wenigsten Betriebe sehen diese Muster, bis es 12 Monate zu spät ist. <a href="#calculator">Rechnen Sie Ihren Betrag →</a></p>
-</div></section>
+<!-- ECHTER BEISPIELBEFUND - Beweis nach oben, klar als Beispielbefund gelabelt -->
+<section class="example-finding reveal" id="beispielbefund"><div class="container">
+  <div class="ef-overline">Echter Beispielbefund</div>
+  <h2 class="ef-h">So sieht ein Couvert-Audit aus.<br><em>Ein anonymisierter Schweizer Gastronomiebetrieb.</em></h2>
+  <p class="ef-intro">Modellierte Umsatzwirkung auf Basis öffentlicher Daten – Reviews, Karte, Wettbewerbsumfeld. Beispielbefund, kein Versprechen.</p>
 
-<!-- DOSSIER-EXZERPT (Block 5.2 - Proof-before-Pitch) -->
-<section class="dossier-section reveal"><div class="container">
-  <div class="dossier-layout">
-    <div class="dossier-copy">
-      <div class="dossier-overline">Proof · Ein echtes Muster-Dossier</div>
-      <h2>So sieht der Output aus, bevor Sie einen Agent aktivieren.</h2>
-      <p>4–5 Seiten aus einem realen Couvert Intelligence Dossier eines CHF-5-Mio-Betriebs: Rating-Erosion quantifiziert, Teigqualität-Drift belegt, 10 priorisierte Hebel mit CHF-Effekt. Keine Charts zum Selber-Interpretieren - fertige Argumentation in Franken.</p>
-      <div class="dossier-cta">
-        <a href="beispiel-report/" class="btn-primary">Vollständiges Dossier öffnen →</a>
-        <a href="fallbeispiel.html" class="btn-ghost">Fallbeispiel-Seite ansehen</a>
+  <ol class="ef-steps">
+    <li class="ef-step">
+      <div class="ef-step-num">01</div>
+      <div class="ef-step-body">
+        <h3>Ausgangslage</h3>
+        <p>CHF-5-Mio-Betrieb in einer Schweizer Stadtlage. 2'825 Bewertungen über 5 Jahre, Rating bei 4.4 ★, Antwortquote auf Reviews bei 0 %. Keine strukturierte Auswertung der Beschwerden, kein Schichtmuster-Tracking.</p>
       </div>
-    </div>
-    <a class="dossier-preview" href="beispiel-report/">
-      <div class="dossier-pages">
-        <div class="dossier-page" style="--o:0">
-          <div class="dp-head">Performance-Profil · April 2026</div>
-          <div class="dp-body">
-            <div class="dp-row"><span>Rating heute</span><b>4.40 ★</b></div>
-            <div class="dp-row"><span>Benchmark</span><b>4.70 ★</b></div>
-            <div class="dp-row dp-row-loss"><span>Umsatzverlust / Jahr</span><b>CHF 390K</b></div>
-            <div class="dp-row dp-row-win"><span>Recovery-Hebel</span><b>+CHF 285K</b></div>
-          </div>
+    </li>
+    <li class="ef-step">
+      <div class="ef-step-num">02</div>
+      <div class="ef-step-body">
+        <h3>Befund</h3>
+        <p>63 % der negativen Reviews benennen Service und Wartezeit, ein Donnerstag-Samstag-Cluster bei 20–22 Uhr. Rating-Erosion gegenüber dem direkten Wettbewerb über die letzten 18 Monate. Das Rating allein zeigt das Muster nicht – die Verteilung der Beschwerden über Schichten und Wochen tut es.</p>
+      </div>
+    </li>
+    <li class="ef-step">
+      <div class="ef-step-num">03</div>
+      <div class="ef-step-body">
+        <h3>Umsatzrelevanz</h3>
+        <p class="ef-step-chf">CHF 277'801 modellierte Umsatzwirkung pro Jahr</p>
+        <p class="ef-step-foot">Gerechnet aus Anteil unzufriedener Gäste, Dunkelziffer (Faktor 7), Abwanderungsrate, Gastwert pro Jahr. Beispielbefund auf Basis öffentlicher Studien – kein zugesagter Effekt.</p>
+      </div>
+    </li>
+    <li class="ef-step">
+      <div class="ef-step-num">04</div>
+      <div class="ef-step-body">
+        <h3>Drei operative Massnahmen</h3>
+        <ul class="ef-actions">
+          <li><strong>Antwortquote auf Reviews etablieren.</strong> Strukturierter Antwort-Workflow für Service-Lead, mehrsprachig, kritische Fälle innerhalb 24 h.</li>
+          <li><strong>Service-Beschwerden strukturiert erfassen.</strong> Pro Schicht ein kurzer Briefing-/Debriefing-Loop, Beschwerden auf Cluster-Ebene zurückspielen.</li>
+          <li><strong>Preis-Erwartungs-Lücke schliessen.</strong> Karten-Positionierung und Portionierung bei zwei Top-Items überprüfen, Erwartungs-Setting auf der Karte schärfen.</li>
+        </ul>
+      </div>
+    </li>
+    <li class="ef-step">
+      <div class="ef-step-num">05</div>
+      <div class="ef-step-body">
+        <h3>Nächster Schritt</h3>
+        <p>Im Audit werden Befund und Massnahmen mit den realen Betriebsdaten gegengeprüft, anschliessend mit dem Betreiber persönlich besprochen, bevor irgendetwas ausgeliefert wird. Keine automatische Kundenkommunikation, kein Auto-Send.</p>
+        <div class="ef-cta">
+          <a href="beispiel-report/" class="btn-primary btn-primary--ink">Vollständiges Beispiel-Dossier öffnen →</a>
+          <a href="https://calendly.com/hello-couvert/30min" target="_blank" rel="noopener" class="btn-ghost">Erstgespräch vereinbaren</a>
         </div>
-        <div class="dossier-page" style="--o:1"></div>
-        <div class="dossier-page" style="--o:2"></div>
       </div>
-      <span class="dossier-badge">PDF · 24 Seiten</span>
-    </a>
-  </div>
+    </li>
+  </ol>
 </div></section>
 
-<!-- SOLUTIONS - sticky-chapter scroll -->
-<section class="solutions-section reveal" id="solutions"><div class="sol-container">
-<div class="solutions-head">
-<div class="section-label" style="text-align:center">Solutions</div>
-<h2>Lösungen für jedes Team.</h2>
-<p>4 spezialisierte Teams. 12 Couvert Agents. Ein Operating System, das jede Dimension Ihres Betriebs sichtbar macht.</p>
-</div>
-
-<div class="sol-sticky">
-  <!-- Block 5.3 progress indicator (desktop) -->
-  <div class="sol-progress" aria-hidden="true">
-    <span class="sol-progress-dot is-active" data-progress="guest"></span>
-    <span class="sol-progress-dot" data-progress="quality"></span>
-    <span class="sol-progress-dot" data-progress="revenue"></span>
-    <span class="sol-progress-dot" data-progress="market"></span>
-    <span class="sol-progress-count"><span id="solProgressNum">1</span>/4</span>
-  </div>
-  <div class="sol-chapters">
-
-    <article class="sol-chapter is-active" data-team="guest" data-sol-layer="guest">
-      <div class="sol-chapter__overline">Das Problem · Stille Abwanderung</div>
-      <h3>Gäste halten und zurückholen.</h3>
-      <p class="sol-body">Hinter jeder geschriebenen Beschwerde stehen sieben Gäste, die still abwandern. Reputation Manager, Guest Recovery und Booking Optimizer pflegen jede Gast-Beziehung aktiv: Echtzeit-Reviews beantwortet, unzufriedene Gäste persönlich kontaktiert, Auslastung gezielt gesteuert.</p>
-      <div class="sol-chips"><span>Reputation Manager</span><span>Guest Recovery</span><span>Booking Optimizer</span></div>
-      <div class="sol-outcome">CHF 80'000+</div>
-      <div class="sol-outcome-cap">Jährlich rückgewonnener Umsatz</div>
-      <a href="mockups/product-reviews.html" class="sol-cta">Mehr sehen</a>
-      <a class="sol-inline-dash sol-inline-link" href="/cockpit/">
-        <img src="mockups/_png/product-reviews.png" alt="Reviews Dashboard" loading="lazy">
-        <span class="sol-inline-tap">Tippen zum Öffnen →</span>
-      </a>
-    </article>
-
-    <article class="sol-chapter" data-team="quality" data-sol-layer="quality">
-      <div class="sol-chapter__overline">Das Problem · Eskalierende Beschwerden</div>
-      <h3>Muster erkennen, bevor sie eskalieren.</h3>
-      <p class="sol-body">Wenn das Rating reagiert, ist das Muster schon seit Wochen sichtbar. Quality Watchdog, Operations Advisor, Predictive Staffing und Staff Communication sehen Trend-Veränderungen, Schicht-Engpässe und Kommunikations-Lücken, bevor der Gast eskaliert.</p>
-      <div class="sol-chips sol-chips--grid-2x2"><span>Quality Watchdog</span><span>Operations Advisor</span><span>Predictive Staffing</span><span>Staff Communication</span></div>
-      <div class="sol-outcome">+200%</div>
-      <div class="sol-outcome-cap">Beschwerde-Trend erkannt, bevor das Rating reagiert</div>
-      <a href="mockups/product-shift.html" class="sol-cta">Mehr sehen</a>
-      <a class="sol-inline-dash sol-inline-link" href="/cockpit/">
-        <img src="mockups/_png/product-shift.png" alt="Shift Briefing Dashboard" loading="lazy">
-        <span class="sol-inline-tap">Tippen zum Öffnen →</span>
-      </a>
-    </article>
-
-    <article class="sol-chapter" data-team="revenue" data-sol-layer="revenue">
-      <div class="sol-chapter__overline">Das Problem · Unsichtbare Umsatzlecks</div>
-      <h3>Umsatz sichtbar machen und steigern.</h3>
-      <p class="sol-body">Die meisten Umsatzlecks stehen nicht in der Bilanz. Revenue Analyst, Menu Intelligence und Food Waste Agent quantifizieren Umsatzlecks, identifizieren Preis-Leistungs-Anomalien, optimieren Wareneinsatz. Alles in CHF, mit Quellen-Herleitung.</p>
-      <div class="sol-chips"><span>Revenue Analyst</span><span>Menu Intelligence</span><span>Food Waste Agent</span></div>
-      <div class="sol-outcome">CHF 280K+</div>
-      <div class="sol-outcome-cap">Verbesserungspotenzial pro Jahr</div>
-      <a href="mockups/product-report.html" class="sol-cta">Mehr sehen</a>
-      <a class="sol-inline-dash sol-inline-link" href="/cockpit/">
-        <img src="mockups/_png/product-report.png" alt="Monthly Impact Dashboard" loading="lazy">
-        <span class="sol-inline-tap">Tippen zum Öffnen →</span>
-      </a>
-    </article>
-
-    <article class="sol-chapter" data-team="market" data-sol-layer="market">
-      <div class="sol-chapter__overline">Das Problem · Marketing ohne Return</div>
-      <h3>Wettbewerb verstehen, Marketing messbar machen.</h3>
-      <p class="sol-body">Bauchgefühl statt CAC-Wissen kostet 5-stellig pro Monat. Marketing Engine und Competitor Radar bewerten Marketing-Wirkung, vergleichen Preis- und Content-Ebene mit dem Wettbewerb. Messbar, nicht bauchgefühlbasiert.</p>
-      <div class="sol-chips"><span>Marketing Engine</span><span>Competitor Radar</span></div>
-      <div class="sol-outcome">CHF 22 vs 100</div>
-      <div class="sol-outcome-cap">CAC: Paid Ads vs Influencer</div>
-      <a href="mockups/product-competitor.html" class="sol-cta">Mehr sehen</a>
-      <a class="sol-inline-dash sol-inline-link" href="/cockpit/">
-        <img src="mockups/_png/product-competitor.png" alt="Competitor Radar Dashboard" loading="lazy">
-        <span class="sol-inline-tap">Tippen zum Öffnen →</span>
-      </a>
-    </article>
-
+<!-- PAIN-SLICES - 2x2 statisches Grid, Pain zuerst, Mechanik leise -->
+<section class="pain-slices reveal" id="solutions"><div class="container">
+  <div class="pain-head">
+    <div class="pain-overline">Wo Couvert ansetzt</div>
+    <h2>Vier wirtschaftliche Muster, die in fast jedem Betrieb wiederkehren.</h2>
+    <p>Couvert beziffert sie und übersetzt sie in operative Massnahmen, bevor sie im Monatsabschluss auftauchen.</p>
   </div>
 
-  <!-- Sticky dashboard stage (desktop only) -->
-  <div class="sol-stage">
-    <div class="sol-dashboard dashboard-embed">
-      <div class="dashboard-embed__chrome">
-        <span class="dashboard-embed__dot"></span>
-        <span class="dashboard-embed__dot"></span>
-        <span class="dashboard-embed__dot"></span>
-      </div>
-      <div class="dashboard-embed__content">
-        <div class="dashboard-embed__layer is-active" data-sol-target="guest"><iframe src="mockups/product-reviews.html" loading="lazy" title="Guest - Reviews"></iframe></div>
-        <div class="dashboard-embed__layer" data-sol-target="quality"><iframe src="mockups/product-shift.html" loading="lazy" title="Quality - Shift Briefing"></iframe></div>
-        <div class="dashboard-embed__layer" data-sol-target="revenue"><iframe src="mockups/product-report.html" loading="lazy" title="Revenue - Monthly Impact"></iframe></div>
-        <div class="dashboard-embed__layer" data-sol-target="market"><iframe src="mockups/product-competitor.html" loading="lazy" title="Market - Competitor Radar"></iframe></div>
-      </div>
-    </div>
+  <div class="pain-grid">
+    <article class="pain-card">
+      <h3 class="pain-title">Gäste kommen nicht wieder</h3>
+      <p class="pain-body">Stammgäste fallen still aus. Im Rating sieht man es spät, in der Auslastung zu spät.</p>
+      <p class="pain-detect">Couvert erkennt Cluster aus negativen Reviews, Beschwerde-Themen und Wochentag-Mustern, bevor sie sich im Umsatz festsetzen.</p>
+      <div class="pain-mechanic">Guest-Experience-Layer · Reviews, Beschwerde-Cluster, Booking-Signale</div>
+    </article>
+
+    <article class="pain-card">
+      <h3 class="pain-title">Beschwerden bleiben unbeantwortet</h3>
+      <p class="pain-body">99 von 100 Gäste schreiben nichts. Wer schreibt, bekommt keine Antwort. Beides senkt die Wiederkommquote messbar.</p>
+      <p class="pain-detect">Couvert wertet Antwortverhalten, Reaktionszeit und Tonalität aus und zeigt, wo strukturierter Antwort-Workflow den grössten Hebel hat.</p>
+      <div class="pain-mechanic">Quality &amp; Operations Layer · Antwortquote, Reaktionszeit, Tonalität</div>
+    </article>
+
+    <article class="pain-card">
+      <h3 class="pain-title">Umsatz versickert im Betrieb</h3>
+      <p class="pain-body">Wartezeit, Schichtmuster, Karten-Positionierung. Lecks, die in keiner Bilanz stehen, aber jeden Monat Geld kosten.</p>
+      <p class="pain-detect">Couvert korreliert Beschwerde-Themen mit Schichtmustern und Karten-Strukturen und beziffert die operative Umsatzwirkung.</p>
+      <div class="pain-mechanic">Revenue &amp; Menu Layer · Schichtmuster, Karten-Struktur, Preisbild</div>
+    </article>
+
+    <article class="pain-card">
+      <h3 class="pain-title">Marketing erzeugt keine Wirkung</h3>
+      <p class="pain-body">Budget für Reichweite ohne Verbindung zu Auslastung und Wettbewerbsumfeld. Bauchgefühl statt Beleg.</p>
+      <p class="pain-detect">Couvert vergleicht Profil, Preisbild und Sichtbarkeit mit dem direkten Wettbewerb und identifiziert, wo Marketing zu wenig Hebel hat.</p>
+      <div class="pain-mechanic">Market &amp; Growth Layer · Wettbewerbsumfeld, Sichtbarkeit, Profil-Stärke</div>
+    </article>
   </div>
-
-</div>
-
 </div></section>
 
 <!-- CALCULATOR -->
@@ -743,172 +820,113 @@
 <div class="calc-breakdown-row positive"><span class="cbr-label"><span class="tip">Recovery: Rating-Verbesserung +0.2★<span class="tip-icon">?</span><span class="tip-text">Geschätzter Umsatzeffekt bei einer Verbesserung um 0.2 Sterne: ca. 2% vom Jahresumsatz, basierend auf Branchendaten.</span></span></span><span class="cbr-value" id="bd-uplift">+CHF 130K</span></div>
 </div></details>
 </div></div></div>
-<div class="calc-bridge">Genau diese Verluste adressiert Ihr Couvert-Team im laufenden Betrieb. <a href="team.html" style="color:var(--copper)">Lernen Sie die 12 Agents in 4 Teams kennen →</a></div>
+<div class="calc-bridge">Diese Schätzung ist eine Beispielrechnung. Im Couvert Audit wird sie mit realen Betriebsdaten gegengeprüft, bevor irgendeine Massnahme empfohlen wird. <a href="#stages" style="color:var(--copper)">Couvert Audit ab CHF 4'500 →</a></div>
 </div></section>
 
-<!-- COUVERT AGENTS -->
-<section class="ai-team-section light-section reveal" id="couvert-agents"><div class="container">
-<div class="section-label">Ihre Couvert Agents</div>
-<div class="section-title">Vier Bereiche. Zwölf Agents.</div>
-<div class="section-sub">Jeder Bereich löst ein konkretes Problem. Die Agents teilen sich Daten und Entscheidungen, damit das Team den gesamten operativen Kreislauf abdeckt: von der einzelnen Bewertung bis zur Standort-Optimierung.</div>
-<div class="ai-teams-grid">
-
-<div class="ai-team-card" data-team="guest">
-<div class="atc-label">01 · Gäste</div>
-<h3>Gäste</h3>
-<p class="atc-intro">Bewertungen. Rückgewinnung. Auslastung.</p>
-<ul class="atc-agents">
-<li><strong>Reputation Manager</strong>Beantwortet jede Bewertung mehrsprachig in Ihrer Tonalität, kritische Fälle innerhalb 2 Stunden.</li>
-<li><strong>Guest Recovery</strong>Identifiziert unzufriedene Gäste aus Bewertungen und Reservierungsdaten und holt sie persönlich zurück.</li>
-<li><strong>Booking Optimizer</strong>Erkennt Auslastungslücken, füllt schwache Slots durch Recovery-Einladungen und entlastet Spitzenzeiten.</li>
-</ul>
-</div>
-
-<div class="ai-team-card" data-team="quality">
-<div class="atc-label">02 · Betrieb</div>
-<h3>Betrieb</h3>
-<p class="atc-intro">Qualität. Schichten. Personal. Kommunikation.</p>
-<ul class="atc-agents">
-<li><strong>Quality Watchdog</strong>Erkennt Beschwerde-Muster bevor sie im Rating sichtbar werden und briefed zuständige Mitarbeiter vor Schichtbeginn.</li>
-<li><strong>Operations Advisor</strong>Korreliert Reservierungsdaten mit Gäste-Sentiment und passt Reservierungs-Buffer vor Spitzentagen an.</li>
-<li><strong>Predictive Staffing</strong>Stafft nach Risiko, nicht nur nach Reservierungen. Kombiniert Wetter, Events und historische Auslastung.</li>
-<li><strong>Staff Communication</strong>Strukturierte Schichtübergaben statt informelle Chats. Personalisierte Briefings pro Rolle.</li>
-</ul>
-</div>
-
-<div class="ai-team-card" data-team="revenue">
-<div class="atc-label">03 · Speisekarte</div>
-<h3>Speisekarte</h3>
-<p class="atc-intro">Menü. Kalkulation. Wareneinsatz.</p>
-<ul class="atc-agents">
-<li><strong>Revenue Analyst</strong>Beziffert jede Schwachstelle in Franken mit monatlichem Wirkungsbericht und ROI-Berechnung.</li>
-<li><strong>Menu Intelligence</strong>Gericht-spezifisches Sentiment-Tracking nach jedem Kartenwechsel, Preis-Leistungs-Anomalien identifizieren.</li>
-<li><strong>Food Waste Agent</strong>Korreliert POS-Bestellmuster mit Einkaufsdaten und generiert optimierte Bestelllisten. Aktiviert sich in Phase 3.</li>
-</ul>
-</div>
-
-<div class="ai-team-card" data-team="market">
-<div class="atc-label">04 · Marketing</div>
-<h3>Marketing</h3>
-<p class="atc-intro">Kampagnen. Wettbewerb. Wachstum.</p>
-<ul class="atc-agents">
-<li><strong>Marketing Engine</strong>ROI-Tracking pro Kampagne, Budget an Auslastung koppeln. Paid Ads nur wenn Auslastung unter 60% fällt.</li>
-<li><strong>Competitor Radar</strong>Wöchentliches Monitoring der Top-Wettbewerber: Rating, Reviews, Preise, Strategiewechsel.</li>
-</ul>
-</div>
-
-</div>
-<div class="ai-team-footer">
-<a href="team.html" class="btn-ghost">Jeden Agent im Detail →</a>
-</div>
-</div></section>
+<!-- (entfernt: AI-Team-Grid · ersetzt durch Pain-Slices weiter oben.
+     Detailansicht der Mechanik bleibt auf /team.html erreichbar.) -->
 
 <!-- ORIGIN / GESCHICHTE - removed from landing 2026-04-19. Still linked from footer + available at /geschichte.html -->
 
 
-<!-- FULL TRUST PANEL (Block 5.5) -->
+<!-- TRUST-PANEL slim - 4 nüchterne Items -->
 <section class="trust-panel reveal"><div class="container">
   <div class="trust-head">
-    <div class="section-label">Vertrauen · Sicherheit · Transparenz</div>
-    <h2>Keine versteckten Haken. Keine Lock-in-Schweigepflicht.</h2>
+    <div class="section-label">Wie wir arbeiten</div>
+    <h2>Ehrlich, ruhig, ohne Lock-in.</h2>
   </div>
   <div class="trust-grid">
     <div class="trust-item">
-      <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg></div>
       <h3>Hosting in der Schweiz</h3>
-      <p>Alle Kundendaten auf Schweizer Servern. Keine Übertragung in Drittländer ohne ausdrückliche Freigabe.</p>
+      <p>Kundendaten auf Schweizer Servern, keine Übertragung in Drittländer ohne ausdrückliche Freigabe.</p>
     </div>
     <div class="trust-item">
-      <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 2 3 5v6c0 5 3.5 9.5 9 11 5.5-1.5 9-6 9-11V5l-9-3z"/></svg></div>
-      <h3>nDSG-konform</h3>
-      <p>Schweizer Datenschutz-Standard. Verarbeitungsverzeichnis, AV-Vertrag und Löschkonzept Teil des Onboardings.</p>
+      <h3>nDSG-orientiert</h3>
+      <p>Schweizer Datenschutz-Standard. Verarbeitungsverzeichnis, AV-Vertrag und Löschkonzept gehören zum Onboarding.</p>
     </div>
     <div class="trust-item">
-      <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-      <h3>Anthropic Claude</h3>
-      <p>Kein Eigenbau-LLM. State-of-the-art Modelle über Anthropic's Enterprise-API, ohne Training auf Ihren Daten.</p>
+      <h3>Öffentliche Daten zuerst</h3>
+      <p>Wir starten mit dem, was öffentlich da ist – Reviews, Karte, Wettbewerbsumfeld. Interne Daten erst, wenn der Betreiber sie selbst freigibt.</p>
     </div>
     <div class="trust-item">
-      <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></div>
-      <h3>Monatlich kündbar</h3>
-      <p>Kein 24-Monats-Vertrag. Wenn Couvert nicht liefert, sind Sie nach 30 Tagen draussen. Ohne Exit-Gebühr.</p>
+      <h3>Betreiber-Review vor Auslieferung</h3>
+      <p>Jeder Befund wird mit dem Betreiber besprochen, bevor er ausgeliefert wird. Keine automatische Kundenkommunikation.</p>
     </div>
-  </div>
-  <div class="trust-prelaunch">
-    <strong>Pre-Launch-Transparenz:</strong> Couvert ist noch nicht breit im Markt. Statt gefälschter Logo-Leiste zeigen wir Ihnen ein <a href="beispiel-report/">vollständiges anonymisiertes Muster-Dossier</a>. Die ersten 5 Pilot-Gastronomien arbeiten aktuell mit uns unter NDA. Referenzen werden transparent, sobald sie freigegeben sind.
   </div>
 </div></section>
 
-<!-- PRODUKTSTUFEN: SCAN / INTELLIGENCE / OPERATIONS (Commitment-Ladder - nach Trust-Panel, vor Final-CTA) -->
-<section class="stages-section reveal"><div class="container">
-<div class="stages-header">
-<div class="stages-overline">Produktstufen</div>
-<h2>Scan. Intelligence. <em>Operations.</em></h2>
-<p>Drei aufeinander aufbauende Stufen - vom kostenlosen Teaser über den tiefen Report bis zum laufenden AI-Betrieb.</p>
-</div>
-<div class="stages-grid">
-
-<div class="stage-card" id="scan" data-team="scan" data-stage-num="01">
-<div class="stage-label">Stufe 1 · Couvert Scan</div>
-<div class="stage-price">Kostenfrei</div>
-<div class="stage-title">Couvert Scan</div>
-<p class="stage-body">Kostenfreier Erst-Scan mit dem Couvert Agentic Service OS: In 3-5 Minuten sehen Sie, wo Bewertungen, Menü und Auslastung heute Geld liegen lassen.</p>
-<a href="https://calendly.com/hello-couvert/30min" target="_blank" class="stage-cta">Scan starten →</a>
-</div>
-
-<div class="stage-card" id="intelligence" data-team="intelligence" data-stage-num="02">
-<div class="stage-label">Stufe 2 · Couvert Intelligence</div>
-<div class="stage-price">ab CHF 4'500 · einmalig</div>
-<div class="stage-title">Couvert Intelligence</div>
-<p class="stage-body">Das Couvert Intelligence Playbook - Performance-Profil und priorisierter Massnahmenplan für Marketing und Betrieb, der auf Ihren Daten basiert. Grundlage, bevor das Agentic Service OS dauerhaft aktiviert wird.</p>
-<div class="stage-tiers">
-  <div class="stage-tier-item">
-    <div class="stage-tier-name">Audit</div>
-    <div class="stage-tier-price">CHF 4'500</div>
-    <div class="stage-tier-sub">15-Seiter · Reviews · Menü · Wettbewerb · CHF-Modell · 5 Werktage</div>
+<!-- FOUNDER / TRUST BLOCK - leise, persönlich, ehrlich -->
+<section class="founder-section reveal"><div class="container">
+  <div class="founder-layout">
+    <div class="founder-portrait" aria-hidden="true">
+      <!-- Platzhalter für Founder-Foto. Asset folgt. Kein Stock-Foto. -->
+      <div class="founder-portrait-placeholder">MV</div>
+    </div>
+    <div class="founder-copy">
+      <div class="founder-overline">Gegründet in der Schweiz</div>
+      <h2>Gebaut in der Schweiz.<br><em>Für Betreiber, die keine weitere Software wollen.</em></h2>
+      <p>Couvert ist nicht ein weiteres Tool, das im Tagesbetrieb bedient werden muss. Es ist eine externe operative Sicht – Befund, Wirkung, Massnahmen, Evidenz – damit Betreiber sich auf das konzentrieren können, was vor Ort passiert.</p>
+      <p>Wir arbeiten heute mit ersten Pilot-Betrieben unter NDA. Referenzen werden transparent, sobald sie freigegeben sind. Bis dahin: ein anonymisiertes <a href="beispiel-report/">Beispiel-Dossier</a> und ein direktes Gespräch.</p>
+      <div class="founder-meta">
+        <span class="founder-name">Maximilian Veit · Gründer</span>
+        <span class="founder-sep">·</span>
+        <a class="founder-mail" href="mailto:hello@couvert.ai">hello@couvert.ai</a>
+        <span class="founder-sep">·</span>
+        <a class="founder-mail" href="https://couvert.ai">couvert.ai</a>
+      </div>
+    </div>
   </div>
-  <div class="stage-tier-item">
-    <div class="stage-tier-name">Custom Audit</div>
-    <div class="stage-tier-price">CHF 9'500</div>
-    <div class="stage-tier-sub">Mit Erstgespräch + internen Daten · 2-3 Wochen</div>
-  </div>
-</div>
-<a href="fallbeispiel.html" class="stage-cta">Beispielbericht ansehen →</a>
+</div></section>
+
+<!-- PRICING-STREIFEN: 3 Stufen, kein Pricing-Table-Monster, keine Gratis-Logik -->
+<section class="pricing-strip reveal" id="stages"><div class="container">
+<div class="pricing-head">
+<div class="pricing-overline">Pricing</div>
+<h2>Drei Wege, mit Couvert zu starten.</h2>
+<p>Welcher Schritt passt, hängt davon ab, wie viel öffentliches Signal heute schon vorhanden ist und wie tief der Betrieb reingelassen wird.</p>
 </div>
 
-<div class="stage-card" id="operations" data-team="operations" data-stage-num="03">
-<div class="stage-label">Stufe 3 · Couvert Operations</div>
-<div class="stage-price">ab CHF 2'500 / Standort / Monat</div>
-<div class="stage-title">Couvert Operations</div>
-<p class="stage-body">Ihr laufendes Agentic Service OS im Hintergrund. Tägliche Signale, wöchentliche Alerts, monatliche Wirkungsberichte und - je nach gewünschter Autonomie - operative Empfehlungen oder direkt ausgeführte Aktionen für Umsatz, Guest Experience, Staffing und Menü.</p>
-<div class="stage-tiers">
-  <div class="stage-tier-item">
-    <div class="stage-tier-name">Aufbau-Setup</div>
-    <div class="stage-tier-price">ab CHF 5'000</div>
-    <div class="stage-tier-sub">Einmalig · 2-4 Wochen · Data-Onboarding + Agent-Aktivierung</div>
-  </div>
-  <div class="stage-tier-item">
-    <div class="stage-tier-name">Managed Service</div>
-    <div class="stage-tier-price">ab CHF 2'500</div>
-    <div class="stage-tier-sub">Pro Standort/Monat · skaliert bis CHF 3'500-5'000 für 5+ Standort-Gruppen, abhängig von Integrations-Tiefe</div>
-  </div>
-</div>
-<a href="#couvert-agents" class="stage-cta">Die Couvert Agents →</a>
+<div class="pricing-grid">
+  <article class="pricing-card">
+    <div class="pricing-step">01</div>
+    <h3>Couvert Snapshot</h3>
+    <div class="pricing-price">CHF 900</div>
+    <p class="pricing-desc">Wenn die öffentliche Datenlage dünn ist, aber ein erster Befund sinnvoll bleibt.</p>
+  </article>
+
+  <article class="pricing-card pricing-card--feature">
+    <div class="pricing-step">02</div>
+    <h3>Couvert Intelligence Audit</h3>
+    <div class="pricing-price">CHF 4'500</div>
+    <p class="pricing-desc">Wenn öffentliche Signale konkrete operative Hebel zeigen.</p>
+  </article>
+
+  <article class="pricing-card">
+    <div class="pricing-step">03</div>
+    <h3>Performance Analyse</h3>
+    <div class="pricing-price">CHF 9'500</div>
+    <p class="pricing-desc">Wenn Profil, Standort oder Komplexität interne Daten und Management-Review brauchen.</p>
+  </article>
 </div>
 
+<div class="pricing-ops">
+  <span class="pricing-ops-label">Operations Layer</span>
+  <span class="pricing-ops-price">ab CHF 2'500 / Standort / Monat</span>
+  <span class="pricing-ops-desc">für laufende operative Begleitung.</span>
 </div>
-<p class="stages-footnote">Alle Preise exkl. MWST (8.1 % Schweiz · 19 % Deutschland · 20 % Österreich). Details und FAQ auf der <a href="preise.html">Preise-Seite</a>.</p>
+
+<p class="pricing-footnote">Alle Preise exkl. MWST. Details und FAQ auf der <a href="preise.html">Preise-Seite</a>.</p>
 </div></section>
 
 <!-- CTA -->
 <section class="cta-final reveal" id="contact"><div class="container">
 <div class="underlay cta-underlay">
   <div class="section-label">Nächster Schritt · 30 Minuten</div>
-  <h2>Wir zeigen Ihnen, wo Ihr Betrieb Umsatz liegen lässt.</h2>
-  <p>In einem kurzen Erstgespräch sehen Sie, welche Signale heute schon auf Schwachstellen, verlorene Gäste und ungenutztes Potenzial hinweisen.</p>
-  <div class="cta-buttons"><a href="https://calendly.com/hello-couvert/30min" target="_blank" class="btn-primary">Erstgespräch vereinbaren</a><a href="fallbeispiel.html" class="btn-ghost">Beispielanalyse anfragen</a></div>
+  <h2>Audit-Potenzial prüfen.</h2>
+  <p>Ein kurzes Erstgespräch zeigt, welcher Couvert-Schritt zu Ihrem Betrieb passt – Snapshot, Audit oder Performance Analyse. Keine Verbindlichkeit, kein Software-Onboarding.</p>
+  <div class="cta-buttons"><a href="https://calendly.com/hello-couvert/30min" target="_blank" rel="noopener" class="btn-primary btn-primary--ink">Erstgespräch vereinbaren</a><a href="beispiel-report/" class="btn-ghost">Beispiel-Dossier ansehen</a></div>
 </div>
-<div class="cta-trust"><span>nDSG-konform</span><span>Schweizer Hosting</span><span>Monatlich kündbar</span></div>
+<div class="cta-trust"><span>Schweizer Betrieb</span><span>nDSG-orientiert</span><span>Betreiber-Review vor Auslieferung</span></div>
 </div></section>
 
 <footer><div class="container">
