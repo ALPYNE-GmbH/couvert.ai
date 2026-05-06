@@ -90,10 +90,38 @@ jobs:
           git commit -m "$MSG" -m "Source: ALPYNE-GmbH/couvert.ai @ ${UPSTREAM_REF}@${UPSTREAM_SHA}"
           git push origin main
 
+      - name: Install Vercel CLI
+        if: steps.diff.outputs.changed == 'true' && env.VERCEL_TOKEN != ''
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: npm install --global vercel@latest
+
+      - name: Deploy AB-bundle to Vercel
+        if: steps.diff.outputs.changed == 'true' && env.VERCEL_TOKEN != ''
+        working-directory: couvert-lovable/docs/homepage-versions
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          # Pull the linked project metadata so this build runs against the existing project
+          vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+          # Build + deploy. --prebuilt would speed up but we want vercel.json honored simply.
+          vercel deploy --prod --yes --token="$VERCEL_TOKEN" \
+            | tee /tmp/vercel-deploy.txt
+          DEPLOY_URL=$(grep -Eo 'https://[a-z0-9.-]+\.vercel\.app' /tmp/vercel-deploy.txt | head -1)
+          echo "VERCEL_DEPLOY_URL=$DEPLOY_URL" >> "$GITHUB_ENV"
+
       - name: Summary
         run: |
           if [ "${{ steps.diff.outputs.changed }}" = "true" ]; then
             echo "✅ Synced couvert.ai@${GITHUB_SHA::7} → couvert-lovable/docs/homepage-versions/after/"
+            if [ -n "${VERCEL_DEPLOY_URL:-}" ]; then
+              echo "✅ Vercel deploy: $VERCEL_DEPLOY_URL"
+              echo "✅ Aliased: https://couvert-homepage-ab.vercel.app"
+            else
+              echo "ℹ️  Vercel deploy skipped (VERCEL_TOKEN secret not set)."
+            fi
           else
-            echo "ℹ️  No diff. After-snapshot was already current."
+            echo "ℹ️  No diff. After-snapshot was already current. No Vercel deploy."
           fi
