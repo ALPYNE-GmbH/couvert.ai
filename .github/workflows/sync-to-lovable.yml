@@ -1,0 +1,99 @@
+name: Sync homepage to couvert-lovable
+
+# Mirrors couvert.ai/docs/ → couvert-lovable/docs/homepage-versions/after/
+# (with AB-toggle bar patched in) so the Lovable-Repo always reflects
+# the live homepage state. The `before/` snapshot is FROZEN and never
+# touched by this workflow.
+#
+# Triggers:
+#   - push to `main` that touches `docs/**`
+#   - manual `workflow_dispatch` (any branch via UI)
+#
+# Required secrets:
+#   LOVABLE_REPO_TOKEN — GitHub PAT (or fine-grained token) with `Contents: write`
+#                        on ALPYNE-GmbH/couvert-lovable
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Optional note (shown in the lovable commit message)'
+        required: false
+        default: 'manual sync'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sync-to-lovable
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout couvert.ai (source)
+        uses: actions/checkout@v4
+        with:
+          path: couvert.ai
+          fetch-depth: 1
+
+      - name: Checkout couvert-lovable (target)
+        uses: actions/checkout@v4
+        with:
+          repository: ALPYNE-GmbH/couvert-lovable
+          ref: main
+          token: ${{ secrets.LOVABLE_REPO_TOKEN }}
+          path: couvert-lovable
+          fetch-depth: 1
+
+      - name: Run sync script
+        run: |
+          chmod +x couvert-lovable/scripts/sync-after-from-couvert.sh
+          ./couvert-lovable/scripts/sync-after-from-couvert.sh \
+            --upstream "$GITHUB_WORKSPACE/couvert.ai/docs" \
+            --target   "$GITHUB_WORKSPACE/couvert-lovable/docs/homepage-versions/after"
+
+      - name: Detect changes
+        id: diff
+        working-directory: couvert-lovable
+        run: |
+          if git diff --quiet -- docs/homepage-versions/after; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No changes in after/. Nothing to commit."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git diff --stat -- docs/homepage-versions/after | head -40
+          fi
+
+      - name: Commit & push
+        if: steps.diff.outputs.changed == 'true'
+        working-directory: couvert-lovable
+        env:
+          REASON: ${{ github.event.inputs.reason }}
+          UPSTREAM_SHA: ${{ github.sha }}
+          UPSTREAM_REF: ${{ github.ref_name }}
+        run: |
+          git config user.name  "couvert-sync-bot"
+          git config user.email "couvert-sync-bot@users.noreply.github.com"
+          git add docs/homepage-versions/after
+          MSG="sync: refresh after-snapshot from couvert.ai@${UPSTREAM_SHA::7}"
+          if [ -n "$REASON" ] && [ "$REASON" != "manual sync" ]; then
+            MSG="$MSG ($REASON)"
+          fi
+          git commit -m "$MSG" -m "Source: ALPYNE-GmbH/couvert.ai @ ${UPSTREAM_REF}@${UPSTREAM_SHA}"
+          git push origin main
+
+      - name: Summary
+        run: |
+          if [ "${{ steps.diff.outputs.changed }}" = "true" ]; then
+            echo "✅ Synced couvert.ai@${GITHUB_SHA::7} → couvert-lovable/docs/homepage-versions/after/"
+          else
+            echo "ℹ️  No diff. After-snapshot was already current."
+          fi
