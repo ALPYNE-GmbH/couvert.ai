@@ -90,14 +90,24 @@ jobs:
           git commit -m "$MSG" -m "Source: ALPYNE-GmbH/couvert.ai @ ${UPSTREAM_REF}@${UPSTREAM_SHA}"
           git push origin main
 
-      - name: Install Vercel CLI
-        if: steps.diff.outputs.changed == 'true' && env.VERCEL_TOKEN != ''
+      - name: Check Vercel token availability
+        id: vercel_check
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          if [ -n "$VERCEL_TOKEN" ]; then
+            echo "has_token=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_token=false" >> "$GITHUB_OUTPUT"
+            echo "ℹ️  VERCEL_TOKEN secret not set — skipping Vercel deploy."
+          fi
+
+      - name: Install Vercel CLI
+        if: steps.vercel_check.outputs.has_token == 'true'
         run: npm install --global vercel@latest
 
       - name: Deploy AB-bundle to Vercel
-        if: steps.diff.outputs.changed == 'true' && env.VERCEL_TOKEN != ''
+        if: steps.vercel_check.outputs.has_token == 'true'
         working-directory: couvert-lovable/docs/homepage-versions
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
