@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "couvert-homepage",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8421", "--directory", "/Users/maximilianveit/couvert.ai/docs"],
+      "port": 8421
+    }
+  ]
+}
