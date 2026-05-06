@@ -126,12 +126,14 @@ jobs:
         run: |
           if [ "${{ steps.diff.outputs.changed }}" = "true" ]; then
             echo "✅ Synced couvert.ai@${GITHUB_SHA::7} → couvert-lovable/docs/homepage-versions/after/"
-            if [ -n "${VERCEL_DEPLOY_URL:-}" ]; then
-              echo "✅ Vercel deploy: $VERCEL_DEPLOY_URL"
-              echo "✅ Aliased: https://couvert-homepage-ab.vercel.app"
-            else
-              echo "ℹ️  Vercel deploy skipped (VERCEL_TOKEN secret not set)."
-            fi
           else
-            echo "ℹ️  No diff. After-snapshot was already current. No Vercel deploy."
+            echo "ℹ️  No after/ diff — Lovable snapshot was already current."
+          fi
+          if [ -n "${VERCEL_DEPLOY_URL:-}" ]; then
+            echo "✅ Vercel deploy: $VERCEL_DEPLOY_URL"
+            echo "✅ Aliased:       https://couvert-homepage-ab.vercel.app"
+          elif [ "${{ steps.vercel_check.outputs.has_token }}" = "true" ]; then
+            echo "⚠️  Vercel deploy step ran but no URL captured."
+          else
+            echo "ℹ️  Vercel deploy skipped (VERCEL_TOKEN secret not set)."
           fi
